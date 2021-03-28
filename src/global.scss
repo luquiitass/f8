@@ -24,3 +24,29 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+:host {
+    .background-image {
+      background: url('/assets/images/fondo.png');
+    }
+}
+
+ion-content {
+    --background-image: url('assets/images/fondo.png'); 
+    
+  }
+
+.bottom{
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+}
+
+.light-black-background{
+    FONT-WEIGHT: 100;
+    border-radius: 5px;
+    background: #05050585;
+    padding: 10px;
+    ;
+}

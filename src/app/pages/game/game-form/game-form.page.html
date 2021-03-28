@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Partido</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="close()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="submit()"  (keyup)="serviceGame.errorsForm.clear()" >
+
+    <ion-item>
+      <ion-label position="floating">Equipo local</ion-label>
+      <ion-select [(ngModel)]="game.l_team" name="l_team">
+        <ion-select-option [value]="l_team.id" *ngFor="let l_team of teams">{{ l_team.name }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ serviceGame.errorsForm.get('l_team') }}</div>
+
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Equipo Vicitante</ion-label>
+      <ion-select [(ngModel)]="game.v_team" name="v_team">
+        <ion-select-option [value]="v_team.id" *ngFor="let v_team of teams">{{ v_team.name }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ serviceGame.errorsForm.get('v_team') }}</div>
+    </ion-item>
+
+    <div class="goals">
+
+      <ion-item>
+        <ion-label position="floating">Goles L</ion-label>
+        <ion-select [(ngModel)]="game.l_goals" name="l_goals">
+          <ion-select-option [value]="i" *ngFor="let i of numbGoals">{{ i }}</ion-select-option>
+        </ion-select>
+        <div style="color: red; padding-top: 0.2rem" >{{ serviceGame.errorsForm.get('l_goals') }}</div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Goles V</ion-label>
+        <ion-select [(ngModel)]="game.v_goals" name="v_goals" >
+          <ion-select-option [value]="e" *ngFor="let e of numbGoals">{{ e }}</ion-select-option>
+        </ion-select>
+        <div style="color: red; padding-top: 0.2rem" >{{ serviceGame.errorsForm.get('v_goals') }}</div>
+      </ion-item>
+    </div>
+
+    <ion-item>
+      <ion-label>HH:mm</ion-label>
+      <ion-datetime [(ngModel)]="game.time" displayFormat="HH:mm"  name="time"> {{game.time}} </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Lugar</ion-label>
+      <ion-input type="text" [(ngModel)]="game.location" name="location"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ serviceGame.errorsForm.get('location') }}</div>
+
+
+    <ion-item>
+      <ion-label position="floating" >Comentario</ion-label>
+      <ion-input type="text" [(ngModel)]="game.description" name="description"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ serviceGame.errorsForm.get('description') }}</div>
+
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime value="" 
+        [dayShortNames]="customDayShortNames"
+        displayFormat="DDD. MMM DD, YY"
+        ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Estado</ion-label>
+      <ion-select [(ngModel)]="game.status" name="status">
+        <ion-select-option [value]="i" *ngFor="let i of status">{{ i }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ serviceGame.errorsForm.get('status') }}</div>
+    </ion-item>
+   
+    <ion-button type="submit"  expand="block">Guardar</ion-button>
+  </form>
+</ion-content>

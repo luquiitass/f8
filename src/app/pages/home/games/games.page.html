@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Partidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+
+    <ion-list-header *ngIf="list.length == 0"  color="tertiary">
+      <ion-label>Sin registros</ion-label>
+    </ion-list-header>
+      <ion-item *ngFor="let game of list" routerLink="/games/profile/{{game.id}}" routerDirection="forward" >
+        <div class="game">
+          <div class="team-list contenedor light-black-background ">
+            <div class="team">
+              <span class="name-team">{{game.team_l.name}}</span>
+              <ion-thumbnail slot="end">
+                <ion-img 
+                  class="img-team"
+                  [src]="game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'">
+                </ion-img>
+              </ion-thumbnail>
+            </div>
+  
+            <div class="vs">vs</div>
+  
+            <div class="team">
+              <span class="team-name">{{game.team_v.name}}</span>
+              <ion-thumbnail slot="start">
+                <ion-img 
+                  class="img-team"
+                  [src]="game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'"
+                  >
+                </ion-img>
+              </ion-thumbnail>
+            </div>
+          </div>
+          <div class="date light-black-background">
+            <ion-icon name="clock"></ion-icon>
+            <span>{{ util.setFormatDate( game.time ) }}</span>
+          </div>
+        </div>
+       
+      </ion-item>
+    </ion-list>
+
+
+</ion-content>

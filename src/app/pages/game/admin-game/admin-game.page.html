@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>admin-game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="game">
+
+  <app-event-list [game_id]="id"></app-event-list> 
+
+  <pre>{{ game | json }}</pre>
+
+  <ion-button expand="block" (click)="addEvent()"> Añadir Eventos</ion-button>
+
+
+
+</ion-content>

@@ -1,0 +1,51 @@
+.team-list{
+    display: block;
+}
+.vs{
+    width: 6%;
+}
+
+.game{
+    width: 100%;
+    /*background-image: url(/assets/images/img_fondo_part.png);*/
+    color: white;
+    padding: 10px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+
+.team{
+    display: flex;
+    align-items: center;
+    width: 47%;
+    flex-flow: column-reverse;
+}
+
+.team-name{
+    margin-left: 5px;
+
+
+}
+
+.img-team{
+    border-radius:50%; 
+    background-position:center center; 
+    width:30px; 
+    height:30px;
+}
+
+.contenedor {
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: -webkit-center;
+}
+
+.date{
+    text-align: center;
+}
+

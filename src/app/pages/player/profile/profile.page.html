@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Jugador</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <div *ngIf="player">
+    <ion-card>
+      <ion-img [src]="getPhoto()" ></ion-img>
+      <h3 class="ion-text-center">{{player.name}}</h3>
+    </ion-card>
+  </div>
+
+  <div *ngIf="player">
+    <div class="content-data">
+      <ion-grid>
+        <ion-row >
+          <ion-col class="data">
+            <div>
+              Edad
+            </div>
+            <div class="data-value">
+              {{getYears(player.birth_date)}}
+            </div>
+          </ion-col>
+          <ion-col class="data">
+            <div class="ion-text-end">
+              Peso
+            </div>
+            <div class="data-value ion-text-end">
+              {{player.weight}}
+            </div>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col class="data">
+            <div>
+              Posición
+            </div>
+            <div class="data-value">
+              {{player.position.name}}
+            </div>
+          </ion-col>
+          <ion-col class="data">
+            <div class="ion-text-end"> 
+              Altura
+            </div>
+            <div class="data-value ion-text-end">
+              {{player.height}}
+            </div>
+          </ion-col>
+        </ion-row>
+  
+      </ion-grid>
+  
+      <div class=" cami ion-text-center">
+        <div class="cami-c">
+          <div class="cami-name" >{{player.name}}</div>
+          <ion-img 
+            class="cami-img"
+            [src]="'assets/images/cam.png'"
+            style="border-radius:50%; background-position:center center; background-size:cover; ">
+          </ion-img>
+          <div class="cami-number">{{player.number}}</div>
+          </div>
+      </div>
+    </div>
+
+    <div>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Estadísticas</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <label>Goles</label>
+              <ion-note slot="end" color="primary">{{player.countGoals}}</ion-note>
+            </ion-item>
+
+            <ion-item>
+              <label>Asistencias</label>
+              <ion-note slot="end" color="primary">{{player.countAssistence}}</ion-note>
+            </ion-item>
+
+            <ion-item>
+              <label>Rojas</label>
+              <ion-note slot="end" color="primary">{{player.countRed}}</ion-note>
+            </ion-item>
+
+            <ion-item>
+              <label>Amarillas</label>
+              <ion-note slot="end" color="primary">{{player.countYellow}}</ion-note>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    
+
+  </div>
+ 
+
+</ion-content>

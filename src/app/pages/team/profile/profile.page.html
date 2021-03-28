@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Equipo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+   </ion-buttons>
+
+    <ion-buttons slot="secondary">
+      <ion-button (click)="showMenu()">
+        <ion-icon name="create"></ion-icon>      
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="team">
+  <div>
+    <div>
+      <img class="cover" [src]="getCover()" alt="Portada">
+    </div>
+
+    <div class="shield-team">
+      <img class="shield" [src]="getShield()" alt="Escudo">
+      <span class="name-team">{{team.name}}</span>
+    </div>
+  </div>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+      Jugadores
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <app-player-list 
+      [items] = "playersList"
+      (eventLoad)="loadPlayers($event)"
+      (eventSelect)="playerSelect($event)" 
+      [loading] = "playersLoading"
+      [errorLoad]="playersErrorLoad"
+    ></app-player-list>
+  </ion-card-content>
+
+</ion-card>
+
+
+</ion-content>

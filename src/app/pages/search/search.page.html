@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buscar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar
+  [showCancelButton]="showCancelButton"
+  (keyup)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>
+
+<ion-content>
+
+  <ion-list-header *ngIf="list.length == 0"  color="tertiary">
+    <ion-label>No se ha encontrado registros</ion-label>
+  </ion-list-header>
+
+  <ion-list  *ngFor="let item of list" >
+    <ion-item   [color]="getColor(item.id)"    (click)="select(item)" >{{item.text}}</ion-item>
+  </ion-list>
+
+
+  <ion-button *ngIf="multiple" class="bottom" expand="block" (click)="finalize()" >Finalizar</ion-button>
+
+
+
+</ion-content>

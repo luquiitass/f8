@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Evento</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="close()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="submit()"  (keyup)="eventModel.errorsForm.clear()" *ngIf="dataEvent">
+
+    <ion-item>
+      <ion-label position="floating">Tipo de Evento</ion-label>
+      <ion-select [(ngModel)]="event.type_event_id" name="type_event_id">
+        <ion-select-option [value]="type_event.id" *ngFor="let type_event of dataEvent.types_events">{{ type_event.name }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ eventModel.errorsForm.get('type_event_id') }}</div>
+    </ion-item>
+
+    
+    <ion-item>
+      <ion-label position="floating">Equipo</ion-label>
+      <ion-select [(ngModel)]="event.team_id" name="team_id">
+        <ion-select-option [value]="team.id" *ngFor="let team of dataEvent.teams">{{ team.name }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ eventModel.errorsForm.get('team_id') }}</div>
+    </ion-item>
+ 
+
+    <ion-item>
+      <ion-label position="floating">Jugador</ion-label> 
+       <ion-select [(ngModel)]="event.player_id" name="player_id">
+        <ion-select-option [value]="player.id" *ngFor="let player of getPlayers()">{{ player.name }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ eventModel.errorsForm.get('player_id') }}</div>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating" >Tiempo</ion-label>
+      <ion-input type="number" [(ngModel)]="event.time" name="time"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ eventModel.errorsForm.get('time') }}</div> 
+
+    <ion-button type="submit"  expand="block">Guardar</ion-button>
+  </form>
+</ion-content>

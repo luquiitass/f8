@@ -1,0 +1,62 @@
+
+ion-note {
+    font-size: larger;
+    font-weight: bold;}
+  
+
+.cami{
+    position: absolute;
+    align-items: center;
+    left: 50%;
+    margin-left: -70px;
+    width: 140px;
+    top: 50%;
+    height: 140px;
+    margin-top: -70px;
+    background: beige;
+    border-radius: 80px;
+}
+
+.cami-name{
+    font-size: xx-small;
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    color: white;
+}
+
+.cami-number{
+    font-size: xx-large;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 40px;
+    color: floralwhite;
+}
+
+.cami-img{
+    height: 140px;
+    width: 140px;
+    padding: 2px;
+    border: solid 1px #00000042;
+}
+
+.cami-c{
+    position: relative;
+}
+.content-data{
+    position: relative;
+}
+.data{
+    height: 90px;
+    border: solid 1px #00000042;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 1px;
+
+}
+.data-value{
+    font-size: large;
+    color: #000000ba;
+    margin-top: 10px;
+}

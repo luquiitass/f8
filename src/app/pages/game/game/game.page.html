@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Partido</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="game" *ngIf="game">
+    <div class="team-list contenedor light-black-background ">
+      <div class="team">
+        <span class="name-team">{{game.team_l.name}}</span>
+        <ion-thumbnail slot="end">
+          <ion-img 
+            class="img-team"
+            [src]="game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'">
+          </ion-img>
+        </ion-thumbnail>
+      </div>
+
+      <div class="vs">vs</div>
+
+      <div class="team">
+        <span class="team-name">{{game.team_v.name}}</span>
+        <ion-thumbnail slot="start">
+          <ion-img 
+            class="img-team"
+            [src]="game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'"
+            >
+          </ion-img>
+        </ion-thumbnail>
+      </div>
+    </div>
+    <div class="date light-black-background">
+      <ion-icon name="clock"></ion-icon>
+      <span>{{ util.setFormatDate( game.time ) }}</span>
+    </div>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Ubicación</ion-card-subtitle>
+        <ion-card-title>{{game.location}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <app-event-list [game_id]="id" ></app-event-list>
+   
+
+  </div>
+
+</ion-content>

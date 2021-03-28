@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tipo de evento</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="close()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="submit()"  (keyup)="serviceTypeEvent.errorsForm.clear()" >
+
+    <ion-item>
+      <ion-label position="floating" >Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="typeEvent.name" name="name"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ serviceTypeEvent.errorsForm.get('name') }}</div>
+
+
+    <ion-item>
+      <ion-label position="floating" >Path icono local</ion-label>
+      <ion-input type="text" [(ngModel)]="typeEvent.icon" name="icon"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ serviceTypeEvent.errorsForm.get('icon') }}</div>
+   
+    <ion-button type="submit"  expand="block">Guardar</ion-button>
+  </form>
+</ion-content>

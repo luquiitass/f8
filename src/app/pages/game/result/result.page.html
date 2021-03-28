@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Partido</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="game" *ngIf="game">
+    <div class="team-list contenedor light-black-background ">
+      <div class="team">
+        <span class="name-team">{{game.team_l.name}}</span>
+        <span  class="goals-team" >{{game.l_goals}}</span>
+      </div>
+
+      <br class="separator">
+
+      <div class="team">
+        <span class="name-team">{{game.team_v.name}}</span>
+        <span  class="goals-team" >{{game.l_goals}}</span>
+      </div>
+    </div>
+  </div>
+
+
+  <app-event-list [game_id]="id"></app-event-list> 
+
+</ion-content>

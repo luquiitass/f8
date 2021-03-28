@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Jugador</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="close()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="submit()"  (keyup)="servicePlayer.errorsForm.clear()" >
+
+    <div>
+      <ion-img  [src]="photoModel.photo.getPath()" ></ion-img>
+      <div class="ion-text-center">
+        <ion-button   size="small" color="tertiary" (click)="photoModel.addOneNewToGallery()">{{photoModel.isLoadPthoto() ? 'Modificar' : 'Seleccionar Imagen' }}</ion-button>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" >Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="player.name" name="name"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('name') }}</div>
+
+    <ion-item>
+      <ion-label position="floating" >Fecha de nacimiento</ion-label>
+      <ion-datetime [(ngModel)]="player.birth_date" name="birth_date"         displayFormat="YYYY-MM-DD" ></ion-datetime>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('birth_date') }}</div>
+
+    <ion-item>
+      <ion-label position="floating" >Apodo</ion-label>
+      <ion-input type="text" [(ngModel)]="player.nick" name="nick"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('nick') }}</div>
+
+    <ion-item>
+      <ion-label position="floating" >Numero</ion-label>
+      <ion-input type="text" [(ngModel)]="player.number" name="number"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('number') }}</div>
+
+    <ion-item>
+      <ion-label position="floating" >Altura</ion-label>
+      <ion-input type="text" [(ngModel)]="player.height" name="height"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('height') }}</div>
+
+    <ion-item>
+      <ion-label position="floating" >Peso</ion-label>
+      <ion-input type="text" [(ngModel)]="player.weight" name="weight"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('weight') }}</div>
+
+
+    <ion-item>
+      <ion-label position="floating">Posicion</ion-label>
+      <ion-select [(ngModel)]="player.position_id" name="position_id">
+        <ion-select-option [value]="pos.id" *ngFor="let pos of servicePosition.list">{{ pos.name }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('position_id') }}</div>
+
+    </ion-item>
+   
+    <ion-button type="submit"  expand="block">Guardar</ion-button>
+  </form>
+</ion-content>

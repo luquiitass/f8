@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="close()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+    <ion-title>Equipo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="submit()"  (keyup)="serviceTeam.errorsForm.clear()" >
+
+    <div>
+      <ion-img  [src]="photoService.photo.getPath()" ></ion-img>
+      <div class="ion-text-center">
+        <ion-button   size="small" color="tertiary" (click)="photoService.addOneNewToGallery()">{{photoService.isLoadPthoto() ? 'Modificar escudo' :'Seleccionar escudo' }}</ion-button>
+      </div>
+    </div>
+
+    <div>
+      <ion-img  [src]="serviceImageCoverPage.photo.getPath()" ></ion-img>
+      <div class="ion-text-center">
+        <ion-button   size="small" color="tertiary" (click)="serviceImageCoverPage.addOneNewToGallery()">{{serviceImageCoverPage.isLoadPthoto() ? 'Modificar Portada' :'Seleccionar Portada' }}</ion-button>
+      </div>
+    </div>
+      
+
+    <ion-item>
+      <ion-label position="floating" >Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="team.name" name="name"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ serviceTeam.errorsForm.get('name') }}</div>
+
+
+    <div class="admins">
+      <ion-list-header  color="tertiary">
+        <ion-label>Administradores</ion-label>
+        <button item-end ion-button color="danger" (click)="addAdmins($event)">
+          <ion-icon name="person-add-outline"></ion-icon>
+        </button>
+      </ion-list-header>
+
+      <ion-list  *ngFor="let item of team.admins" >
+        <ion-item>  {{item.text ? item.text : item.last_name +' '+ item.first_name}}</ion-item>
+      </ion-list>
+    </div>
+   
+    <div class="ion-text-center">
+      <ion-button type="submit" block> Guardar </ion-button>
+    </div>
+  </form>
+</ion-content>

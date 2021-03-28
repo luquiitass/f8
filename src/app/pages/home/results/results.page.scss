@@ -1,0 +1,34 @@
+.game{
+    color: #FFF;
+    width: 100%;
+    padding: 3px;
+}
+
+.team{
+    position: relative;
+    background-image: url(/assets/images/img_fondo_res4.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.name-team{
+    display: inline-block;
+    width: 70%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.goals-team{
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 20px;
+}

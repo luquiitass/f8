@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Resultados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+
+    <ion-list-header *ngIf="list.length == 0"  color="tertiary">
+      <ion-label>Sin registros</ion-label>
+    </ion-list-header>
+      <ion-item *ngFor="let game of list" routerLink="/results/profile/{{game.id}}" routerDirection="forward" >
+        <div class="game">
+          <div class="team-list contenedor light-black-background ">
+            <div class="team">
+              <span class="name-team">{{game.team_l.name}}</span>
+              <span  class="goals-team" >{{game.l_goals}}</span>
+            </div>
+
+            <br class="separator">
+  
+            <div class="team">
+              <span class="name-team">{{game.team_v.name}}</span>
+              <span  class="goals-team" >{{game.l_goals}}</span>
+            </div>
+          </div>
+        </div>
+       
+      </ion-item>
+    </ion-list>
+
+
+</ion-content>
