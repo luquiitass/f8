@@ -5,7 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import {ListComponent} from './event/list/list.component'
 import {EventListComponent} from './event/event-list/event-list.component'
 import {PlayerListComponent} from './player/player-list/player-list.component'
+import {CommentsComponent} from './comments/comments.component'
+import {NotificatioSelectedComponent} from './notifications/notificatio-selected/notificatio-selected.component'
 
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,16 +16,21 @@ import {PlayerListComponent} from './player/player-list/player-list.component'
   imports: [
     CommonModule,
     IonicModule.forRoot(),
+    FormsModule
   ],
   declarations: [
     ListComponent,
     EventListComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    CommentsComponent,
+    NotificatioSelectedComponent
   ],
   exports: [
     ListComponent,
     EventListComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    CommentsComponent,
+    NotificatioSelectedComponent
   ],
   entryComponents: [],
 })

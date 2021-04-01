@@ -39,11 +39,30 @@ export class ProfilePage implements OnInit {
   }
 
   init(){
+    /*
     this.teamModel.api_find(this.id).subscribe(data => {
       if(data['status'] == 'success')
         this.team = data['Team'];
-    })
-    this.loadPlayers()
+    })*/
+    this.playersLoading = true;
+    this.teamModel.api_functionModel(this.id,'pageProfile').subscribe(
+      response => {
+        console.log(response);
+        if(response['status'] == 'success'){
+          this.team = response['data'];
+          this.playersList = this.team.players;
+        }
+        this.playersLoading = false;
+
+      },
+      error => {
+        this.playersLoading = false;
+        this.playersErrorLoad = false;
+        console.error(error)
+      }
+    )
+
+    //this.loadPlayers()
   }
 
   getCover(){
@@ -110,5 +129,7 @@ export class ProfilePage implements OnInit {
       this.navCtrl.navigateForward(`player/profile/${player.id}`);
     
    }
+
+   
 
 }

@@ -1,0 +1,44 @@
+.comment-item{
+   
+}
+
+.comment-image{
+    font-size: large;
+}
+
+.comment-data{
+    width: 100%;
+}
+
+.comment-user{
+    font-size: large;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.comment-body{
+    font-size: smaller;
+    font-style: italic;
+    margin-left: 5px;
+    color: darkslategrey;
+}
+
+.comment-date{
+    font-size: x-small;
+    text-align: right;
+    color: darkslategrey;
+}
+
+.editor{
+}
+.editor-text{
+    background-color: white;
+    box-shadow: 2px 2px 5px #999;
+    padding: 2px;
+    border-radius: 15px;
+}
+
+.editor-send{
+    margin-left: -5px;
+
+}
