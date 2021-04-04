@@ -48,7 +48,7 @@ export class CommentsComponent implements OnInit {
 
   loadCooments(){
 
-    if(this.comments.length > 0){
+    if(this.comments && this.comments.length > 0){
       this.listComments = this.comments
       return;
     }

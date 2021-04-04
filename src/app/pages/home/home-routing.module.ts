@@ -21,12 +21,17 @@ const routes: Routes = [
         loadChildren: () => import('./games/games.module').then( m => m.GamesPageModule)
       },
       {
+        path: 'players',
+        loadChildren: () => import('./players/players.module').then( m => m.PlayersPageModule)
+      },
+      {
         path: '',
         redirectTo: '/home/results',
         pathMatch: 'full'
       }
     ]
   },
+  
   
   
 ];

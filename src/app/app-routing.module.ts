@@ -68,6 +68,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user/list/list.module').then( m => m.ListPageModule)
   },
   {
+    path: 'users/:id/profile',
+    loadChildren: () => import('./pages/user/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
     path: 'user-form',
     loadChildren: () => import('./pages/user/user-form/user-form.module').then( m => m.UserFormPageModule)
   },
@@ -115,6 +119,11 @@ const routes: Routes = [
     path: 'player/profile/:id',
     loadChildren: () => import('./pages/player/profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'my-profile',
+    loadChildren: () => import('./pages/user/my-profile/my-profile.module').then( m => m.MyProfilePageModule)
+  },
+ 
   
 ];
 @NgModule({
