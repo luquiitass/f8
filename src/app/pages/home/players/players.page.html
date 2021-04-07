@@ -7,5 +7,6 @@
 <ion-content>
   <app-player-list 
   [items] = "players"
+  (eventSelect)="playerSelect($event)" 
 ></app-player-list>
 </ion-content>

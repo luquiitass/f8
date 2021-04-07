@@ -13,27 +13,44 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="gameService.api_all($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-list>
       
-      <ion-list-header *ngIf="gameService.list.length == 0"  color="tertiary">
+    
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-segment scrollable [(ngModel)]="tabSelected" (ionChange)="selectDate($event)" >
+              <ion-segment-button *ngFor="let tab of tabs;let i=index" value="{{i}}" id="sgm_{{i}}" >
+                {{tab.date}}
+              </ion-segment-button>
+            </ion-segment>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-list-header *ngIf="games.length == 0"  color="tertiary">
         <ion-label>Sin registros</ion-label>
       </ion-list-header>
-   
-      <ion-item *ngFor="let item of gameService.list" >
-          
-        <ion-label >
-          <h3>{{item.team_l.name}}</h3>
-        </ion-label>
-        
-        <label>vs</label>
 
-        <ion-label >
-          <h3>{{item.team_v.name}}</h3>
-        </ion-label>
+   
+      <ion-item *ngFor="let item of games" >
+        <div>
+          <div>
+            <h3>{{item.team_l.name}}</h3>
+          </div>
+
+          
+          
+          <div>vs</div>
+          
+          <div>
+            <h3>{{item.team_v.name}}</h3>
+          </div>
+        </div>
 
         <ion-buttons slot="end">
           <ion-router-link color="danger" href="/admin/game/{{item.id}}">

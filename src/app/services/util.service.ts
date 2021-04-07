@@ -14,4 +14,8 @@ export class UtilService {
   setFormatDate(date){
     return moment(date).lang("es").calendar() +" " + moment(date).format('LT');;
   }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 }

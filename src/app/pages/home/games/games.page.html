@@ -32,7 +32,7 @@
 
       <ion-item *ngFor="let game of list" routerLink="/games/profile/{{game.id}}" routerDirection="forward" >
         <div class="game">
-          <div class="team-list contenedor light-black-background ">
+          <div class="team-list contenedor">
             <div class="team">
               <span class="name-team">{{game.team_l.name}}</span>
               <ion-thumbnail slot="end">
@@ -56,9 +56,9 @@
               </ion-thumbnail>
             </div>
           </div>
-          <div class="date light-black-background">
+          <div class="date">
             <ion-icon name="clock"></ion-icon>
-            <span>{{ util.setFormatDate( game.time ) }}</span>
+            <span>{{ game.time }}</span>
           </div>
         </div>
        

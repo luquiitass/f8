@@ -12,7 +12,7 @@ export class ResultsPage implements OnInit {
 
   public modelGame  : Model;
   public list : any = [];
-  public tabs = ['Fecha 2','fecha 3','fecha 4','fecha 5','fecha 6']
+  public tabs = []
   public tabSelected :any;
   public lastFocusSegment : any;
 
@@ -92,7 +92,7 @@ export class ResultsPage implements OnInit {
   }
 
   focusSegment() {
-    let segmentId = 'sgm_' + this.tabSelected;
+    let segmentId = 'sgm_r_' + this.tabSelected;
     console.log('select segment : ', segmentId)
     document.getElementById(segmentId).scrollIntoView({ 
       behavior: 'smooth',

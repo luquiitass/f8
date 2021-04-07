@@ -18,7 +18,9 @@ export class PlayerListComponent implements OnInit {
 
   
 
-  constructor() { }
+  constructor() { 
+    this.items = this.items ?? []
+  }
 
   ngOnInit() {
     //this.items = 
