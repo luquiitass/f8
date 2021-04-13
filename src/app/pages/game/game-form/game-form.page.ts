@@ -19,6 +19,7 @@ export class GameFormPage implements OnInit {
   public id : any;
   public customDayShortNames = ['s\u00f8n'];
   public status = ['Pendiente','Suspendido','Jugado'];
+  public toDate : any;
 
   public serviceGame : Model;
   public serviceTeam : Model;
@@ -35,6 +36,9 @@ export class GameFormPage implements OnInit {
     //this.serviceTeam.setModel('Team');
 
     this.id = navParams.get('id') ;
+    this.toDate = navParams.get('date') ?? new Date();
+    console.log('date',this.toDate)
+    
    }
 
   ngOnInit() {
@@ -60,6 +64,7 @@ export class GameFormPage implements OnInit {
       l_goals : 0,
       v_goals : 0,
       time : '',
+      date : this.toDate,
       location : '',
       description : '',
       status : 'Pendiente'

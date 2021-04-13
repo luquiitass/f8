@@ -1,0 +1,57 @@
+<ion-card>
+  <ion-card-header>
+    
+    <ion-item>
+      <ion-card-title>
+        Redes Sociales
+      </ion-card-title>
+      <ion-button *ngIf="isAdmin" slot="end" (click)="openModal()">
+        <ion-icon name="add-outline"></ion-icon>      
+      </ion-button>
+    </ion-item>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  
+    <ion-list>
+  
+      <ion-list-header *ngIf="list && list.length == 0"  color="tertiary">
+        <ion-label>No posee Redes Sociales</ion-label>
+      </ion-list-header>
+     
+        <ion-item *ngFor="let red of list" >
+            
+          <ion-label>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="1">
+                  <ion-icon class="icon-red" [name]="getIcon(red)"></ion-icon>
+                </ion-col>
+                <ion-col size="9">
+                  <h3 class="name">{{red.name}}</h3>
+                  <p class="url">{{red.url}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            
+          </ion-label>
+  
+          <ion-buttons *ngIf="isAdmin" slot="end">
+            
+            <ion-button (click)="showEdit(red)">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="confirmDelete(red)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+  
+        </ion-item>
+      </ion-list>
+  
+  </ion-card-content>
+
+</ion-card>

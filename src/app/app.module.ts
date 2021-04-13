@@ -27,7 +27,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule, 
     FormPageModule
   ],
   providers: [

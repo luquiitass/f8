@@ -64,6 +64,9 @@ export class ListPage implements OnInit {
   async openModal() {
     const modal = await this.modalController.create({
       component: GameFormPage ,
+      componentProps : {
+        date : this.tabs && this.tabs[this.tabSelected] ? this.tabs[this.tabSelected].date : ''
+      }
     });
 
     modal.onDidDismiss().then(data=>{

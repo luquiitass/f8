@@ -52,7 +52,11 @@
 
     <ion-item>
       <ion-label>HH:mm</ion-label>
-      <ion-datetime [(ngModel)]="game.time" displayFormat="HH:mm"  name="time"> {{game.time}} </ion-datetime>
+      <ion-datetime 
+        [(ngModel)]="game.time" 
+        displayFormat="h:mm "  
+        name="time">
+      </ion-datetime>
     </ion-item>
 
     <ion-item>

@@ -11,7 +11,7 @@ import { UtilService } from 'src/app/services/util.service';
 export class GamesPage implements OnInit {
 
   public modelGame  : Model;
-  public list : any = [];
+  public list = [];
   public tabs = []
   public tabSelected :any;
   public lastFocusSegment : any;
@@ -57,7 +57,7 @@ export class GamesPage implements OnInit {
 
   async selectFirst(){
     if(this.tabs.length > 0){
-      let tab = this.tabs.slice(-1)[0];
+      let tab = this.tabs[0];
       this.list = tab['results']
       this.tabSelected = 0
       await this.delay( 1500 )
@@ -71,7 +71,7 @@ export class GamesPage implements OnInit {
 
     let tab = this.tabs[index];
 
-    if(tab['results']){
+    if(tab && tab['results']){
       this.list = tab['results']
       this.focusSegment()
       return;

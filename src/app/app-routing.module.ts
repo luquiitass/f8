@@ -123,6 +123,10 @@ const routes: Routes = [
     path: 'my-profile',
     loadChildren: () => import('./pages/user/my-profile/my-profile.module').then( m => m.MyProfilePageModule)
   },
+  {
+    path: 'redes-form',
+    loadChildren: () => import('./pages/redes/redes-form/redes-form.module').then( m => m.RedesFormPageModule)
+  },
  
   
 ];
