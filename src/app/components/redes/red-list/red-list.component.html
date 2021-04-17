@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card *ngIf="(list && list.length > 0)  || isAdmin">
   <ion-card-header>
     
     <ion-item>
@@ -12,17 +12,39 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher *ngIf="withRefresh" slot="fixed" (ionRefresh)="load($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
   
-    <ion-list>
+   
   
       <ion-list-header *ngIf="list && list.length == 0"  color="tertiary">
         <ion-label>No posee Redes Sociales</ion-label>
       </ion-list-header>
+
+        <ion-grid>
+          <ion-row *ngFor="let red of list" >
+            <ion-col size="1">
+              <ion-icon class="icon-red" [name]="getIcon(red)"></ion-icon>
+            </ion-col>
+            <ion-col size="8">
+              <h4 class="name">{{red.url}}</h4>
+              <p>{{red.name}}</p>
+            </ion-col>
+            <ion-col size="1" *ngIf="isAdmin">
+              <ion-button size="small" (click)="showEdit(red)">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="1" *ngIf="isAdmin">
+              <ion-button size="small" (click)="confirmDelete(red)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
      
-        <ion-item *ngFor="let red of list" >
+        <!-- <ion-item *ngFor="let red of list" >
             
           <ion-label>
             <ion-grid>
@@ -49,8 +71,8 @@
             </ion-button>
           </ion-buttons>
   
-        </ion-item>
-      </ion-list>
+        </ion-item> -->
+
   
   </ion-card-content>
 

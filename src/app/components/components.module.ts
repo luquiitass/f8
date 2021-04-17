@@ -8,6 +8,7 @@ import {PlayerListComponent} from './player/player-list/player-list.component'
 import {CommentsComponent} from './comments/comments.component'
 import {NotificatioSelectedComponent} from './notifications/notificatio-selected/notificatio-selected.component'
 import {RedListComponent} from './redes/red-list/red-list.component'; 
+import {SearchComponent} from './search/search.component';
 
 import { FormsModule } from '@angular/forms';
 
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     PlayerListComponent,
     CommentsComponent,
     NotificatioSelectedComponent,
-    RedListComponent
+    RedListComponent,
+    SearchComponent
   ],
   exports: [
     ListComponent,
@@ -33,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     PlayerListComponent,
     CommentsComponent,
     NotificatioSelectedComponent,
-    RedListComponent
+    RedListComponent,
+    SearchComponent
   ],
   entryComponents: [],
 })

@@ -24,6 +24,7 @@ export class RedListComponent implements OnInit {
     @Input('nameModel') nameModel;
     @Input('idModel') idModel;
     @Input('isAdmin') isAdmin = false;
+    @Input('withRefresh') withRefresh = false;
 
   constructor(
     public request : RequestService,
@@ -96,7 +97,7 @@ export class RedListComponent implements OnInit {
    }
 
    confirmDelete(red){
-    this.dialog.presentAlertConfirm('Confirmar','Estas seguro de eliminar este red',e => {
+    this.dialog.presentAlertConfirm('Confirmar','Estas seguro de eliminar esta Red Social',e => {
       this.delete(red)
     });
    }

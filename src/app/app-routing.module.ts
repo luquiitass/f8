@@ -127,6 +127,10 @@ const routes: Routes = [
     path: 'redes-form',
     loadChildren: () => import('./pages/redes/redes-form/redes-form.module').then( m => m.RedesFormPageModule)
   },
+  {
+    path: 'player-search',
+    loadChildren: () => import('./pages/player/player-search/player-search.module').then( m => m.PlayerSearchPageModule)
+  },
  
   
 ];
