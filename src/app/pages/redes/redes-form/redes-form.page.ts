@@ -11,7 +11,7 @@ import { DialogService } from 'src/app/api/util/dialog.service';
 })
 export class RedesFormPage implements OnInit {
 
-  public redes = ['Facebook','Instagram','Whatsapp','Twitter']
+  public redes = ['Facebook','Instagram','WhatsApp','Twitter']
   public red : any;
   public redModel : Model;
   public id : any;

@@ -3,11 +3,27 @@
 }
 
 .name{
-    font-size: x-large;
+    font-size: large;
     margin-left: 10px;
 }
 
 .url{
     font-size: small;
     color: blue($color: #000000);
+}
+
+.facebook-color{
+    color: #4267B2;
+}
+
+.instagram-color{
+    color: #c51d34;
+}
+
+.twitter-color{
+    color: #1DA1F2;
+}
+
+.whatsapp-color{
+    color: #00bb2d;
 }

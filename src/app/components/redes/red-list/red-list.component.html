@@ -25,7 +25,7 @@
         <ion-grid>
           <ion-row *ngFor="let red of list" >
             <ion-col size="1">
-              <ion-icon class="icon-red" [name]="getIcon(red)"></ion-icon>
+              <ion-icon class="icon-red {{getColorIcon(red)}}" [name]="getIcon(red)"></ion-icon>
             </ion-col>
             <ion-col size="8">
               <h4 class="name">{{red.url}}</h4>

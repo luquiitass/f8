@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RequestService } from 'src/app/api/request.service';
 import { DialogService } from 'src/app/api/util/dialog.service';
-import { ModalController, Platform } from '@ionic/angular';
+import { ModalController, Platform, NavController } from '@ionic/angular';
 import { UtilService } from 'src/app/services/util.service';
 import { Model } from 'src/app/api/models/model';
 import { RedesFormPage } from 'src/app/pages/redes/redes-form/redes-form.page';
 import { UtilArrayService } from 'src/app/services/util-array.service';
+
 //import { InAppBrowser, InAppBrowserObject } from '@ionic-native/in-app-browser';
 //import { AppAvailability } from '@ionic-native/app-availability/ngx';
 
@@ -32,6 +33,7 @@ export class RedListComponent implements OnInit {
     public modalController: ModalController,
     public util : UtilService,
     public utilArray : UtilArrayService,
+    public nacCtrl : NavController,
     //private platform: Platform,
     //public inAppBrowser : InAppBrowser,
     //public appAvailability : AppAvailability
@@ -43,6 +45,7 @@ export class RedListComponent implements OnInit {
 
   ngOnInit() {
     this.load();
+    //this.isAdmin = true;
   }
 
   load(event = null){
@@ -123,6 +126,44 @@ export class RedListComponent implements OnInit {
       case 'Twitter':
         return 'logo-twitter'
      }
+   }
+
+   getColorIcon(red){
+    switch(red.name){
+      case 'Facebook':
+         return 'facebook-color'
+      case 'Instagram':
+          return 'instagram-color'
+      case 'WhatsApp':
+        return 'whatsapp-color'
+      case 'Twitter':
+        return 'twitter-color'
+     }
+   }
+
+   openRed(red){
+    if(red && red.url){
+      let baseUrl = '';
+
+      switch(red.name){
+        case 'Facebook':
+          baseUrl = 'https://www.facebook.com/'
+           break;
+        case 'Instagram':
+          baseUrl = 'https://www.instagram.com/'
+          break;
+        case 'WhatsApp':
+          return 'whatsapp-color'
+        case 'Twitter':
+          baseUrl = 'https://twitter.com/'
+          break;
+       }
+
+/*      const browser = this.iab.create(baseUrl + red.url);
+
+      browser.show()
+  */
+    }
    }
 /*
    select(red){
