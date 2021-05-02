@@ -12,8 +12,8 @@ import { AuthUserService } from 'src/app/services/auth-user.service';
 export class LoginPage implements OnInit {
 
   constructor(
-    private googlePlus: GooglePlus,
-    private authUserService : AuthUserService
+    public googlePlus: GooglePlus,
+    public authUserService : AuthUserService
 
   ) { }
 

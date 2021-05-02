@@ -56,7 +56,7 @@ export class Errors {
      *s
      * @param {string|null} field
      */
-    clear(field) {
+    clear(field = null ) {
         if (field) {
             delete this.errors[field];
 

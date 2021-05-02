@@ -15,7 +15,7 @@ export class ProfilePage implements OnInit {
 
   public id : any;
   public platerModel : Model;
-  private player : any;
+  public player : any;
 
 
   constructor(

@@ -107,7 +107,7 @@ export class ProfilePage implements OnInit {
      console.log('set log in page profile, num : ' , num)
    }
 
-   loadPlayers(){
+   loadPlayers(event){
      this.playersLoading = true;
       this.teamModel.api_loadAttribute(this.id,'players').subscribe(
         response => {

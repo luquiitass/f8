@@ -20,8 +20,8 @@ export class EventListComponent implements OnInit {
   gameModel : Model;
   eventModel : Model;
   events : any = [];
-  team_l = '';
-  team_v = '';
+  team_l : any;
+  team_v : any;
   isAdmin = false;
   
 

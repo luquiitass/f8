@@ -37,7 +37,7 @@ export class CropPage implements OnInit {
   imageCropped(event: ImageCroppedEvent) {
       this.croppedImage = event.base64;
   }
-  imageLoaded(image: HTMLImageElement) {
+  imageLoaded(image: HTMLImageElement = null) {
       // show cropper
   }
   cropperReady() {

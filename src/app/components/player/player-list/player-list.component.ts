@@ -11,7 +11,7 @@ export class PlayerListComponent implements OnInit {
   
   @Input('items') items ; 
   @Input('loading') loading = false;
-  @Input('errorLoad') errorLoad;
+  @Input('errorLoad') errorLoading;
   
   @Output() eventLoad = new EventEmitter<any>()
   @Output() eventSelect = new EventEmitter<any>()

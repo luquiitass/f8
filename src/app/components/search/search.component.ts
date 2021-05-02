@@ -11,4 +11,10 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {}
 
+  onCancel(event){}
+
+  onInput(event){}
+
+  showCancelButton(){}
+
 }

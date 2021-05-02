@@ -9,8 +9,8 @@ import { ModalController, NavParams, NavController } from '@ionic/angular';
 })
 export class ListRedirectPage implements OnInit {
 
-  private list : any;
-  private title : any;
+  public list : any;
+  public title : any;
 
   constructor(
     public dialogService : DialogService,
