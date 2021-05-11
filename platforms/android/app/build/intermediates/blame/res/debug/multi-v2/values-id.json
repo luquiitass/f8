@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/lucas/Apps/f8a/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-id/values-id.xml",
+            "map": [
+                {
+                    "source": "/home/lucas/.gradle/caches/transforms-1/files-1.1/android-crop-1.0.0.aar/e5ab58eb8e4b6607900f4360c6299ce6/res/values-id/values-id.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "215,286,333,416,475",
+                        "endColumns": "70,46,82,58,54",
+                        "endOffsets": "281,328,411,470,525"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "100,171,218,301,360",
+                        "endColumns": "70,46,82,58,54",
+                        "endOffsets": "166,213,296,355,410"
+                    }
+                }
+            ]
+        }
+    ]
+}

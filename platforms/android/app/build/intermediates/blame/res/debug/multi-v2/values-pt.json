@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/lucas/Apps/f8a/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml",
+            "map": [
+                {
+                    "source": "/home/lucas/.gradle/caches/transforms-1/files-1.1/android-crop-1.0.0.aar/e5ab58eb8e4b6607900f4360c6299ce6/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "215,289,339,417,475",
+                        "endColumns": "73,49,77,57,58",
+                        "endOffsets": "284,334,412,470,529"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "100,174,224,302,360",
+                        "endColumns": "73,49,77,57,58",
+                        "endOffsets": "169,219,297,355,414"
+                    }
+                },
+                {
+                    "source": "/home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "419",
+                        "endColumns": "100",
+                        "endOffsets": "515"
+                    }
+                }
+            ]
+        }
+    ]
+}

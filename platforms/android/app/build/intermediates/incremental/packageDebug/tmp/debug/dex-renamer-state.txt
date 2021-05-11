@@ -1,0 +1,4 @@
+#Thu May 06 20:36:09 ART 2021
+base.0=/home/lucas/Apps/f8a/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
