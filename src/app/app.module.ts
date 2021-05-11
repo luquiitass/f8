@@ -16,7 +16,6 @@ import { RequestService } from './api/request.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
-import { GooglePlus } from '@ionic-native/google-plus/ngx'; 
 
 
 
@@ -39,7 +38,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
       useClass: TokenInterceptor,
       multi: true
     },
-    GooglePlus
+    
   ],
   bootstrap: [AppComponent]
 })
