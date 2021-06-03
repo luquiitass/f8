@@ -40,13 +40,13 @@
     </ion-item>
     <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('email') }}</div>
 
-    <ion-item>
+    <ion-item *ngIf="!id">
       <ion-label position="floating" >Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
     </ion-item>
     <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('password') }}</div>
 
-    <ion-item>
+    <ion-item *ngIf="!id">
       <ion-label position="floating" >Confirmar Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="user.confirm_password" name="confirm_password"></ion-input>
     </ion-item>

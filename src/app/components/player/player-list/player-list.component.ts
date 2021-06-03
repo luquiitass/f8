@@ -42,7 +42,11 @@ export class PlayerListComponent implements OnInit {
 
   //Otras funciones 
   getPhoto(item){
-    return item['photo'] ? item['photo']['urlComplete'] : 'assets/images/jugador.png'
+    return item['photo'] ? this.getPhotoServer(item['photo']) : 'assets/images/jugador.png'
+  }
+
+  getPhotoServer(photo){
+    return photo['thumb'] ? photo['urlCompleteThumb'] :  photo['urlCompleteThumb'] ;
   }
 
   

@@ -21630,6 +21630,10 @@ let UtilService = class UtilService {
     delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+    formatHours(hours) {
+        let time = hours.split(':');
+        return `${time[0]}:${time[1]}`;
+    }
 };
 UtilService.ctorParameters = () => [];
 UtilService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

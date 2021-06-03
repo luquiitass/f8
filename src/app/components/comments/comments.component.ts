@@ -3,6 +3,7 @@ import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { UtilService } from 'src/app/services/util.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -93,6 +94,10 @@ export class CommentsComponent implements OnInit {
     }
 
 
+  }
+
+  formatDate(val){
+    return moment(val).locale('es').fromNow();
   }
 
 }

@@ -37,7 +37,14 @@ export class UserFormPage implements OnInit {
   }
 
   initObject(){
-    this.user = { first_name : '' , last_name : '',email : '',password : '' , confirm_password : ''};
+    this.user = { 
+      first_name : '' ,
+      last_name : '',
+      email : '',
+      password : '' ,
+      confirm_password : '',
+      role : 'user'
+    };
 
     if(this.id){
       this.serviceUser.api_find(this.id).subscribe(data => {

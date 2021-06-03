@@ -1,18 +1,16 @@
-<ion-card>
+<ion-card *ngIf="(events.length && team_l && team_v) || isAdmin" >
   <ion-card-header>
     <ion-card-title>Sucesos</ion-card-title>
   </ion-card-header>
-
-
-    <ion-list>
+    <ion-list >
       
       <ion-grid>
         <ion-row>
-          <ion-col  class="ion-text-start">
+          <ion-col *ngIf="team_l"  class="ion-text-start">
             {{team_l.name}}
           </ion-col>
-          <ion-col  class="ion-text-end">
-              {{team_v.name}}
+          <ion-col *ngIf="team_v"  class="ion-text-end">
+            {{team_v.name}}
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -25,7 +23,14 @@
       <ion-item *ngFor="let item of events ; let i = index" >
           
         <ion-label >
-          <h3 [ngClass]="{'ion-text-end' : item.team.id == team_v.id}"> {{item.time}}° <b>{{item.type_event.name}}</b> {{item.player.name}}</h3>
+          <h3 [ngClass]="{'ion-text-end' : item.team.id == team_v.id}">
+            <img *ngIf="item.type_event.icon" src="assets/images/{{item.type_event.icon}}"  width="40px">
+            {{item.time}}° 
+            <b>{{item.type_event.name}}</b> 
+            <a [routerLink]="'/player/profile/' + item.player.id" routerDirection="forward" >
+              {{item.player.name}}
+            </a>
+          </h3>
         </ion-label>
 
         <ion-buttons slot="end" *ngIf="isAdmin">

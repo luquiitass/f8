@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { UtilService } from 'src/app/services/util.service';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-games',
@@ -48,7 +50,8 @@ export class GamesPage implements OnInit {
         console.log(response)
       },
       error => {
-        event.target.complete()
+        if(event)
+          event.target.complete()
         console.error(error)
       }
     )
@@ -105,6 +108,10 @@ export class GamesPage implements OnInit {
   
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  formatDate(val){
+    return moment(val).locale('es').format('DD MMMM YYYY')
   }
 
 }

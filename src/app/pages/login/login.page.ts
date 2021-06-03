@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthUserService } from 'src/app/services/auth-user.service';
+import { ModalController } from '@ionic/angular';
+import { UserFormPage } from '../user/user-form/user-form.page';
 
 
 @Component({
@@ -11,7 +13,9 @@ import { AuthUserService } from 'src/app/services/auth-user.service';
 export class LoginPage implements OnInit {
 
   constructor(
-    public authUserService : AuthUserService
+    public authUserService : AuthUserService,
+    public modalController: ModalController,
+
 
   ) { }
 
@@ -33,5 +37,18 @@ export class LoginPage implements OnInit {
   login(form){
     this.authUserService.login(form.value);
   }
+
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: UserFormPage ,
+    });
+
+    modal.onDidDismiss().then(data=>{
+      //const user = data.data['user'];
+      //this.userService.listAddLast(user);
+    })
+
+    return await modal.present();
+   }
 
 }

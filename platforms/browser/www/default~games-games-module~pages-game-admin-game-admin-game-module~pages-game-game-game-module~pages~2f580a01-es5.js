@@ -20463,6 +20463,12 @@
               return setTimeout(resolve, ms);
             });
           }
+        }, {
+          key: "formatHours",
+          value: function formatHours(hours) {
+            var time = hours.split(':');
+            return "".concat(time[0], ":").concat(time[1]);
+          }
         }]);
 
         return UtilService;

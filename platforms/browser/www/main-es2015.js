@@ -995,7 +995,7 @@ const routes = [
     },
     {
         path: 'my-profile',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-my-profile-my-profile-module */ "pages-user-my-profile-my-profile-module").then(__webpack_require__.bind(null, /*! ./pages/user/my-profile/my-profile.module */ "./src/app/pages/user/my-profile/my-profile.module.ts")).then(m => m.MyProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-user-my-profile-my-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-user-my-profile-my-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/user/my-profile/my-profile.module */ "./src/app/pages/user/my-profile/my-profile.module.ts")).then(m => m.MyProfilePageModule)
     },
     {
         path: 'redes-form',
@@ -1752,8 +1752,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    //server_url : 'http://192.168.1.15/f8a/public/api'
-    server_url: 'http://34.68.147.207/f8a/public/api'
+    server_url: 'http://192.168.1.15/f8a/public/api'
+    //server_url : 'http://34.68.147.207/f8a/public/api'
 };
 /*
  * For easier debugging in development mode, you can import the following file

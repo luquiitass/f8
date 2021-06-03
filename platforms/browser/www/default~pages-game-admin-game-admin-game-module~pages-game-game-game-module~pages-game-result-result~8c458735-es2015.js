@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-card>\n  <ion-card-header>\n    <ion-card-title>Comentarios</ion-card-title>\n  </ion-card-header>\n\n  <ion-card-content> \n\n    <ion-list>\n      <ion-item *ngIf=\"listComments.length < 1\">\n        <label>Se el primero en comentar!!!</label>\n      </ion-item>\n      <ion-item class=\"comment-item\" *ngFor=\"let item of listComments\">\n        <ion-thumbnail slot=\"start\" style=\"margin: 0px;padding: 0px;\">\n          <ion-img\n            class=\"comment-image\" \n            [src]=\"item.user.photo ? item.user.photo.urlComplete : 'assets/images/profile.jpg'\"\n            style=\"border-radius:50%; background-position:center center; background-size:cover; width:35px; height:35px;\">\n          </ion-img>\n        </ion-thumbnail>\n\n        <div class=\"comment-data\">\n          <div class=\"comment-user\">{{item.user.last_name }} {{item.user.first_name }}</div>\n          <div class=\"comment-body\">\n            {{item.body}}\n          </div>\n          <div class=\"comment-date\">{{item.created_at}}</div>\n        </div>\n      </ion-item>\n    </ion-list>\n\n    <form (ngSubmit)=\"send()\" >\n      <ion-grid>\n        <ion-row class=\"editor\">\n          <ion-col size=\"10\">\n            <div>\n              <ion-textarea  class=\"editor-text\" [(ngModel)]=\"comment.body\" name=\"body\"  placeholder=\"Escreibe aquí\" ></ion-textarea>\n            </div>\n          </ion-col>\n          <ion-col size=\"2\">\n            <div>\n              <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n                <ion-fab-button  class=\"edditor-send\" size=\"small\" color=\"primary\" type=\"submit\" (click)=\"send()\">\n                  <ion-icon name=\"send-sharp\"></ion-icon>\n                </ion-fab-button>\n              </ion-fab>\n\n            </div>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n     \n  </form>\n  </ion-card-content>\n</ion-card>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-card>\n  <ion-card-header>\n    <ion-card-title>Comentarios</ion-card-title>\n  </ion-card-header>\n\n  <ion-card-content> \n\n    <ion-list>\n      <ion-item *ngIf=\"listComments.length < 1\">\n        <label>Se el primero en comentar!!!</label>\n      </ion-item>\n      <ion-item class=\"comment-item\" *ngFor=\"let item of listComments\">\n        <ion-thumbnail slot=\"start\" style=\"margin: 0px;padding: 0px;\">\n          <ion-img\n            class=\"comment-image\" \n            [src]=\"item.user.photo ? item.user.photo.urlComplete : 'assets/images/profile.jpg'\"\n            style=\"border-radius:50%; background-position:center center; background-size:cover; width:35px; height:35px;\">\n          </ion-img>\n        </ion-thumbnail>\n\n        <div class=\"comment-data\">\n          <div class=\"comment-user\">{{item.user.last_name }} {{item.user.first_name }}</div>\n          <div class=\"comment-body\">\n            {{item.body}}\n          </div>\n          <div class=\"comment-date\">{{ formatDate(item.created_at)}}</div>\n        </div>\n      </ion-item>\n    </ion-list>\n\n    <form (ngSubmit)=\"send()\" >\n      <ion-grid>\n        <ion-row class=\"editor\">\n          <ion-col size=\"10\">\n            <div>\n              <ion-textarea  class=\"editor-text\" [(ngModel)]=\"comment.body\" name=\"body\"  placeholder=\"Escreibe un comentario...\" ></ion-textarea>\n            </div>\n          </ion-col>\n          <ion-col size=\"2\">\n            <div>\n              <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n                <ion-fab-button  class=\"edditor-send\" size=\"small\" color=\"primary\" type=\"submit\" (click)=\"send()\">\n                  <ion-icon name=\"send-sharp\"></ion-icon>\n                </ion-fab-button>\n              </ion-fab>\n\n            </div>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n     \n  </form>\n  </ion-card-content>\n</ion-card>\n");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-card>\n  <ion-card-header>\n    <ion-card-title>Sucesos</ion-card-title>\n  </ion-card-header>\n\n\n    <ion-list>\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col  class=\"ion-text-start\">\n            {{team_l.name}}\n          </ion-col>\n          <ion-col  class=\"ion-text-end\">\n              {{team_v.name}}\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-list-header *ngIf=\"events.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n\n   \n      <ion-item *ngFor=\"let item of events ; let i = index\" >\n          \n        <ion-label >\n          <h3 [ngClass]=\"{'ion-text-end' : item.team.id == team_v.id}\"> {{item.time}}° <b>{{item.type_event.name}}</b> {{item.player.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\" *ngIf=\"isAdmin\">\n          <ion-button (click)=\"confirmDelete(item,i)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n\n      </ion-item>\n    </ion-list>\n\n    <ion-button *ngIf=\"isAdmin\"  fill=\"clear\" expand=\"block\" (click)=\"addEvent()\">\n      Nuevo Suceso\n    </ion-button>\n\n</ion-card>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-card *ngIf=\"(events.length && team_l && team_v) || isAdmin\" >\n  <ion-card-header>\n    <ion-card-title>Sucesos</ion-card-title>\n  </ion-card-header>\n    <ion-list >\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col *ngIf=\"team_l\"  class=\"ion-text-start\">\n            {{team_l.name}}\n          </ion-col>\n          <ion-col *ngIf=\"team_v\"  class=\"ion-text-end\">\n            {{team_v.name}}\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-list-header *ngIf=\"events.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n\n   \n      <ion-item *ngFor=\"let item of events ; let i = index\" >\n          \n        <ion-label >\n          <h3 [ngClass]=\"{'ion-text-end' : item.team.id == team_v.id}\"> {{item.time}}° <b>{{item.type_event.name}}</b> {{item.player.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\" *ngIf=\"isAdmin\">\n          <ion-button (click)=\"confirmDelete(item,i)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n\n      </ion-item>\n    </ion-list>\n\n    <ion-button *ngIf=\"isAdmin\"  fill=\"clear\" expand=\"block\" (click)=\"addEvent()\">\n      Nuevo Suceso\n    </ion-button>\n\n</ion-card>");
 
 /***/ }),
 
@@ -146,6 +146,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_api_request_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/api/request.service */ "./src/app/api/request.service.ts");
 /* harmony import */ var src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth-user.service */ "./src/app/services/auth-user.service.ts");
 /* harmony import */ var src_app_services_util_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/util.service */ "./src/app/services/util.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -203,6 +206,9 @@ let CommentsComponent = class CommentsComponent {
                 console.error(error);
             });
         }
+    }
+    formatDate(val) {
+        return moment__WEBPACK_IMPORTED_MODULE_6__(val).locale('es').fromNow();
     }
 };
 CommentsComponent.ctorParameters = () => [
@@ -1113,12 +1119,28 @@ __webpack_require__.r(__webpack_exports__);
 
 let UtilArrayService = class UtilArrayService {
     constructor() { }
+    /**
+     * Inserta el elemento al final del array
+     * @param list array en el que se inserta el objeto
+     * @param item item a insertar
+     */
     listAddLast(list, item) {
         list.push(item);
     }
+    /**
+     * Añade un elemente en el array al inicio
+     * @param list array en la que se inserta el objeto
+     * @param item  elemento que se almacenara en el array
+     */
     listAddFirst(list, item) {
         list.unshift(item);
     }
+    /**
+     * Remplaza un objeto del array
+     * @param list array que se actualizara
+     * @param id iel id del objeto
+     * @param item elemento que se remplazara en el array
+     */
     listUpdate(list, id, item) {
         let index = this.findIndexList(list, id);
         console.log('index remove', index);
@@ -1126,15 +1148,30 @@ let UtilArrayService = class UtilArrayService {
             list[index] = item;
         }
     }
+    /**
+     * elimina objeto de un array pasando el id del objeto
+     * @param list array del que se eliminara el objeto
+     * @param id id del objeto
+     */
     listDelete(list, id) {
         let index = this.findIndexList(list, id);
         console.log('index remove', index);
         if (index >= 0)
             list.splice(index, 1);
     }
+    /**
+     * Busca un obeto en el array
+     * @param list array en el qie se bucara el objeto
+     * @param id id del objeto
+     */
     findList(list, id) {
         return list.find(item => item['id'] === id);
     }
+    /**
+     * Retorna el indice de la posicion en la que se encuentra el objeto
+     * @param list Array en el que se realizara a busqueda
+     * @param id id del objeto buscado
+     */
     findIndexList(list, id) {
         return list.findIndex(item => item['id'] === id);
     }

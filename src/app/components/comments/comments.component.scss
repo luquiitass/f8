@@ -1,5 +1,6 @@
 .comment-item{
-   
+    width: 100%;
+   display: flex;
 }
 
 .comment-image{
@@ -21,6 +22,7 @@
     font-style: italic;
     margin-left: 5px;
     color: darkslategrey;
+    white-space: pre-wrap;
 }
 
 .comment-date{
@@ -41,4 +43,14 @@
 .editor-send{
     margin-left: -5px;
 
+}
+
+.content-comment-text{
+    margin-right: 50px;
+}
+
+.comment-image{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }

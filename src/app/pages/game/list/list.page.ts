@@ -10,6 +10,7 @@ import * as moment from 'moment';
 
 import { from } from 'rxjs';
 import { UtilService } from 'src/app/services/util.service';
+import { UtilArrayService } from 'src/app/services/util-array.service';
 
 @Component({
   selector: 'app-list',
@@ -31,7 +32,8 @@ export class ListPage implements OnInit {
     public dialogService : DialogService,
     public modalController: ModalController,
     public dialog : DialogService,
-    public util : UtilService
+    public util : UtilService,
+    public utilArray : UtilArrayService
   ) {
     this.gameService = new Model('Game',request);
   }
@@ -70,8 +72,17 @@ export class ListPage implements OnInit {
     });
 
     modal.onDidDismiss().then(data=>{
+      console.log('crate game')
       const game = data.data['game'];
-      this.gameService.listAddLast(game);
+      let index = this.tabs.map( tab => tab.date ).indexOf(game.date)
+      if(index >= 0){
+        this.utilArray.listAddFirst( this.tabs[index]['results'] ,game );
+      }else{
+        index = this.tabs.length;
+        this.tabs[index] = { date : moment(game.date).format('YYYY-MM-DD') ,results : [] } 
+        this.utilArray.listAddFirst( this.tabs[index]['results'] ,game );
+
+      }
     })
 
     return await modal.present();
@@ -85,7 +96,8 @@ export class ListPage implements OnInit {
 
     modal.onDidDismiss().then(data=>{
       const game = data.data['game'];
-      this.gameService.listUpdate(game.id,game);
+      this.utilArray.listUpdate(this.games,game.id,game);
+      //this.gameService.listUpdate(game.id,game);
 
     })
 
@@ -103,7 +115,8 @@ export class ListPage implements OnInit {
        console.log(data);
        if(data['status'] == 'success'){
          this.dialog.showToast('Game Eliminado',null,'success');
-         this.gameService.listDelete(game.id);
+         //this.gameService.listDelete(game.id);
+         this.utilArray.listDelete(this.games,game.id)
        }
      });
    }

@@ -6,6 +6,7 @@ import { PhotoService } from 'src/app/services/photo.service';
 import { Model } from 'src/app/api/models/model';
 import { DialogService } from 'src/app/api/util/dialog.service';
 import { ModelImage } from 'src/app/api/models/modelImage';
+import { SearchPage } from '../../search/search.page';
 
 @Component({
   selector: 'app-player-form',
@@ -26,6 +27,8 @@ export class PlayerFormPage implements OnInit {
     public dialogService : DialogService,
     public viewCtrl: ModalController,
     navParams: NavParams,
+    public modalController: ModalController,
+
   ) {
     this.servicePosition = new Model('Position',request);
     this.servicePlayer = new Model('Player',request);
@@ -124,6 +127,29 @@ export class PlayerFormPage implements OnInit {
         }
     })
     }
+  }
+
+  async selectUser(){
+    //e.preventDefault();
+    console.log('Add admins');
+
+    const modal = await this.modalController.create({
+      component: SearchPage ,
+      componentProps: { 
+        cancellable: false,
+        model : 'User',
+        function : 'searchUser',
+        multiple : false
+      }
+    });
+
+    modal.onDidDismiss().then(data=>{
+      const user = data.data['item'];
+      this.player.user_id =  user.id;
+      this.player.email = user.text
+    })
+
+    return await modal.present();
   }
 
 }

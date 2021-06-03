@@ -5,6 +5,7 @@ import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { UtilService } from 'src/app/services/util.service';
 
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.page.html',

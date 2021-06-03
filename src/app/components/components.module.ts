@@ -9,8 +9,10 @@ import {CommentsComponent} from './comments/comments.component'
 import {NotificatioSelectedComponent} from './notifications/notificatio-selected/notificatio-selected.component'
 import {RedListComponent} from './redes/red-list/red-list.component'; 
 import {SearchComponent} from './search/search.component';
+import {RouterModule} from '@angular/router'
 
 import { FormsModule } from '@angular/forms';
+import { from } from 'rxjs';
 
 
 
@@ -18,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     IonicModule.forRoot(),
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   declarations: [
     ListComponent,

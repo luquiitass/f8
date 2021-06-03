@@ -90,4 +90,6 @@ export class EventListComponent implements OnInit {
     return await modal.present();
    }
 
+
+
 }

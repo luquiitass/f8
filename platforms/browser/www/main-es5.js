@@ -1521,9 +1521,9 @@
       }, {
         path: 'my-profile',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | pages-user-my-profile-my-profile-module */
-          "pages-user-my-profile-my-profile-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("pages-user-my-profile-my-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/user/my-profile/my-profile.module */
           "./src/app/pages/user/my-profile/my-profile.module.ts")).then(function (m) {
             return m.MyProfilePageModule;
@@ -2776,8 +2776,8 @@
 
       var environment = {
         production: false,
-        //server_url : 'http://192.168.1.15/f8a/public/api'
-        server_url: 'http://34.68.147.207/f8a/public/api'
+        server_url: 'http://192.168.1.15/f8a/public/api' //server_url : 'http://34.68.147.207/f8a/public/api'
+
       };
       /*
        * For easier debugging in development mode, you can import the following file

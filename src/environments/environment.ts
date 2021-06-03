@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //server_url : 'http://192.168.1.15/f8a/public/api'
-  server_url : 'http://34.68.147.207/f8a/public/api'
+  server_url : 'http://192.168.1.15/f8a/public/api'
+  //server_url : 'http://34.68.147.207/f8a/public/api'
 
 };
 

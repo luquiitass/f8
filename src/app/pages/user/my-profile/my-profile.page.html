@@ -1,9 +1,63 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Perfil</ion-title>
+    <ion-title> {{ user ? user.last_name +' '+user.first_name : 'My Perfil'}}</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="secondary">
+      <ion-button (click)="showEdit()">
+        <ion-icon name="create"></ion-icon>      
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngIf="user">
+    <ion-card-content>
+      <img [src]="getPhoto()" >
+    </ion-card-content>
+    <ion-card-header>
+      <ion-card-title>
+        {{user.last_name}} {{user.first_name}}
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+
+  <ion-card *ngIf="user && user.teams">
+    <ion-card-header>
+      <ion-card-title>Administrar Equipos</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let team of user.teams" routerLink="/team/profile/{{team.id}}" routerDirection="forward">
+            {{team.name}}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="user && user.player">
+    <ion-card-header>
+      <ion-card-title>Jugador</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item routerLink="/player/profile/{{user.player.id}}" routerDirection="forward">
+            {{user.player.name}}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

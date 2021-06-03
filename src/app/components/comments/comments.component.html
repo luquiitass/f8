@@ -7,33 +7,58 @@
 
     <ion-list>
       <ion-item *ngIf="listComments.length < 1">
-        <label>Se el primero en comentar!!!</label>
+        <ion-note style="font-size: large;">Se el primero en comentar!!!</ion-note>
       </ion-item>
-      <ion-item class="comment-item" *ngFor="let item of listComments">
-        <ion-thumbnail slot="start" style="margin: 0px;padding: 0px;">
-          <ion-img
-            class="comment-image" 
-            [src]="item.user.photo ? item.user.photo.urlComplete : 'assets/images/profile.jpg'"
-            style="border-radius:50%; background-position:center center; background-size:cover; width:35px; height:35px;">
-          </ion-img>
-        </ion-thumbnail>
+      <ion-item  *ngFor="let item of listComments">
+        <div class="comment-item" >
 
-        <div class="comment-data">
-          <div class="comment-user">{{item.user.last_name }} {{item.user.first_name }}</div>
-          <div class="comment-body">
-            {{item.body}}
+          <ion-thumbnail slot="start" class="comment-image">
+            <ion-img
+              class="comment-image" 
+              [src]="item.user.photo ? item.user.photo.urlComplete : 'assets/images/profile.jpg'"
+              style="border-radius:50%; background-position:center center; background-size:cover; width:35px; height:35px;">
+            </ion-img>
+          </ion-thumbnail>
+
+          <div class="comment-data">
+            <div class="comment-user">
+              <a [routerLink]="'/users/' + item.user.id +'/profile'">
+                {{item.user.last_name }} {{item.user.first_name }}
+              </a>
+            </div>
+            <div class="comment-body">
+                {{item.body}}
+            </div>
+            <div class="comment-date">{{ formatDate(item.created_at)}}</div>
           </div>
-          <div class="comment-date">{{item.created_at}}</div>
+
         </div>
+        
+
+       
       </ion-item>
     </ion-list>
 
     <form (ngSubmit)="send()" >
-      <ion-grid>
+
+      <div class="content-comment">
+        <div class="content-comment-text">
+          <ion-textarea  class="editor-text" [(ngModel)]="comment.body" name="body"  placeholder="Escreibe un comentario..." ></ion-textarea>
+        </div>
+        <div>
+          <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button  class="edditor-send" size="small" color="primary" type="submit" (click)="send()">
+              <ion-icon name="send-sharp"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </div>
+
+      <!-- <ion-grid>
         <ion-row class="editor">
           <ion-col size="10">
             <div>
-              <ion-textarea  class="editor-text" [(ngModel)]="comment.body" name="body"  placeholder="Escreibe aquí" ></ion-textarea>
+              <ion-textarea  class="editor-text" [(ngModel)]="comment.body" name="body"  placeholder="Escreibe un comentario..." ></ion-textarea>
             </div>
           </ion-col>
           <ion-col size="2">
@@ -47,7 +72,7 @@
             </div>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
      
   </form>
   </ion-card-content>

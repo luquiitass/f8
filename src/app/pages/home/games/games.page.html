@@ -19,7 +19,7 @@
         <ion-col size="12">
           <ion-segment scrollable [(ngModel)]="tabSelected" (ionChange)="selectDate($event)" >
             <ion-segment-button *ngFor="let tab of tabs;let i=index" value="{{i}}" id="sgm_{{i}}" >
-              {{tab.date}}
+              {{formatDate(tab.date)}}
             </ion-segment-button>
           </ion-segment>
         </ion-col>
@@ -34,7 +34,7 @@
         <div class="game">
           <div class="team-list contenedor">
             <div class="team">
-              <span class="name-team">{{game.team_l.name}}</span>
+              <span class="team-name">{{game.team_l.name}}</span>
               <ion-thumbnail slot="end">
                 <ion-img 
                   class="img-team"
@@ -57,8 +57,7 @@
             </div>
           </div>
           <div class="date">
-            <span><ion-icon name="timer-outline"></ion-icon></span>
-            <span>{{ game.time }}</span>
+            <span>{{ util.formatHours(game.time) }}</span>
           </div>
         </div>
        

@@ -62,8 +62,8 @@ export class AuthUserService {
     return this.getUser();
   }
 
-  getUser(){
-    return this.user = JSON.parse(localStorage.getItem('User')) ?? null;
+  async getUser(){
+    return this.user = await JSON.parse(localStorage.getItem('User')) ?? null;
   }
 
   redirect() {
