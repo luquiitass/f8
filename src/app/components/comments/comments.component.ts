@@ -4,6 +4,8 @@ import { RequestService } from 'src/app/api/request.service';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { UtilService } from 'src/app/services/util.service';
 import * as moment from 'moment';
+import { ModalController } from '@ionic/angular';
+import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 
 
 @Component({
@@ -26,7 +28,8 @@ export class CommentsComponent implements OnInit {
   constructor(
     public authService : AuthUserService,
     public request : RequestService,
-    public util : UtilService
+    public util : UtilService,
+    public modalController: ModalController
   ) {
     this.commentModel = new Model('Comment',request)
    }
@@ -100,4 +103,23 @@ export class CommentsComponent implements OnInit {
     return moment(val).locale('es').fromNow();
   }
 
+  getPhoto(comment){
+    return comment.user.photo ? comment.user.photo.urlCompleteThumb : 'assets/images/profile.jpg';
+  }
+  
+
+  async openViewer(comment) {
+    const modal = await this.modalController.create({
+      component: ViewerModalComponent,
+      componentProps: {
+        src: comment.user.photo ? comment.user.photo.urlComplete : 'assets/images/profile.jpg',
+        scheme : 'dark'
+      },
+      cssClass: 'ion-img-viewer',
+      keyboardClose: true,
+      showBackdrop: true,
+    });
+
+    return await modal.present();
+  }
 }

@@ -10,7 +10,7 @@
           "/manifest/application": [
             {
               "xml": "<application android:usesCleartextTraffic=\"true\" />",
-              "count": 3,
+              "count": 4,
               "mode": "merge",
               "id": "config.xml",
               "oldAttrib": {
@@ -63,11 +63,15 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+              "xml": "<feature name=\"AppAvailability\"><param name=\"android-package\" value=\"com.ohh2ahh.appavailability.AppAvailability\" /></feature>",
               "count": 1
             },
             {
-              "xml": "<feature name=\"AppAvailability\"><param name=\"android-package\" value=\"com.ohh2ahh.appavailability.AppAvailability\" /></feature>",
+              "xml": "<feature name=\"PhotoViewer\"><param name=\"android-package\" value=\"com.sarriaroman.PhotoViewer.PhotoViewer\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
             }
           ]
@@ -108,12 +112,24 @@
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
               "count": 1
             }
           ],
           "/manifest/application": [
             {
               "xml": "<activity android:name=\"com.soundcloud.android.crop.CropImageActivity\" />",
+              "count": 1
+            },
+            {
+              "xml": "<activity android:name=\"com.sarriaroman.PhotoViewer.PhotoActivity\" android:theme=\"@android:style/Theme.Holo.NoActionBar.Fullscreen\" />",
               "count": 1
             }
           ]
@@ -144,10 +160,13 @@
     "cordova-plugin-crop": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-appavailability": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-appavailability": {
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
   },
@@ -202,19 +221,27 @@
       ]
     },
     {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open"
-      ]
-    },
-    {
       "id": "cordova-plugin-appavailability.AppAvailability",
       "file": "plugins/cordova-plugin-appavailability/www/AppAvailability.js",
       "pluginId": "cordova-plugin-appavailability",
       "clobbers": [
         "appAvailability"
+      ]
+    },
+    {
+      "id": "com-sarriaroman-photoviewer.PhotoViewer",
+      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+      "pluginId": "com-sarriaroman-photoviewer",
+      "clobbers": [
+        "PhotoViewer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
       ]
     }
   ],
@@ -226,7 +253,8 @@
     "cordova-plugin-ionic-webview": "4.2.1",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-crop": "0.3.1",
-    "cordova-plugin-inappbrowser": "4.1.0",
-    "cordova-plugin-appavailability": "0.4.2"
+    "cordova-plugin-appavailability": "0.4.2",
+    "com-sarriaroman-photoviewer": "1.2.4",
+    "cordova-plugin-inappbrowser": "4.1.0"
   }
 }

@@ -52,9 +52,9 @@
       /* harmony import */
 
 
-      var _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./overlays-28c23c35.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-28c23c35.js");
+      var _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./overlays-e9ccff30.js */
+      "./node_modules/@ionic/core/dist/esm/overlays-e9ccff30.js");
       /* harmony import */
 
 
@@ -326,7 +326,7 @@
           };
 
           this.onBackdropTap = function () {
-            _this.dismiss(undefined, _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["B"]);
+            _this.dismiss(undefined, _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["B"]);
           };
 
           this.onLifecycle = function (modalEvent) {
@@ -347,7 +347,7 @@
         _createClass(Popover, [{
           key: "connectedCallback",
           value: function connectedCallback() {
-            Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this.el);
+            Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this.el);
           }
           /**
            * Present the popover overlay after it has been created.
@@ -392,7 +392,7 @@
                       return Object(_index_c3ff7f2e_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this.usersElement);
 
                     case 11:
-                      return _context.abrupt("return", Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this, 'popoverEnter', iosEnterAnimation, mdEnterAnimation, this.event));
+                      return _context.abrupt("return", Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this, 'popoverEnter', iosEnterAnimation, mdEnterAnimation, this.event));
 
                     case 12:
                     case "end":
@@ -425,7 +425,7 @@
                   switch (_context2.prev = _context2.next) {
                     case 0:
                       _context2.next = 2;
-                      return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this, data, role, 'popoverLeave', iosLeaveAnimation, mdLeaveAnimation, this.event);
+                      return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this, data, role, 'popoverLeave', iosLeaveAnimation, mdLeaveAnimation, this.event);
 
                     case 2:
                       shouldDismiss = _context2.sent;
@@ -462,7 +462,7 @@
         }, {
           key: "onDidDismiss",
           value: function onDidDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPopoverDidDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPopoverDidDismiss');
           }
           /**
            * Returns a promise that resolves when the popover will dismiss.
@@ -471,7 +471,7 @@
         }, {
           key: "onWillDismiss",
           value: function onWillDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPopoverWillDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPopoverWillDismiss');
           }
         }, {
           key: "render",

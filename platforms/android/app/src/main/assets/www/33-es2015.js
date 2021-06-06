@@ -78,8 +78,10 @@ const Slides = class {
   async optionsChanged() {
     if (this.swiperReady) {
       const swiper = await this.getSwiper();
-      Object.assign(swiper.params, this.options);
-      await this.update();
+      if (swiper === null || swiper === void 0 ? void 0 : swiper.params) {
+        Object.assign(swiper.params, this.options);
+        await this.update();
+      }
     }
   }
   connectedCallback() {
@@ -269,7 +271,7 @@ const Slides = class {
     const finalOptions = this.normalizeOptions();
     // init swiper core
     // @ts-ignore
-    const { Swiper } = await __webpack_require__.e(/*! import() | swiper-bundle-44a9b1f9-js */ "swiper-bundle-44a9b1f9-js").then(__webpack_require__.bind(null, /*! ./swiper.bundle-44a9b1f9.js */ "./node_modules/@ionic/core/dist/esm/swiper.bundle-44a9b1f9.js"));
+    const { Swiper } = await __webpack_require__.e(/*! import() | swiper-bundle-6c5e7804-js */ "swiper-bundle-6c5e7804-js").then(__webpack_require__.bind(null, /*! ./swiper.bundle-6c5e7804.js */ "./node_modules/@ionic/core/dist/esm/swiper.bundle-6c5e7804.js"));
     await waitForSlides(this.el);
     const swiper = new Swiper(this.el, finalOptions);
     this.swiperReady = true;

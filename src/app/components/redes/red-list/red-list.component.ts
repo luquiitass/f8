@@ -7,8 +7,10 @@ import { Model } from 'src/app/api/models/model';
 import { RedesFormPage } from 'src/app/pages/redes/redes-form/redes-form.page';
 import { UtilArrayService } from 'src/app/services/util-array.service';
 
-//import { InAppBrowser, InAppBrowserObject } from '@ionic-native/in-app-browser';
-//import { AppAvailability } from '@ionic-native/app-availability/ngx';
+//import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
+
 
 
 
@@ -35,7 +37,7 @@ export class RedListComponent implements OnInit {
     public utilArray : UtilArrayService,
     public nacCtrl : NavController,
     //private platform: Platform,
-    //public inAppBrowser : InAppBrowser,
+    public inAppBrowser : InAppBrowser,
     //public appAvailability : AppAvailability
 
     
@@ -165,7 +167,9 @@ export class RedListComponent implements OnInit {
   */
     }
    }
-/*
+
+   
+
    select(red){
      this.openAppUrl(red.name,red.url);
    }
@@ -173,32 +177,43 @@ export class RedListComponent implements OnInit {
    openAppUrl(app: string, name: string, id?: string) {
     switch (app) {
         case 'Facebook':
-            this.launchApp(
+          this.openUrl('https://www.facebook.com/' + name);
+          break;
+        /*
+          this.launchApp(
               'fb://', 'com.facebook.katana',
               'fb://profile/' + id,
               'fb://page/' + id,
               'https://www.facebook.com/' + name);
-            break;
+            break;*/
         case 'Instagram':
+            this.openUrl('https://www.instagram.com/' + name);
+            break;
+        /*
             this.launchApp(
               'instagram://',
               'com.instagram.android',
               'instagram://user?username=' + name,
               'instagram://user?username=' + name,
               'https://www.instagram.com/' + name);
-            break;
+            break;*/
         case 'Twitter':
+              this.openUrl('https://twitter.com/' + name)
+        /*
             this.launchApp(
               'twitter://', 'com.twitter.android',
               'twitter://user?screen_name=' + name,
               'twitter://user?screen_name=' + name,
               'https://twitter.com/' + name);
             break;
+            */
+        case 'WhatsApp':
+          this.openUrl('https://api.whatsapp.com/send?phone=+549' + name);
         default:
             break;
       }
   }
-
+/*
 private launchApp(iosApp: string, androidApp: string, appUrlIOS: string, appUrlAndroid: string, webUrl: string) {
     let app: string;
     let appUrl: string;
@@ -225,5 +240,10 @@ private launchApp(iosApp: string, androidApp: string, appUrlIOS: string, appUrlA
     );
 }
 */
+
+openUrl(url){
+  const browser = this.inAppBrowser.create(url,'_self');
+}
+
 
 }

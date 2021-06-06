@@ -29,7 +29,6 @@ export class UserFormPage implements OnInit {
     this.photoService = new ModelImage(request,viewCtrl);
     this.photoService.init('images/users/profile/',true,'assets/images/profile.jpg');
     this.id = navParams.get('id') ;
-
    }
 
   ngOnInit() {

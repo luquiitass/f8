@@ -1774,7 +1774,13 @@
 
       var _interceptors_token_interceptor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! ./interceptors/token.interceptor */
-      "./src/app/interceptors/token.interceptor.ts"); //import { HttpClientModule } from '@angular/common/http';
+      "./src/app/interceptors/token.interceptor.ts");
+      /* harmony import */
+
+
+      var _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @ionic-native/photo-viewer/ngx */
+      "./node_modules/@ionic-native/photo-viewer/__ivy_ngcc__/ngx/index.js"); //import { HttpClientModule } from '@angular/common/http';
 
 
       var AppModule = function AppModule() {
@@ -1785,7 +1791,7 @@
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]],
         entryComponents: [],
         imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _app_pages_team_form_form_module__WEBPACK_IMPORTED_MODULE_9__["FormPageModule"]],
-        providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
+        providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_12__["PhotoViewer"], {
           provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
           useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
         }, {

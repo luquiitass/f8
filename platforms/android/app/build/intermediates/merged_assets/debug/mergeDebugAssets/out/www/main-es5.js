@@ -1521,9 +1521,9 @@
       }, {
         path: 'my-profile',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | pages-user-my-profile-my-profile-module */
-          "pages-user-my-profile-my-profile-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("pages-user-my-profile-my-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/user/my-profile/my-profile.module */
           "./src/app/pages/user/my-profile/my-profile.module.ts")).then(function (m) {
             return m.MyProfilePageModule;
@@ -1778,9 +1778,21 @@
       /* harmony import */
 
 
-      var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
-      /*! @ionic-native/google-plus/ngx */
-      "./node_modules/@ionic-native/google-plus/__ivy_ngcc__/ngx/index.js"); //import { HttpClientModule } from '@angular/common/http';
+      var _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      /*! @ionic-native/photo-viewer/ngx */
+      "./node_modules/@ionic-native/photo-viewer/__ivy_ngcc__/ngx/index.js");
+      /* harmony import */
+
+
+      var ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      /*! ngx-ionic-image-viewer */
+      "./node_modules/ngx-ionic-image-viewer/__ivy_ngcc__/fesm2015/ngx-ionic-image-viewer.js");
+      /* harmony import */
+
+
+      var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! @ionic-native/in-app-browser/ngx */
+      "./node_modules/@ionic-native/in-app-browser/__ivy_ngcc__/ngx/index.js"); //import { HttpClientModule } from '@angular/common/http';
 
 
       var AppModule = function AppModule() {
@@ -1790,15 +1802,15 @@
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _app_pages_team_form_form_module__WEBPACK_IMPORTED_MODULE_9__["FormPageModule"]],
-        providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _app_pages_team_form_form_module__WEBPACK_IMPORTED_MODULE_9__["FormPageModule"], ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_13__["NgxIonicImageViewerModule"]],
+        providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_12__["PhotoViewer"], _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_14__["InAppBrowser"], {
           provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
           useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
         }, {
           provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HTTP_INTERCEPTORS"],
           useClass: _interceptors_token_interceptor__WEBPACK_IMPORTED_MODULE_11__["TokenInterceptor"],
           multi: true
-        }, _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_12__["GooglePlus"]],
+        }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
       })], AppModule);
       /***/
@@ -2782,7 +2794,7 @@
 
       var environment = {
         production: false,
-        server_url: 'http://192.168.1.15/f8a/public/api' //server_url : 'http://f8a.ddns.net/f8a/public/api'
+        server_url: 'http://192.168.1.15/f8a/public/api' //server_url : 'http://34.68.147.207/f8a/public/api'
 
       };
       /*

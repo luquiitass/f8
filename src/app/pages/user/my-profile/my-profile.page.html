@@ -22,17 +22,26 @@
 
   <ion-card *ngIf="user">
     <ion-card-content>
-      <img [src]="getPhoto()" >
+
+      <ion-img-viewer 
+        title="Foto de Perfil" 
+        [text]="user.last_name +' '+ user.first_name"
+        scheme="dark" 
+        [src]="getPhoto()">
+      </ion-img-viewer>
+
     </ion-card-content>
     <ion-card-header>
       <ion-card-title>
         {{user.last_name}} {{user.first_name}}
       </ion-card-title>
+
+      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
 
-  <ion-card *ngIf="user && user.teams">
+  <ion-card *ngIf="user && user.teams && user.teams.lenght">
     <ion-card-header>
       <ion-card-title>Administrar Equipos</ion-card-title>
     </ion-card-header>

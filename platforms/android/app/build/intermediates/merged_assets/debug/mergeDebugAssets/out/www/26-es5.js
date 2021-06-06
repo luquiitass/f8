@@ -92,8 +92,8 @@
         return hasHeader ? 'translate' : 'scale';
       };
 
-      var createPullingAnimation = function createPullingAnimation(type, pullingSpinner) {
-        return type === 'scale' ? createScaleAnimation(pullingSpinner) : createTranslateAnimation(pullingSpinner);
+      var createPullingAnimation = function createPullingAnimation(type, pullingSpinner, refresherEl) {
+        return type === 'scale' ? createScaleAnimation(pullingSpinner, refresherEl) : createTranslateAnimation(pullingSpinner, refresherEl);
       };
 
       var createBaseAnimation = function createBaseAnimation(pullingRefresherIcon) {
@@ -175,11 +175,20 @@
         return baseAnimation.addAnimation([spinnerArrowContainerAnimation, circleInnerAnimation, circleOuterAnimation]);
       };
 
-      var createScaleAnimation = function createScaleAnimation(pullingRefresherIcon) {
-        var height = pullingRefresherIcon.clientHeight;
+      var createScaleAnimation = function createScaleAnimation(pullingRefresherIcon, refresherEl) {
+        /**
+         * Do not take the height of the refresher icon
+         * because at this point the DOM has not updated,
+         * so the refresher icon is still hidden with
+         * display: none.
+         * The `ion-refresher` container height
+         * is roughly the amount we need to offset
+         * the icon by when pulling down.
+         */
+        var height = refresherEl.clientHeight;
         var spinnerAnimation = Object(_animation_096c6391_js__WEBPACK_IMPORTED_MODULE_5__["c"])().addElement(pullingRefresherIcon).keyframes([{
           offset: 0,
-          transform: "scale(0) translateY(-".concat(height + 20, "px)")
+          transform: "scale(0) translateY(-".concat(height, "px)")
         }, {
           offset: 1,
           transform: 'scale(1) translateY(100px)'
@@ -187,11 +196,20 @@
         return createBaseAnimation(pullingRefresherIcon).addAnimation([spinnerAnimation]);
       };
 
-      var createTranslateAnimation = function createTranslateAnimation(pullingRefresherIcon) {
-        var height = pullingRefresherIcon.clientHeight;
+      var createTranslateAnimation = function createTranslateAnimation(pullingRefresherIcon, refresherEl) {
+        /**
+         * Do not take the height of the refresher icon
+         * because at this point the DOM has not updated,
+         * so the refresher icon is still hidden with
+         * display: none.
+         * The `ion-refresher` container height
+         * is roughly the amount we need to offset
+         * the icon by when pulling down.
+         */
+        var height = refresherEl.clientHeight;
         var spinnerAnimation = Object(_animation_096c6391_js__WEBPACK_IMPORTED_MODULE_5__["c"])().addElement(pullingRefresherIcon).keyframes([{
           offset: 0,
-          transform: "translateY(-".concat(height + 20, "px)")
+          transform: "translateY(-".concat(height, "px)")
         }, {
           offset: 1,
           transform: 'translateY(100px)'
@@ -753,9 +771,6 @@
                             didStart: false,
                             cancelled: false
                           };
-                          _this2.state = 2
-                          /* Pulling */
-                          ;
                         },
                         onMove: function onMove(ev) {
                           if (ev.velocityY < 0 && _this2.progress === 0 && !ev.data.didStart || ev.data.cancelled) {
@@ -765,11 +780,14 @@
 
                           if (!ev.data.didStart) {
                             ev.data.didStart = true;
+                            _this2.state = 2
+                            /* Pulling */
+                            ;
                             Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
                               return _this2.scrollEl.style.setProperty('--overflow', 'hidden');
                             });
                             var animationType = getRefresherAnimationType(contentEl);
-                            var animation = createPullingAnimation(animationType, pullingRefresherIcon);
+                            var animation = createPullingAnimation(animationType, pullingRefresherIcon, _this2.el);
                             ev.data.animation = animation;
                             animation.progressStart(false, 0);
 

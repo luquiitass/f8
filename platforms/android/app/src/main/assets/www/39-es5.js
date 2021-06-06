@@ -407,7 +407,7 @@
               }
             }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("textarea", Object.assign({
               "class": "native-textarea",
-              "aria-labelledby": labelId,
+              "aria-labelledby": label ? labelId : null,
               ref: function ref(el) {
                 return _this4.nativeInput = el;
               },

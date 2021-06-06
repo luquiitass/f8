@@ -15,7 +15,9 @@ import { FormPageModule } from '../app/pages/team/form/form.module';
 import { RequestService } from './api/request.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 
@@ -27,11 +29,14 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule, 
-    FormPageModule
+    FormPageModule,
+    NgxIonicImageViewerModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    PhotoViewer,
+    InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,

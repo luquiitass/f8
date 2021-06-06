@@ -248,7 +248,7 @@
       };
 
       var writePath = function writePath(history, root, useHash, path, direction, state, queryString) {
-        var url = generatePath([].concat(_toConsumableArray(parsePath(root)), _toConsumableArray(path)));
+        var url = generatePath([].concat(_toConsumableArray(parsePath(root).segments), _toConsumableArray(path)));
 
         if (useHash) {
           url = '#' + url;
@@ -295,28 +295,41 @@
           pathname = hash[0] === '#' ? hash.slice(1) : '';
         }
 
-        var prefix = parsePath(root);
-        var path = parsePath(pathname);
+        var prefix = parsePath(root).segments;
+        var path = parsePath(pathname).segments;
         return removePrefix(prefix, path);
-      };
+      }; // Parses the path to:
+      // - segments an array of '/' separated parts,
+      // - queryString (undefined when no query string).
+
 
       var parsePath = function parsePath(path) {
-        if (path == null) {
-          return [''];
+        var segments = [''];
+        var queryString;
+
+        if (path != null) {
+          var qsStart = path.indexOf('?');
+
+          if (qsStart > -1) {
+            queryString = path.substr(qsStart + 1);
+            path = path.substr(0, qsStart);
+          }
+
+          segments = path.split('/').map(function (s) {
+            return s.trim();
+          }).filter(function (s) {
+            return s.length > 0;
+          });
+
+          if (segments.length === 0) {
+            segments = [''];
+          }
         }
 
-        var removeQueryString = path.split('?')[0];
-        var segments = removeQueryString.split('/').map(function (s) {
-          return s.trim();
-        }).filter(function (s) {
-          return s.length > 0;
-        });
-
-        if (segments.length === 0) {
-          return [''];
-        } else {
-          return segments;
-        }
+        return {
+          segments: segments,
+          queryString: queryString
+        };
       };
 
       var printRoutes = function printRoutes(routes) {
@@ -361,7 +374,7 @@
             var redirect = _step5.value;
 
             if (redirect.to) {
-              console.debug('FROM: ', "$c ".concat(generatePath(redirect.from)), 'font-weight: bold', ' TO: ', "$c ".concat(generatePath(redirect.to)), 'font-weight: bold');
+              console.debug('FROM: ', "$c ".concat(generatePath(redirect.from)), 'font-weight: bold', ' TO: ', "$c ".concat(generatePath(redirect.to.segments)), 'font-weight: bold');
             }
           }
         } catch (err) {
@@ -554,17 +567,22 @@
 
         var outlet = root.querySelector(QUERY);
         return outlet ? outlet : undefined;
-      };
+      }; // Returns whether the given redirect matches the given path segments.
+      //
+      // A redirect matches when the segments of the path and redirect.from are equal.
+      // Note that segments are only checked until redirect.from contains a '*' which matches any path segment.
+      // The path ['some', 'path', 'to', 'page'] matches both ['some', 'path', 'to', 'page'] and ['some', 'path', '*'].
 
-      var matchesRedirect = function matchesRedirect(input, route) {
-        var from = route.from,
-            to = route.to;
+
+      var matchesRedirect = function matchesRedirect(path, redirect) {
+        var from = redirect.from,
+            to = redirect.to;
 
         if (to === undefined) {
           return false;
         }
 
-        if (from.length > input.length) {
+        if (from.length > path.length) {
           return false;
         }
 
@@ -575,17 +593,18 @@
             return true;
           }
 
-          if (expected !== input[i]) {
+          if (expected !== path[i]) {
             return false;
           }
         }
 
-        return from.length === input.length;
-      };
+        return from.length === path.length;
+      }; // Returns the first redirect matching the path segments or undefined when no match found.
 
-      var routeRedirect = function routeRedirect(path, routes) {
-        return routes.find(function (route) {
-          return matchesRedirect(path, route);
+
+      var findRouteRedirect = function findRouteRedirect(path, redirects) {
+        return redirects.find(function (redirect) {
+          return matchesRedirect(path, redirect);
         });
       };
 
@@ -807,7 +826,7 @@
         }).map(function (el) {
           var to = readProp(el, 'to');
           return {
-            from: parsePath(readProp(el, 'from')),
+            from: parsePath(readProp(el, 'from')).segments,
             to: to == null ? undefined : parsePath(to)
           };
         });
@@ -829,7 +848,7 @@
           }
 
           return {
-            path: parsePath(readProp(el, 'url')),
+            path: parsePath(readProp(el, 'url')).segments,
             id: component.toLowerCase(),
             params: el.componentProps,
             beforeLeave: el.beforeLeave,
@@ -929,7 +948,7 @@
            * Usually "hash-less" navigation works better for SEO and it's more user friendly too, but it might
            * requires additional server-side configuration in order to properly work.
            *
-           * On the otherside hash-navigation is much easier to deploy, it even works over the file protocol.
+           * On the other side hash-navigation is much easier to deploy, it even works over the file protocol.
            *
            * By default, this property is `true`, change to `false` to allow hash-less URLs.
            */
@@ -941,20 +960,46 @@
           key: "componentWillLoad",
           value: function () {
             var _componentWillLoad = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var canProceed, redirect, path;
               return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
                   switch (_context3.prev = _context3.next) {
                     case 0:
-                      console.debug('[ion-router] router will load');
-                      _context3.next = 3;
+                      _context3.next = 2;
                       return waitUntilNavNode();
 
-                    case 3:
-                      console.debug('[ion-router] found nav');
-                      _context3.next = 6;
+                    case 2:
+                      _context3.next = 4;
+                      return this.runGuards(this.getPath());
+
+                    case 4:
+                      canProceed = _context3.sent;
+
+                      if (!(canProceed !== true)) {
+                        _context3.next = 14;
+                        break;
+                      }
+
+                      if (!(typeof canProceed === 'object')) {
+                        _context3.next = 12;
+                        break;
+                      }
+
+                      redirect = canProceed.redirect;
+                      path = parsePath(redirect);
+                      this.setPath(path.segments, ROUTER_INTENT_NONE, path.queryString);
+                      _context3.next = 12;
+                      return this.writeNavStateRoot(path.segments, ROUTER_INTENT_NONE);
+
+                    case 12:
+                      _context3.next = 16;
+                      break;
+
+                    case 14:
+                      _context3.next = 16;
                       return this.onRoutesChanged();
 
-                    case 6:
+                    case 16:
                     case "end":
                       return _context3.stop();
                   }
@@ -978,35 +1023,40 @@
           key: "onPopState",
           value: function () {
             var _onPopState = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-              var direction, path, canProceed;
+              var direction, segments, canProceed;
               return regeneratorRuntime.wrap(function _callee4$(_context4) {
                 while (1) {
                   switch (_context4.prev = _context4.next) {
                     case 0:
                       direction = this.historyDirection();
-                      path = this.getPath();
+                      segments = this.getPath();
                       _context4.next = 4;
-                      return this.runGuards(path);
+                      return this.runGuards(segments);
 
                     case 4:
                       canProceed = _context4.sent;
 
                       if (!(canProceed !== true)) {
-                        _context4.next = 8;
+                        _context4.next = 11;
                         break;
                       }
 
-                      if (typeof canProceed === 'object') {
-                        path = parsePath(canProceed.redirect);
+                      if (!(typeof canProceed === 'object')) {
+                        _context4.next = 10;
+                        break;
                       }
 
-                      return _context4.abrupt("return", false);
-
-                    case 8:
-                      console.debug('[ion-router] URL changed -> update nav', path, direction);
-                      return _context4.abrupt("return", this.writeNavStateRoot(path, direction));
+                      segments = parsePath(canProceed.redirect).segments;
+                      _context4.next = 11;
+                      break;
 
                     case 10:
+                      return _context4.abrupt("return", false);
+
+                    case 11:
+                      return _context4.abrupt("return", this.writeNavStateRoot(segments, direction));
+
+                    case 12:
                     case "end":
                       return _context4.stop();
                   }
@@ -1093,8 +1143,7 @@
             var _push = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(url) {
               var direction,
                   animation,
-                  path,
-                  queryString,
+                  parsedPath,
                   canProceed,
                   _args6 = arguments;
               return regeneratorRuntime.wrap(function _callee6$(_context6) {
@@ -1108,38 +1157,35 @@
                         url = new URL(url, window.location.href).pathname;
                       }
 
-                      console.debug('[ion-router] URL pushed -> updating nav', url, direction);
-                      path = parsePath(url);
-                      queryString = url.split('?')[1];
-                      _context6.next = 8;
-                      return this.runGuards(path);
+                      parsedPath = parsePath(url);
+                      _context6.next = 6;
+                      return this.runGuards(parsedPath.segments);
 
-                    case 8:
+                    case 6:
                       canProceed = _context6.sent;
 
                       if (!(canProceed !== true)) {
-                        _context6.next = 16;
+                        _context6.next = 13;
                         break;
                       }
 
                       if (!(typeof canProceed === 'object')) {
-                        _context6.next = 15;
+                        _context6.next = 12;
                         break;
                       }
 
-                      path = parsePath(canProceed.redirect);
-                      queryString = canProceed.redirect.split('?')[1];
-                      _context6.next = 16;
+                      parsedPath = parsePath(canProceed.redirect);
+                      _context6.next = 13;
                       break;
 
-                    case 15:
+                    case 12:
                       return _context6.abrupt("return", false);
 
-                    case 16:
-                      this.setPath(path, direction, queryString);
-                      return _context6.abrupt("return", this.writeNavStateRoot(path, direction, animation));
+                    case 13:
+                      this.setPath(parsedPath.segments, direction, parsedPath.queryString);
+                      return _context6.abrupt("return", this.writeNavStateRoot(parsedPath.segments, direction, animation));
 
-                    case 18:
+                    case 15:
                     case "end":
                       return _context6.stop();
                   }
@@ -1173,12 +1219,10 @@
                 while (1) {
                   switch (_context7.prev = _context7.next) {
                     case 0:
-                      console.debug('CURRENT PATH', this.getPath());
-                      console.debug('PREVIOUS PATH', this.previousPath);
                       printRoutes(readRoutes(this.el));
                       printRedirects(readRedirects(this.el));
 
-                    case 4:
+                    case 2:
                     case "end":
                       return _context7.stop();
                   }
@@ -1245,15 +1289,14 @@
                       return _context8.abrupt("return", false);
 
                     case 17:
-                      console.debug('[ion-router] nav changed -> update URL', ids, path);
                       this.setPath(path, direction);
-                      _context8.next = 21;
+                      _context8.next = 20;
                       return this.safeWriteNavState(outlet, chain, ROUTER_INTENT_NONE, path, null, ids.length);
 
-                    case 21:
+                    case 20:
                       return _context8.abrupt("return", true);
 
-                    case 22:
+                    case 21:
                     case "end":
                       return _context8.stop();
                   }
@@ -1272,7 +1315,7 @@
           value: function onRedirectChanged() {
             var path = this.getPath();
 
-            if (path && routeRedirect(path, readRedirects(this.el))) {
+            if (path && findRouteRedirect(path, readRedirects(this.el))) {
               this.writeNavStateRoot(path, ROUTER_INTENT_NONE);
             }
           }
@@ -1307,7 +1350,8 @@
           key: "writeNavStateRoot",
           value: function () {
             var _writeNavStateRoot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(path, direction, animation) {
-              var redirects, redirect, redirectFrom, routes, chain;
+              var redirects, redirect, redirectFrom, _redirect$to, segments, queryString, routes, chain;
+
               return regeneratorRuntime.wrap(function _callee9$(_context9) {
                 while (1) {
                   switch (_context9.prev = _context9.next) {
@@ -1323,13 +1367,14 @@
                     case 3:
                       // lookup redirect rule
                       redirects = readRedirects(this.el);
-                      redirect = routeRedirect(path, redirects);
+                      redirect = findRouteRedirect(path, redirects);
                       redirectFrom = null;
 
                       if (redirect) {
-                        this.setPath(redirect.to, direction);
+                        _redirect$to = redirect.to, segments = _redirect$to.segments, queryString = _redirect$to.queryString;
+                        this.setPath(segments, direction, queryString);
                         redirectFrom = redirect.from;
-                        path = redirect.to;
+                        path = segments;
                       } // lookup route chain
 
 
@@ -1452,7 +1497,11 @@
             }
 
             return lock;
-          }()
+          }() // Executes the beforeLeave hook of the source route and the beforeEnter hook of the target route if they exist.
+          //
+          // When the beforeLeave hook does not return true (to allow navigating) then that value is returned early and the beforeEnter is executed.
+          // Otherwise the beforeEnterHook hook of the target route is executed.
+
         }, {
           key: "runGuards",
           value: function () {
@@ -1460,91 +1509,67 @@
               var to,
                   from,
                   routes,
-                  toChain,
                   fromChain,
-                  beforeEnterHook,
                   beforeLeaveHook,
                   canLeave,
-                  canEnter,
+                  toChain,
+                  beforeEnterHook,
                   _args12 = arguments;
               return regeneratorRuntime.wrap(function _callee12$(_context12) {
                 while (1) {
                   switch (_context12.prev = _context12.next) {
                     case 0:
                       to = _args12.length > 0 && _args12[0] !== undefined ? _args12[0] : this.getPath();
-                      from = _args12.length > 1 && _args12[1] !== undefined ? _args12[1] : parsePath(this.previousPath);
+                      from = _args12.length > 1 ? _args12[1] : undefined;
+
+                      if (from === undefined) {
+                        from = parsePath(this.previousPath).segments;
+                      }
 
                       if (!(!to || !from)) {
-                        _context12.next = 4;
+                        _context12.next = 5;
                         break;
                       }
 
                       return _context12.abrupt("return", true);
 
-                    case 4:
+                    case 5:
                       routes = readRoutes(this.el);
-                      toChain = routerPathToChain(to, routes);
                       fromChain = routerPathToChain(from, routes);
-                      beforeEnterHook = toChain && toChain[toChain.length - 1].beforeEnter;
                       beforeLeaveHook = fromChain && fromChain[fromChain.length - 1].beforeLeave;
 
                       if (!beforeLeaveHook) {
-                        _context12.next = 15;
+                        _context12.next = 14;
                         break;
                       }
 
-                      _context12.next = 12;
+                      _context12.next = 11;
                       return beforeLeaveHook();
 
-                    case 12:
+                    case 11:
                       _context12.t0 = _context12.sent;
-                      _context12.next = 16;
+                      _context12.next = 15;
                       break;
 
-                    case 15:
+                    case 14:
                       _context12.t0 = true;
 
-                    case 16:
+                    case 15:
                       canLeave = _context12.t0;
 
                       if (!(canLeave === false || typeof canLeave === 'object')) {
-                        _context12.next = 19;
+                        _context12.next = 18;
                         break;
                       }
 
                       return _context12.abrupt("return", canLeave);
 
-                    case 19:
-                      if (!beforeEnterHook) {
-                        _context12.next = 25;
-                        break;
-                      }
+                    case 18:
+                      toChain = routerPathToChain(to, routes);
+                      beforeEnterHook = toChain && toChain[toChain.length - 1].beforeEnter;
+                      return _context12.abrupt("return", beforeEnterHook ? beforeEnterHook() : true);
 
-                      _context12.next = 22;
-                      return beforeEnterHook();
-
-                    case 22:
-                      _context12.t1 = _context12.sent;
-                      _context12.next = 26;
-                      break;
-
-                    case 25:
-                      _context12.t1 = true;
-
-                    case 26:
-                      canEnter = _context12.t1;
-
-                      if (!(canEnter === false || typeof canEnter === 'object')) {
-                        _context12.next = 29;
-                        break;
-                      }
-
-                      return _context12.abrupt("return", canEnter);
-
-                    case 29:
-                      return _context12.abrupt("return", true);
-
-                    case 30:
+                    case 21:
                     case "end":
                       return _context12.stop();
                   }
@@ -1596,12 +1621,7 @@
 
                     case 10:
                       changed = _context13.sent;
-                      this.busy = false;
-
-                      if (changed) {
-                        console.debug('[ion-router] route changed', path);
-                      } // emit did change
-
+                      this.busy = false; // emit did change
 
                       if (routeEvent) {
                         this.ionRouteDidChange.emit(routeEvent);
@@ -1609,7 +1629,7 @@
 
                       return _context13.abrupt("return", changed);
 
-                    case 15:
+                    case 14:
                     case "end":
                       return _context13.stop();
                   }

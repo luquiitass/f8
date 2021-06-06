@@ -73,6 +73,7 @@
           this.didLoad = false;
           this.noUpdate = false;
           this.hasFocus = false;
+          this.inheritedAttributes = {};
           this.ratioA = 0;
           this.ratioB = 0;
           /**
@@ -81,7 +82,8 @@
            * This also impacts form bindings such as `ngModel` or `v-model`.
            */
 
-          this.debounce = 0;
+          this.debounce = 0; // TODO: In Ionic Framework v6 this should initialize to this.rangeId like the other form components do.
+
           /**
            * The name of the control, which is submitted with the form data.
            */
@@ -276,6 +278,16 @@
             });
           }
         }, {
+          key: "componentWillLoad",
+          value: function componentWillLoad() {
+            /**
+             * If user has custom ID set then we should
+             * not assign the default incrementing ID.
+             */
+            this.rangeId = this.el.hasAttribute('id') ? this.el.getAttribute('id') : "ion-r-".concat(rangeIds++);
+            this.inheritedAttributes = Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__["i"])(this.el, ['aria-label']);
+          }
+        }, {
           key: "componentDidLoad",
           value: function componentDidLoad() {
             this.setupGesture();
@@ -432,7 +444,7 @@
           key: "render",
           value: function render() {
             var _barStyle,
-                _Object,
+                _Object2,
                 _this2 = this;
 
             var min = this.min,
@@ -444,7 +456,22 @@
                 disabled = this.disabled,
                 pin = this.pin,
                 ratioLower = this.ratioLower,
-                ratioUpper = this.ratioUpper;
+                ratioUpper = this.ratioUpper,
+                inheritedAttributes = this.inheritedAttributes,
+                rangeId = this.rangeId;
+            /**
+             * Look for external label, ion-label, or aria-labelledby.
+             * If none, see if user placed an aria-label on the host
+             * and use that instead.
+             */
+
+            var _Object = Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__["d"])(el, rangeId),
+                labelText = _Object.labelText;
+
+            if (labelText === undefined || labelText === null) {
+              labelText = inheritedAttributes['aria-label'];
+            }
+
             var mode = Object(_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
             var barStart = "".concat(ratioLower * 100, "%");
             var barEnd = "".concat(100 - ratioUpper * 100, "%");
@@ -476,7 +503,8 @@
             return Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
               onFocusin: this.onFocus,
               onFocusout: this.onBlur,
-              "class": Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color, (_Object = {}, _defineProperty(_Object, mode, true), _defineProperty(_Object, 'in-item', Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el)), _defineProperty(_Object, 'range-disabled', disabled), _defineProperty(_Object, 'range-pressed', pressedKnob !== undefined), _defineProperty(_Object, 'range-has-pin', pin), _Object))
+              id: rangeId,
+              "class": Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color, (_Object2 = {}, _defineProperty(_Object2, mode, true), _defineProperty(_Object2, 'in-item', Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el)), _defineProperty(_Object2, 'range-disabled', disabled), _defineProperty(_Object2, 'range-pressed', pressedKnob !== undefined), _defineProperty(_Object2, 'range-has-pin', pin), _Object2))
             }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", {
               name: "start"
             }), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
@@ -512,7 +540,8 @@
               disabled: disabled,
               handleKeyboard: handleKeyboard,
               min: min,
-              max: max
+              max: max,
+              labelText: labelText
             }), this.dualKnobs && renderKnob(isRTL, {
               knob: 'B',
               pressed: pressedKnob === 'B',
@@ -522,7 +551,8 @@
               disabled: disabled,
               handleKeyboard: handleKeyboard,
               min: min,
-              max: max
+              max: max,
+              labelText: labelText
             })), Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", {
               name: "end"
             }));
@@ -585,7 +615,8 @@
             disabled = _ref3.disabled,
             pressed = _ref3.pressed,
             pin = _ref3.pin,
-            handleKeyboard = _ref3.handleKeyboard;
+            handleKeyboard = _ref3.handleKeyboard,
+            labelText = _ref3.labelText;
         var start = isRTL ? 'right' : 'left';
 
         var knobStyle = function knobStyle() {
@@ -619,6 +650,7 @@
           style: knobStyle(),
           role: "slider",
           tabindex: disabled ? -1 : 0,
+          "aria-label": labelText,
           "aria-valuemin": min,
           "aria-valuemax": max,
           "aria-disabled": disabled ? 'true' : null,
@@ -648,6 +680,7 @@
         return Object(_helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__["j"])(0, (value - min) / (max - min), 1);
       };
 
+      var rangeIds = 0;
       Range.style = {
         ios: rangeIosCss,
         md: rangeMdCss

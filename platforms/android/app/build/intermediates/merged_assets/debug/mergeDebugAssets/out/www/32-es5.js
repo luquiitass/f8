@@ -64,9 +64,9 @@
       /* harmony import */
 
 
-      var _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./overlays-28c23c35.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-28c23c35.js");
+      var _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./overlays-e9ccff30.js */
+      "./node_modules/@ionic/core/dist/esm/overlays-e9ccff30.js");
       /* harmony import */
 
 
@@ -485,7 +485,7 @@
                           options: this.createPopoverOptions(this.childOpts, value)
                         }
                       });
-                      return _context4.abrupt("return", _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["c"].create(popoverOpts));
+                      return _context4.abrupt("return", _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["c"].create(popoverOpts));
 
                     case 5:
                     case "end":
@@ -518,7 +518,7 @@
                         buttons: this.createActionSheetButtons(this.childOpts, this.value),
                         cssClass: ['select-action-sheet', interfaceOptions.cssClass]
                       });
-                      return _context5.abrupt("return", _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["b"].create(actionSheetOpts));
+                      return _context5.abrupt("return", _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["b"].create(actionSheetOpts));
 
                     case 4:
                     case "end":
@@ -569,7 +569,7 @@
                         }],
                         cssClass: ['select-alert', interfaceOptions.cssClass, this.multiple ? 'multiple-select-alert' : 'single-select-alert']
                       });
-                      return _context6.abrupt("return", _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["a"].create(alertOpts));
+                      return _context6.abrupt("return", _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["a"].create(alertOpts));
 
                     case 7:
                     case "end":
@@ -861,7 +861,7 @@
             });
 
             if (option) {
-              Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["s"])(option.handler);
+              Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["s"])(option.handler);
             }
           }
         }, {

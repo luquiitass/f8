@@ -447,12 +447,11 @@
                   this.value = next.value;
                 }
               } // Update the radio group value when a user presses the
-              // space bar on top of a selected radio (only applies
-              // to radios in a select popover)
+              // space bar on top of a selected radio
 
 
               if (['Space'].includes(ev.code)) {
-                this.value = current.value; // Prevent browsers from jumping
+                this.value = this.allowEmptySelection && this.value !== undefined ? undefined : current.value; // Prevent browsers from jumping
                 // to the bottom of the screen
 
                 ev.preventDefault();

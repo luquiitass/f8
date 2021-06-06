@@ -33,8 +33,8 @@ const getRefresherAnimationType = (contentEl) => {
   const hasHeader = previousSibling !== null && previousSibling.tagName === 'ION-HEADER';
   return hasHeader ? 'translate' : 'scale';
 };
-const createPullingAnimation = (type, pullingSpinner) => {
-  return type === 'scale' ? createScaleAnimation(pullingSpinner) : createTranslateAnimation(pullingSpinner);
+const createPullingAnimation = (type, pullingSpinner, refresherEl) => {
+  return type === 'scale' ? createScaleAnimation(pullingSpinner, refresherEl) : createTranslateAnimation(pullingSpinner, refresherEl);
 };
 const createBaseAnimation = (pullingRefresherIcon) => {
   const spinner = pullingRefresherIcon.querySelector('ion-spinner');
@@ -93,22 +93,40 @@ const createBaseAnimation = (pullingRefresherIcon) => {
   }
   return baseAnimation.addAnimation([spinnerArrowContainerAnimation, circleInnerAnimation, circleOuterAnimation]);
 };
-const createScaleAnimation = (pullingRefresherIcon) => {
-  const height = pullingRefresherIcon.clientHeight;
+const createScaleAnimation = (pullingRefresherIcon, refresherEl) => {
+  /**
+   * Do not take the height of the refresher icon
+   * because at this point the DOM has not updated,
+   * so the refresher icon is still hidden with
+   * display: none.
+   * The `ion-refresher` container height
+   * is roughly the amount we need to offset
+   * the icon by when pulling down.
+   */
+  const height = refresherEl.clientHeight;
   const spinnerAnimation = Object(_animation_096c6391_js__WEBPACK_IMPORTED_MODULE_5__["c"])()
     .addElement(pullingRefresherIcon)
     .keyframes([
-    { offset: 0, transform: `scale(0) translateY(-${height + 20}px)` },
+    { offset: 0, transform: `scale(0) translateY(-${height}px)` },
     { offset: 1, transform: 'scale(1) translateY(100px)' }
   ]);
   return createBaseAnimation(pullingRefresherIcon).addAnimation([spinnerAnimation]);
 };
-const createTranslateAnimation = (pullingRefresherIcon) => {
-  const height = pullingRefresherIcon.clientHeight;
+const createTranslateAnimation = (pullingRefresherIcon, refresherEl) => {
+  /**
+   * Do not take the height of the refresher icon
+   * because at this point the DOM has not updated,
+   * so the refresher icon is still hidden with
+   * display: none.
+   * The `ion-refresher` container height
+   * is roughly the amount we need to offset
+   * the icon by when pulling down.
+   */
+  const height = refresherEl.clientHeight;
   const spinnerAnimation = Object(_animation_096c6391_js__WEBPACK_IMPORTED_MODULE_5__["c"])()
     .addElement(pullingRefresherIcon)
     .keyframes([
-    { offset: 0, transform: `translateY(-${height + 20}px)` },
+    { offset: 0, transform: `translateY(-${height}px)` },
     { offset: 1, transform: 'translateY(100px)' }
   ]);
   return createBaseAnimation(pullingRefresherIcon).addAnimation([spinnerAnimation]);
@@ -448,7 +466,6 @@ const Refresher = class {
       canStart: () => this.state !== 8 /* Refreshing */ && this.state !== 32 /* Completing */ && this.scrollEl.scrollTop === 0,
       onStart: (ev) => {
         ev.data = { animation: undefined, didStart: false, cancelled: false };
-        this.state = 2 /* Pulling */;
       },
       onMove: (ev) => {
         if ((ev.velocityY < 0 && this.progress === 0 && !ev.data.didStart) || ev.data.cancelled) {
@@ -457,9 +474,10 @@ const Refresher = class {
         }
         if (!ev.data.didStart) {
           ev.data.didStart = true;
+          this.state = 2 /* Pulling */;
           Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["c"])(() => this.scrollEl.style.setProperty('--overflow', 'hidden'));
           const animationType = getRefresherAnimationType(contentEl);
-          const animation = createPullingAnimation(animationType, pullingRefresherIcon);
+          const animation = createPullingAnimation(animationType, pullingRefresherIcon, this.el);
           ev.data.animation = animation;
           animation.progressStart(false, 0);
           this.ionStart.emit();

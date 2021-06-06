@@ -8,6 +8,8 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 import {ComponentsModule} from '../../../components/components.module'
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import {ComponentsModule} from '../../../components/components.module'
     FormsModule,
     IonicModule,
     ProfilePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxIonicImageViewerModule
   ],
   declarations: [ProfilePage]
 })

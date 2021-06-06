@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="game" *ngIf="game">
-    <div class="team-list contenedor light-black-background ">
+    <div class="team-list contenedor">
       <div class="team">
         <span class="name-team">{{game.team_l.name}}</span>
         <span  class="goals-team" >{{game.l_goals}}</span>
@@ -19,13 +19,13 @@
 
       <div class="team">
         <span class="name-team">{{game.team_v.name}}</span>
-        <span  class="goals-team" >{{game.l_goals}}</span>
+        <span  class="goals-team" >{{game.v_goals}}</span>
       </div>
     </div>
   </div>
 
 
-  <app-event-list [game_id]="id"></app-event-list> 
+  <app-event-list [game_id]="id" ></app-event-list> 
 
   <app-comments
     [idRelation]="id"

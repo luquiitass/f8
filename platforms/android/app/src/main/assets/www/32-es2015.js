@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-7a8b7a1c.js */ "./node_modules/@ionic/core/dist/esm/index-7a8b7a1c.js");
 /* harmony import */ var _ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-63a97a32.js */ "./node_modules/@ionic/core/dist/esm/ionic-global-63a97a32.js");
 /* harmony import */ var _helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-dd7e4b7b.js */ "./node_modules/@ionic/core/dist/esm/helpers-dd7e4b7b.js");
-/* harmony import */ var _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./overlays-28c23c35.js */ "./node_modules/@ionic/core/dist/esm/overlays-28c23c35.js");
+/* harmony import */ var _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./overlays-e9ccff30.js */ "./node_modules/@ionic/core/dist/esm/overlays-e9ccff30.js");
 /* harmony import */ var _theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./theme-ff3fc52f.js */ "./node_modules/@ionic/core/dist/esm/theme-ff3fc52f.js");
 /* harmony import */ var _hardware_back_button_4a6b37fb_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hardware-back-button-4a6b37fb.js */ "./node_modules/@ionic/core/dist/esm/hardware-back-button-4a6b37fb.js");
 
@@ -280,13 +280,13 @@ const Select = class {
         value,
         options: this.createPopoverOptions(this.childOpts, value)
       } });
-    return _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["c"].create(popoverOpts);
+    return _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["c"].create(popoverOpts);
   }
   async openActionSheet() {
     const mode = Object(_ionic_global_63a97a32_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
     const interfaceOptions = this.interfaceOptions;
     const actionSheetOpts = Object.assign(Object.assign({ mode }, interfaceOptions), { buttons: this.createActionSheetButtons(this.childOpts, this.value), cssClass: ['select-action-sheet', interfaceOptions.cssClass] });
-    return _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["b"].create(actionSheetOpts);
+    return _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["b"].create(actionSheetOpts);
   }
   async openAlert() {
     const label = this.getLabel();
@@ -310,7 +310,7 @@ const Select = class {
         }
       ], cssClass: ['select-alert', interfaceOptions.cssClass,
         (this.multiple ? 'multiple-select-alert' : 'single-select-alert')] });
-    return _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["a"].create(alertOpts);
+    return _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["a"].create(alertOpts);
   }
   /**
    * Close the select interface.
@@ -487,7 +487,7 @@ const SelectPopover = class {
   onSelect(ev) {
     const option = this.options.find(o => o.value === ev.target.value);
     if (option) {
-      Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["s"])(option.handler);
+      Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["s"])(option.handler);
     }
   }
   render() {

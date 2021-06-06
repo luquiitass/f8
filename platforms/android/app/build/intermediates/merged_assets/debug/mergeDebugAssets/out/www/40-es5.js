@@ -46,9 +46,9 @@
       /* harmony import */
 
 
-      var _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./overlays-28c23c35.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-28c23c35.js");
+      var _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./overlays-e9ccff30.js */
+      "./node_modules/@ionic/core/dist/esm/overlays-e9ccff30.js");
       /* harmony import */
 
 
@@ -236,7 +236,7 @@
           this.dispatchCancelHandler = function (ev) {
             var role = ev.detail.role;
 
-            if (Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["i"])(role)) {
+            if (Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["i"])(role)) {
               var cancelButton = _this.getButtons().find(function (b) {
                 return b.role === 'cancel';
               });
@@ -249,7 +249,7 @@
         _createClass(Toast, [{
           key: "connectedCallback",
           value: function connectedCallback() {
-            Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.el);
+            Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.el);
           }
           /**
            * Present the toast overlay after it has been created.
@@ -266,7 +266,7 @@
                   switch (_context.prev = _context.next) {
                     case 0:
                       _context.next = 2;
-                      return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this, 'toastEnter', iosEnterAnimation, mdEnterAnimation, this.position);
+                      return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this, 'toastEnter', iosEnterAnimation, mdEnterAnimation, this.position);
 
                     case 2:
                       if (this.duration > 0) {
@@ -306,7 +306,7 @@
               clearTimeout(this.durationTimeout);
             }
 
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this, data, role, 'toastLeave', iosLeaveAnimation, mdLeaveAnimation, this.position);
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this, data, role, 'toastLeave', iosLeaveAnimation, mdLeaveAnimation, this.position);
           }
           /**
            * Returns a promise that resolves when the toast did dismiss.
@@ -315,7 +315,7 @@
         }, {
           key: "onDidDismiss",
           value: function onDidDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionToastDidDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionToastDidDismiss');
           }
           /**
            * Returns a promise that resolves when the toast will dismiss.
@@ -324,7 +324,7 @@
         }, {
           key: "onWillDismiss",
           value: function onWillDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionToastWillDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionToastWillDismiss');
           }
         }, {
           key: "getButtons",
@@ -347,7 +347,7 @@
                     case 0:
                       role = button.role;
 
-                      if (!Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["i"])(role)) {
+                      if (!Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["i"])(role)) {
                         _context2.next = 3;
                         break;
                       }
@@ -401,7 +401,7 @@
 
                       _context3.prev = 1;
                       _context3.next = 4;
-                      return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["s"])(button.handler);
+                      return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["s"])(button.handler);
 
                     case 4:
                       rtn = _context3.sent;

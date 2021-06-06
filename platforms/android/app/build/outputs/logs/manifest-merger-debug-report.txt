@@ -4,22 +4,12 @@ ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.x
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:2:1-17:12
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:2:1-17:12
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:2:1-17:12
+MERGED from [com.commit451:PhotoView:1.2.4] /home/lucas/.gradle/caches/transforms-1/files-1.1/PhotoView-1.2.4.aar/9bb606612419432168620af16d62722e/AndroidManifest.xml:2:1-12:12
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:2:1-14:12
 MERGED from [:CordovaLib] /home/lucas/Apps/f8a/platforms/android/CordovaLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:1-27:12
-MERGED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:17:1-39:12
-MERGED from [com.google.android.gms:play-services-identity:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-identity-15.0.1.aar/6d9d37795ba33d58239a0b791fd07862/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-auth-api-phone:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-api-phone-15.0.1.aar/27545abc85fda8d030c07ee2d53c9ed9/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-auth-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-base-15.0.1.aar/059af2e67a9aec0dfd04b0406f758d37/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/224ba3888588e505de431ec75c465f47/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/38fb31366360b89d94db9541fb42f9c2/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-fragment:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/d92074504f7b162dbba0455cc1beb202/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/ab25dc6070e4d20aba256f13ef07a21e/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/ec11ceff5d0844749d382ab5dd7d1dda/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-v4:23.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/91b3f178cd705e82d2debf4a1167933a/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:exifinterface:27.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.0.aar/7bb64ee8c9560bfa73f57c2b096eb20d/AndroidManifest.xml:17:1-22:12
 MERGED from [com.soundcloud.android:android-crop:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/android-crop-1.0.0.aar/e5ab58eb8e4b6607900f4360c6299ce6/AndroidManifest.xml:2:1-10:12
-MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:17:1-30:12
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:2:1-17:12
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:2:1-17:12
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:2:1-17:12
@@ -53,130 +43,90 @@ ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.x
 		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:3:106-131
 	android:anyDensity
 		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:3:23-48
-uses-permission#android.permission.INTERNET
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:5-67
-	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:22-64
 application
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:5-13:19
-MERGED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:22:5-37:19
-MERGED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:22:5-37:19
-MERGED from [com.google.android.gms:play-services-identity:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-identity-15.0.1.aar/6d9d37795ba33d58239a0b791fd07862/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-identity:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-identity-15.0.1.aar/6d9d37795ba33d58239a0b791fd07862/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/224ba3888588e505de431ec75c465f47/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/224ba3888588e505de431ec75c465f47/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/38fb31366360b89d94db9541fb42f9c2/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/38fb31366360b89d94db9541fb42f9c2/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-fragment:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/d92074504f7b162dbba0455cc1beb202/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-fragment:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/d92074504f7b162dbba0455cc1beb202/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/ab25dc6070e4d20aba256f13ef07a21e/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/ab25dc6070e4d20aba256f13ef07a21e/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/ec11ceff5d0844749d382ab5dd7d1dda/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/ec11ceff5d0844749d382ab5dd7d1dda/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/AndroidManifest.xml:25:5-29:19
-MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:24:5-28:19
-MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:24:5-28:19
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:5-13:19
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:7:5-12:19
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:7:5-12:19
+MERGED from [com.android.support:support-v4:23.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/91b3f178cd705e82d2debf4a1167933a/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/91b3f178cd705e82d2debf4a1167933a/AndroidManifest.xml:22:5-20
 	android:supportsRtl
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:182-208
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:182-208
 	android:label
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:88-120
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:88-120
 	android:hardwareAccelerated
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:18-52
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:18-52
 	android:icon
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:53-87
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:53-87
 	android:networkSecurityConfig
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:121-181
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:121-181
 	android:usesCleartextTraffic
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:209-244
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:4:209-244
 activity#io.ionic.starter.MainActivity
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:9-11:20
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:9-10:20
 	android:label
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:136-173
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:136-173
 	android:launchMode
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:174-204
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:174-204
 	android:windowSoftInputMode
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:296-338
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:296-338
 	android:configChanges
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:19-135
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:19-135
 	android:theme
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:233-295
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:233-295
 	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:205-232
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:5:205-232
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:7:13-10:29
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:13-9:29
 	android:label
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:7:28-65
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:6:28-65
 action#android.intent.action.MAIN
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:8:17-69
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:7:17-69
 	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:8:25-66
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:7:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:9:17-77
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:8:17-77
 	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:9:27-74
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:8:27-74
 activity#com.soundcloud.android.crop.CropImageActivity
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:12:9-82
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:11:9-82
 	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:12:19-79
-uses-permission#android.permission.GET_ACCOUNTS
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:14:5-71
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:11:19-79
+activity#com.sarriaroman.PhotoViewer.PhotoActivity
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:12:9-143
+	android:theme
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:12:76-140
 	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:14:22-68
-uses-permission#android.permission.USE_CREDENTIALS
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:15:5-74
-	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:15:22-71
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:12:19-75
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:16:5-81
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:14:5-81
 	android:name
-		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:16:22-78
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:14:22-78
+uses-permission#android.permission.INTERNET
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:15:5-67
+	android:name
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:15:22-64
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:16:5-80
+	android:name
+		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml:16:22-77
 uses-sdk
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
+MERGED from [com.commit451:PhotoView:1.2.4] /home/lucas/.gradle/caches/transforms-1/files-1.1/PhotoView-1.2.4.aar/9bb606612419432168620af16d62722e/AndroidManifest.xml:8:5-10:41
+MERGED from [com.commit451:PhotoView:1.2.4] /home/lucas/.gradle/caches/transforms-1/files-1.1/PhotoView-1.2.4.aar/9bb606612419432168620af16d62722e/AndroidManifest.xml:8:5-10:41
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:5:5-44
 MERGED from [:CordovaLib] /home/lucas/Apps/f8a/platforms/android/CordovaLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:5-44
 MERGED from [:CordovaLib] /home/lucas/Apps/f8a/platforms/android/CordovaLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:5-44
-MERGED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-identity:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-identity-15.0.1.aar/6d9d37795ba33d58239a0b791fd07862/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-identity:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-identity-15.0.1.aar/6d9d37795ba33d58239a0b791fd07862/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-api-phone-15.0.1.aar/27545abc85fda8d030c07ee2d53c9ed9/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-api-phone-15.0.1.aar/27545abc85fda8d030c07ee2d53c9ed9/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-base-15.0.1.aar/059af2e67a9aec0dfd04b0406f758d37/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-base-15.0.1.aar/059af2e67a9aec0dfd04b0406f758d37/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/224ba3888588e505de431ec75c465f47/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/224ba3888588e505de431ec75c465f47/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/38fb31366360b89d94db9541fb42f9c2/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/38fb31366360b89d94db9541fb42f9c2/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-fragment:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/d92074504f7b162dbba0455cc1beb202/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-fragment:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/d92074504f7b162dbba0455cc1beb202/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/ab25dc6070e4d20aba256f13ef07a21e/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/ab25dc6070e4d20aba256f13ef07a21e/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/ec11ceff5d0844749d382ab5dd7d1dda/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/ec11ceff5d0844749d382ab5dd7d1dda/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-v4:23.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/91b3f178cd705e82d2debf4a1167933a/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/91b3f178cd705e82d2debf4a1167933a/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:exifinterface:27.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.0.aar/7bb64ee8c9560bfa73f57c2b096eb20d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:exifinterface:27.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.0.aar/7bb64ee8c9560bfa73f57c2b096eb20d/AndroidManifest.xml:20:5-44
 MERGED from [com.soundcloud.android:android-crop:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/android-crop-1.0.0.aar/e5ab58eb8e4b6607900f4360c6299ce6/AndroidManifest.xml:6:5-8:41
 MERGED from [com.soundcloud.android:android-crop:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/android-crop-1.0.0.aar/e5ab58eb8e4b6607900f4360c6299ce6/AndroidManifest.xml:6:5-8:41
-MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:20:5-22:41
-MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:20:5-22:41
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
-	tools:overrideLibrary
-		ADDED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:23:9-51
 	android:targetSdkVersion
 		INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
 		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
@@ -185,57 +135,11 @@ INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifes
 		INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
 		ADDED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/lucas/Apps/f8a/platforms/android/app/src/main/AndroidManifest.xml
-activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
-ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:23:9-27:75
-	android:excludeFromRecents
-		ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:25:13-46
+provider#com.squareup.picasso.PicassoProvider
+ADDED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:8:9-11:40
+	android:authorities
+		ADDED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:10:13-72
 	android:exported
-		ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:26:13-37
-	android:theme
-		ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:27:13-72
+		ADDED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:11:13-37
 	android:name
-		ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:24:13-93
-service#com.google.android.gms.auth.api.signin.RevocationBoundService
-ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:33:9-36:110
-	android:exported
-		ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:35:13-36
-	android:permission
-		ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:36:13-107
-	android:name
-		ADDED from [com.google.android.gms:play-services-auth:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/2697b408fad9e4259e15ca164268d37b/AndroidManifest.xml:34:13-89
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:23:9-26:75
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:25:13-37
-	android:theme
-		ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:26:13-72
-	android:name
-		ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/9d714e23b0bbad0195a698964df0a232/AndroidManifest.xml:24:13-79
-meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:23:9-25:69
-	android:value
-		ADDED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:25:13-66
-	android:name
-		ADDED from [com.google.android.gms:play-services-basement:15.0.1] /home/lucas/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/095e92c294b131cb0b213e1a74466399/AndroidManifest.xml:24:13-58
-meta-data#android.support.VERSION
-ADDED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/38fb31366360b89d94db9541fb42f9c2/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/38fb31366360b89d94db9541fb42f9c2/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-fragment:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/d92074504f7b162dbba0455cc1beb202/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-fragment:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/d92074504f7b162dbba0455cc1beb202/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/ab25dc6070e4d20aba256f13ef07a21e/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/ab25dc6070e4d20aba256f13ef07a21e/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/ec11ceff5d0844749d382ab5dd7d1dda/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/ec11ceff5d0844749d382ab5dd7d1dda/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-compat:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/ec13bf09304295dd74a1c0672a39e47b/AndroidManifest.xml:26:9-28:38
-	android:value
-		ADDED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:28:13-35
-	android:name
-		ADDED from [com.android.support:support-v4:26.1.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/d47b4245ec71706cbfce08f7766d9b72/AndroidManifest.xml:27:13-51
-meta-data#android.arch.lifecycle.VERSION
-ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:25:9-27:47
-	android:value
-		ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:27:13-44
-	android:name
-		ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/lucas/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/82c4cff9440296f6e9e8f707f810096c/AndroidManifest.xml:26:13-58
+		ADDED from [com.squareup.picasso:picasso:2.71828] /home/lucas/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/cf38db69cdd3fe2c02e55e29b30b7990/AndroidManifest.xml:9:13-64

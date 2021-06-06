@@ -14,8 +14,9 @@
 
           <ion-thumbnail slot="start" class="comment-image">
             <ion-img
+              (click)="openViewer(item)"
               class="comment-image" 
-              [src]="item.user.photo ? item.user.photo.urlComplete : 'assets/images/profile.jpg'"
+              [src]="getPhoto(item)"
               style="border-radius:50%; background-position:center center; background-size:cover; width:35px; height:35px;">
             </ion-img>
           </ion-thumbnail>

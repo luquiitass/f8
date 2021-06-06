@@ -78,9 +78,9 @@
       /* harmony import */
 
 
-      var _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./overlays-28c23c35.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-28c23c35.js");
+      var _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./overlays-e9ccff30.js */
+      "./node_modules/@ionic/core/dist/esm/overlays-e9ccff30.js");
       /* harmony import */
 
 
@@ -861,7 +861,7 @@
                     case 2:
                       pickerOptions = this.generatePickerOptions();
                       _context2.next = 5;
-                      return _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["p"].create(pickerOptions);
+                      return _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["p"].create(pickerOptions);
 
                     case 5:
                       picker = _context2.sent;
@@ -1240,7 +1240,7 @@
               "aria-disabled": disabled ? 'true' : null,
               "aria-expanded": "".concat(isExpanded),
               "aria-haspopup": "true",
-              "aria-labelledby": labelId,
+              "aria-labelledby": label ? labelId : null,
               "class": (_class = {}, _defineProperty(_class, mode, true), _defineProperty(_class, 'datetime-disabled', disabled), _defineProperty(_class, 'datetime-readonly', readonly), _defineProperty(_class, 'datetime-placeholder', addPlaceholderClass), _defineProperty(_class, 'in-item', Object(_theme_ff3fc52f_js__WEBPACK_IMPORTED_MODULE_4__["h"])('ion-item', el)), _class)
             }, Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
               "class": "datetime-text",
@@ -1415,13 +1415,13 @@
           this.animated = true;
 
           this.onBackdropTap = function () {
-            _this6.dismiss(undefined, _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["B"]);
+            _this6.dismiss(undefined, _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["B"]);
           };
 
           this.dispatchCancelHandler = function (ev) {
             var role = ev.detail.role;
 
-            if (Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
+            if (Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
               var cancelButton = _this6.buttons.find(function (b) {
                 return b.role === 'cancel';
               });
@@ -1434,7 +1434,7 @@
         _createClass(Picker, [{
           key: "connectedCallback",
           value: function connectedCallback() {
-            Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this.el);
+            Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this.el);
           }
           /**
            * Present the picker overlay after it has been created.
@@ -1451,7 +1451,7 @@
                   switch (_context3.prev = _context3.next) {
                     case 0:
                       _context3.next = 2;
-                      return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
+                      return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
 
                     case 2:
                       if (this.duration > 0) {
@@ -1491,7 +1491,7 @@
               clearTimeout(this.durationTimeout);
             }
 
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
           }
           /**
            * Returns a promise that resolves when the picker did dismiss.
@@ -1500,7 +1500,7 @@
         }, {
           key: "onDidDismiss",
           value: function onDidDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPickerDidDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPickerDidDismiss');
           }
           /**
            * Returns a promise that resolves when the picker will dismiss.
@@ -1509,7 +1509,7 @@
         }, {
           key: "onWillDismiss",
           value: function onWillDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPickerWillDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionPickerWillDismiss');
           }
           /**
            * Get the column that matches the specified name.
@@ -1535,7 +1535,7 @@
                     case 0:
                       role = button.role;
 
-                      if (!Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
+                      if (!Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
                         _context4.next = 3;
                         break;
                       }
@@ -1588,7 +1588,7 @@
                       }
 
                       _context5.next = 3;
-                      return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["s"])(button.handler, this.getSelected());
+                      return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["s"])(button.handler, this.getSelected());
 
                     case 3:
                       rtn = _context5.sent;

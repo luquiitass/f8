@@ -10,7 +10,15 @@
 <ion-content >
   <div *ngIf="player">
     <ion-card>
-      <ion-img [src]="getPhoto()" ></ion-img>
+      <!-- <ion-img [src]="getPhoto()" ></ion-img> -->
+
+      <ion-img-viewer class="ion-text-center"
+        title="Jugador" 
+        [text]="player.name"
+        scheme="dark" 
+        [src]="getPhoto()">
+      </ion-img-viewer>
+
       <h3 class="ion-text-center">{{player.name}}</h3>
     </ion-card>
   </div>
@@ -71,6 +79,25 @@
       </div>
     </div>
 
+    <div class="player-team" *ngIf="player && player.team">
+      <ion-text class="player-team-title" >Equipo Actual</ion-text>
+  
+      <div>
+        <ion-item routerLink="/team/profile/{{player.team.id}}" >
+          <ion-thumbnail slot="start">
+            <ion-img 
+              [src]="player.team.shield ? player.team.shield.urlComplete : 'assets/images/shield_team.png'"
+              style="border-radius:50%; background-position:center center; background-size:cover; width:50px; height:50px;">
+            </ion-img>
+          </ion-thumbnail>
+          <ion-label >
+            <h2>{{player.team.name}}</h2>
+          </ion-label>
+        </ion-item>
+      </div>
+  
+    </div>
+
     <div>
       <ion-card>
         <ion-card-header>
@@ -105,6 +132,8 @@
     
 
   </div>
+
+ 
 
   <app-red-list
     [nameModel] = "'Player'"

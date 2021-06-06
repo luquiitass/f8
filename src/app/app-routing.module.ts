@@ -131,6 +131,10 @@ const routes: Routes = [
     path: 'player-search',
     loadChildren: () => import('./pages/player/player-search/player-search.module').then( m => m.PlayerSearchPageModule)
   },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./pages/notification/list/list.module').then( m => m.ListPageModule)
+  },
  
   
 ];

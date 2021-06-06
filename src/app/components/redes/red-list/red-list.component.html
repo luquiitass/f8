@@ -23,7 +23,7 @@
       </ion-list-header>
 
         <ion-grid>
-          <ion-row *ngFor="let red of list" >
+          <ion-row *ngFor="let red of list" (click)="select(red)">
             <ion-col size="1">
               <ion-icon class="icon-red {{getColorIcon(red)}}" [name]="getIcon(red)"></ion-icon>
             </ion-col>

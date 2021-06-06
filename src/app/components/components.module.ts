@@ -9,7 +9,11 @@ import {CommentsComponent} from './comments/comments.component'
 import {NotificatioSelectedComponent} from './notifications/notificatio-selected/notificatio-selected.component'
 import {RedListComponent} from './redes/red-list/red-list.component'; 
 import {SearchComponent} from './search/search.component';
-import {RouterModule} from '@angular/router'
+import {RouterModule} from '@angular/router';
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+
+
+
 
 import { FormsModule } from '@angular/forms';
 import { from } from 'rxjs';
@@ -21,8 +25,9 @@ import { from } from 'rxjs';
     CommonModule,
     IonicModule.forRoot(),
     FormsModule,
-    RouterModule
-  ],
+    RouterModule,
+    NgxIonicImageViewerModule
+    ],
   declarations: [
     ListComponent,
     EventListComponent,

@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>Partidos</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n    \n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n              <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_{{i}}\" >\n                {{tab.date}}\n              </ion-segment-button>\n            </ion-segment>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-list-header *ngIf=\"games.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n\n   \n      <ion-item *ngFor=\"let item of games\" >\n\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"10\">\n              <ion-grid>\n                <ion-row>\n                  <ion-col size=\"11\">\n                    {{item.team_l.name}}\n                  </ion-col>\n                  <ion-col size=\"1\">0</ion-col>\n                </ion-row>\n\n                <ion-row>\n                  <ion-col>\n                    Vs\n                  </ion-col>\n                </ion-row>\n\n                <ion-row>\n                  <ion-col size=\"11\">\n                    {{item.team_v.name}}\n                  </ion-col>\n                  <ion-col size=\"1\">0</ion-col>\n                </ion-row>\n              </ion-grid>\n            </ion-col>\n\n\n            <ion-col size=\"2\">\n              <ion-grid>\n                <ion-row>\n                  <ion-col size-sm=\"4\" size-xs=\"12\">\n                    <a [routerLink]=\"['/admin/game/{item.id}']\">\n                      <ion-icon name=\"enter -outline\"></ion-icon>\n                    </a>\n                  </ion-col>\n                  <ion-col size-sm=\"4\" size-xs=\"12\">\n                    <ion-button (click)=\"showEdit(item)\">\n                      <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n                    </ion-button>\n                  </ion-col>\n                  <ion-col size-sm=\"4\" size-xs=\"12\">\n                    <ion-button (click)=\"confirmDelete(item)\">\n                      <ion-icon name=\"trash-outline\"></ion-icon>\n                    </ion-button>\n                  </ion-col>\n                </ion-row>\n              </ion-grid>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n\n      </ion-item>\n    </ion-list>\n\n\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>Partidos</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n    \n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n              <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_{{i}}\" >\n                {{ util.setFormatMoment( tab.date )}}\n              </ion-segment-button>\n            </ion-segment>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-list-header *ngIf=\"games.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n\n   \n      <ion-item *ngFor=\"let item of games\"  >\n\n        <ion-grid class=\"status-{{item.status}}\">\n          <ion-row>\n            <ion-col size=\"10\">\n              <ion-grid>\n                <ion-row>\n                  <ion-col size=\"11\">\n                    {{item.team_l.name}}\n                  </ion-col>\n                  <ion-col size=\"1\">{{item.l_goals}}</ion-col>\n                </ion-row>\n\n                <ion-row>\n                  <ion-col>\n                    Vs\n                  </ion-col>\n                </ion-row>\n\n                <ion-row>\n                  <ion-col size=\"11\">\n                    {{item.team_v.name}}\n                  </ion-col>\n                  <ion-col size=\"1\">{{item.v_goals}}</ion-col>\n                </ion-row>\n              </ion-grid>\n            </ion-col>\n\n\n            <ion-col size=\"2\">\n              <ion-grid>\n                <ion-row>\n                  <ion-col size-sm=\"4\" size-xs=\"12\">\n                    <ion-button  [routerLink]=\"['/admin/game/',item.id]\">\n                      <ion-icon name=\"enter-outline\"></ion-icon>\n                    </ion-button >\n                  </ion-col>\n                  <ion-col size-sm=\"4\" size-xs=\"12\">\n                    <ion-button (click)=\"showEdit(item)\">\n                      <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n                    </ion-button>\n                  </ion-col>\n                  <ion-col size-sm=\"4\" size-xs=\"12\">\n                    <ion-button (click)=\"confirmDelete(item)\">\n                      <ion-icon name=\"trash-outline\"></ion-icon>\n                    </ion-button>\n                  </ion-col>\n                </ion-row>\n              </ion-grid>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n\n      </ion-item>\n    </ion-list>\n\n\n\n</ion-content>\n";
       /***/
     },
 
@@ -256,9 +256,15 @@
       var src_app_services_util_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! src/app/services/util.service */
       "./src/app/services/util.service.ts");
+      /* harmony import */
+
+
+      var src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! src/app/services/util-array.service */
+      "./src/app/services/util-array.service.ts");
 
       var ListPage = /*#__PURE__*/function () {
-        function ListPage(request, dialogService, modalController, dialog, util) {
+        function ListPage(request, dialogService, modalController, dialog, util, utilArray) {
           _classCallCheck(this, ListPage);
 
           this.request = request;
@@ -266,6 +272,7 @@
           this.modalController = modalController;
           this.dialog = dialog;
           this.util = util;
+          this.utilArray = utilArray;
           this.games = [];
           this.tabs = [];
           this.gameService = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Game', request);
@@ -317,9 +324,24 @@
                     case 2:
                       modal = _context.sent;
                       modal.onDidDismiss().then(function (data) {
+                        console.log('crate game');
                         var game = data.data['game'];
 
-                        _this2.gameService.listAddLast(game);
+                        var index = _this2.tabs.map(function (tab) {
+                          return tab.date;
+                        }).indexOf(game.date);
+
+                        if (index >= 0) {
+                          _this2.utilArray.listAddFirst(_this2.tabs[index]['results'], game);
+                        } else {
+                          index = _this2.tabs.length;
+                          _this2.tabs[index] = {
+                            date: moment__WEBPACK_IMPORTED_MODULE_7__(game.date).format('YYYY-MM-DD'),
+                            results: []
+                          };
+
+                          _this2.utilArray.listAddFirst(_this2.tabs[index]['results'], game);
+                        }
                       });
                       _context.next = 6;
                       return modal.present();
@@ -359,7 +381,8 @@
                       modal.onDidDismiss().then(function (data) {
                         var game = data.data['game'];
 
-                        _this3.gameService.listUpdate(game.id, game);
+                        _this3.utilArray.listUpdate(_this3.games, game.id, game); //this.gameService.listUpdate(game.id,game);
+
                       });
                       _context2.next = 6;
                       return modal.present();
@@ -393,9 +416,10 @@
               console.log(data);
 
               if (data['status'] == 'success') {
-                _this5.dialog.showToast('Game Eliminado', null, 'success');
+                _this5.dialog.showToast('Game Eliminado', null, 'success'); //this.gameService.listDelete(game.id);
 
-                _this5.gameService.listDelete(game.id);
+
+                _this5.utilArray.listDelete(_this5.games, game.id);
               }
             });
           }
@@ -510,6 +534,8 @@
           type: _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"]
         }, {
           type: src_app_services_util_service__WEBPACK_IMPORTED_MODULE_8__["UtilService"]
+        }, {
+          type: src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_9__["UtilArrayService"]
         }];
       };
 
@@ -522,6 +548,136 @@
         /*! ./list.page.scss */
         "./src/app/pages/game/list/list.page.scss"))["default"]]
       })], ListPage);
+      /***/
+    },
+
+    /***/
+    "./src/app/services/util-array.service.ts":
+    /*!************************************************!*\
+      !*** ./src/app/services/util-array.service.ts ***!
+      \************************************************/
+
+    /*! exports provided: UtilArrayService */
+
+    /***/
+    function srcAppServicesUtilArrayServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "UtilArrayService", function () {
+        return UtilArrayService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+      var UtilArrayService = /*#__PURE__*/function () {
+        function UtilArrayService() {
+          _classCallCheck(this, UtilArrayService);
+        }
+        /**
+         * Inserta el elemento al final del array
+         * @param list array en el que se inserta el objeto
+         * @param item item a insertar
+         */
+
+
+        _createClass(UtilArrayService, [{
+          key: "listAddLast",
+          value: function listAddLast(list, item) {
+            list.push(item);
+          }
+          /**
+           * Añade un elemente en el array al inicio
+           * @param list array en la que se inserta el objeto
+           * @param item  elemento que se almacenara en el array
+           */
+
+        }, {
+          key: "listAddFirst",
+          value: function listAddFirst(list, item) {
+            list.unshift(item);
+          }
+          /**
+           * Remplaza un objeto del array
+           * @param list array que se actualizara
+           * @param id iel id del objeto
+           * @param item elemento que se remplazara en el array
+           */
+
+        }, {
+          key: "listUpdate",
+          value: function listUpdate(list, id, item) {
+            var index = this.findIndexList(list, id);
+            console.log('index remove', index);
+
+            if (index >= 0) {
+              list[index] = item;
+            }
+          }
+          /**
+           * elimina objeto de un array pasando el id del objeto
+           * @param list array del que se eliminara el objeto
+           * @param id id del objeto
+           */
+
+        }, {
+          key: "listDelete",
+          value: function listDelete(list, id) {
+            var index = this.findIndexList(list, id);
+            console.log('index remove', index);
+            if (index >= 0) list.splice(index, 1);
+          }
+          /**
+           * Busca un obeto en el array
+           * @param list array en el qie se bucara el objeto
+           * @param id id del objeto
+           */
+
+        }, {
+          key: "findList",
+          value: function findList(list, id) {
+            return list.find(function (item) {
+              return item['id'] === id;
+            });
+          }
+          /**
+           * Retorna el indice de la posicion en la que se encuentra el objeto
+           * @param list Array en el que se realizara a busqueda
+           * @param id id del objeto buscado
+           */
+
+        }, {
+          key: "findIndexList",
+          value: function findIndexList(list, id) {
+            return list.findIndex(function (item) {
+              return item['id'] === id;
+            });
+          }
+        }]);
+
+        return UtilArrayService;
+      }();
+
+      UtilArrayService.ctorParameters = function () {
+        return [];
+      };
+
+      UtilArrayService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], UtilArrayService);
       /***/
     }
   }]);

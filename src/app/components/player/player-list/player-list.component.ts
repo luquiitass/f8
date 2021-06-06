@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+
 
 @Component({
   selector: 'app-player-list',
@@ -18,7 +20,9 @@ export class PlayerListComponent implements OnInit {
 
   
 
-  constructor() { 
+  constructor(
+    public photoViewer : PhotoViewer
+  ) { 
     this.items = this.items ?? []
   }
 
@@ -45,10 +49,17 @@ export class PlayerListComponent implements OnInit {
     return item['photo'] ? this.getPhotoServer(item['photo']) : 'assets/images/jugador.png'
   }
 
+  getPhotoOr(item){
+    return item['photo'] ? item['photo'].urlComplete : 'assets/images/jugador.png'
+  }
+
   getPhotoServer(photo){
     return photo['thumb'] ? photo['urlCompleteThumb'] :  photo['urlCompleteThumb'] ;
   }
 
+  showPhoto(image){
+    this.photoViewer.show(image.urlComplete);
+  }
   
 
 }

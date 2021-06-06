@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-content color=\"primary\" padding>\n  <form #form=\"ngForm\" (ngSubmit)=\"login(form)\">\n    <ion-grid>\n      <ion-row color=\"primary\" justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div text-center>\n            <h3>Login</h3>\n          </div>\n          <div padding>\n            <ion-item>\n              <ion-input name=\"email\" type=\"email\" placeholder=\"your@email.com\" ngModel required></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-input name=\"password\" type=\"password\" placeholder=\"Password\" ngModel required></ion-input>\n            </ion-item>\n          </div>\n          <div style=\"color: red; padding-top: 0.2rem\" >{{ authUserService.errorsLogin }}</div>\n\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"form.invalid\" expand=\"block\">Login</ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>";
+      __webpack_exports__["default"] = "<ion-content color=\"primary\" padding>\n  <form #form=\"ngForm\" (ngSubmit)=\"login(form)\">\n    <ion-grid>\n      <ion-row color=\"primary\" justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div text-center>\n            <h3>Login</h3>\n          </div>\n          <div padding>\n            <ion-item>\n              <ion-input name=\"email\" type=\"email\" placeholder=\"your@email.com\" ngModel required></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-input name=\"password\" type=\"password\" placeholder=\"Password\" ngModel required></ion-input>\n            </ion-item>\n          </div>\n          <div style=\"color: red; padding-top: 0.2rem\" >{{ authUserService.errorsLogin }}</div>\n\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"form.invalid\" expand=\"block\">Login</ion-button>\n\n            <ion-button size=\"large\"  expand=\"block\" (click)=\"openModal()\">Registrarme</ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>";
       /***/
     },
 
@@ -213,22 +213,28 @@
       /* harmony import */
 
 
-      var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! @ionic-native/google-plus/ngx */
-      "./node_modules/@ionic-native/google-plus/__ivy_ngcc__/ngx/index.js");
+      var src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/services/auth-user.service */
+      "./src/app/services/auth-user.service.ts");
       /* harmony import */
 
 
-      var src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! src/app/services/auth-user.service */
-      "./src/app/services/auth-user.service.ts");
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var _user_user_form_user_form_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../user/user-form/user-form.page */
+      "./src/app/pages/user/user-form/user-form.page.ts");
 
       var LoginPage = /*#__PURE__*/function () {
-        function LoginPage(googlePlus, authUserService) {
+        function LoginPage(authUserService, modalController) {
           _classCallCheck(this, LoginPage);
 
-          this.googlePlus = googlePlus;
           this.authUserService = authUserService;
+          this.modalController = modalController;
         }
 
         _createClass(LoginPage, [{
@@ -239,16 +245,51 @@
         }, {
           key: "googleAuth",
           value: function googleAuth() {
-            this.googlePlus.login({}).then(function (result) {
-              console.log(result);
-            })["catch"](function (err) {
-              return console.log("GoogleAuth Error", JSON.stringify(err));
-            }); //return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
+            /*this.googlePlus.login({})
+              .then(result => {
+                console.log(result);
+              })
+              .catch(err => console.log(`GoogleAuth Error`, JSON.stringify(err)));
+            //return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
+            */
           }
         }, {
           key: "login",
           value: function login(form) {
             this.authUserService.login(form.value);
+          }
+        }, {
+          key: "openModal",
+          value: function openModal() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              var modal;
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return this.modalController.create({
+                        component: _user_user_form_user_form_page__WEBPACK_IMPORTED_MODULE_4__["UserFormPage"]
+                      });
+
+                    case 2:
+                      modal = _context.sent;
+                      modal.onDidDismiss().then(function (data) {//const user = data.data['user'];
+                        //this.userService.listAddLast(user);
+                      });
+                      _context.next = 6;
+                      return modal.present();
+
+                    case 6:
+                      return _context.abrupt("return", _context.sent);
+
+                    case 7:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
           }
         }]);
 
@@ -257,9 +298,9 @@
 
       LoginPage.ctorParameters = function () {
         return [{
-          type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_2__["GooglePlus"]
+          type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["AuthUserService"]
         }, {
-          type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_3__["AuthUserService"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
         }];
       };
 

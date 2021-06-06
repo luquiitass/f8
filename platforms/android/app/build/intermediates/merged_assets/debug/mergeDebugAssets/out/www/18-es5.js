@@ -46,9 +46,9 @@
       /* harmony import */
 
 
-      var _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./overlays-28c23c35.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-28c23c35.js");
+      var _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./overlays-e9ccff30.js */
+      "./node_modules/@ionic/core/dist/esm/overlays-e9ccff30.js");
       /* harmony import */
 
 
@@ -217,14 +217,14 @@
           this.animated = true;
 
           this.onBackdropTap = function () {
-            _this.dismiss(undefined, _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["B"]);
+            _this.dismiss(undefined, _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["B"]);
           };
         }
 
         _createClass(Loading, [{
           key: "connectedCallback",
           value: function connectedCallback() {
-            Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.el);
+            Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.el);
           }
         }, {
           key: "componentWillLoad",
@@ -249,7 +249,7 @@
                   switch (_context.prev = _context.next) {
                     case 0:
                       _context.next = 2;
-                      return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this, 'loadingEnter', iosEnterAnimation, mdEnterAnimation, undefined);
+                      return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this, 'loadingEnter', iosEnterAnimation, mdEnterAnimation, undefined);
 
                     case 2:
                       if (this.duration > 0) {
@@ -289,7 +289,7 @@
               clearTimeout(this.durationTimeout);
             }
 
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this, data, role, 'loadingLeave', iosLeaveAnimation, mdLeaveAnimation);
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this, data, role, 'loadingLeave', iosLeaveAnimation, mdLeaveAnimation);
           }
           /**
            * Returns a promise that resolves when the loading did dismiss.
@@ -298,7 +298,7 @@
         }, {
           key: "onDidDismiss",
           value: function onDidDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionLoadingDidDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionLoadingDidDismiss');
           }
           /**
            * Returns a promise that resolves when the loading will dismiss.
@@ -307,7 +307,7 @@
         }, {
           key: "onWillDismiss",
           value: function onWillDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionLoadingWillDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_2__["g"])(this.el, 'ionLoadingWillDismiss');
           }
         }, {
           key: "render",

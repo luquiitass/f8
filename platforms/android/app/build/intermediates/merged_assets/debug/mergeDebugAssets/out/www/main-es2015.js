@@ -995,7 +995,7 @@ const routes = [
     },
     {
         path: 'my-profile',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-my-profile-my-profile-module */ "pages-user-my-profile-my-profile-module").then(__webpack_require__.bind(null, /*! ./pages/user/my-profile/my-profile.module */ "./src/app/pages/user/my-profile/my-profile.module.ts")).then(m => m.MyProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-user-my-profile-my-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-user-my-profile-my-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/user/my-profile/my-profile.module */ "./src/app/pages/user/my-profile/my-profile.module.ts")).then(m => m.MyProfilePageModule)
     },
     {
         path: 'redes-form',
@@ -1107,7 +1107,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_pages_team_form_form_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../app/pages/team/form/form.module */ "./src/app/pages/team/form/form.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 /* harmony import */ var _interceptors_token_interceptor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./interceptors/token.interceptor */ "./src/app/interceptors/token.interceptor.ts");
-/* harmony import */ var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/google-plus/ngx */ "./node_modules/@ionic-native/google-plus/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/photo-viewer/ngx */ "./node_modules/@ionic-native/photo-viewer/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ngx-ionic-image-viewer */ "./node_modules/ngx-ionic-image-viewer/__ivy_ngcc__/fesm2015/ngx-ionic-image-viewer.js");
+/* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/__ivy_ngcc__/ngx/index.js");
 
 
 
@@ -1118,6 +1120,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 
@@ -1133,18 +1137,20 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
-            _app_pages_team_form_form_module__WEBPACK_IMPORTED_MODULE_9__["FormPageModule"]
+            _app_pages_team_form_form_module__WEBPACK_IMPORTED_MODULE_9__["FormPageModule"],
+            ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_13__["NgxIonicImageViewerModule"]
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
+            _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_12__["PhotoViewer"],
+            _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_14__["InAppBrowser"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
             {
                 provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HTTP_INTERCEPTORS"],
                 useClass: _interceptors_token_interceptor__WEBPACK_IMPORTED_MODULE_11__["TokenInterceptor"],
                 multi: true
             },
-            _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_12__["GooglePlus"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     })
@@ -1756,7 +1762,7 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     server_url: 'http://192.168.1.15/f8a/public/api'
-    //server_url : 'http://f8a.ddns.net/f8a/public/api'
+    //server_url : 'http://34.68.147.207/f8a/public/api'
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -415,7 +415,7 @@
               ref: function ref(input) {
                 return _this2.nativeInput = input;
               },
-              "aria-labelledby": labelId,
+              "aria-labelledby": label ? labelId : null,
               disabled: this.disabled,
               accept: this.accept,
               autoCapitalize: this.autocapitalize,

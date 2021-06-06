@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { MyProfilePageRoutingModule } from './my-profile-routing.module';
 
 import { MyProfilePage } from './my-profile.page';
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyProfilePageRoutingModule
+    MyProfilePageRoutingModule,
+    NgxIonicImageViewerModule
   ],
   declarations: [MyProfilePage]
 })

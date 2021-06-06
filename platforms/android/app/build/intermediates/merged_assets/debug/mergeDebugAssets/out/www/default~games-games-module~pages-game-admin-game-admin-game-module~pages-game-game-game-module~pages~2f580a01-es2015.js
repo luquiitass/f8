@@ -21624,11 +21624,18 @@ __webpack_require__.r(__webpack_exports__);
 let UtilService = class UtilService {
     constructor() { }
     setFormatDate(date) {
-        return moment__WEBPACK_IMPORTED_MODULE_2__(date).lang("es").calendar() + " " + moment__WEBPACK_IMPORTED_MODULE_2__(date).format('LT');
+        return moment__WEBPACK_IMPORTED_MODULE_2__(date).locale("es").calendar() + " " + moment__WEBPACK_IMPORTED_MODULE_2__(date).format('LT');
         ;
     }
     delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    formatHours(hours) {
+        let time = hours.split(':');
+        return `${time[0]}:${time[1]}`;
+    }
+    setFormatMoment(val, format = 'DD-MMMM-YYYY') {
+        return moment__WEBPACK_IMPORTED_MODULE_2__(val).locale('es').format(format);
     }
 };
 UtilService.ctorParameters = () => [];

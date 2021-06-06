@@ -16,13 +16,14 @@ import { EventFormPage } from 'src/app/pages/event/event-form/event-form.page';
 export class EventListComponent implements OnInit {
 
   @Input('game_id') game_id ; 
+  @Input('isAdmin') isAdmin ; 
 
   gameModel : Model;
   eventModel : Model;
   events : any = [];
   team_l : any;
   team_v : any;
-  isAdmin = false;
+  //isAdmin = false;
   
 
 

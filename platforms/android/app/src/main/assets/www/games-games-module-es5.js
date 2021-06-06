@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Partidos</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"12\">\n          <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n            <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_{{i}}\" >\n              {{tab.date}}\n            </ion-segment-button>\n          </ion-segment>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n      <ion-label>Sin registros</ion-label>\n    </ion-list-header>\n\n      <ion-item *ngFor=\"let game of list\" routerLink=\"/games/profile/{{game.id}}\" routerDirection=\"forward\" >\n        <div class=\"game\">\n          <div class=\"team-list contenedor\">\n            <div class=\"team\">\n              <span class=\"name-team\">{{game.team_l.name}}</span>\n              <ion-thumbnail slot=\"end\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'\">\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n  \n            <div class=\"vs\">vs</div>\n  \n            <div class=\"team\">\n              <span class=\"team-name\">{{game.team_v.name}}</span>\n              <ion-thumbnail slot=\"start\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'\"\n                  >\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n          </div>\n          <div class=\"date\">\n            <span><ion-icon name=\"timer-outline\"></ion-icon></span>\n            <span>{{ game.time }}</span>\n          </div>\n        </div>\n       \n      </ion-item>\n    </ion-list>\n\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Partidos</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"12\">\n          <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n            <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_{{i}}\" >\n              {{formatDate(tab.date)}}\n            </ion-segment-button>\n          </ion-segment>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n      <ion-label>Sin registros</ion-label>\n    </ion-list-header>\n\n      <ion-item *ngFor=\"let game of list\" routerLink=\"/games/profile/{{game.id}}\" routerDirection=\"forward\" >\n        <div class=\"game\">\n          <div class=\"team-list contenedor\">\n            <div class=\"team\">\n              <span class=\"team-name\">{{game.team_l.name}}</span>\n              <ion-thumbnail slot=\"end\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'\">\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n  \n            <div class=\"vs\">vs</div>\n  \n            <div class=\"team\">\n              <span class=\"team-name\">{{game.team_v.name}}</span>\n              <ion-thumbnail slot=\"start\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'\"\n                  >\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n          </div>\n          <div class=\"date\">\n            <span>{{ util.formatHours(game.time) }}</span>\n          </div>\n        </div>\n       \n      </ion-item>\n    </ion-list>\n\n\n</ion-content>\n";
       /***/
     },
 
@@ -208,6 +208,16 @@
       var src_app_services_util_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! src/app/services/util.service */
       "./src/app/services/util.service.ts");
+      /* harmony import */
+
+
+      var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! moment */
+      "./node_modules/moment/moment.js");
+      /* harmony import */
+
+
+      var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
 
       var GamesPage = /*#__PURE__*/function () {
         function GamesPage(request, util) {
@@ -250,7 +260,7 @@
               if (event) event.target.complete();
               console.log(response);
             }, function (error) {
-              event.target.complete();
+              if (event) event.target.complete();
               console.error(error);
             });
           }
@@ -331,6 +341,11 @@
             return new Promise(function (resolve) {
               return setTimeout(resolve, ms);
             });
+          }
+        }, {
+          key: "formatDate",
+          value: function formatDate(val) {
+            return moment__WEBPACK_IMPORTED_MODULE_5__(val).locale('es').format('DD MMMM YYYY');
           }
         }]);
 

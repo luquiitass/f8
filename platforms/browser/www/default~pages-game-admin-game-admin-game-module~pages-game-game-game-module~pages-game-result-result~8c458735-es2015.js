@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-card>\n  <ion-card-header>\n    <ion-card-title>Comentarios</ion-card-title>\n  </ion-card-header>\n\n  <ion-card-content> \n\n    <ion-list>\n      <ion-item *ngIf=\"listComments.length < 1\">\n        <label>Se el primero en comentar!!!</label>\n      </ion-item>\n      <ion-item class=\"comment-item\" *ngFor=\"let item of listComments\">\n        <ion-thumbnail slot=\"start\" style=\"margin: 0px;padding: 0px;\">\n          <ion-img\n            class=\"comment-image\" \n            [src]=\"item.user.photo ? item.user.photo.urlComplete : 'assets/images/profile.jpg'\"\n            style=\"border-radius:50%; background-position:center center; background-size:cover; width:35px; height:35px;\">\n          </ion-img>\n        </ion-thumbnail>\n\n        <div class=\"comment-data\">\n          <div class=\"comment-user\">{{item.user.last_name }} {{item.user.first_name }}</div>\n          <div class=\"comment-body\">\n            {{item.body}}\n          </div>\n          <div class=\"comment-date\">{{ formatDate(item.created_at)}}</div>\n        </div>\n      </ion-item>\n    </ion-list>\n\n    <form (ngSubmit)=\"send()\" >\n      <ion-grid>\n        <ion-row class=\"editor\">\n          <ion-col size=\"10\">\n            <div>\n              <ion-textarea  class=\"editor-text\" [(ngModel)]=\"comment.body\" name=\"body\"  placeholder=\"Escreibe un comentario...\" ></ion-textarea>\n            </div>\n          </ion-col>\n          <ion-col size=\"2\">\n            <div>\n              <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n                <ion-fab-button  class=\"edditor-send\" size=\"small\" color=\"primary\" type=\"submit\" (click)=\"send()\">\n                  <ion-icon name=\"send-sharp\"></ion-icon>\n                </ion-fab-button>\n              </ion-fab>\n\n            </div>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n     \n  </form>\n  </ion-card-content>\n</ion-card>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-card>\n  <ion-card-header>\n    <ion-card-title>Comentarios</ion-card-title>\n  </ion-card-header>\n\n  <ion-card-content> \n\n    <ion-list>\n      <ion-item *ngIf=\"listComments.length < 1\">\n        <ion-note style=\"font-size: large;\">Se el primero en comentar!!!</ion-note>\n      </ion-item>\n      <ion-item  *ngFor=\"let item of listComments\">\n        <div class=\"comment-item\" >\n\n          <ion-thumbnail slot=\"start\" class=\"comment-image\">\n            <ion-img\n              class=\"comment-image\" \n              [src]=\"getPhoto(item)\"\n              style=\"border-radius:50%; background-position:center center; background-size:cover; width:35px; height:35px;\">\n            </ion-img>\n          </ion-thumbnail>\n\n          <div class=\"comment-data\">\n            <div class=\"comment-user\">\n              <a [routerLink]=\"'/users/' + item.user.id +'/profile'\">\n                {{item.user.last_name }} {{item.user.first_name }}\n              </a>\n            </div>\n            <div class=\"comment-body\">\n                {{item.body}}\n            </div>\n            <div class=\"comment-date\">{{ formatDate(item.created_at)}}</div>\n          </div>\n\n        </div>\n        \n\n       \n      </ion-item>\n    </ion-list>\n\n    <form (ngSubmit)=\"send()\" >\n\n      <div class=\"content-comment\">\n        <div class=\"content-comment-text\">\n          <ion-textarea  class=\"editor-text\" [(ngModel)]=\"comment.body\" name=\"body\"  placeholder=\"Escreibe un comentario...\" ></ion-textarea>\n        </div>\n        <div>\n          <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n            <ion-fab-button  class=\"edditor-send\" size=\"small\" color=\"primary\" type=\"submit\" (click)=\"send()\">\n              <ion-icon name=\"send-sharp\"></ion-icon>\n            </ion-fab-button>\n          </ion-fab>\n        </div>\n      </div>\n\n      <!-- <ion-grid>\n        <ion-row class=\"editor\">\n          <ion-col size=\"10\">\n            <div>\n              <ion-textarea  class=\"editor-text\" [(ngModel)]=\"comment.body\" name=\"body\"  placeholder=\"Escreibe un comentario...\" ></ion-textarea>\n            </div>\n          </ion-col>\n          <ion-col size=\"2\">\n            <div>\n              <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n                <ion-fab-button  class=\"edditor-send\" size=\"small\" color=\"primary\" type=\"submit\" (click)=\"send()\">\n                  <ion-icon name=\"send-sharp\"></ion-icon>\n                </ion-fab-button>\n              </ion-fab>\n\n            </div>\n          </ion-col>\n        </ion-row>\n      </ion-grid> -->\n     \n  </form>\n  </ion-card-content>\n</ion-card>\n");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-card *ngIf=\"(events.length && team_l && team_v) || isAdmin\" >\n  <ion-card-header>\n    <ion-card-title>Sucesos</ion-card-title>\n  </ion-card-header>\n    <ion-list >\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col *ngIf=\"team_l\"  class=\"ion-text-start\">\n            {{team_l.name}}\n          </ion-col>\n          <ion-col *ngIf=\"team_v\"  class=\"ion-text-end\">\n            {{team_v.name}}\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-list-header *ngIf=\"events.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n\n   \n      <ion-item *ngFor=\"let item of events ; let i = index\" >\n          \n        <ion-label >\n          <h3 [ngClass]=\"{'ion-text-end' : item.team.id == team_v.id}\"> {{item.time}}° <b>{{item.type_event.name}}</b> {{item.player.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\" *ngIf=\"isAdmin\">\n          <ion-button (click)=\"confirmDelete(item,i)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n\n      </ion-item>\n    </ion-list>\n\n    <ion-button *ngIf=\"isAdmin\"  fill=\"clear\" expand=\"block\" (click)=\"addEvent()\">\n      Nuevo Suceso\n    </ion-button>\n\n</ion-card>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-card *ngIf=\"(events.length && team_l && team_v) || isAdmin\" >\n  <ion-card-header>\n    <ion-card-title>Sucesos</ion-card-title>\n  </ion-card-header>\n    <ion-list >\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col *ngIf=\"team_l\"  class=\"ion-text-start\">\n            {{team_l.name}}\n          </ion-col>\n          <ion-col *ngIf=\"team_v\"  class=\"ion-text-end\">\n            {{team_v.name}}\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-list-header *ngIf=\"events.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n\n   \n      <ion-item *ngFor=\"let item of events ; let i = index\" >\n          \n        <ion-label >\n          <h3 [ngClass]=\"{'ion-text-end' : item.team.id == team_v.id}\">\n            <img *ngIf=\"item.type_event.icon\" src=\"assets/images/{{item.type_event.icon}}\"  width=\"40px\">\n            {{item.time}}° \n            <b>{{item.type_event.name}}</b> \n            <a [routerLink]=\"'/player/profile/' + item.player.id\" routerDirection=\"forward\" >\n              {{item.player.name}}\n            </a>\n          </h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\" *ngIf=\"isAdmin\">\n          <ion-button (click)=\"confirmDelete(item,i)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n\n      </ion-item>\n    </ion-list>\n\n    <ion-button *ngIf=\"isAdmin\"  fill=\"clear\" expand=\"block\" (click)=\"addEvent()\">\n      Nuevo Suceso\n    </ion-button>\n\n</ion-card>");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\n  <ion-grid *ngIf=\"!loading && !errorLoading\">\n    <div *ngIf=\"items.length < 1\">\n      No posee Jugadores\n    </div>\n\n    <ion-row>\n      <ion-col size=\"4\" *ngFor=\"let item of items; let i = index\">\n        <div class=\"player-list\" (click)=\"selectItem(item)\">\n          <img class=\"player-list-photo\" [src]=\"getPhoto(item)\" alt=\"Foto\">\n          <h4 class=\"player-list-name\">{{item.name}}</h4>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <div *ngIf=\"loading && !errorLoading\" >\n    Cargando...\n  </div>\n\n  <div *ngIf=\"errorLoading\" (clcik)=\"load($event)\">\n    Volver a Intentar\n  </div>\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\n  <ion-grid *ngIf=\"!loading && !errorLoading\">\n    <div *ngIf=\"items.length < 1\">\n      No posee Jugadores\n    </div>\n\n    <ion-row>\n      <ion-col size=\"4\" *ngFor=\"let item of items; let i = index\">\n        <div class=\"player-list\" >\n          <img class=\"player-list-photo\" [src]=\"getPhoto(item)\" alt=\"Foto\" (click)=\"showPhoto(item)\">\n          <h4 class=\"player-list-name\" (click)=\"selectItem(item)\">{{item.name}}</h4>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <div *ngIf=\"loading && !errorLoading\" >\n    Cargando...\n  </div>\n\n  <div *ngIf=\"errorLoading\" (clcik)=\"load($event)\">\n    Volver a Intentar\n  </div>\n\n</div>");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".comment-image {\n  font-size: large;\n}\n\n.comment-data {\n  width: 100%;\n}\n\n.comment-user {\n  font-size: large;\n  margin-top: 10px;\n  font-weight: bold;\n}\n\n.comment-body {\n  font-size: smaller;\n  font-style: italic;\n  margin-left: 5px;\n  color: darkslategrey;\n}\n\n.comment-date {\n  font-size: x-small;\n  text-align: right;\n  color: darkslategrey;\n}\n\n.editor-text {\n  background-color: white;\n  box-shadow: 2px 2px 5px #999;\n  padding: 2px;\n  border-radius: 15px;\n}\n\n.editor-send {\n  margin-left: -5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jb21tZW50cy9jb21tZW50cy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFJQTtFQUNJLGdCQUFBO0FBSEo7O0FBTUE7RUFDSSxXQUFBO0FBSEo7O0FBTUE7RUFDSSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7QUFISjs7QUFNQTtFQUNJLGtCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQkFBQTtFQUNBLG9CQUFBO0FBSEo7O0FBTUE7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0Esb0JBQUE7QUFISjs7QUFRQTtFQUNJLHVCQUFBO0VBQ0EsNEJBQUE7RUFDQSxZQUFBO0VBQ0EsbUJBQUE7QUFMSjs7QUFRQTtFQUNJLGlCQUFBO0FBTEoiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NvbW1lbnRzL2NvbW1lbnRzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbW1lbnQtaXRlbXtcbiAgIFxufVxuXG4uY29tbWVudC1pbWFnZXtcbiAgICBmb250LXNpemU6IGxhcmdlO1xufVxuXG4uY29tbWVudC1kYXRhe1xuICAgIHdpZHRoOiAxMDAlO1xufVxuXG4uY29tbWVudC11c2Vye1xuICAgIGZvbnQtc2l6ZTogbGFyZ2U7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLmNvbW1lbnQtYm9keXtcbiAgICBmb250LXNpemU6IHNtYWxsZXI7XG4gICAgZm9udC1zdHlsZTogaXRhbGljO1xuICAgIG1hcmdpbi1sZWZ0OiA1cHg7XG4gICAgY29sb3I6IGRhcmtzbGF0ZWdyZXk7XG59XG5cbi5jb21tZW50LWRhdGV7XG4gICAgZm9udC1zaXplOiB4LXNtYWxsO1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuICAgIGNvbG9yOiBkYXJrc2xhdGVncmV5O1xufVxuXG4uZWRpdG9ye1xufVxuLmVkaXRvci10ZXh0e1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIGJveC1zaGFkb3c6IDJweCAycHggNXB4ICM5OTk7XG4gICAgcGFkZGluZzogMnB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG59XG5cbi5lZGl0b3Itc2VuZHtcbiAgICBtYXJnaW4tbGVmdDogLTVweDtcblxufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".comment-item {\n  width: 100%;\n  display: flex;\n}\n\n.comment-image {\n  font-size: large;\n}\n\n.comment-data {\n  width: 100%;\n}\n\n.comment-user {\n  font-size: large;\n  margin-top: 10px;\n  font-weight: bold;\n}\n\n.comment-body {\n  font-size: smaller;\n  font-style: italic;\n  margin-left: 5px;\n  color: darkslategrey;\n  white-space: pre-wrap;\n}\n\n.comment-date {\n  font-size: x-small;\n  text-align: right;\n  color: darkslategrey;\n}\n\n.editor-text {\n  background-color: white;\n  box-shadow: 2px 2px 5px #999;\n  padding: 2px;\n  border-radius: 15px;\n}\n\n.editor-send {\n  margin-left: -5px;\n}\n\n.content-comment-text {\n  margin-right: 50px;\n}\n\n.comment-image {\n  margin-top: 10px;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jb21tZW50cy9jb21tZW50cy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDRCxhQUFBO0FBQ0g7O0FBRUE7RUFDSSxnQkFBQTtBQUNKOztBQUVBO0VBQ0ksV0FBQTtBQUNKOztBQUVBO0VBQ0ksZ0JBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0FBQ0o7O0FBRUE7RUFDSSxrQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvQkFBQTtFQUNBLHFCQUFBO0FBQ0o7O0FBRUE7RUFDSSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0Esb0JBQUE7QUFDSjs7QUFJQTtFQUNJLHVCQUFBO0VBQ0EsNEJBQUE7RUFDQSxZQUFBO0VBQ0EsbUJBQUE7QUFESjs7QUFJQTtFQUNJLGlCQUFBO0FBREo7O0FBS0E7RUFDSSxrQkFBQTtBQUZKOztBQUtBO0VBQ0ksZ0JBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0FBRkoiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NvbW1lbnRzL2NvbW1lbnRzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbW1lbnQtaXRlbXtcbiAgICB3aWR0aDogMTAwJTtcbiAgIGRpc3BsYXk6IGZsZXg7XG59XG5cbi5jb21tZW50LWltYWdle1xuICAgIGZvbnQtc2l6ZTogbGFyZ2U7XG59XG5cbi5jb21tZW50LWRhdGF7XG4gICAgd2lkdGg6IDEwMCU7XG59XG5cbi5jb21tZW50LXVzZXJ7XG4gICAgZm9udC1zaXplOiBsYXJnZTtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4uY29tbWVudC1ib2R5e1xuICAgIGZvbnQtc2l6ZTogc21hbGxlcjtcbiAgICBmb250LXN0eWxlOiBpdGFsaWM7XG4gICAgbWFyZ2luLWxlZnQ6IDVweDtcbiAgICBjb2xvcjogZGFya3NsYXRlZ3JleTtcbiAgICB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7XG59XG5cbi5jb21tZW50LWRhdGV7XG4gICAgZm9udC1zaXplOiB4LXNtYWxsO1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuICAgIGNvbG9yOiBkYXJrc2xhdGVncmV5O1xufVxuXG4uZWRpdG9ye1xufVxuLmVkaXRvci10ZXh0e1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIGJveC1zaGFkb3c6IDJweCAycHggNXB4ICM5OTk7XG4gICAgcGFkZGluZzogMnB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG59XG5cbi5lZGl0b3Itc2VuZHtcbiAgICBtYXJnaW4tbGVmdDogLTVweDtcblxufVxuXG4uY29udGVudC1jb21tZW50LXRleHR7XG4gICAgbWFyZ2luLXJpZ2h0OiA1MHB4O1xufVxuXG4uY29tbWVudC1pbWFnZXtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiA1cHg7XG4gICAgbWFyZ2luLXJpZ2h0OiA1cHg7XG59Il19 */");
 
 /***/ }),
 
@@ -210,6 +210,9 @@ let CommentsComponent = class CommentsComponent {
     formatDate(val) {
         return moment__WEBPACK_IMPORTED_MODULE_6__(val).locale('es').fromNow();
     }
+    getPhoto(comment) {
+        return comment.user.photo ? comment.user.photo.urlCompleteThumb : 'assets/images/profile.jpg';
+    }
 };
 CommentsComponent.ctorParameters = () => [
     { type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_4__["AuthUserService"] },
@@ -254,7 +257,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _notifications_notificatio_selected_notificatio_selected_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./notifications/notificatio-selected/notificatio-selected.component */ "./src/app/components/notifications/notificatio-selected/notificatio-selected.component.ts");
 /* harmony import */ var _redes_red_list_red_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./redes/red-list/red-list.component */ "./src/app/components/redes/red-list/red-list.component.ts");
 /* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./search/search.component */ "./src/app/components/search/search.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+
 
 
 
@@ -274,7 +279,8 @@ ComponentsModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"].forRoot(),
-            _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"]
+            _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"]
         ],
         declarations: [
             _event_list_list_component__WEBPACK_IMPORTED_MODULE_4__["ListComponent"],
@@ -569,11 +575,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerListComponent", function() { return PlayerListComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/photo-viewer/ngx */ "./node_modules/@ionic-native/photo-viewer/__ivy_ngcc__/ngx/index.js");
+
 
 
 let PlayerListComponent = class PlayerListComponent {
-    constructor() {
+    constructor(photoViewer) {
         var _a;
+        this.photoViewer = photoViewer;
         this.loading = false;
         this.eventLoad = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.eventSelect = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
@@ -594,10 +603,18 @@ let PlayerListComponent = class PlayerListComponent {
     }
     //Otras funciones 
     getPhoto(item) {
-        return item['photo'] ? item['photo']['urlComplete'] : 'assets/images/jugador.png';
+        return item['photo'] ? this.getPhotoServer(item['photo']) : 'assets/images/jugador.png';
+    }
+    getPhotoServer(photo) {
+        return photo['thumb'] ? photo['urlCompleteThumb'] : photo['urlCompleteThumb'];
+    }
+    showPhoto(image) {
+        this.photoViewer.show(image.urlComplete);
     }
 };
-PlayerListComponent.ctorParameters = () => [];
+PlayerListComponent.ctorParameters = () => [
+    { type: _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__["PhotoViewer"] }
+];
 PlayerListComponent.propDecorators = {
     items: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"], args: ['items',] }],
     loading: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"], args: ['loading',] }],

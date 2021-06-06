@@ -153,7 +153,7 @@
                   switch (_context.prev = _context.next) {
                     case 0:
                       if (!this.swiperReady) {
-                        _context.next = 7;
+                        _context.next = 8;
                         break;
                       }
 
@@ -162,11 +162,17 @@
 
                     case 3:
                       swiper = _context.sent;
+
+                      if (!(swiper === null || swiper === void 0 ? void 0 : swiper.params)) {
+                        _context.next = 8;
+                        break;
+                      }
+
                       Object.assign(swiper.params, this.options);
-                      _context.next = 7;
+                      _context.next = 8;
                       return this.update();
 
-                    case 7:
+                    case 8:
                     case "end":
                       return _context.stop();
                   }
@@ -822,10 +828,10 @@
 
                       _context18.next = 3;
                       return __webpack_require__.e(
-                      /*! import() | swiper-bundle-44a9b1f9-js */
-                      "swiper-bundle-44a9b1f9-js").then(__webpack_require__.bind(null,
-                      /*! ./swiper.bundle-44a9b1f9.js */
-                      "./node_modules/@ionic/core/dist/esm/swiper.bundle-44a9b1f9.js"));
+                      /*! import() | swiper-bundle-6c5e7804-js */
+                      "swiper-bundle-6c5e7804-js").then(__webpack_require__.bind(null,
+                      /*! ./swiper.bundle-6c5e7804.js */
+                      "./node_modules/@ionic/core/dist/esm/swiper.bundle-6c5e7804.js"));
 
                     case 3:
                       _yield$__webpack_requ = _context18.sent;

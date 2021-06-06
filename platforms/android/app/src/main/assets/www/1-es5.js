@@ -54,9 +54,9 @@
       /* harmony import */
 
 
-      var _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./overlays-28c23c35.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-28c23c35.js");
+      var _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./overlays-e9ccff30.js */
+      "./node_modules/@ionic/core/dist/esm/overlays-e9ccff30.js");
       /* harmony import */
 
 
@@ -237,13 +237,13 @@
           this.animated = true;
 
           this.onBackdropTap = function () {
-            _this.dismiss(undefined, _overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["B"]);
+            _this.dismiss(undefined, _overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["B"]);
           };
 
           this.dispatchCancelHandler = function (ev) {
             var role = ev.detail.role;
 
-            if (Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
+            if (Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
               var cancelButton = _this.processedButtons.find(function (b) {
                 return b.role === 'cancel';
               });
@@ -363,7 +363,7 @@
         }, {
           key: "connectedCallback",
           value: function connectedCallback() {
-            Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this.el);
+            Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this.el);
           }
         }, {
           key: "componentWillLoad",
@@ -404,7 +404,7 @@
         }, {
           key: "present",
           value: function present() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this, 'alertEnter', iosEnterAnimation, mdEnterAnimation);
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this, 'alertEnter', iosEnterAnimation, mdEnterAnimation);
           }
           /**
            * Dismiss the alert overlay after it has been presented.
@@ -419,7 +419,7 @@
         }, {
           key: "dismiss",
           value: function dismiss(data, role) {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this, data, role, 'alertLeave', iosLeaveAnimation, mdLeaveAnimation);
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this, data, role, 'alertLeave', iosLeaveAnimation, mdLeaveAnimation);
           }
           /**
            * Returns a promise that resolves when the alert did dismiss.
@@ -428,7 +428,7 @@
         }, {
           key: "onDidDismiss",
           value: function onDidDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionAlertDidDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionAlertDidDismiss');
           }
           /**
            * Returns a promise that resolves when the alert will dismiss.
@@ -437,7 +437,7 @@
         }, {
           key: "onWillDismiss",
           value: function onWillDismiss() {
-            return Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionAlertWillDismiss');
+            return Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["g"])(this.el, 'ionAlertWillDismiss');
           }
         }, {
           key: "rbClick",
@@ -458,14 +458,14 @@
             }
 
             this.activeId = selectedInput.id;
-            Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["s"])(selectedInput.handler, selectedInput);
+            Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["s"])(selectedInput.handler, selectedInput);
             Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["j"])(this);
           }
         }, {
           key: "cbClick",
           value: function cbClick(selectedInput) {
             selectedInput.checked = !selectedInput.checked;
-            Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["s"])(selectedInput.handler, selectedInput);
+            Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["s"])(selectedInput.handler, selectedInput);
             Object(_index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__["j"])(this);
           }
         }, {
@@ -474,7 +474,7 @@
             var role = button.role;
             var values = this.getValues();
 
-            if (Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
+            if (Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
               return this.dismiss({
                 values: values
               }, role);
@@ -496,7 +496,7 @@
             if (button && button.handler) {
               // a handler has been provided, execute it
               // pass the handler the values from the inputs
-              var returnData = Object(_overlays_28c23c35_js__WEBPACK_IMPORTED_MODULE_3__["s"])(button.handler, data);
+              var returnData = Object(_overlays_e9ccff30_js__WEBPACK_IMPORTED_MODULE_3__["s"])(button.handler, data);
 
               if (returnData === false) {
                 // if the return value of the handler is false then do not dismiss

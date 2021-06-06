@@ -20453,7 +20453,7 @@
         _createClass(UtilService, [{
           key: "setFormatDate",
           value: function setFormatDate(date) {
-            return moment__WEBPACK_IMPORTED_MODULE_2__(date).lang("es").calendar() + " " + moment__WEBPACK_IMPORTED_MODULE_2__(date).format('LT');
+            return moment__WEBPACK_IMPORTED_MODULE_2__(date).locale("es").calendar() + " " + moment__WEBPACK_IMPORTED_MODULE_2__(date).format('LT');
             ;
           }
         }, {
@@ -20462,6 +20462,18 @@
             return new Promise(function (resolve) {
               return setTimeout(resolve, ms);
             });
+          }
+        }, {
+          key: "formatHours",
+          value: function formatHours(hours) {
+            var time = hours.split(':');
+            return "".concat(time[0], ":").concat(time[1]);
+          }
+        }, {
+          key: "setFormatMoment",
+          value: function setFormatMoment(val) {
+            var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'DD-MMMM-YYYY';
+            return moment__WEBPACK_IMPORTED_MODULE_2__(val).locale('es').format(format);
           }
         }]);
 
