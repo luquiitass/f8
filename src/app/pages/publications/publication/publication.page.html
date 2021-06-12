@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="close()" *ngIf="isModal">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+
+      <ion-button color="dark" (click)="navCtrl.back()" *ngIf="!isModal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+
+
+    </ion-buttons>
+    <ion-title>Publicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngIf="publication" >
+    <ion-card-content>
+      <div class="publication-user">
+        <ion-thumbnail slot="start">
+          <ion-img
+            (click)="showPhotoUser(publication.user.photo)"
+            class="user-image"
+            [src]="publication.user.photo ? publication.user.photo.urlCompleteThumb : 'assets/images/user.png'"
+            style="border-radius:50%; background-position:center center; background-size:cover; width:40px; height:40px;">
+        </ion-img>
+        </ion-thumbnail>
+
+        <div class="user">
+          <div class="name">
+            {{publication.user.last_name}} {{publication.user.first_name}}
+          </div>
+          <div class="date">
+            {{util.getFormarHumans(publication.created_at)}}
+          </div>
+        </div>
+      </div>
+
+      <div class="publication-text">
+        <ion-text color="dark">
+          {{publication.text}}
+        </ion-text>
+      </div>
+
+      <div class="publication-image ion-text-center" *ngIf="publication.image_id">
+        <img [src]="publication.image.urlComplete">
+      </div>
+
+      <!-- <ion-grid>
+        <ion-row >
+          <ion-col class="ion-text-left">
+            <ion-text  color="dark">
+              <ion-icon name="heart-outline" color="danger"></ion-icon>
+              {{publication.likes.length}}
+            </ion-text>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <ion-text>
+              <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+              {{publication.comments.length}}
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+    
+      <div class="separator"></div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-segment *ngIf="publication" (ionChange)="segmentChanged($event)" color="secondary" [value]="segment">
+    
+    <ion-segment-button value="likes" layout="icon-start" class="sgm-likes">
+      <ion-icon name="heart-outline" ></ion-icon>
+      {{publication.likes.length}}
+    </ion-segment-button>
+
+    <ion-segment-button value="comments" layout="icon-start" class="sgm-comments">
+      
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        {{publication.comments.length}}
+    </ion-segment-button>
+  </ion-segment>
+
+  <app-likes
+    *ngIf="publication && segment == 'likes'"
+    [likes] = "publication.likes"
+  >
+  </app-likes>
+
+  <app-comments
+    *ngIf="publication && segment == 'comments'"
+    [comments] = "publication.comments"
+    [idRelation]="id"
+    [nameRelationModel]="'Publication'"
+    [withTitle] = "false"
+    (onUpdateComments)="updateComments($event,publication)"
+  ></app-comments>
+
+</ion-content>

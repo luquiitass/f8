@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { from } from 'rxjs';
 import * as moment from 'moment';
 
 @Injectable({
@@ -7,8 +6,11 @@ import * as moment from 'moment';
 })
 export class UtilService {
 
+
+
   constructor(
-  ) { }
+  ) { 
+  }
 
 
   setFormatDate(date){
@@ -27,5 +29,9 @@ export class UtilService {
 
   setFormatMoment(val,format = 'DD-MMMM-YYYY'){
     return moment(val).locale('es').format(format);
+  }
+
+  getFormarHumans(val){
+    return moment(val).locale('es').fromNow()
   }
 }

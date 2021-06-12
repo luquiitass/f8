@@ -1,0 +1,35 @@
+.publication-user{
+    display: flex;
+
+    .user{
+        display: block;
+
+        .name{
+            margin-top: 5px;
+            font-size: medium;;
+        }
+    
+        .date{
+            margin-left: 5px;
+            font-size: xx-small;
+        }
+
+    }
+}
+
+.publication-text{
+    margin: 3px;
+    margin-left: 15px;
+    font-size: medium;
+}
+
+.publication-image{
+    align-self: auto;
+}
+
+.separator{
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: solid 1px rgba(63, 62, 62, 0.671);
+}
+

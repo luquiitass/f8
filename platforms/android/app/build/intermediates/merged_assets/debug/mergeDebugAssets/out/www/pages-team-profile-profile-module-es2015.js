@@ -222,7 +222,7 @@ let ProfilePage = class ProfilePage {
     }
     playerSelect(player) {
         console.log('goTo', player);
-        this.navCtrl.navigateRoot(`player/profile/${player.id}`);
+        this.navCtrl.navigateForward(`player/profile/${player.id}`);
     }
 };
 ProfilePage.ctorParameters = () => [

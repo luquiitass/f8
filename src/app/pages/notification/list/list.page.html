@@ -12,4 +12,15 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+
+  <ion-list>
+
+    <ion-item *ngFor="let not of notifications"  (click)="visibleNot(not)" [class]="{'no-active' : not.isShow}">
+      <app-notification
+        [notification] = "not"
+      ></app-notification>
+    </ion-item>
+
+  </ion-list>
+
 </ion-content>

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Equipos</ion-title>\n  </ion-toolbar>\n  <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"teamService.api_all($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n\n    <ion-list-header *ngIf=\"teamService.list.length == 0\"  color=\"tertiary\">\n      <ion-label>Sin registros</ion-label>\n    </ion-list-header>\n   \n      <ion-item *ngFor=\"let team of teamService.list\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\" >\n        <ion-thumbnail slot=\"start\">\n          <ion-img \n            [src]=\"team.shield ? team.shield.urlComplete : 'assets/images/shield_team.png'\"\n            style=\"border-radius:50%; background-position:center center; background-size:cover; width:50px; height:50px;\">\n          </ion-img>\n        </ion-thumbnail>\n        <ion-label >\n          <h3>{{team.name}}</h3>\n        </ion-label>\n      </ion-item>\n    </ion-list>\n\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Equipos</ion-title>\n  </ion-toolbar>\n  <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n</ion-header>\n\n<ion-content>\n\n  <div *ngIf=\"!firstLoad\">\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n      <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n  \n    <ion-list>\n  \n      <ion-list-header *ngIf=\"teams.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n     \n      <ion-item *ngFor=\"let team of teams\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\" >\n        <ion-avatar slot=\"start\" >\n          <ion-img \n            [src]=\"team.shield ? team.shield.urlComplete : 'assets/images/shield_team.png'\">\n          </ion-img>\n        </ion-avatar>\n        <ion-label >\n          <h3>{{team.name}}</h3>\n        </ion-label>\n      </ion-item>\n    </ion-list>\n  </div>\n\n  <div *ngIf=\"firstLoad\">\n    <ion-item *ngFor=\"let i of listSkeleton\" >\n      <ion-avatar slot=\"start\" >\n        <ion-skeleton-text animated></ion-skeleton-text>\n      </ion-avatar>\n      <ion-label >\n        <h3>\n          <ion-skeleton-text animated style=\"width: 80%;height: 20px;\"></ion-skeleton-text>\n        </h3>\n      </ion-label>\n    </ion-item>\n  </div>\n  \n\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -135,11 +135,25 @@ let TeamsPage = class TeamsPage {
         this.modalController = modalController;
         this.dialog = dialog;
         this.auth = auth;
+        this.teams = [];
+        this.listSkeleton = new Array(10);
+        this.firstLoad = true;
         this.teamService = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('Team', request);
     }
     ngOnInit() {
-        console.log('load all Teams ');
-        this.teamService.api_all();
+        this.init();
+    }
+    init(event = null) {
+        this.teamService.api_function('all').subscribe(response => {
+            this.teams = response['data'];
+            if (event)
+                event.target.complete();
+            this.firstLoad = false;
+        }, error => {
+            if (event)
+                event.target.complete();
+            this.firstLoad = false;
+        });
     }
     close() {
         this.auth.logout();

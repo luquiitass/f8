@@ -587,7 +587,8 @@ class ModelImage {
             const base64Data = yield this.readAsBase64(capturedPhoto);
             this.photo = new Photo(capturedPhoto.webPath, base64Data, base64Data, this.url, this.thumb, this.image);
             this.image = this.photo;
-            yield this.cropImage();
+            if (this.aspectRatio != 'none')
+                yield this.cropImage();
             console.log('photo', this.photo);
         });
     }
@@ -613,7 +614,7 @@ class ModelImage {
         });
     }
     isLoadPthoto() {
-        return this.photo.data ? true : false;
+        return this.photo && this.photo.data ? true : false;
     }
     readAsBase64(cameraPhoto) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -716,7 +717,7 @@ let RequestService = class RequestService {
         console.log(`api_create model ${model}`, item);
         const path = `${this.api}/methods/${model}/create`;
         return this.http.post(path, item)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err)));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => { return this.handleError(err); }));
     }
     api_update(model, item) {
         console.log(`api_update model ${model}`, item);
@@ -743,7 +744,8 @@ let RequestService = class RequestService {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err)));
     }
     handleError(error) {
-        this.showToast(error.error.message);
+        if (error.error && error.error.message)
+            this.showToast(error.error.message);
         if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
             console.error('An error occurred:', error.error.message);
@@ -757,8 +759,7 @@ let RequestService = class RequestService {
             else if (error.status == 403) {
                 this.showToast(error.error.mensaje, 'danger', 7000, 'Error Server');
             }
-            console.error(`Backend returned code ${error.status}, ` +
-                `body was: ${error.message}`);
+            console.error(`Backend returned code `, error.status, `body was:`, error.message);
         }
         // return an observable with a user-facing error message
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["throwError"])('Something bad happened; please try again later.');
@@ -899,7 +900,7 @@ const routes = [
     },
     {
         path: 'admin_home',
-        loadChildren: () => Promise.all(/*! import() | pages-admin-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-admin-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/admin/home/home.module */ "./src/app/pages/admin/home/home.module.ts")).then(m => m.HomePageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-admin-home-home-module */ "pages-admin-home-home-module").then(__webpack_require__.bind(null, /*! ./pages/admin/home/home.module */ "./src/app/pages/admin/home/home.module.ts")).then(m => m.HomePageModule)
     },
     {
         path: 'positions',
@@ -919,7 +920,7 @@ const routes = [
     },
     {
         path: 'games',
-        loadChildren: () => Promise.all(/*! import() | pages-game-list-list-module */[__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/list/list.module */ "./src/app/pages/game/list/list.module.ts")).then(m => m.ListPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-list-list-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/list/list.module */ "./src/app/pages/game/list/list.module.ts")).then(m => m.ListPageModule)
     },
     {
         path: 'game-form',
@@ -955,19 +956,19 @@ const routes = [
     },
     {
         path: 'home',
-        loadChildren: () => Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(m => m.HomePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(m => m.HomePageModule)
     },
     {
         path: 'team/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-team-profile-profile-module */[__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/team/profile/profile.module */ "./src/app/pages/team/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-team-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/team/profile/profile.module */ "./src/app/pages/team/profile/profile.module.ts")).then(m => m.ProfilePageModule)
     },
     {
         path: 'results/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-game-result-result-module */[__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/result/result.module */ "./src/app/pages/game/result/result.module.ts")).then(m => m.ResultPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-result-result-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/result/result.module */ "./src/app/pages/game/result/result.module.ts")).then(m => m.ResultPageModule)
     },
     {
         path: 'games/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-game-game-game-module */[__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/game/game.module */ "./src/app/pages/game/game/game.module.ts")).then(m => m.GamePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-game-game-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/game/game.module */ "./src/app/pages/game/game/game.module.ts")).then(m => m.GamePageModule)
     },
     {
         path: 'crop',
@@ -983,7 +984,7 @@ const routes = [
     },
     {
         path: 'admin/game/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-game-admin-game-admin-game-module */[__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/admin-game/admin-game.module */ "./src/app/pages/game/admin-game/admin-game.module.ts")).then(m => m.AdminGamePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-admin-game-admin-game-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/admin-game/admin-game.module */ "./src/app/pages/game/admin-game/admin-game.module.ts")).then(m => m.AdminGamePageModule)
     },
     {
         path: 'list-redirect',
@@ -991,7 +992,7 @@ const routes = [
     },
     {
         path: 'player/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-player-profile-profile-module */[__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/profile/profile.module */ "./src/app/pages/player/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/profile/profile.module */ "./src/app/pages/player/profile/profile.module.ts")).then(m => m.ProfilePageModule)
     },
     {
         path: 'my-profile',
@@ -1003,7 +1004,19 @@ const routes = [
     },
     {
         path: 'player-search',
-        loadChildren: () => Promise.all(/*! import() | pages-player-player-search-player-search-module */[__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/player-search/player-search.module */ "./src/app/pages/player/player-search/player-search.module.ts")).then(m => m.PlayerSearchPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-player-search-player-search-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/player-search/player-search.module */ "./src/app/pages/player/player-search/player-search.module.ts")).then(m => m.PlayerSearchPageModule)
+    },
+    {
+        path: 'notifications',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-notification-list-list-module */ "pages-notification-list-list-module").then(__webpack_require__.bind(null, /*! ./pages/notification/list/list.module */ "./src/app/pages/notification/list/list.module.ts")).then(m => m.ListPageModule)
+    },
+    {
+        path: 'form-publication',
+        loadChildren: () => Promise.all(/*! import() | pages-publications-form-publication-form-publication-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null, /*! ./pages/publications/form-publication/form-publication.module */ "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(m => m.FormPublicationPageModule)
+    },
+    {
+        path: 'show',
+        loadChildren: () => Promise.all(/*! import() | pages-pages-publications-show-show-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-pages-publications-show-show-module")]).then(__webpack_require__.bind(null, /*! ./pages/pages/publications/show/show.module */ "./src/app/pages/pages/publications/show/show.module.ts")).then(m => m.ShowPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -1049,29 +1062,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _services_auth_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/auth-user.service */ "./src/app/services/auth-user.service.ts");
+
 
 
 
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar) {
+    constructor(platform, splashScreen, statusBar, authUser) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.authUser = authUser;
         this.initializeApp();
     }
     initializeApp() {
-        this.platform.ready().then(() => {
+        this.platform.ready().then(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log('init APP');
+            yield this.authUser.getUser();
             this.statusBar.styleDefault();
             this.splashScreen.hide();
-        });
+        }));
     }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+    { type: _services_auth_user_service__WEBPACK_IMPORTED_MODULE_5__["AuthUserService"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1746,6 +1765,132 @@ FormPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./src/app/services/auth-user.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/services/auth-user.service.ts ***!
+  \***********************************************/
+/*! exports provided: AuthUserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthUserService", function() { return AuthUserService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+
+
+
+
+
+let AuthUserService = class AuthUserService {
+    constructor(http, router, navCtrl) {
+        this.http = http;
+        this.router = router;
+        this.navCtrl = navCtrl;
+        this.user = null;
+        this.errorsLogin = '';
+    }
+    login(data) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.errorsLogin = '';
+            return this.http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].server_url}/login`, data).subscribe((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                console.log(data);
+                if (data['status'] && data['status'] == 'success') {
+                    yield this.saveData(data);
+                    yield this.getUser();
+                    this.redirect();
+                }
+                else {
+                    this.errorsLogin = 'Error de credenciales, intente nuevamente';
+                }
+            }), error => {
+                this.errorsLogin = error.message; // 'Error de credenciales, intente nuevamente';
+            });
+        });
+    }
+    setUser(user) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.user = user;
+            yield this.saveUser();
+        });
+    }
+    saveUser() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            yield localStorage.setItem('User', JSON.stringify(this.user));
+        });
+    }
+    saveData(data) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            yield localStorage.setItem('isAuthenticated', 'true');
+            yield localStorage.setItem('User', JSON.stringify(data['User']));
+            yield localStorage.setItem('token', data['api_token']);
+        });
+    }
+    removeData() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            yield localStorage.setItem('isAuthenticated', 'true');
+            yield localStorage.removeItem('User');
+            yield localStorage.removeItem('token');
+            this.user = null;
+        });
+    }
+    isAuthenticated() {
+        return localStorage.getItem('isAuthenticated') == 'true';
+    }
+    updateUser(user) {
+        localStorage.setItem('User', user);
+        return this.getUser();
+    }
+    getUser() {
+        var _a;
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return this.user = (_a = yield JSON.parse(localStorage.getItem('User'))) !== null && _a !== void 0 ? _a : null;
+        });
+    }
+    redirect() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            yield this.getUser();
+            if (!this.user)
+                return;
+            if (this.user['role'] == 'admin') {
+                this.router.navigate(['admin_home']);
+            }
+            else if (this.user['role'] == 'user') {
+                this.router.navigate(['/']);
+            }
+        });
+    }
+    logout() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            yield this.removeData();
+            //this.router.navigate(['login']);
+            this.navCtrl.navigateRoot('login');
+        });
+    }
+    isAdmin() {
+        this.user.role == 'admin';
+    }
+};
+AuthUserService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] }
+];
+AuthUserService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], AuthUserService);
+
+
+
+/***/ }),
+
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -1761,8 +1906,9 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    server_url: 'http://192.168.1.15/f8a/public/api'
+    //server_url : 'http://192.168.1.15/f8a/public/api'
     //server_url : 'http://34.68.147.207/f8a/public/api'
+    server_url: 'http://200.117.101.131/f8a/public/api'
 };
 /*
  * For easier debugging in development mode, you can import the following file

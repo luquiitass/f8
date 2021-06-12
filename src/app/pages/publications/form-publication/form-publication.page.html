@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="close()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Nueva Publicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="submit()"  (keyup)="servicePublication.errorsForm.clear()" >
+
+    <ion-item>
+      <ion-label position="floating" >Escribe aqui...</ion-label>
+      <ion-textarea  class="editor-text" [(ngModel)]="publication.text" name="text"  ></ion-textarea>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePublication.errorsForm.get('text') }}</div>
+
+    <ion-item *ngIf="false">
+      <ion-label position="floating">Mencionar Equipo</ion-label>
+      <ion-select [(ngModel)]="publication.l_team" name="l_team">
+        <ion-select-option [value]="l_team.id" *ngFor="let l_team of teams">{{ l_team.name }}</ion-select-option>
+      </ion-select>
+      <div style="color: red; padding-top: 0.2rem" >{{ servicePublication.errorsForm.get('l_team') }}</div>
+    </ion-item>
+
+    <ion-item *ngIf="this.photoModel.isLoadPthoto()">
+      <ion-img  [src]="photoModel.photo.getPath()" ></ion-img>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="full" fill="outline"  (click)="photoModel.addOneNewToGallery()" >
+        <ion-icon  name="image"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-button type="submit"  expand="block" [disabled]="posting">
+      <ion-spinner name="lines" *ngIf="posting" ></ion-spinner>
+      Publicar
+    </ion-button>
+  </form>
+</ion-content>

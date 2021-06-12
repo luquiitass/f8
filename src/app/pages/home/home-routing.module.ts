@@ -25,11 +25,19 @@ const routes: Routes = [
         loadChildren: () => import('./players/players.module').then( m => m.PlayersPageModule)
       },
       {
+        path: 'publications',
+        loadChildren: () => import('./publications/publications.module').then( m => m.PublicationsPageModule)
+      },
+      {
         path: '',
         redirectTo: '/home/results',
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: 'publications',
+    loadChildren: () => import('./publications/publications.module').then( m => m.PublicationsPageModule)
   },
   
   

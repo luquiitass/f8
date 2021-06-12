@@ -686,6 +686,26 @@
     },
 
     /***/
+    "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/pages/publications/show/show.page.html":
+    /*!****************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/pages/publications/show/show.page.html ***!
+      \****************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function node_modulesRawLoaderDistCjsJsSrcAppPagesPagesPublicationsShowShowPageHtml(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Publicación</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngIf=\"publication\" >\n    <ion-card-content>\n      <div class=\"publication-user\">\n        <ion-thumbnail slot=\"start\">\n          <ion-img\n            (click)=\"showPhotoUser(publication.user.photo)\"\n            class=\"user-image\"\n            [src]=\"publication.user.photo ? publication.user.photo.urlCompleteThumb : 'assets/images/user.png'\"\n            style=\"border-radius:50%; background-position:center center; background-size:cover; width:40px; height:40px;\">\n        </ion-img>\n        </ion-thumbnail>\n\n        <div class=\"user\">\n          <div class=\"name\">\n            {{publication.user.last_name}} {{publication.user.first_name}}\n          </div>\n          <div class=\"date\">\n            {{util.getFormarHumans(publication.created_at)}}\n          </div>\n        </div>\n      </div>\n\n      <div class=\"publication-text\">\n        <ion-text color=\"dark\">\n          {{publication.text}}\n        </ion-text>\n      </div>\n\n      <div class=\"publication-image ion-text-center\" *ngIf=\"publication.image_id\">\n        <img [src]=\"publication.image.urlComplete\">\n      </div>\n\n      <!-- <ion-grid>\n        <ion-row >\n          <ion-col class=\"ion-text-left\">\n            <ion-text  color=\"dark\">\n              <ion-icon name=\"heart-outline\" color=\"danger\"></ion-icon>\n              {{publication.likes.length}}\n            </ion-text>\n          </ion-col>\n          <ion-col class=\"ion-text-right\">\n            <ion-text>\n              <ion-icon name=\"chatbubble-ellipses-outline\"></ion-icon>\n              {{publication.comments.length}}\n            </ion-text>\n          </ion-col>\n        </ion-row>\n      </ion-grid> -->\n    \n      <div class=\"separator\"></div>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-segment *ngIf=\"publication\" (ionChange)=\"segmentChanged($event)\" color=\"secondary\" [value]=\"segment\">\n    \n    <ion-segment-button value=\"likes\" layout=\"icon-start\" class=\"sgm-likes\">\n      <ion-icon name=\"heart-outline\" ></ion-icon>\n      {{publication.likes.length}}\n    </ion-segment-button>\n\n    <ion-segment-button value=\"comments\" layout=\"icon-start\" class=\"sgm-comments\">\n      \n        <ion-icon name=\"chatbubble-ellipses-outline\"></ion-icon>\n        {{publication.comments.length}}\n    </ion-segment-button>\n  </ion-segment>\n\n  <app-likes\n    *ngIf=\"publication && segment == 'likes'\"\n    [likes] = \"publication.likes\"\n  >\n  </app-likes>\n\n  <app-comments\n    *ngIf=\"publication && segment== 'comments'\"\n    [comments] = \"publication.comments\"\n    [idRelation]=\"id\"\n    [nameRelationModel]=\"'Publication'\"\n    [withTitle] = \"false\"\n    (onUpdateComments)=\"updateComments($event,publication)\"\n  ></app-comments>\n\n</ion-content>\n";
+      /***/
+    },
+
+    /***/
     "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/player/player-form/player-form.page.html":
     /*!******************************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/player/player-form/player-form.page.html ***!
@@ -726,6 +746,26 @@
     },
 
     /***/
+    "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/publications/form-publication/form-publication.page.html":
+    /*!**********************************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/publications/form-publication/form-publication.page.html ***!
+      \**********************************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function node_modulesRawLoaderDistCjsJsSrcAppPagesPublicationsFormPublicationFormPublicationPageHtml(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Nueva Publicación</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"servicePublication.errorsForm.clear()\" >\n\n    <ion-item>\n      <ion-label position=\"floating\" >Escribe aqui...</ion-label>\n      <ion-textarea  class=\"editor-text\" [(ngModel)]=\"publication.text\" name=\"text\"  ></ion-textarea>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePublication.errorsForm.get('text') }}</div>\n\n    <ion-item *ngIf=\"false\">\n      <ion-label position=\"floating\">Mencionar Equipo</ion-label>\n      <ion-select [(ngModel)]=\"publication.l_team\" name=\"l_team\">\n        <ion-select-option [value]=\"l_team.id\" *ngFor=\"let l_team of teams\">{{ l_team.name }}</ion-select-option>\n      </ion-select>\n      <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePublication.errorsForm.get('l_team') }}</div>\n    </ion-item>\n\n    <ion-item *ngIf=\"this.photoModel.isLoadPthoto()\">\n      <ion-img  [src]=\"photoModel.photo.getPath()\" ></ion-img>\n    </ion-item>\n    <ion-item>\n      <ion-button expand=\"full\" fill=\"outline\"  (click)=\"photoModel.addOneNewToGallery()\" >\n        <ion-icon  name=\"image\"></ion-icon>\n      </ion-button>\n    </ion-item>\n\n    <ion-button type=\"submit\"  expand=\"block\" [disabled]=\"posting\">\n      <ion-spinner name=\"lines\" *ngIf=\"posting\" ></ion-spinner>\n      Publicar\n    </ion-button>\n  </form>\n</ion-content>\n";
+      /***/
+    },
+
+    /***/
     "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/typeEvent/type-event-form/type-event-form.page.html":
     /*!*****************************************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/typeEvent/type-event-form/type-event-form.page.html ***!
@@ -761,7 +801,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>User</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceUser.errorsForm.clear()\" >\n\n \n    <div>\n      <ion-img  [src]=\"photoService.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('photo') }}</div>\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar Foto' :'Seleccionar Foto' }}</ion-button>\n      </div>\n    </div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"user.first_name\" name=\"first_name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('first_name') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Apellido</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"user.last_name\" name=\"last_name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('last_name') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Email</ion-label>\n      <ion-input type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('email') }}</div>\n\n    <ion-item *ngIf=\"!id\">\n      <ion-label position=\"floating\" >Contraseña</ion-label>\n      <ion-input type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('password') }}</div>\n\n    <ion-item *ngIf=\"!id\">\n      <ion-label position=\"floating\" >Confirmar Contraseña</ion-label>\n      <ion-input type=\"password\" [(ngModel)]=\"user.confirm_password\" name=\"confirm_password\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('confirm_password') }}</div>\n   \n    <ion-button type=\"submit\"  expand=\"block\">Guardar</ion-button>\n  </form>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{user.id ? 'Modificar' : 'Nuevo Usuario'}}</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceUser.errorsForm.clear()\" >\n\n \n    <div>\n      <ion-img  [src]=\"photoService.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('photo') }}</div>\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar Foto' :'Seleccionar Foto' }}</ion-button>\n      </div>\n    </div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"user.first_name\" name=\"first_name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('first_name') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Apellido</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"user.last_name\" name=\"last_name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('last_name') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Email</ion-label>\n      <ion-input type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('email') }}</div>\n\n    <ion-item *ngIf=\"!id\">\n      <ion-label position=\"floating\" >Contraseña</ion-label>\n      <ion-input type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('password') }}</div>\n\n    <ion-item *ngIf=\"!id\">\n      <ion-label position=\"floating\" >Confirmar Contraseña</ion-label>\n      <ion-input type=\"password\" [(ngModel)]=\"user.confirm_password\" name=\"confirm_password\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('confirm_password') }}</div>\n   \n    <ion-button type=\"submit\"  expand=\"block\" [disabled]=\"saving\">\n      <ion-spinner name=\"lines\" *ngIf=\"saving\" ></ion-spinner>\n      Guardar\n    </ion-button>\n  </form>\n</ion-content>\n";
       /***/
     },
 
@@ -975,7 +1015,174 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = ".game {\n  color: #FFF;\n  width: 100%;\n  padding: 3px;\n  padding: 10px;\n  border-radius: 5px;\n  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px white, 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);\n}\n\n.team {\n  position: relative;\n  background-image: url(/assets/images/img_fondo_res4.png);\n  background-repeat: no-repeat;\n  background-size: cover;\n  padding: 10px;\n  width: 100%;\n  padding-top: 15px;\n}\n\n.name-team {\n  display: inline-block;\n  width: 70%;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.goals-team {\n  display: inline-block;\n  width: 30%;\n  text-align: right;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  padding-right: 20px;\n}\n\n.comment {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0Esb0dBQUE7QUFDSjs7QUFFQTtFQUNJLGtCQUFBO0VBQ0Esd0RBQUE7RUFDQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7RUFDQSxpQkFBQTtBQUNKOztBQUVBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0FBQ0o7O0FBR0E7RUFDSSxxQkFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0FBQUo7O0FBR0E7RUFDSSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtBQUFKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmdhbWV7XG4gICAgY29sb3I6ICNGRkY7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcGFkZGluZzogM3B4O1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIGJveC1zaGFkb3c6IGluc2V0IDAgLTNlbSAzZW0gcmdiYSgwLCAwLCAwLCAwLjEpLCAwIDAgMCAycHggd2hpdGUsIDAuM2VtIDAuM2VtIDFlbSByZ2JhKDAsIDAsIDAsIDAuMyk7XG59XG5cbi50ZWFte1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoL2Fzc2V0cy9pbWFnZXMvaW1nX2ZvbmRvX3JlczQucG5nKTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBwYWRkaW5nLXRvcDogMTVweDtcbn1cblxuLm5hbWUtdGVhbXtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDcwJTtcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbn1cblxuLmdvYWxzLXRlYW17XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHdpZHRoOiAzMCU7XG4gICAgdGV4dC1hbGlnbjogcmlnaHQ7XG4gICAgdGV4dC1vdmVyZmxvdzogZWxsaXBzaXM7XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIHBhZGRpbmctcmlnaHQ6IDIwcHg7XG59XG5cbi5jb21tZW50e1xuICAgIHBvc2l0aW9uIDogYWJzb2x1dGU7XG4gICAgdG9wIDoxMHB4O1xuICAgIHJpZ2h0IDogMTBweDtcbiAgICBkaXNwbGF5OiBub25lO1xufVxuIl19 */";
+      __webpack_exports__["default"] = ".game {\n  color: #FFF;\n  width: 100%;\n  padding: 3px;\n  padding: 10px;\n  border-radius: 5px;\n  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px white, 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);\n}\n\n.team {\n  position: relative;\n  background-image: url('img_fondo_res4.png');\n  background-repeat: no-repeat;\n  background-size: cover;\n  padding: 10px;\n  width: 100%;\n  padding-top: 15px;\n}\n\n.name-team {\n  display: inline-block;\n  width: 70%;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.goals-team {\n  display: inline-block;\n  width: 30%;\n  text-align: right;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  padding-right: 20px;\n}\n\n.comment {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0Esb0dBQUE7QUFDSjs7QUFFQTtFQUNJLGtCQUFBO0VBQ0EsMkNBQUE7RUFDQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7RUFDQSxpQkFBQTtBQUNKOztBQUVBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0FBQ0o7O0FBR0E7RUFDSSxxQkFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0FBQUo7O0FBR0E7RUFDSSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtBQUFKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmdhbWV7XG4gICAgY29sb3I6ICNGRkY7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcGFkZGluZzogM3B4O1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIGJveC1zaGFkb3c6IGluc2V0IDAgLTNlbSAzZW0gcmdiYSgwLCAwLCAwLCAwLjEpLCAwIDAgMCAycHggd2hpdGUsIDAuM2VtIDAuM2VtIDFlbSByZ2JhKDAsIDAsIDAsIDAuMyk7XG59XG5cbi50ZWFte1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoLi4vLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9pbWdfZm9uZG9fcmVzNC5wbmcpO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIHBhZGRpbmctdG9wOiAxNXB4O1xufVxuXG4ubmFtZS10ZWFte1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogNzAlO1xuICAgIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxufVxuXG4uZ29hbHMtdGVhbXtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDMwJTtcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgcGFkZGluZy1yaWdodDogMjBweDtcbn1cblxuLmNvbW1lbnR7XG4gICAgcG9zaXRpb24gOiBhYnNvbHV0ZTtcbiAgICB0b3AgOjEwcHg7XG4gICAgcmlnaHQgOiAxMHB4O1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG4iXX0= */";
+      /***/
+    },
+
+    /***/
+    "./src/app/pages/pages/publications/show/show.page.scss":
+    /*!**************************************************************!*\
+      !*** ./src/app/pages/pages/publications/show/show.page.scss ***!
+      \**************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function srcAppPagesPagesPublicationsShowShowPageScss(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = ".publication-user {\n  display: flex;\n}\n.publication-user .user {\n  display: block;\n}\n.publication-user .user .name {\n  margin-top: 5px;\n  font-size: medium;\n}\n.publication-user .user .date {\n  margin-left: 5px;\n  font-size: xx-small;\n}\n.publication-text {\n  margin: 10px;\n  margin-left: 15px;\n  font-size: medium;\n}\n.publication-image {\n  align-self: auto;\n}\n.separator {\n  margin-left: 10px;\n  margin-right: 10px;\n  border-bottom: solid 1px rgba(63, 62, 62, 0.671);\n}\n.sgm-likes {\n  --ion-color-base: #e73636 !important;\n}\n.sgm-comments {\n  --ion-color-base: #277ecf !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvcGFnZXMvcHVibGljYXRpb25zL3Nob3cvc2hvdy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0FBQ0o7QUFDSTtFQUNJLGNBQUE7QUFDUjtBQUNRO0VBQ0ksZUFBQTtFQUNBLGlCQUFBO0FBQ1o7QUFFUTtFQUNJLGdCQUFBO0VBQ0EsbUJBQUE7QUFBWjtBQU1BO0VBQ0ksWUFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7QUFISjtBQU1BO0VBQ0ksZ0JBQUE7QUFISjtBQU1BO0VBQ0ksaUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdEQUFBO0FBSEo7QUFNQTtFQUNJLG9DQUFBO0FBSEo7QUFNQTtFQUNJLG9DQUFBO0FBSEoiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9wYWdlcy9wdWJsaWNhdGlvbnMvc2hvdy9zaG93LnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wdWJsaWNhdGlvbi11c2Vye1xuICAgIGRpc3BsYXk6IGZsZXg7XG5cbiAgICAudXNlcntcbiAgICAgICAgZGlzcGxheTogYmxvY2s7XG5cbiAgICAgICAgLm5hbWV7XG4gICAgICAgICAgICBtYXJnaW4tdG9wOiA1cHg7XG4gICAgICAgICAgICBmb250LXNpemU6IG1lZGl1bTs7XG4gICAgICAgIH1cbiAgICBcbiAgICAgICAgLmRhdGV7XG4gICAgICAgICAgICBtYXJnaW4tbGVmdDogNXB4O1xuICAgICAgICAgICAgZm9udC1zaXplOiB4eC1zbWFsbDtcbiAgICAgICAgfVxuXG4gICAgfVxufVxuXG4ucHVibGljYXRpb24tdGV4dHtcbiAgICBtYXJnaW46IDEwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IDE1cHg7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG59XG5cbi5wdWJsaWNhdGlvbi1pbWFnZXtcbiAgICBhbGlnbi1zZWxmOiBhdXRvO1xufVxuXG4uc2VwYXJhdG9ye1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xuICAgIG1hcmdpbi1yaWdodDogMTBweDtcbiAgICBib3JkZXItYm90dG9tOiBzb2xpZCAxcHggcmdiYSg2MywgNjIsIDYyLCAwLjY3MSk7XG59XG5cbi5zZ20tbGlrZXN7XG4gICAgLS1pb24tY29sb3ItYmFzZTogI2U3MzYzNiAhaW1wb3J0YW50O1xufVxuXG4uc2dtLWNvbW1lbnRze1xuICAgIC0taW9uLWNvbG9yLWJhc2U6ICMyNzdlY2YgIWltcG9ydGFudDtcbn0iXX0= */";
+      /***/
+    },
+
+    /***/
+    "./src/app/pages/pages/publications/show/show.page.ts":
+    /*!************************************************************!*\
+      !*** ./src/app/pages/pages/publications/show/show.page.ts ***!
+      \************************************************************/
+
+    /*! exports provided: ShowPage */
+
+    /***/
+    function srcAppPagesPagesPublicationsShowShowPageTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ShowPage", function () {
+        return ShowPage;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/api/models/model */
+      "./src/app/api/models/model.ts");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/app/api/request.service */
+      "./src/app/api/request.service.ts");
+      /* harmony import */
+
+
+      var src_app_services_util_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/services/util.service */
+      "./src/app/services/util.service.ts");
+      /* harmony import */
+
+
+      var src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! src/app/services/transfer-data.service */
+      "./src/app/services/transfer-data.service.ts");
+
+      var ShowPage = /*#__PURE__*/function () {
+        function ShowPage(request, navParams, util, viewCtrl, transferData) {
+          _classCallCheck(this, ShowPage);
+
+          this.request = request;
+          this.navParams = navParams;
+          this.util = util;
+          this.viewCtrl = viewCtrl;
+          this.transferData = transferData;
+          this.publicationModel = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('Publication', request);
+          this.id = navParams.get('id');
+          this.segment = navParams.get('segment');
+          console.log('publication show', this.id);
+          var result = transferData.getData('test');
+          console.log('get data transfer in ShowPage', result);
+        }
+
+        _createClass(ShowPage, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            this.init();
+          }
+        }, {
+          key: "init",
+          value: function init() {
+            var _this = this;
+
+            var $event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            this.publicationModel.api_functionModel(this.id, 'pageShow').subscribe(function (response) {
+              console.log(response);
+              _this.publication = response['data'];
+              if ($event) $event.target.complete();
+            });
+          }
+        }, {
+          key: "close",
+          value: function close() {
+            this.publication.comments_count = this.publication.comments.length;
+            this.publication.likes_count = this.publication.likes.length;
+            this.viewCtrl.dismiss({
+              publication: this.publication
+            });
+          }
+        }, {
+          key: "segmentChanged",
+          value: function segmentChanged($event) {
+            console.log('Segment changed', $event);
+            this.segment = $event.detail.value;
+          }
+        }, {
+          key: "updateComments",
+          value: function updateComments($event, publication) {
+            publication.comments = $event;
+          }
+        }]);
+
+        return ShowPage;
+      }();
+
+      ShowPage.ctorParameters = function () {
+        return [{
+          type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__["RequestService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
+        }, {
+          type: src_app_services_util_service__WEBPACK_IMPORTED_MODULE_5__["UtilService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+        }, {
+          type: src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_6__["TransferDataService"]
+        }];
+      };
+
+      ShowPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-show',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+        /*! raw-loader!./show.page.html */
+        "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/pages/publications/show/show.page.html"))["default"],
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+        /*! ./show.page.scss */
+        "./src/app/pages/pages/publications/show/show.page.scss"))["default"]]
+      })], ShowPage);
       /***/
     },
 
@@ -1094,7 +1301,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this = this;
+            var _this2 = this;
 
             this.player = {
               'name': '',
@@ -1111,9 +1318,9 @@
             if (this.id) {
               this.servicePlayer.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this.player = data['Player'];
+                  _this2.player = data['Player'];
 
-                  _this.photoModel.setImage(_this.player.photo);
+                  _this2.photoModel.setImage(_this2.player.photo);
                 }
               });
             }
@@ -1144,7 +1351,7 @@
           key: "savePhoto",
           value: function savePhoto() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var _this2 = this;
+              var _this3 = this;
 
               return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
@@ -1154,12 +1361,12 @@
                       return this.photoModel.uploadImage().subscribe(function (data) {
                         if (data['status'] == 'success') {
                           var image = data['Image'];
-                          _this2.player.photo_id = image.id;
+                          _this3.player.photo_id = image.id;
 
-                          _this2.savePlayer();
+                          _this3.savePlayer();
                         }
                       }, function (error) {
-                        _this2.dialogService.showToast('Error al subir Portada', 'Error', 'danger'); //this.submit();
+                        _this3.dialogService.showToast('Error al subir Portada', 'Error', 'danger'); //this.submit();
 
                       });
 
@@ -1174,16 +1381,16 @@
         }, {
           key: "savePlayer",
           value: function savePlayer() {
-            var _this3 = this;
+            var _this4 = this;
 
             if (this.player.id) {
               this.servicePlayer.api_update(this.player).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this3.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this4.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this3.dismiss(data['Player']);
+                  _this4.dismiss(data['Player']);
                 }
               });
             } else {
@@ -1191,9 +1398,9 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this3.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this4.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this3.dismiss(data['Player']);
+                  _this4.dismiss(data['Player']);
                 }
               });
             }
@@ -1202,7 +1409,7 @@
           key: "selectUser",
           value: function selectUser() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-              var _this4 = this;
+              var _this5 = this;
 
               var modal;
               return regeneratorRuntime.wrap(function _callee4$(_context4) {
@@ -1226,8 +1433,8 @@
                       modal = _context4.sent;
                       modal.onDidDismiss().then(function (data) {
                         var user = data.data['item'];
-                        _this4.player.user_id = user.id;
-                        _this4.player.email = user.text;
+                        _this5.player.user_id = user.id;
+                        _this5.player.email = user.text;
                       });
                       _context4.next = 7;
                       return modal.present();
@@ -1376,7 +1583,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this5 = this;
+            var _this6 = this;
 
             this.posicion = {
               name: ''
@@ -1385,7 +1592,7 @@
             if (this.id) {
               this.servicePosition.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this5.posicion = data['Position'];
+                  _this6.posicion = data['Position'];
                 }
               });
             }
@@ -1393,16 +1600,16 @@
         }, {
           key: "submit",
           value: function submit() {
-            var _this6 = this;
+            var _this7 = this;
 
             if (this.posicion.id) {
               this.servicePosition.api_update(this.posicion).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this6.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this7.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this6.dismiss(data['Position']);
+                  _this7.dismiss(data['Position']);
                 }
               });
             } else {
@@ -1410,9 +1617,9 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this6.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this7.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this6.dismiss(data['Position']);
+                  _this7.dismiss(data['Position']);
                 }
               });
             }
@@ -1457,6 +1664,257 @@
         /*! ./position-form.page.scss */
         "./src/app/pages/position/position-form/position-form.page.scss"))["default"]]
       })], PositionFormPage);
+      /***/
+    },
+
+    /***/
+    "./src/app/pages/publications/form-publication/form-publication.page.scss":
+    /*!********************************************************************************!*\
+      !*** ./src/app/pages/publications/form-publication/form-publication.page.scss ***!
+      \********************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function srcAppPagesPublicationsFormPublicationFormPublicationPageScss(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3B1YmxpY2F0aW9ucy9mb3JtLXB1YmxpY2F0aW9uL2Zvcm0tcHVibGljYXRpb24ucGFnZS5zY3NzIn0= */";
+      /***/
+    },
+
+    /***/
+    "./src/app/pages/publications/form-publication/form-publication.page.ts":
+    /*!******************************************************************************!*\
+      !*** ./src/app/pages/publications/form-publication/form-publication.page.ts ***!
+      \******************************************************************************/
+
+    /*! exports provided: FormPublicationPage */
+
+    /***/
+    function srcAppPagesPublicationsFormPublicationFormPublicationPageTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "FormPublicationPage", function () {
+        return FormPublicationPage;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var src_app_api_request_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! src/app/api/request.service */
+      "./src/app/api/request.service.ts");
+      /* harmony import */
+
+
+      var src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/api/util/dialog.service */
+      "./src/app/api/util/dialog.service.ts");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var src_app_services_photo_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/services/photo.service */
+      "./src/app/services/photo.service.ts");
+      /* harmony import */
+
+
+      var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! src/app/api/models/model */
+      "./src/app/api/models/model.ts");
+      /* harmony import */
+
+
+      var src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/api/models/modelImage */
+      "./src/app/api/models/modelImage.ts");
+      /* harmony import */
+
+
+      var src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/services/auth-user.service */
+      "./src/app/services/auth-user.service.ts");
+
+      var FormPublicationPage = /*#__PURE__*/function () {
+        function FormPublicationPage(request, dialogService, viewCtrl, photoService, navParams, authUser) {
+          _classCallCheck(this, FormPublicationPage);
+
+          this.request = request;
+          this.dialogService = dialogService;
+          this.viewCtrl = viewCtrl;
+          this.photoService = photoService;
+          this.authUser = authUser;
+          this.posting = false;
+
+          this.myDateFilter = function (d) {
+            var day = d.getDay();
+            return day == 6;
+          };
+
+          this.photoModel = new src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_7__["ModelImage"](request, viewCtrl);
+          this.photoModel.setAspectRatioCrop('none');
+          this.servicePublication = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Publication', request); //this.serviceTeam.setModel('Team');
+
+          this.id = navParams.get('id');
+        }
+
+        _createClass(FormPublicationPage, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                while (1) {
+                  switch (_context5.prev = _context5.next) {
+                    case 0:
+                      _context5.next = 2;
+                      return this.authUser.getUser();
+
+                    case 2:
+                      this.user = _context5.sent;
+                      this.initObject();
+
+                    case 4:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, _callee5, this);
+            }));
+          }
+        }, {
+          key: "initObject",
+          value: function initObject() {
+            var _this8 = this;
+
+            this.publication = {
+              text: '',
+              user_id: this.user.id
+            };
+
+            if (this.id) {
+              this.servicePublication.api_find(this.id).subscribe(function (data) {
+                if (data['status'] == 'success') {
+                  _this8.publication = data['Publication'];
+                }
+              });
+            }
+          }
+        }, {
+          key: "submit",
+          value: function submit() {
+            var _this9 = this;
+
+            if (this.photoModel.isLoadPthoto()) {
+              this.publication.image = this.photoModel.image;
+            }
+
+            this.posting = true;
+
+            if (this.publication.id) {
+              this.servicePublication.api_update(this.publication).subscribe(function (data) {
+                var _a;
+
+                if (data['status'] == 'success') {
+                  _this9.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+
+                  console.log(data);
+
+                  _this9.dismiss(data['Publication']);
+                }
+
+                _this9.posting = false;
+              }, function (error) {
+                _this9.posting = false;
+              });
+            } else {
+              this.servicePublication.api_create(this.publication).subscribe(function (data) {
+                var _a;
+
+                if (data['status'] == 'success') {
+                  _this9.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+
+                  _this9.dismiss(data['Publication']);
+                }
+
+                _this9.posting = false;
+              }, function (error) {
+                _this9.posting = false;
+              });
+            }
+          }
+        }, {
+          key: "dismiss",
+          value: function dismiss(publication) {
+            this.viewCtrl.dismiss({
+              publication: publication
+            });
+          }
+        }, {
+          key: "close",
+          value: function close() {
+            this.viewCtrl.dismiss();
+          }
+        }, {
+          key: "print",
+          value: function print() {
+            console.log(this.publication);
+          }
+        }]);
+
+        return FormPublicationPage;
+      }();
+
+      FormPublicationPage.ctorParameters = function () {
+        return [{
+          type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_2__["RequestService"]
+        }, {
+          type: src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_3__["DialogService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+        }, {
+          type: src_app_services_photo_service__WEBPACK_IMPORTED_MODULE_5__["PhotoService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavParams"]
+        }, {
+          type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_8__["AuthUserService"]
+        }];
+      };
+
+      FormPublicationPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-form-publication',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+        /*! raw-loader!./form-publication.page.html */
+        "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/publications/form-publication/form-publication.page.html"))["default"],
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+        /*! ./form-publication.page.scss */
+        "./src/app/pages/publications/form-publication/form-publication.page.scss"))["default"]]
+      })], FormPublicationPage);
       /***/
     },
 
@@ -1556,7 +2014,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this7 = this;
+            var _this10 = this;
 
             this.typeEvent = {
               'name': '',
@@ -1566,7 +2024,7 @@
             if (this.id) {
               this.serviceTypeEvent.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this7.typeEvent = data['TypeEvent'];
+                  _this10.typeEvent = data['TypeEvent'];
                 }
               });
             }
@@ -1574,16 +2032,16 @@
         }, {
           key: "submit",
           value: function submit() {
-            var _this8 = this;
+            var _this11 = this;
 
             if (this.typeEvent.id) {
               this.serviceTypeEvent.api_update(this.typeEvent).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this8.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this11.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this8.dismiss(data['TypeEvent']);
+                  _this11.dismiss(data['TypeEvent']);
                 }
               });
             } else {
@@ -1591,9 +2049,9 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this8.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this11.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this8.dismiss(data['TypeEvent']);
+                  _this11.dismiss(data['TypeEvent']);
                 }
               });
             }
@@ -1728,6 +2186,7 @@
           this.request = request;
           this.dialogService = dialogService;
           this.viewCtrl = viewCtrl;
+          this.saving = false;
           this.serviceUser = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_4__["Model"]('User', request);
           this.photoService = new src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_6__["ModelImage"](request, viewCtrl);
           this.photoService.init('images/users/profile/', true, 'assets/images/profile.jpg');
@@ -1742,7 +2201,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this9 = this;
+            var _this12 = this;
 
             this.user = {
               first_name: '',
@@ -1756,11 +2215,11 @@
             if (this.id) {
               this.serviceUser.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this9.user = data['User'];
+                  _this12.user = data['User'];
 
-                  _this9.photoService.setImage(_this9.user.photo);
+                  _this12.photoService.setImage(_this12.user.photo);
 
-                  console.log(_this9.photoService.photo.getPath());
+                  console.log(_this12.photoService.photo.getPath());
                 }
               });
             }
@@ -1768,7 +2227,9 @@
         }, {
           key: "submit",
           value: function submit() {
-            var _this10 = this;
+            var _this13 = this;
+
+            this.saving = true;
 
             if (this.photoService.isLoadPthoto) {
               this.user.photo = this.photoService.photo;
@@ -1779,20 +2240,28 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this10.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this13.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this10.dismiss(data['User']);
+                  _this13.dismiss(data['User']);
                 }
+
+                _this13.saving = false;
+              }, function (error) {
+                _this13.saving = false;
               });
             } else {
               this.serviceUser.api_create(this.user).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this10.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this13.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this10.dismiss(data['User']);
+                  _this13.dismiss(data['User']);
                 }
+
+                _this13.saving = false;
+              }, function (error) {
+                _this13.saving = false;
               });
             }
           }
@@ -1960,23 +2429,23 @@
     },
 
     /***/
-    "./src/app/services/auth-user.service.ts":
-    /*!***********************************************!*\
-      !*** ./src/app/services/auth-user.service.ts ***!
-      \***********************************************/
+    "./src/app/services/transfer-data.service.ts":
+    /*!***************************************************!*\
+      !*** ./src/app/services/transfer-data.service.ts ***!
+      \***************************************************/
 
-    /*! exports provided: AuthUserService */
+    /*! exports provided: TransferDataService */
 
     /***/
-    function srcAppServicesAuthUserServiceTs(module, __webpack_exports__, __webpack_require__) {
+    function srcAppServicesTransferDataServiceTs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "AuthUserService", function () {
-        return AuthUserService;
+      __webpack_require__.d(__webpack_exports__, "TransferDataService", function () {
+        return TransferDataService;
       });
       /* harmony import */
 
@@ -1990,165 +2459,49 @@
       var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/core */
       "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-      /* harmony import */
 
+      var TransferDataService = /*#__PURE__*/function () {
+        function TransferDataService() {
+          _classCallCheck(this, TransferDataService);
 
-      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! @angular/common/http */
-      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-      /* harmony import */
-
-
-      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/router */
-      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-      /* harmony import */
-
-
-      var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! src/environments/environment */
-      "./src/environments/environment.ts");
-
-      var AuthUserService = /*#__PURE__*/function () {
-        function AuthUserService(http, router) {
-          _classCallCheck(this, AuthUserService);
-
-          this.http = http;
-          this.router = router;
-          this.user = null;
-          this.errorsLogin = '';
+          this.data = {};
         }
 
-        _createClass(AuthUserService, [{
-          key: "login",
-          value: function login(data) {
-            var _this11 = this;
-
-            this.errorsLogin = '';
-            return this.http.post("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].server_url, "/login"), data).subscribe(function (data) {
-              console.log(data);
-
-              if (data['status'] && data['status'] == 'success') {
-                _this11.saveData(data);
-
-                _this11.getUser();
-
-                _this11.redirect();
-              } else {
-                _this11.errorsLogin = 'Error de credenciales, intente nuevamente';
-              }
-            }, function (error) {
-              _this11.errorsLogin = error.message; // 'Error de credenciales, intente nuevamente';
-            });
+        _createClass(TransferDataService, [{
+          key: "setData",
+          value: function setData(key, value) {
+            this.data[key] = value;
           }
         }, {
-          key: "saveData",
-          value: function saveData(data) {
-            localStorage.setItem('isAuthenticated', 'true');
-            localStorage.setItem('User', JSON.stringify(data['User']));
-            localStorage.setItem('token', data['api_token']);
+          key: "getData",
+          value: function getData(key) {
+            if (this.data.hasOwnProperty(key)) return this.data[key];
+            return null;
           }
         }, {
-          key: "removeData",
-          value: function removeData() {
-            localStorage.setItem('isAuthenticated', 'true');
-            localStorage.removeItem('User');
-            localStorage.removeItem('token');
-            this.user = null;
-          }
-        }, {
-          key: "isAuthenticated",
-          value: function isAuthenticated() {
-            return localStorage.getItem('isAuthenticated') == 'true';
-          }
-        }, {
-          key: "updateUser",
-          value: function updateUser(user) {
-            localStorage.setItem('User', user);
-            return this.getUser();
-          }
-        }, {
-          key: "getUser",
-          value: function getUser() {
-            var _a;
+          key: "clear",
+          value: function clear() {
+            var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-              return regeneratorRuntime.wrap(function _callee5$(_context5) {
-                while (1) {
-                  switch (_context5.prev = _context5.next) {
-                    case 0:
-                      _context5.next = 2;
-                      return JSON.parse(localStorage.getItem('User'));
-
-                    case 2:
-                      _context5.t1 = _a = _context5.sent;
-                      _context5.t0 = _context5.t1 !== null;
-
-                      if (!_context5.t0) {
-                        _context5.next = 6;
-                        break;
-                      }
-
-                      _context5.t0 = _a !== void 0;
-
-                    case 6:
-                      if (!_context5.t0) {
-                        _context5.next = 10;
-                        break;
-                      }
-
-                      _context5.t2 = _a;
-                      _context5.next = 11;
-                      break;
-
-                    case 10:
-                      _context5.t2 = null;
-
-                    case 11:
-                      return _context5.abrupt("return", this.user = _context5.t2);
-
-                    case 12:
-                    case "end":
-                      return _context5.stop();
-                  }
-                }
-              }, _callee5, this);
-            }));
-          }
-        }, {
-          key: "redirect",
-          value: function redirect() {
-            this.getUser();
-            if (!this.user) return;
-
-            if (this.user['role'] == 'admin') {
-              this.router.navigate(['admin_home']);
-            } else if (this.user['role'] == 'user') {
-              this.router.navigate(['/']);
+            if (this.data.hasOwnProperty(key)) {
+              delete this.data[key];
+              return;
             }
-          }
-        }, {
-          key: "logout",
-          value: function logout() {
-            this.removeData();
-            this.router.navigate(['login']);
+
+            this.data = {};
           }
         }]);
 
-        return AuthUserService;
+        return TransferDataService;
       }();
 
-      AuthUserService.ctorParameters = function () {
-        return [{
-          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
-        }, {
-          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
-        }];
+      TransferDataService.ctorParameters = function () {
+        return [];
       };
 
-      AuthUserService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      TransferDataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
-      })], AuthUserService);
+      })], TransferDataService);
       /***/
     }
   }]);

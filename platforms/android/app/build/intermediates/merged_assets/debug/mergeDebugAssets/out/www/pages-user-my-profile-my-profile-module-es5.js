@@ -246,15 +246,28 @@
       var _user_form_user_form_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ../user-form/user-form.page */
       "./src/app/pages/user/user-form/user-form.page.ts");
+      /* harmony import */
+
+
+      var src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/services/transfer-data.service */
+      "./src/app/services/transfer-data.service.ts");
 
       var MyProfilePage = /*#__PURE__*/function () {
-        function MyProfilePage(authUser, requestService, modalController) {
+        function MyProfilePage(authUser, requestService, modalController, transferData) {
           _classCallCheck(this, MyProfilePage);
 
           this.authUser = authUser;
           this.requestService = requestService;
           this.modalController = modalController;
+          this.transferData = transferData;
           this.userModel = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_3__["Model"]('User', requestService);
+          transferData.setData('test', {
+            id: 'id_lucas_data'
+          });
+          console.log('set data transfer in My Profile', {
+            id: 'id_lucas_data'
+          });
         }
 
         _createClass(MyProfilePage, [{
@@ -273,11 +286,8 @@
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
-                      _context.next = 2;
-                      return this.authUser.getUser();
+                      this.user = this.authUser.user; //await this.authUser.getUser();
 
-                    case 2:
-                      this.user = _context.sent;
                       console.log('authUser user', this.user);
 
                       if (this.user) {
@@ -295,7 +305,7 @@
                         });
                       }
 
-                    case 5:
+                    case 3:
                     case "end":
                       return _context.stop();
                   }
@@ -311,15 +321,15 @@
         }, {
           key: "showEdit",
           value: function showEdit() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
               var _this2 = this;
 
               var modal;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
-                  switch (_context2.prev = _context2.next) {
+                  switch (_context3.prev = _context3.next) {
                     case 0:
-                      _context2.next = 2;
+                      _context3.next = 2;
                       return this.modalController.create({
                         component: _user_form_user_form_page__WEBPACK_IMPORTED_MODULE_6__["UserFormPage"],
                         componentProps: {
@@ -328,27 +338,43 @@
                       });
 
                     case 2:
-                      modal = _context2.sent;
+                      modal = _context3.sent;
                       modal.onDidDismiss().then(function (data) {
-                        console.log(data);
-                        var item = data.data['user'];
-                        _this2.user.first_name = item.first_name;
-                        _this2.user.last_name = item.last_name;
-                        _this2.user.photo = item.photo;
-                        _this2.user.email = item.email;
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+                          var item;
+                          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                            while (1) {
+                              switch (_context2.prev = _context2.next) {
+                                case 0:
+                                  console.log(data);
+                                  item = data.data['user'];
+                                  this.user.first_name = item.first_name;
+                                  this.user.last_name = item.last_name;
+                                  this.user.photo = item.photo;
+                                  this.user.email = item.email;
+                                  _context2.next = 8;
+                                  return this.authUser.setUser(this.user);
+
+                                case 8:
+                                case "end":
+                                  return _context2.stop();
+                              }
+                            }
+                          }, _callee2, this);
+                        }));
                       });
-                      _context2.next = 6;
+                      _context3.next = 6;
                       return modal.present();
 
                     case 6:
-                      return _context2.abrupt("return", _context2.sent);
+                      return _context3.abrupt("return", _context3.sent);
 
                     case 7:
                     case "end":
-                      return _context2.stop();
+                      return _context3.stop();
                   }
                 }
-              }, _callee2, this);
+              }, _callee3, this);
             }));
           }
         }]);
@@ -363,6 +389,8 @@
           type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__["RequestService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"]
+        }, {
+          type: src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_7__["TransferDataService"]
         }];
       };
 

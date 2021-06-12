@@ -288,8 +288,13 @@
                 if (event) event.target.complete();
               });
             } else {
-              this.list = this.playerService.list;
-              this.playerService.api_all(event);
+              //this.list = this.playerService.list;
+              //this.playerService.api_all(event);
+              this.playerService.api_function('all').subscribe(function (response) {
+                _this.list = response['data'];
+              }, function (error) {
+                console.log(error);
+              });
             }
           }
         }, {

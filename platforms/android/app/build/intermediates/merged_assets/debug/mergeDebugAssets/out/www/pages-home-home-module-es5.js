@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title> Fútbol Alem </ion-title>\n    <ion-buttons slot=\"secondary\">\n      <!-- <ion-button >\n        <ion-icon name=\"notifications-outline\"></ion-icon>      \n      </ion-button> -->\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-menu side=\"start\" menuId=\"custom\" contentId=\"main\" class=\"my-custom-menu\">\n  <ion-header>\n    <ion-toolbar color=\"tertiary\">\n      <ion-title>Menú</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n\n    <ion-list>\n      <ion-item routerLink=\"/my-profile\" routerDirection=\"forward\" >Mi Perfil</ion-item>\n      <ion-item>Mis Equipos</ion-item>\n      <ion-item>Mis Jugadores</ion-item>\n      <ion-item>Mis Partidos</ion-item>\n      <ion-item routerLink=\"/admin_home\" routerDirection=\"forward\" >Administrar APP</ion-item>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n\n\n<ion-router-outlet id=\"main\"></ion-router-outlet>\n\n\n <ion-tabs slot=\"top\" color=\"primary\">\n\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"results\">\n        <ion-icon name=\"clipboard-outline\"></ion-icon>\n        <ion-label>Resultado</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"games\">\n        <ion-icon name=\"easel-outline\"></ion-icon>\n        <ion-label>Partidos</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"teams\">\n        <ion-icon name=\"people-outline\"></ion-icon>\n        <ion-label>Equipos</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"players\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        <ion-label>Jugadores</ion-label>\n      </ion-tab-button>\n\n    </ion-tab-bar>\n  \n  </ion-tabs>\n\n";
+      __webpack_exports__["default"] = "\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title> Fútbol Alem </ion-title>\n    <ion-buttons slot=\"secondary\">\n      <!-- <ion-button >\n        <ion-icon name=\"notifications-outline\"></ion-icon>      \n      </ion-button> -->\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-menu side=\"start\" menuId=\"custom\" contentId=\"main\" class=\"my-custom-menu\">\n  <ion-header>\n    <ion-toolbar color=\"tertiary\">\n      <ion-title>Menú</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n\n    <ion-list>\n      <ion-item routerLink=\"/my-profile\" routerDirection=\"forward\" >\n        <app-menu-user style=\"width: 100%;\"></app-menu-user>\n      </ion-item>\n      <ion-item>Mis Equipos</ion-item>\n      <ion-item>Mis Jugadores</ion-item>\n      <ion-item>Mis Partidos</ion-item>\n      <ion-item routerLink=\"/admin_home\" routerDirection=\"forward\" >Administrar APP</ion-item>\n      <ion-item (click)=\"logout()\">\n        <ion-label>Cerrar Sesión</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n\n\n<ion-router-outlet id=\"main\"></ion-router-outlet>\n\n\n <ion-tabs slot=\"top\" color=\"primary\">\n\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"results\">\n        <ion-icon name=\"clipboard-outline\"></ion-icon>\n        <ion-label>Resultado</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"games\">\n        <ion-icon name=\"easel-outline\"></ion-icon>\n        <ion-label>Partidos</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"teams\">\n        <ion-icon name=\"people-outline\"></ion-icon>\n        <ion-label>Equipos</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"players\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        <ion-label>Jugadores</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"publications\">\n        <ion-icon name=\"happy-outline\"></ion-icon>        \n        <ion-label>3° Tiempo</ion-label>\n      </ion-tab-button>\n\n    </ion-tab-bar>\n  \n  </ion-tabs>\n\n";
       /***/
     },
 
@@ -89,7 +89,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | results-results-module */
-            [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("common"), __webpack_require__.e("results-results-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("common"), __webpack_require__.e("results-results-module")]).then(__webpack_require__.bind(null,
             /*! ./results/results.module */
             "./src/app/pages/home/results/results.module.ts")).then(function (m) {
               return m.ResultsPageModule;
@@ -100,7 +100,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | games-games-module */
-            [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("common"), __webpack_require__.e("games-games-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("common"), __webpack_require__.e("games-games-module")]).then(__webpack_require__.bind(null,
             /*! ./games/games.module */
             "./src/app/pages/home/games/games.module.ts")).then(function (m) {
               return m.GamesPageModule;
@@ -109,12 +109,23 @@
         }, {
           path: 'players',
           loadChildren: function loadChildren() {
-            return Promise.all(
+            return __webpack_require__.e(
             /*! import() | players-players-module */
-            [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("players-players-module")]).then(__webpack_require__.bind(null,
+            "players-players-module").then(__webpack_require__.bind(null,
             /*! ./players/players.module */
             "./src/app/pages/home/players/players.module.ts")).then(function (m) {
               return m.PlayersPageModule;
+            });
+          }
+        }, {
+          path: 'publications',
+          loadChildren: function loadChildren() {
+            return Promise.all(
+            /*! import() | publications-publications-module */
+            [__webpack_require__.e("common"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null,
+            /*! ./publications/publications.module */
+            "./src/app/pages/home/publications/publications.module.ts")).then(function (m) {
+              return m.PublicationsPageModule;
             });
           }
         }, {
@@ -122,6 +133,17 @@
           redirectTo: '/home/results',
           pathMatch: 'full'
         }]
+      }, {
+        path: 'publications',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | publications-publications-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null,
+          /*! ./publications/publications.module */
+          "./src/app/pages/home/publications/publications.module.ts")).then(function (m) {
+            return m.PublicationsPageModule;
+          });
+        }
       }];
 
       var HomePageRoutingModule = function HomePageRoutingModule() {
@@ -196,13 +218,19 @@
       var _home_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./home.page */
       "./src/app/pages/home/home.page.ts");
+      /* harmony import */
+
+
+      var _components_components_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ./../../components/components.module */
+      "./src/app/components/components.module.ts");
 
       var HomePageModule = function HomePageModule() {
         _classCallCheck(this, HomePageModule);
       };
 
       HomePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_5__["HomePageRoutingModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_5__["HomePageRoutingModule"], _components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"]],
         declarations: [_home_page__WEBPACK_IMPORTED_MODULE_6__["HomePage"]]
       })], HomePageModule);
       /***/
@@ -322,6 +350,11 @@
 
               _this.splashScreen.hide();
             });
+          }
+        }, {
+          key: "logout",
+          value: function logout() {
+            this.auth.logout();
           }
         }]);
 

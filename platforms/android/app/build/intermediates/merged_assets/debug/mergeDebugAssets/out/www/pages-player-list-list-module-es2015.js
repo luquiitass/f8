@@ -163,8 +163,13 @@ let ListPage = class ListPage {
             });
         }
         else {
-            this.list = this.playerService.list;
-            this.playerService.api_all(event);
+            //this.list = this.playerService.list;
+            //this.playerService.api_all(event);
+            this.playerService.api_function('all').subscribe(response => {
+                this.list = response['data'];
+            }, error => {
+                console.log(error);
+            });
         }
     }
     openModal() {

@@ -18,6 +18,7 @@ export class UserFormPage implements OnInit {
   public serviceUser : Model;
   public user : any;
   public id : any;
+  public saving = false;
 
   constructor(
     public request : RequestService,
@@ -57,7 +58,7 @@ export class UserFormPage implements OnInit {
   }
 
   submit(){
-
+    this.saving = true;
     if(this.photoService.isLoadPthoto){
       this.user.photo = this.photoService.photo;
     }
@@ -68,6 +69,10 @@ export class UserFormPage implements OnInit {
           this.dialogService.showToast( data['msjSuccess'] ?? 'Registrado' );
           this.dismiss(data['User'])
         }
+        this.saving = false
+      },
+      error => {
+        this.saving = false
       });
 
     }else{
@@ -76,6 +81,10 @@ export class UserFormPage implements OnInit {
           this.dialogService.showToast( data['msjSuccess'] ?? 'Registrado' );
           this.dismiss(data['User'])
         }
+        this.saving = false
+    },
+    error => {
+      this.saving = false
     })
     }
   }

@@ -1,0 +1,30 @@
+<ion-card>
+  <ion-card-content>
+
+    <ion-list>
+
+      <ion-list-header *ngIf="likes.length == 0">
+        <ion-label>
+          No posee me gustas
+        </ion-label>
+      </ion-list-header>
+
+      <ion-item *ngFor=" let user of likes " >
+        
+        <ion-thumbnail slot="start" class="comment-image">
+          <ion-img
+            class="comment-image" 
+            [src]="user.photo ? user.photo.urlCompleteThumb : ''"
+            style="border-radius:50%; background-position:center center; background-size:cover;">
+          </ion-img>
+        </ion-thumbnail>
+        
+        <ion-label>
+            
+            {{user.last_name}} {{user.first_name}}
+          </ion-label>
+      </ion-item>
+    </ion-list>
+
+  </ion-card-content>
+</ion-card>

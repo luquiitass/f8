@@ -639,13 +639,19 @@
                       base64Data = _context2.sent;
                       this.photo = new Photo(capturedPhoto.webPath, base64Data, base64Data, this.url, this.thumb, this.image);
                       this.image = this.photo;
-                      _context2.next = 10;
+
+                      if (!(this.aspectRatio != 'none')) {
+                        _context2.next = 11;
+                        break;
+                      }
+
+                      _context2.next = 11;
                       return this.cropImage();
 
-                    case 10:
+                    case 11:
                       console.log('photo', this.photo);
 
-                    case 11:
+                    case 12:
                     case "end":
                       return _context2.stop();
                   }
@@ -701,7 +707,7 @@
         }, {
           key: "isLoadPthoto",
           value: function isLoadPthoto() {
-            return this.photo.data ? true : false;
+            return this.photo && this.photo.data ? true : false;
           }
         }, {
           key: "readAsBase64",
@@ -963,7 +969,7 @@
         }, {
           key: "handleError",
           value: function handleError(error) {
-            this.showToast(error.error.message);
+            if (error.error && error.error.message) this.showToast(error.error.message);
 
             if (error.error instanceof ErrorEvent) {
               // A client-side or network error occurred. Handle it accordingly.
@@ -977,7 +983,7 @@
                 this.showToast(error.error.mensaje, 'danger', 7000, 'Error Server');
               }
 
-              console.error("Backend returned code ".concat(error.status, ", ") + "body was: ".concat(error.message));
+              console.error("Backend returned code ", error.status, "body was:", error.message);
             } // return an observable with a user-facing error message
 
 
@@ -1257,9 +1263,9 @@
       }, {
         path: 'admin_home',
         loadChildren: function loadChildren() {
-          return Promise.all(
+          return __webpack_require__.e(
           /*! import() | pages-admin-home-home-module */
-          [__webpack_require__.e("common"), __webpack_require__.e("pages-admin-home-home-module")]).then(__webpack_require__.bind(null,
+          "pages-admin-home-home-module").then(__webpack_require__.bind(null,
           /*! ./pages/admin/home/home.module */
           "./src/app/pages/admin/home/home.module.ts")).then(function (m) {
             return m.HomePageModule;
@@ -1314,7 +1320,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-list-list-module */
-          [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/list/list.module */
           "./src/app/pages/game/list/list.module.ts")).then(function (m) {
             return m.ListPageModule;
@@ -1413,7 +1419,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-home-home-module */
-          [__webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/home/home.module */
           "./src/app/pages/home/home.module.ts")).then(function (m) {
             return m.HomePageModule;
@@ -1424,7 +1430,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-team-profile-profile-module */
-          [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/team/profile/profile.module */
           "./src/app/pages/team/profile/profile.module.ts")).then(function (m) {
             return m.ProfilePageModule;
@@ -1435,7 +1441,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-result-result-module */
-          [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/result/result.module */
           "./src/app/pages/game/result/result.module.ts")).then(function (m) {
             return m.ResultPageModule;
@@ -1446,7 +1452,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-game-game-module */
-          [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/game/game.module */
           "./src/app/pages/game/game/game.module.ts")).then(function (m) {
             return m.GamePageModule;
@@ -1490,7 +1496,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-admin-game-admin-game-module */
-          [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/admin-game/admin-game.module */
           "./src/app/pages/game/admin-game/admin-game.module.ts")).then(function (m) {
             return m.AdminGamePageModule;
@@ -1512,7 +1518,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-profile-profile-module */
-          [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/profile/profile.module */
           "./src/app/pages/player/profile/profile.module.ts")).then(function (m) {
             return m.ProfilePageModule;
@@ -1545,10 +1551,43 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-player-search-player-search-module */
-          [__webpack_require__.e("default~games-games-module~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages~2f580a01"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~8c458735"), __webpack_require__.e("common"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/player-search/player-search.module */
           "./src/app/pages/player/player-search/player-search.module.ts")).then(function (m) {
             return m.PlayerSearchPageModule;
+          });
+        }
+      }, {
+        path: 'notifications',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | pages-notification-list-list-module */
+          "pages-notification-list-list-module").then(__webpack_require__.bind(null,
+          /*! ./pages/notification/list/list.module */
+          "./src/app/pages/notification/list/list.module.ts")).then(function (m) {
+            return m.ListPageModule;
+          });
+        }
+      }, {
+        path: 'form-publication',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-publications-form-publication-form-publication-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/publications/form-publication/form-publication.module */
+          "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(function (m) {
+            return m.FormPublicationPageModule;
+          });
+        }
+      }, {
+        path: 'show',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-pages-publications-show-show-module */
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-pages-publications-show-show-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/pages/publications/show/show.module */
+          "./src/app/pages/pages/publications/show/show.module.ts")).then(function (m) {
+            return m.ShowPageModule;
           });
         }
       }];
@@ -1635,14 +1674,21 @@
       var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @ionic-native/status-bar/ngx */
       "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
+      /* harmony import */
+
+
+      var _services_auth_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ./services/auth-user.service */
+      "./src/app/services/auth-user.service.ts");
 
       var AppComponent = /*#__PURE__*/function () {
-        function AppComponent(platform, splashScreen, statusBar) {
+        function AppComponent(platform, splashScreen, statusBar, authUser) {
           _classCallCheck(this, AppComponent);
 
           this.platform = platform;
           this.splashScreen = splashScreen;
           this.statusBar = statusBar;
+          this.authUser = authUser;
           this.initializeApp();
         }
 
@@ -1652,9 +1698,26 @@
             var _this8 = this;
 
             this.platform.ready().then(function () {
-              _this8.statusBar.styleDefault();
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this8, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+                return regeneratorRuntime.wrap(function _callee8$(_context8) {
+                  while (1) {
+                    switch (_context8.prev = _context8.next) {
+                      case 0:
+                        console.log('init APP');
+                        _context8.next = 3;
+                        return this.authUser.getUser();
 
-              _this8.splashScreen.hide();
+                      case 3:
+                        this.statusBar.styleDefault();
+                        this.splashScreen.hide();
+
+                      case 5:
+                      case "end":
+                        return _context8.stop();
+                    }
+                  }
+                }, _callee8, this);
+              }));
             });
           }
         }]);
@@ -1669,6 +1732,8 @@
           type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"]
         }, {
           type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]
+        }, {
+          type: _services_auth_user_service__WEBPACK_IMPORTED_MODULE_5__["AuthUserService"]
         }];
       };
 
@@ -2696,17 +2761,17 @@
         }, {
           key: "addAdmins",
           value: function addAdmins(e) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
               var _this15 = this;
 
               var modal;
-              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              return regeneratorRuntime.wrap(function _callee9$(_context9) {
                 while (1) {
-                  switch (_context8.prev = _context8.next) {
+                  switch (_context9.prev = _context9.next) {
                     case 0:
                       e.preventDefault();
                       console.log('Add admins');
-                      _context8.next = 4;
+                      _context9.next = 4;
                       return this.modalController.create({
                         component: _search_search_page__WEBPACK_IMPORTED_MODULE_7__["SearchPage"],
                         componentProps: {
@@ -2718,24 +2783,24 @@
                       });
 
                     case 4:
-                      modal = _context8.sent;
+                      modal = _context9.sent;
                       modal.onDidDismiss().then(function (data) {
                         var list = data.data['items'];
                         console.log('users_select', list);
                         _this15.team.admins = list;
                       });
-                      _context8.next = 8;
+                      _context9.next = 8;
                       return modal.present();
 
                     case 8:
-                      return _context8.abrupt("return", _context8.sent);
+                      return _context9.abrupt("return", _context9.sent);
 
                     case 9:
                     case "end":
-                      return _context8.stop();
+                      return _context9.stop();
                   }
                 }
-              }, _callee8, this);
+              }, _callee9, this);
             }));
           }
         }]);
@@ -2770,6 +2835,369 @@
     },
 
     /***/
+    "./src/app/services/auth-user.service.ts":
+    /*!***********************************************!*\
+      !*** ./src/app/services/auth-user.service.ts ***!
+      \***********************************************/
+
+    /*! exports provided: AuthUserService */
+
+    /***/
+    function srcAppServicesAuthUserServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "AuthUserService", function () {
+        return AuthUserService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common/http */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/environments/environment */
+      "./src/environments/environment.ts");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+      var AuthUserService = /*#__PURE__*/function () {
+        function AuthUserService(http, router, navCtrl) {
+          _classCallCheck(this, AuthUserService);
+
+          this.http = http;
+          this.router = router;
+          this.navCtrl = navCtrl;
+          this.user = null;
+          this.errorsLogin = '';
+        }
+
+        _createClass(AuthUserService, [{
+          key: "login",
+          value: function login(data) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+              var _this16 = this;
+
+              return regeneratorRuntime.wrap(function _callee11$(_context11) {
+                while (1) {
+                  switch (_context11.prev = _context11.next) {
+                    case 0:
+                      this.errorsLogin = '';
+                      return _context11.abrupt("return", this.http.post("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].server_url, "/login"), data).subscribe(function (data) {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this16, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+                          return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                            while (1) {
+                              switch (_context10.prev = _context10.next) {
+                                case 0:
+                                  console.log(data);
+
+                                  if (!(data['status'] && data['status'] == 'success')) {
+                                    _context10.next = 9;
+                                    break;
+                                  }
+
+                                  _context10.next = 4;
+                                  return this.saveData(data);
+
+                                case 4:
+                                  _context10.next = 6;
+                                  return this.getUser();
+
+                                case 6:
+                                  this.redirect();
+                                  _context10.next = 10;
+                                  break;
+
+                                case 9:
+                                  this.errorsLogin = 'Error de credenciales, intente nuevamente';
+
+                                case 10:
+                                case "end":
+                                  return _context10.stop();
+                              }
+                            }
+                          }, _callee10, this);
+                        }));
+                      }, function (error) {
+                        _this16.errorsLogin = error.message; // 'Error de credenciales, intente nuevamente';
+                      }));
+
+                    case 2:
+                    case "end":
+                      return _context11.stop();
+                  }
+                }
+              }, _callee11, this);
+            }));
+          }
+        }, {
+          key: "setUser",
+          value: function setUser(user) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+              return regeneratorRuntime.wrap(function _callee12$(_context12) {
+                while (1) {
+                  switch (_context12.prev = _context12.next) {
+                    case 0:
+                      this.user = user;
+                      _context12.next = 3;
+                      return this.saveUser();
+
+                    case 3:
+                    case "end":
+                      return _context12.stop();
+                  }
+                }
+              }, _callee12, this);
+            }));
+          }
+        }, {
+          key: "saveUser",
+          value: function saveUser() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+              return regeneratorRuntime.wrap(function _callee13$(_context13) {
+                while (1) {
+                  switch (_context13.prev = _context13.next) {
+                    case 0:
+                      _context13.next = 2;
+                      return localStorage.setItem('User', JSON.stringify(this.user));
+
+                    case 2:
+                    case "end":
+                      return _context13.stop();
+                  }
+                }
+              }, _callee13, this);
+            }));
+          }
+        }, {
+          key: "saveData",
+          value: function saveData(data) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+              return regeneratorRuntime.wrap(function _callee14$(_context14) {
+                while (1) {
+                  switch (_context14.prev = _context14.next) {
+                    case 0:
+                      _context14.next = 2;
+                      return localStorage.setItem('isAuthenticated', 'true');
+
+                    case 2:
+                      _context14.next = 4;
+                      return localStorage.setItem('User', JSON.stringify(data['User']));
+
+                    case 4:
+                      _context14.next = 6;
+                      return localStorage.setItem('token', data['api_token']);
+
+                    case 6:
+                    case "end":
+                      return _context14.stop();
+                  }
+                }
+              }, _callee14);
+            }));
+          }
+        }, {
+          key: "removeData",
+          value: function removeData() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
+              return regeneratorRuntime.wrap(function _callee15$(_context15) {
+                while (1) {
+                  switch (_context15.prev = _context15.next) {
+                    case 0:
+                      _context15.next = 2;
+                      return localStorage.setItem('isAuthenticated', 'true');
+
+                    case 2:
+                      _context15.next = 4;
+                      return localStorage.removeItem('User');
+
+                    case 4:
+                      _context15.next = 6;
+                      return localStorage.removeItem('token');
+
+                    case 6:
+                      this.user = null;
+
+                    case 7:
+                    case "end":
+                      return _context15.stop();
+                  }
+                }
+              }, _callee15, this);
+            }));
+          }
+        }, {
+          key: "isAuthenticated",
+          value: function isAuthenticated() {
+            return localStorage.getItem('isAuthenticated') == 'true';
+          }
+        }, {
+          key: "updateUser",
+          value: function updateUser(user) {
+            localStorage.setItem('User', user);
+            return this.getUser();
+          }
+        }, {
+          key: "getUser",
+          value: function getUser() {
+            var _a;
+
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
+              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+                while (1) {
+                  switch (_context16.prev = _context16.next) {
+                    case 0:
+                      _context16.next = 2;
+                      return JSON.parse(localStorage.getItem('User'));
+
+                    case 2:
+                      _context16.t1 = _a = _context16.sent;
+                      _context16.t0 = _context16.t1 !== null;
+
+                      if (!_context16.t0) {
+                        _context16.next = 6;
+                        break;
+                      }
+
+                      _context16.t0 = _a !== void 0;
+
+                    case 6:
+                      if (!_context16.t0) {
+                        _context16.next = 10;
+                        break;
+                      }
+
+                      _context16.t2 = _a;
+                      _context16.next = 11;
+                      break;
+
+                    case 10:
+                      _context16.t2 = null;
+
+                    case 11:
+                      return _context16.abrupt("return", this.user = _context16.t2);
+
+                    case 12:
+                    case "end":
+                      return _context16.stop();
+                  }
+                }
+              }, _callee16, this);
+            }));
+          }
+        }, {
+          key: "redirect",
+          value: function redirect() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
+              return regeneratorRuntime.wrap(function _callee17$(_context17) {
+                while (1) {
+                  switch (_context17.prev = _context17.next) {
+                    case 0:
+                      _context17.next = 2;
+                      return this.getUser();
+
+                    case 2:
+                      if (this.user) {
+                        _context17.next = 4;
+                        break;
+                      }
+
+                      return _context17.abrupt("return");
+
+                    case 4:
+                      if (this.user['role'] == 'admin') {
+                        this.router.navigate(['admin_home']);
+                      } else if (this.user['role'] == 'user') {
+                        this.router.navigate(['/']);
+                      }
+
+                    case 5:
+                    case "end":
+                      return _context17.stop();
+                  }
+                }
+              }, _callee17, this);
+            }));
+          }
+        }, {
+          key: "logout",
+          value: function logout() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
+              return regeneratorRuntime.wrap(function _callee18$(_context18) {
+                while (1) {
+                  switch (_context18.prev = _context18.next) {
+                    case 0:
+                      _context18.next = 2;
+                      return this.removeData();
+
+                    case 2:
+                      //this.router.navigate(['login']);
+                      this.navCtrl.navigateRoot('login');
+
+                    case 3:
+                    case "end":
+                      return _context18.stop();
+                  }
+                }
+              }, _callee18, this);
+            }));
+          }
+        }, {
+          key: "isAdmin",
+          value: function isAdmin() {
+            this.user.role == 'admin';
+          }
+        }]);
+
+        return AuthUserService;
+      }();
+
+      AuthUserService.ctorParameters = function () {
+        return [{
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"]
+        }];
+      };
+
+      AuthUserService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], AuthUserService);
+      /***/
+    },
+
+    /***/
     "./src/environments/environment.ts":
     /*!*****************************************!*\
       !*** ./src/environments/environment.ts ***!
@@ -2794,8 +3222,9 @@
 
       var environment = {
         production: false,
-        server_url: 'http://192.168.1.15/f8a/public/api' //server_url : 'http://34.68.147.207/f8a/public/api'
-
+        //server_url : 'http://192.168.1.15/f8a/public/api'
+        //server_url : 'http://34.68.147.207/f8a/public/api'
+        server_url: 'http://200.117.101.131/f8a/public/api'
       };
       /*
        * For easier debugging in development mode, you can import the following file

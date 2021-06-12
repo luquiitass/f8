@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Partidos</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"12\">\n          <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n            <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_{{i}}\" >\n              {{formatDate(tab.date)}}\n            </ion-segment-button>\n          </ion-segment>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n      <ion-label>Sin registros</ion-label>\n    </ion-list-header>\n\n      <ion-item *ngFor=\"let game of list\" routerLink=\"/games/profile/{{game.id}}\" routerDirection=\"forward\" >\n        <div class=\"game\">\n          <div class=\"team-list contenedor\">\n            <div class=\"team\">\n              <span class=\"team-name\">{{game.team_l.name}}</span>\n              <ion-thumbnail slot=\"end\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'\">\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n  \n            <div class=\"vs\">vs</div>\n  \n            <div class=\"team\">\n              <span class=\"team-name\">{{game.team_v.name}}</span>\n              <ion-thumbnail slot=\"start\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'\"\n                  >\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n          </div>\n          <div class=\"date\">\n            <span>{{ util.formatHours(game.time) }}</span>\n          </div>\n        </div>\n       \n      </ion-item>\n    </ion-list>\n\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Partidos</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\"!firstLoad\">\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n      <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n  \n    <ion-list>\n  \n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n              <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_{{i}}\" >\n                {{formatDate(tab.date)}}\n              </ion-segment-button>\n            </ion-segment>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n  \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n  \n      <ion-item *ngFor=\"let game of list\" routerLink=\"/games/profile/{{game.id}}\" routerDirection=\"forward\" >\n        <div class=\"game\">\n          <div class=\"team-list contenedor\">\n            <div class=\"team\">\n              <span class=\"team-name\">{{game.team_l.name}}</span>\n              <ion-thumbnail slot=\"end\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'\">\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n  \n            <div class=\"vs\">vs</div>\n  \n            <div class=\"team\">\n              <span class=\"team-name\">{{game.team_v.name}}</span>\n              <ion-thumbnail slot=\"start\">\n                <ion-img \n                  class=\"img-team\"\n                  [src]=\"game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'\"\n                  >\n                </ion-img>\n              </ion-thumbnail>\n            </div>\n          </div>\n          <div class=\"date \">\n            <span>{{ util.formatHours(game.time) }}</span>\n          </div>\n        </div>\n        \n      </ion-item>\n    </ion-list>\n  </div>\n  \n  <div *ngIf=\"firstLoad\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-card *ngFor=\"let i of listSkeleton\">\n      <div class=\"ion-padding custom-skeleton\">\n        <div class=\"game\">\n          <div class=\"team-list contenedor\">\n            <div class=\"team\">\n              <ion-skeleton-text animated style=\"width: 80%\"></ion-skeleton-text>\n              <ion-avatar slot=\"start\">\n                <ion-skeleton-text animated></ion-skeleton-text>\n              </ion-avatar>\n            </div>\n  \n            <div class=\"vs\">\n              <ion-skeleton-text animated style=\"width: 20px\"></ion-skeleton-text>\n            </div>\n  \n            <div class=\"team\">\n              <ion-skeleton-text animated style=\"width: 80%\"></ion-skeleton-text>\n              <ion-avatar slot=\"start\">\n                <ion-skeleton-text animated></ion-skeleton-text>\n              </ion-avatar>\n            </div>\n          </div>\n          <div class=\"date ion-text-center\"  style=\"width: 100%\">\n            <ion-skeleton-text animated style=\"width: 80px;margin: auto;\"></ion-skeleton-text>\n          </div>\n        </div>\n      </div>\n    </ion-card>\n  </div>\n\n</ion-content>\n";
       /***/
     },
 
@@ -227,6 +227,8 @@
           this.util = util;
           this.list = [];
           this.tabs = [];
+          this.listSkeleton = new Array(3);
+          this.firstLoad = true;
           this.modelGame = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('Game', request);
         }
 
@@ -238,50 +240,64 @@
         }, {
           key: "init",
           value: function init() {
-            var _this = this;
-
             var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-            /*this.modelGame.api_function('games').subscribe(data => {
-              if(data['status'] = 'success'){
-                this.list = data['data'];
-                if(event)
-                  event.target.complete();
-              }
-            })
-            */
-            this.modelGame.api_function('pageHomeGames').subscribe(function (response) {
-              if (response['status'] == 'success') {
-                _this.tabs = response['data']['dates'];
-
-                _this.selectFirst();
-              }
-
-              if (event) event.target.complete();
-              console.log(response);
-            }, function (error) {
-              if (event) event.target.complete();
-              console.error(error);
-            });
-          }
-        }, {
-          key: "selectFirst",
-          value: function selectFirst() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var tab;
+              var _this = this;
+
               return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
+                      /*this.modelGame.api_function('games').subscribe(data => {
+                        if(data['status'] = 'success'){
+                          this.list = data['data'];
+                          if(event)
+                            event.target.complete();
+                        }
+                      })
+                      */
+                      this.modelGame.api_function('pageHomeGames').subscribe(function (response) {
+                        if (response['status'] == 'success') {
+                          _this.tabs = response['data']['dates'];
+
+                          _this.selectFirst();
+                        }
+
+                        if (event) event.target.complete();
+                        console.log(response);
+                        _this.firstLoad = false;
+                      }, function (error) {
+                        if (event) event.target.complete();
+                        console.error(error);
+                        _this.firstLoad = false;
+                      });
+
+                    case 1:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          }
+        }, {
+          key: "selectFirst",
+          value: function selectFirst() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+              var tab;
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
                       if (!(this.tabs.length > 0)) {
-                        _context.next = 7;
+                        _context2.next = 7;
                         break;
                       }
 
                       tab = this.tabs[0];
                       this.list = tab['results'];
                       this.tabSelected = 0;
-                      _context.next = 6;
+                      _context2.next = 6;
                       return this.delay(1500);
 
                     case 6:
@@ -289,10 +305,10 @@
 
                     case 7:
                     case "end":
-                      return _context.stop();
+                      return _context2.stop();
                   }
                 }
-              }, _callee, this);
+              }, _callee2, this);
             }));
           }
         }, {

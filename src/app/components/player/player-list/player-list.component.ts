@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 
 
@@ -14,9 +14,12 @@ export class PlayerListComponent implements OnInit {
   @Input('items') items ; 
   @Input('loading') loading = false;
   @Input('errorLoad') errorLoading;
+  @Input('firstLoading') firstLoading;
   
   @Output() eventLoad = new EventEmitter<any>()
   @Output() eventSelect = new EventEmitter<any>()
+
+  public listSkeleton = new Array(5);
 
   
 
@@ -61,5 +64,11 @@ export class PlayerListComponent implements OnInit {
     this.photoViewer.show(image.urlComplete);
   }
   
+  ngOnChanges(changes: SimpleChanges) {
+        
+    console.log('changes')
+  
+    
+  }
 
 }

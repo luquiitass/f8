@@ -6,9 +6,10 @@
     </ion-buttons>
     <ion-title> Fútbol Alem </ion-title>
     <ion-buttons slot="secondary">
-      <!-- <ion-button >
+       <ion-button  routerLink="/notifications" routerDirection="forward">
         <ion-icon name="notifications-outline"></ion-icon>      
-      </ion-button> -->
+        <ion-badge id="notifications-badge" *ngIf="notificationsCount > 0">{{notificationsCount}}</ion-badge>
+      </ion-button> 
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -22,11 +23,16 @@
   <ion-content>
 
     <ion-list>
-      <ion-item routerLink="/my-profile" routerDirection="forward" >Mi Perfil</ion-item>
+      <ion-item routerLink="/my-profile" routerDirection="forward" >
+        <app-menu-user style="width: 100%;"></app-menu-user>
+      </ion-item>
       <ion-item>Mis Equipos</ion-item>
       <ion-item>Mis Jugadores</ion-item>
       <ion-item>Mis Partidos</ion-item>
       <ion-item routerLink="/admin_home" routerDirection="forward" >Administrar APP</ion-item>
+      <ion-item (click)="logout()">
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -56,6 +62,11 @@
       <ion-tab-button tab="players">
         <ion-icon name="person-outline"></ion-icon>
         <ion-label>Jugadores</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="publications">
+        <ion-icon name="happy-outline"></ion-icon>        
+        <ion-label>3° Tiempo</ion-label>
       </ion-tab-button>
 
     </ion-tab-bar>

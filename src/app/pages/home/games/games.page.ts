@@ -18,6 +18,9 @@ export class GamesPage implements OnInit {
   public tabSelected :any;
   public lastFocusSegment : any;
 
+  public listSkeleton = new Array(3)
+  public firstLoad = true;
+
   constructor(
     public request : RequestService,
     public util : UtilService
@@ -30,7 +33,7 @@ export class GamesPage implements OnInit {
     this.init();
   }
 
-  init(event = null){
+  async init(event = null){
     /*this.modelGame.api_function('games').subscribe(data => {
       if(data['status'] = 'success'){
         this.list = data['data'];
@@ -39,6 +42,7 @@ export class GamesPage implements OnInit {
       }
     })
     */
+  
     this.modelGame.api_function('pageHomeGames').subscribe(
       response => {
         if(response['status'] == 'success'){
@@ -48,11 +52,15 @@ export class GamesPage implements OnInit {
         if(event)
           event.target.complete()
         console.log(response)
+        this.firstLoad = false;
+
       },
       error => {
         if(event)
           event.target.complete()
         console.error(error)
+        this.firstLoad = false;
+
       }
     )
 

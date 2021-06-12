@@ -135,6 +135,22 @@ const routes: Routes = [
     path: 'notifications',
     loadChildren: () => import('./pages/notification/list/list.module').then( m => m.ListPageModule)
   },
+  {
+    path: 'form-publication',
+    loadChildren: () => import('./pages/publications/form-publication/form-publication.module').then( m => m.FormPublicationPageModule)
+  },
+  {
+    path: 'publication/:id/:segment/:not',
+    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule)
+  },
+  {
+    path: 'publication/:id/:segment',
+    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule)
+  },
+  {
+    path: 'publication/:id',
+    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule)
+  },
  
   
 ];

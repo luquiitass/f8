@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output ,EventEmitter } from '@angular/core';
 import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { AuthUserService } from 'src/app/services/auth-user.service';
@@ -17,13 +17,19 @@ export class CommentsComponent implements OnInit {
 
   @Input('nameRelationModel') nameRelationModel;
   @Input('idRelation') idRelation;
-  @Input('comments') comments;
+  @Input('comments') comments = [];
+  @Input('withTitle') withTitle : boolean = true;
+
+  @Output() onUpdateComments = new EventEmitter<any>();
+
+  
 
   public commentModel : Model;
   public relationModel : Model;
   public comment : any;
   public listComments = [];
   public commentText : ''
+  public sending = false;
   
   constructor(
     public authService : AuthUserService,
@@ -35,10 +41,10 @@ export class CommentsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.inmit();
+    this.init();
   }
 
-  inmit(){
+  init(){
     this.comment =  {
       idRelation : this.idRelation,
       nameRelationModel : this.nameRelationModel,
@@ -51,9 +57,9 @@ export class CommentsComponent implements OnInit {
   }
 
   loadCooments(){
-
+    this.listComments = this.comments;
     if(this.comments && this.comments.length > 0){
-      this.listComments = this.comments
+      //this.listComments = this.comments
       return;
     }
 
@@ -79,17 +85,20 @@ export class CommentsComponent implements OnInit {
     console.log('send');
     if(this.comment.body){
       //this.comment.body = this.commentText;
+      this.sending = true;
       this.commentModel.api_function('add',this.comment).subscribe(
         response => {
           if(response['status'] == 'success'){
             var data : any = response['data'];
             this.listComments.push(data)
+            if(this.onUpdateComments)
+              this.onUpdateComments.emit(this.listComments);
             this.resetComment()
           }
-          console.log(response)
+          this.sending = false;
         },
         error => {
-          console.error(error)
+          this.sending = false;
         }
       )
 
@@ -122,4 +131,14 @@ export class CommentsComponent implements OnInit {
 
     return await modal.present();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+        
+    //console.log('changes')
+    if(changes['comments']){
+      this.loadCooments();
+    }
+    
+  }
+
 }

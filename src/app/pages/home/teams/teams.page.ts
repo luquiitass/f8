@@ -12,7 +12,11 @@ import { AuthUserService } from 'src/app/services/auth-user.service';
 })
 export class TeamsPage implements OnInit {
 
+  public teams = [];
   public teamService : Model;
+
+  public listSkeleton = new Array(10)
+  public firstLoad = true;
 
   constructor(
     public request : RequestService,
@@ -24,8 +28,24 @@ export class TeamsPage implements OnInit {
    }
 
   ngOnInit() {
-    console.log('load all Teams ')
-    this.teamService.api_all();
+
+    this.init();
+  }
+
+  init(event = null){
+    this.teamService.api_function('all').subscribe(
+      response => {
+        this.teams = response['data'];
+        if(event)
+          event.target.complete();
+        this.firstLoad = false
+      },
+      error => {
+        if(event)
+          event.target.complete();
+        this.firstLoad = false;
+      }
+    )
   }
 
   close(){

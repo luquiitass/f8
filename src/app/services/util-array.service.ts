@@ -34,7 +34,6 @@ export class UtilArrayService {
    */
   listUpdate(list,id,item){
     let index = this.findIndexList(list,id);
-    console.log('index remove' , index)
     if(index >= 0){
         list[index] = item ;
     }
@@ -47,7 +46,6 @@ export class UtilArrayService {
    */
   listDelete(list,id){
     let index = this.findIndexList(list,id);
-    console.log('index remove' , index)
     if(index >= 0)
         list.splice(index, 1);
   }

@@ -1,25 +1,41 @@
 <div>
-  <ion-grid *ngIf="!loading && !errorLoading">
-    <div *ngIf="items.length < 1">
-      No posee Jugadores
+  <div *ngIf="!firstLoading">
+
+    <ion-grid *ngIf="!errorLoading">
+      <div *ngIf="items.length < 1">
+        No posee Jugadores
+      </div>
+  
+      <ion-row>
+        <ion-col size="4" *ngFor="let item of items; let i = index">
+          <div class="player-list" (click)="selectItem(item)">
+            <img class="player-list-photo" [src]="getPhoto(item)" alt="Foto" >
+            <h4 class="player-list-name">{{item.name}}</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <div *ngIf="errorLoading" (clcik)="load($event)">
+      Volver a Intentar
     </div>
 
+  </div>
+
+  <div *ngIf="firstLoading">
     <ion-row>
-      <ion-col size="4" *ngFor="let item of items; let i = index">
-        <div class="player-list" (click)="selectItem(item)">
-          <img class="player-list-photo" [src]="getPhoto(item)" alt="Foto" >
-          <h4 class="player-list-name">{{item.name}}</h4>
+      <ion-col size="4" *ngFor="let item of listSkeleton">
+        <div class="player-list">
+          <ion-skeleton-text class="player-list-photo" animated style="height: 100px;"></ion-skeleton-text>
+          <h4 class="player-list-name">
+            <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+          </h4>
         </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
 
-  <div *ngIf="loading && !errorLoading" >
-    Cargando...
   </div>
 
-  <div *ngIf="errorLoading" (clcik)="load($event)">
-    Volver a Intentar
-  </div>
+  
 
 </div>

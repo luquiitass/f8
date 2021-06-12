@@ -1,0 +1,23 @@
+<ion-item *ngIf="notification  && content && notification.type == 'like'">
+     <ion-avatar slot="start" >
+      <ion-img 
+        [src]="content.autor_image">
+      </ion-img>
+    </ion-avatar>
+    <ion-label >
+      <h3><b>{{content.autor_name}}</b> ha indicado que le gusta tu publicacion.</h3>
+      <ion-text class="date">{{ util.getFormarHumans(notification.created_at)}}</ion-text>
+    </ion-label>
+</ion-item>
+
+<ion-item *ngIf="notification  && content && notification.type == 'comment_publication'">
+  <ion-avatar slot="start" >
+   <ion-img 
+     [src]="content.autor_image">
+   </ion-img>
+ </ion-avatar>
+ <ion-label >
+   <h3><b>{{content.autor_name}}</b> ha comentado tu publicacion.</h3>
+   <ion-text class="date">{{ util.getFormarHumans(notification.created_at)}}</ion-text>
+ </ion-label>
+</ion-item>

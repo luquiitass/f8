@@ -378,7 +378,7 @@
           key: "playerSelect",
           value: function playerSelect(player) {
             console.log('goTo', player);
-            this.navCtrl.navigateRoot("player/profile/".concat(player.id));
+            this.navCtrl.navigateForward("player/profile/".concat(player.id));
           }
         }]);
 

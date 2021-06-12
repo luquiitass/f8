@@ -165,7 +165,7 @@
               v_team: '',
               l_goals: 0,
               v_goals: 0,
-              time: '',
+              time: '15:00',
               date: this.toDate,
               location: '',
               description: '',

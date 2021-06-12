@@ -32,7 +32,7 @@
 }
 
 ion-content {
-    --background-image: url('assets/images/fondo.png'); 
+    --background-image: url('/assets/images/fondo.png'); 
     
   }
 
@@ -60,4 +60,12 @@ ion-content {
 }
 .status-Jugado{
   background: #51ca4e8f;
+}
+
+.first-uppercase::first-letter{
+  text-transform: uppercase;
+}
+
+.hide {
+  display: none;
 }

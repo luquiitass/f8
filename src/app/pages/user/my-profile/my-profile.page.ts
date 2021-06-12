@@ -4,6 +4,7 @@ import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { ModalController } from '@ionic/angular';
 import { UserFormPage } from '../user-form/user-form.page';
+import { TransferDataService } from 'src/app/services/transfer-data.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -20,8 +21,11 @@ export class MyProfilePage implements OnInit {
     public authUser : AuthUserService,
     public requestService : RequestService,
     public modalController: ModalController,
+    public transferData : TransferDataService,
   ) { 
     this.userModel = new Model('User',requestService);
+    transferData.setData('test',{id : 'id_lucas_data'});
+    console.log('set data transfer in My Profile', {id : 'id_lucas_data'})
   }
 
   ngOnInit() {
@@ -30,7 +34,7 @@ export class MyProfilePage implements OnInit {
 
   async init(event = null){
     
-    this.user = await this.authUser.getUser();
+    this.user = this.authUser.user; //await this.authUser.getUser();
     console.log('authUser user' , this.user)
 
     if(this.user){
@@ -64,13 +68,15 @@ export class MyProfilePage implements OnInit {
       componentProps: { id: this.user.id }
     });
 
-    modal.onDidDismiss().then(data=>{
+    modal.onDidDismiss().then(async data=>{
       console.log(data);
       let item = data.data['user']
       this.user.first_name = item.first_name;
       this.user.last_name = item.last_name;
       this.user.photo = item.photo;
       this.user.email = item.email;
+
+      await this.authUser.setUser(this.user);
 
 
     })

@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Resultados</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  \n\n  <ion-list>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"12\">\n          <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n            <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_r_{{i}}\" >\n              {{tab.date}}\n            </ion-segment-button>\n          </ion-segment>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n      <ion-label>Sin registros</ion-label>\n    </ion-list-header>\n    \n      <ion-item *ngFor=\"let game of list\" routerLink=\"/results/profile/{{game.id}}\" routerDirection=\"forward\" >\n        <div class=\"game\">\n          <div class=\"team-list contenedor\">\n            <div class=\"team\">\n              <span class=\"name-team\">{{game.team_l.name}}</span>\n              <span  class=\"goals-team\" >{{game.l_goals}}</span>\n            </div>\n\n            <br class=\"separator\">\n  \n            <div class=\"team\">\n              <span class=\"name-team\">{{game.team_v.name}}</span>\n              <span  class=\"goals-team\" >{{game.l_goals}}</span>\n            </div>\n          </div>\n        </div>\n        <div class=\"comment\">\n          <ion-icon name=\"chatbox-outline\"></ion-icon>\n        </div>\n       \n      </ion-item>\n    </ion-list>\n\n\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Resultados</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\"!firstLoad\">\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n      <ion-refresher-content\n      refreshingText=\"Cargando...\"\n      ></ion-refresher-content>\n    </ion-refresher>\n  \n    \n  \n    <ion-list>\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n              <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_r_{{i}}\" >\n                {{tab.date}}\n              </ion-segment-button>\n            </ion-segment>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n  \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n      \n        <ion-item *ngFor=\"let game of list\" routerLink=\"/results/profile/{{game.id}}\" routerDirection=\"forward\" >\n          <div class=\"game\">\n            <div class=\"team-list contenedor\">\n              <div class=\"team\">\n                <span class=\"name-team\">{{game.team_l.name}}</span>\n                <span  class=\"goals-team\" >{{game.l_goals}}</span>\n              </div>\n  \n              <br class=\"separator\">\n    \n              <div class=\"team\">\n                <span class=\"name-team\">{{game.team_v.name}}</span>\n                <span  class=\"goals-team\" >{{game.v_goals}}</span>\n              </div>\n            </div>\n          </div>\n          <div class=\"comment\">\n            <ion-icon name=\"chatbox-outline\"></ion-icon>\n          </div>\n         \n        </ion-item>\n      </ion-list>\n  \n\n  </div>\n\n\n\n  <div *ngIf=\"firstLoad\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-card *ngFor=\"let i of listSkeleton\">\n      <div class=\"ion-padding custom-skeleton\">\n        <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text>\n        <ion-skeleton-text animated style=\"width: 100% ; height: 30px;margin-top: 15px;\"></ion-skeleton-text>\n      </div>\n    </ion-card>\n  </div>\n\n  \n\n\n</ion-content>\n";
       /***/
     },
 
@@ -217,6 +217,8 @@
           this.util = util;
           this.list = [];
           this.tabs = [];
+          this.listSkeleton = new Array(3);
+          this.firstLoad = true;
           this.modelGame = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('Game', request);
         }
 
@@ -228,50 +230,65 @@
         }, {
           key: "init",
           value: function init() {
-            var _this = this;
-
             var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-            /*this.modelGame.api_function('results').subscribe(data => {
-              if(data['status'] = 'success'){
-                this.list = data['data'];
-                if(event)
-                  event.target.complete();
-              }
-            })
-            */
-            this.modelGame.api_function('pageHomeResults').subscribe(function (response) {
-              if (response['status'] == 'success') {
-                _this.tabs = response['data']['dates'];
-
-                _this.selectLast();
-              }
-
-              if (event) event.target.complete();
-              console.log(response);
-            }, function (error) {
-              event.target.complete();
-              console.error(error);
-            });
-          }
-        }, {
-          key: "selectLast",
-          value: function selectLast() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var tab;
+              var _this = this;
+
               return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
+                      /*this.modelGame.api_function('results').subscribe(data => {
+                        if(data['status'] = 'success'){
+                          this.list = data['data'];
+                          if(event)
+                            event.target.complete();
+                        }
+                      })
+                      */
+                      //await this.delay(5000);
+                      this.modelGame.api_function('pageHomeResults').subscribe(function (response) {
+                        if (response['status'] == 'success') {
+                          _this.tabs = response['data']['dates'];
+
+                          _this.selectLast();
+                        }
+
+                        if (event) event.target.complete();
+                        console.log(response);
+                        _this.firstLoad = false;
+                      }, function (error) {
+                        if (event) event.target.complete();
+                        console.error(error);
+                        _this.firstLoad = false;
+                      });
+
+                    case 1:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          }
+        }, {
+          key: "selectLast",
+          value: function selectLast() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+              var tab;
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
                       if (!(this.tabs.length > 0)) {
-                        _context.next = 7;
+                        _context2.next = 7;
                         break;
                       }
 
                       tab = this.tabs.slice(-1)[0];
                       this.list = tab['results'];
                       this.tabSelected = this.tabs.length - 1;
-                      _context.next = 6;
+                      _context2.next = 6;
                       return this.delay(1500);
 
                     case 6:
@@ -279,10 +296,10 @@
 
                     case 7:
                     case "end":
-                      return _context.stop();
+                      return _context2.stop();
                   }
                 }
-              }, _callee, this);
+              }, _callee2, this);
             }));
           }
         }, {

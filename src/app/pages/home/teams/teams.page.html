@@ -10,28 +10,44 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="teamService.api_all($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
 
-  <ion-list>
-
-    <ion-list-header *ngIf="teamService.list.length == 0"  color="tertiary">
-      <ion-label>Sin registros</ion-label>
-    </ion-list-header>
-   
-      <ion-item *ngFor="let team of teamService.list" routerLink="/team/profile/{{team.id}}" routerDirection="forward" >
-        <ion-thumbnail slot="start">
+  <div *ngIf="!firstLoad">
+    <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  
+    <ion-list>
+  
+      <ion-list-header *ngIf="teams.length == 0"  color="tertiary">
+        <ion-label>Sin registros</ion-label>
+      </ion-list-header>
+     
+      <ion-item *ngFor="let team of teams" routerLink="/team/profile/{{team.id}}" routerDirection="forward" >
+        <ion-avatar slot="start" >
           <ion-img 
-            [src]="team.shield ? team.shield.urlComplete : 'assets/images/shield_team.png'"
-            style="border-radius:50%; background-position:center center; background-size:cover; width:50px; height:50px;">
+            [src]="team.shield ? team.shield.urlComplete : 'assets/images/shield_team.png'">
           </ion-img>
-        </ion-thumbnail>
+        </ion-avatar>
         <ion-label >
           <h3>{{team.name}}</h3>
         </ion-label>
       </ion-item>
     </ion-list>
+  </div>
+
+  <div *ngIf="firstLoad">
+    <ion-item *ngFor="let i of listSkeleton" >
+      <ion-avatar slot="start" >
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label >
+        <h3>
+          <ion-skeleton-text animated style="width: 80%;height: 20px;"></ion-skeleton-text>
+        </h3>
+      </ion-label>
+    </ion-item>
+  </div>
+  
 
 
 </ion-content>

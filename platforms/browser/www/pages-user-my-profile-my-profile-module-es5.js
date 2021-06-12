@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title> {{ user ? user.last_name +' '+user.first_name : 'My Perfil'}}</ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngIf=\"user\">\n    <ion-card-content>\n      <img [src]=\"getPhoto()\" >\n    </ion-card-content>\n    <ion-card-header>\n      <ion-card-title>\n        {{user.last_name}} {{user.first_name}}\n      </ion-card-title>\n    </ion-card-header>\n  </ion-card>\n\n\n  <ion-card *ngIf=\"user && user.teams\">\n    <ion-card-header>\n      <ion-card-title>Administrar Equipos</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item *ngFor=\"let team of user.teams\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\">\n            {{team.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngIf=\"user && user.player\">\n    <ion-card-header>\n      <ion-card-title>Jugador</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item routerLink=\"/player/profile/{{user.player.id}}\" routerDirection=\"forward\">\n            {{user.player.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title> {{ user ? user.last_name +' '+user.first_name : 'My Perfil'}}</ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngIf=\"user\">\n    <ion-card-content>\n\n      <ion-img-viewer \n        title=\"Foto de Perfil\" \n        [text]=\"user.last_name +' '+ user.first_name\"\n        scheme=\"dark\" \n        [src]=\"getPhoto()\">\n      </ion-img-viewer>\n\n    </ion-card-content>\n    <ion-card-header>\n      <ion-card-title>\n        {{user.last_name}} {{user.first_name}}\n      </ion-card-title>\n\n      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>\n    </ion-card-header>\n  </ion-card>\n\n\n  <ion-card *ngIf=\"user && user.teams && user.teams.lenght\">\n    <ion-card-header>\n      <ion-card-title>Administrar Equipos</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item *ngFor=\"let team of user.teams\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\">\n            {{team.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngIf=\"user && user.player\">\n    <ion-card-header>\n      <ion-card-title>Jugador</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item routerLink=\"/player/profile/{{user.player.id}}\" routerDirection=\"forward\">\n            {{user.player.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n";
       /***/
     },
 
@@ -147,13 +147,19 @@
       var _my_profile_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./my-profile.page */
       "./src/app/pages/user/my-profile/my-profile.page.ts");
+      /* harmony import */
+
+
+      var ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ngx-ionic-image-viewer */
+      "./node_modules/ngx-ionic-image-viewer/__ivy_ngcc__/fesm2015/ngx-ionic-image-viewer.js");
 
       var MyProfilePageModule = function MyProfilePageModule() {
         _classCallCheck(this, MyProfilePageModule);
       };
 
       MyProfilePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _my_profile_routing_module__WEBPACK_IMPORTED_MODULE_5__["MyProfilePageRoutingModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _my_profile_routing_module__WEBPACK_IMPORTED_MODULE_5__["MyProfilePageRoutingModule"], ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_7__["NgxIonicImageViewerModule"]],
         declarations: [_my_profile_page__WEBPACK_IMPORTED_MODULE_6__["MyProfilePage"]]
       })], MyProfilePageModule);
       /***/
@@ -240,15 +246,28 @@
       var _user_form_user_form_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ../user-form/user-form.page */
       "./src/app/pages/user/user-form/user-form.page.ts");
+      /* harmony import */
+
+
+      var src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/services/transfer-data.service */
+      "./src/app/services/transfer-data.service.ts");
 
       var MyProfilePage = /*#__PURE__*/function () {
-        function MyProfilePage(authUser, requestService, modalController) {
+        function MyProfilePage(authUser, requestService, modalController, transferData) {
           _classCallCheck(this, MyProfilePage);
 
           this.authUser = authUser;
           this.requestService = requestService;
           this.modalController = modalController;
+          this.transferData = transferData;
           this.userModel = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_3__["Model"]('User', requestService);
+          transferData.setData('test', {
+            id: 'id_lucas_data'
+          });
+          console.log('set data transfer in My Profile', {
+            id: 'id_lucas_data'
+          });
         }
 
         _createClass(MyProfilePage, [{
@@ -267,11 +286,8 @@
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
-                      _context.next = 2;
-                      return this.authUser.getUser();
+                      this.user = this.authUser.user; //await this.authUser.getUser();
 
-                    case 2:
-                      this.user = _context.sent;
                       console.log('authUser user', this.user);
 
                       if (this.user) {
@@ -289,7 +305,7 @@
                         });
                       }
 
-                    case 5:
+                    case 3:
                     case "end":
                       return _context.stop();
                   }
@@ -305,15 +321,15 @@
         }, {
           key: "showEdit",
           value: function showEdit() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
               var _this2 = this;
 
               var modal;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
-                  switch (_context2.prev = _context2.next) {
+                  switch (_context3.prev = _context3.next) {
                     case 0:
-                      _context2.next = 2;
+                      _context3.next = 2;
                       return this.modalController.create({
                         component: _user_form_user_form_page__WEBPACK_IMPORTED_MODULE_6__["UserFormPage"],
                         componentProps: {
@@ -322,27 +338,43 @@
                       });
 
                     case 2:
-                      modal = _context2.sent;
+                      modal = _context3.sent;
                       modal.onDidDismiss().then(function (data) {
-                        console.log(data);
-                        var item = data.data['user'];
-                        _this2.user.first_name = item.first_name;
-                        _this2.user.last_name = item.last_name;
-                        _this2.user.photo = item.photo;
-                        _this2.user.email = item.email;
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+                          var item;
+                          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                            while (1) {
+                              switch (_context2.prev = _context2.next) {
+                                case 0:
+                                  console.log(data);
+                                  item = data.data['user'];
+                                  this.user.first_name = item.first_name;
+                                  this.user.last_name = item.last_name;
+                                  this.user.photo = item.photo;
+                                  this.user.email = item.email;
+                                  _context2.next = 8;
+                                  return this.authUser.setUser(this.user);
+
+                                case 8:
+                                case "end":
+                                  return _context2.stop();
+                              }
+                            }
+                          }, _callee2, this);
+                        }));
                       });
-                      _context2.next = 6;
+                      _context3.next = 6;
                       return modal.present();
 
                     case 6:
-                      return _context2.abrupt("return", _context2.sent);
+                      return _context3.abrupt("return", _context3.sent);
 
                     case 7:
                     case "end":
-                      return _context2.stop();
+                      return _context3.stop();
                   }
                 }
-              }, _callee2, this);
+              }, _callee3, this);
             }));
           }
         }]);
@@ -357,6 +389,8 @@
           type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__["RequestService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"]
+        }, {
+          type: src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_7__["TransferDataService"]
         }];
       };
 
@@ -369,6 +403,106 @@
         /*! ./my-profile.page.scss */
         "./src/app/pages/user/my-profile/my-profile.page.scss"))["default"]]
       })], MyProfilePage);
+      /***/
+    },
+
+    /***/
+    "./src/app/services/transfer-data.service.ts":
+    /*!***************************************************!*\
+      !*** ./src/app/services/transfer-data.service.ts ***!
+      \***************************************************/
+
+    /*! exports provided: TransferDataService */
+
+    /***/
+    function srcAppServicesTransferDataServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "TransferDataService", function () {
+        return TransferDataService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+      var TransferDataService = /*#__PURE__*/function () {
+        function TransferDataService() {
+          _classCallCheck(this, TransferDataService);
+
+          this.data = {};
+          this.callbaks = {};
+        }
+
+        _createClass(TransferDataService, [{
+          key: "setData",
+          value: function setData(key, value) {
+            this.data[key] = value;
+          }
+        }, {
+          key: "getData",
+          value: function getData(key) {
+            if (this.data.hasOwnProperty(key)) return this.data[key];
+            return null;
+          }
+        }, {
+          key: "clear",
+          value: function clear() {
+            var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+            if (this.data.hasOwnProperty(key)) {
+              delete this.data[key];
+              return;
+            }
+
+            this.data = {};
+          }
+          /**
+           * Añade la funcion que se ejecutara al ejecutar setDataPage
+           * @param page Key de la pagina que deebra obtener los dato
+           * @param callbak funcion que recibe un parametro
+           */
+
+        }, {
+          key: "onSettDataPage",
+          value: function onSettDataPage(page, callbak) {
+            this.callbaks[page] = callbak;
+          }
+          /**
+           * Ejecuta la funcion que recibe el parametro ingresado en esta funcion
+           * @param page pagina actual
+           * @param parms parametros
+           */
+
+        }, {
+          key: "setDataPage",
+          value: function setDataPage(page, parms) {
+            if (this.callbaks.hasOwnProperty(page)) this.callbaks[page](parms);
+          }
+        }]);
+
+        return TransferDataService;
+      }();
+
+      TransferDataService.ctorParameters = function () {
+        return [];
+      };
+
+      TransferDataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], TransferDataService);
       /***/
     }
   }]);

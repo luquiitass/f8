@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n></app-player-list>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n  [firstLoading] = \"firstLoading\"\n></app-player-list>\n</ion-content>\n");
 
 /***/ }),
 
@@ -123,29 +123,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/api/models/model */ "./src/app/api/models/model.ts");
 /* harmony import */ var src_app_api_request_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/api/request.service */ "./src/app/api/request.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_services_util_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/util.service */ "./src/app/services/util.service.ts");
+
 
 
 
 
 
 let PlayersPage = class PlayersPage {
-    constructor(request, navCtrl) {
+    constructor(request, navCtrl, util) {
         this.request = request;
         this.navCtrl = navCtrl;
+        this.util = util;
         this.players = [];
+        this.firstLoading = true;
         this.playerModel = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('Player', this.request);
     }
     ngOnInit() {
         this.load();
     }
     load() {
-        this.playerModel.api_function('pageHomePlayers').subscribe(response => {
-            if (response['status'] == 'success') {
-                this.players = response['data'];
-            }
-            console.log(response);
-        }, error => {
-            console.error(error);
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            //await this.util.delay(4000)
+            this.playerModel.api_function('pageHomePlayers').subscribe(response => {
+                if (response['status'] == 'success') {
+                    this.players = response['data'];
+                }
+                console.log(response);
+                this.firstLoading = false;
+            }, error => {
+                this.firstLoading = false;
+                console.error(error);
+            });
         });
     }
     playerSelect(player) {
@@ -155,7 +164,8 @@ let PlayersPage = class PlayersPage {
 };
 PlayersPage.ctorParameters = () => [
     { type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_3__["RequestService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"] },
+    { type: src_app_services_util_service__WEBPACK_IMPORTED_MODULE_5__["UtilService"] }
 ];
 PlayersPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

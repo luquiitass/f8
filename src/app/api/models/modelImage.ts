@@ -79,12 +79,13 @@ export class ModelImage {
       this.photo = new Photo(capturedPhoto.webPath,base64Data, base64Data, this.url, this.thumb, this.image);
       this.image = this.photo;
 
-      await this.cropImage();
+      if(this.aspectRatio != 'none')
+        await this.cropImage();
   
       console.log('photo',this.photo);
     }
 
-    setAspectRatioCrop(aspectRatio){
+    public setAspectRatioCrop(aspectRatio){
       this.aspectRatio = aspectRatio;
     }
 
@@ -109,7 +110,7 @@ export class ModelImage {
     }
   
     public isLoadPthoto() {
-      return  this.photo.data  ? true : false;
+      return  this.photo && this.photo.data  ? true : false;
     }
   
     private async readAsBase64(cameraPhoto: CameraPhoto) {

@@ -125,6 +125,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/api/request.service */ "./src/app/api/request.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _user_form_user_form_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../user-form/user-form.page */ "./src/app/pages/user/user-form/user-form.page.ts");
+/* harmony import */ var src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/transfer-data.service */ "./src/app/services/transfer-data.service.ts");
+
 
 
 
@@ -133,18 +135,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MyProfilePage = class MyProfilePage {
-    constructor(authUser, requestService, modalController) {
+    constructor(authUser, requestService, modalController, transferData) {
         this.authUser = authUser;
         this.requestService = requestService;
         this.modalController = modalController;
+        this.transferData = transferData;
         this.userModel = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_3__["Model"]('User', requestService);
+        transferData.setData('test', { id: 'id_lucas_data' });
+        console.log('set data transfer in My Profile', { id: 'id_lucas_data' });
     }
     ngOnInit() {
         this.init();
     }
     init(event = null) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.user = yield this.authUser.getUser();
+            this.user = this.authUser.user; //await this.authUser.getUser();
             console.log('authUser user', this.user);
             if (this.user) {
                 this.userModel.api_functionModel(this.user.id, 'pageMyProfile').subscribe(respose => {
@@ -172,14 +177,15 @@ let MyProfilePage = class MyProfilePage {
                 component: _user_form_user_form_page__WEBPACK_IMPORTED_MODULE_6__["UserFormPage"],
                 componentProps: { id: this.user.id }
             });
-            modal.onDidDismiss().then(data => {
+            modal.onDidDismiss().then((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
                 console.log(data);
                 let item = data.data['user'];
                 this.user.first_name = item.first_name;
                 this.user.last_name = item.last_name;
                 this.user.photo = item.photo;
                 this.user.email = item.email;
-            });
+                yield this.authUser.setUser(this.user);
+            }));
             return yield modal.present();
         });
     }
@@ -187,7 +193,8 @@ let MyProfilePage = class MyProfilePage {
 MyProfilePage.ctorParameters = () => [
     { type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["AuthUserService"] },
     { type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__["RequestService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] },
+    { type: src_app_services_transfer_data_service__WEBPACK_IMPORTED_MODULE_7__["TransferDataService"] }
 ];
 MyProfilePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

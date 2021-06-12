@@ -11,6 +11,9 @@ import {RedListComponent} from './redes/red-list/red-list.component';
 import {SearchComponent} from './search/search.component';
 import {RouterModule} from '@angular/router';
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+import { LikesComponent} from './likes/likes.component'
+import {MenuUserComponent} from './menu-user/menu-user.component'
+import {NotificationComponent} from './items-list/notification/notification.component';
 
 
 
@@ -35,7 +38,10 @@ import { from } from 'rxjs';
     CommentsComponent,
     NotificatioSelectedComponent,
     RedListComponent,
-    SearchComponent
+    SearchComponent,
+    LikesComponent,
+    MenuUserComponent,
+    NotificationComponent
   ],
   exports: [
     ListComponent,
@@ -44,7 +50,10 @@ import { from } from 'rxjs';
     CommentsComponent,
     NotificatioSelectedComponent,
     RedListComponent,
-    SearchComponent
+    SearchComponent,
+    LikesComponent,
+    MenuUserComponent,
+    NotificationComponent
   ],
   entryComponents: [],
 })
