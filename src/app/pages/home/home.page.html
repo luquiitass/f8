@@ -26,10 +26,10 @@
       <ion-item routerLink="/my-profile" routerDirection="forward" >
         <app-menu-user style="width: 100%;"></app-menu-user>
       </ion-item>
-      <ion-item>Mis Equipos</ion-item>
+      <!-- <ion-item>Mis Equipos</ion-item>
       <ion-item>Mis Jugadores</ion-item>
-      <ion-item>Mis Partidos</ion-item>
-      <ion-item routerLink="/admin_home" routerDirection="forward" >Administrar APP</ion-item>
+      <ion-item>Mis Partidos</ion-item> -->
+      <ion-item routerLink="/admin_home" routerDirection="forward" *ngIf="auth.isAdmin()" >Administrar APP</ion-item>
       <ion-item (click)="logout()">
         <ion-label>Cerrar Sesión</ion-label>
       </ion-item>

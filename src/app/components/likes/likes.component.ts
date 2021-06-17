@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PathsImagesService } from 'src/app/services/paths-images.service';
 
 @Component({
   selector: 'app-likes',
@@ -9,7 +10,9 @@ export class LikesComponent implements OnInit {
 
   @Input('likes') likes = []
 
-  constructor() { }
+  constructor(
+    public pathImages : PathsImagesService
+  ) { }
 
   ngOnInit() {}
 

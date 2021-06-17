@@ -4,10 +4,31 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+
+    <ion-buttons slot="secondary" *ngIf="isAdmin">
+      <ion-button (click)="showEdit(player)">
+        <ion-icon name="create"></ion-icon>      
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
+
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="ion-text-center">
+    <ion-chip class="chip" color="secondary" *ngIf="isAdmin">
+      <ion-label class="msj-is-admin">
+        Eres el administrador de este perfil, puede mosdificar los datos hacindo click en <ion-icon name="create"></ion-icon>.
+      </ion-label>
+      <ion-icon name="close" color="primary"></ion-icon>
+    </ion-chip>
+  </div>
+  
+  
   <div *ngIf="player">
     <ion-card>
       <!-- <ion-img [src]="getPhoto()" ></ion-img> -->
@@ -50,7 +71,7 @@
             <div>
               Posición
             </div>
-            <div class="data-value">
+            <div class="data-value" *ngIf="player.position">
               {{player.position.name}}
             </div>
           </ion-col>
@@ -138,7 +159,7 @@
   <app-red-list
     [nameModel] = "'Player'"
     [idModel] = "id"
-    [isAdmin] = "false"
+    [isAdmin] = "isAdmin"
   ></app-red-list>
  
 

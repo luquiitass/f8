@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../api/util/dialog.service */ "./src/app/api/util/dialog.service.ts");
 /* harmony import */ var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/api/models/model */ "./src/app/api/models/model.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/util-array.service */ "./src/app/services/util-array.service.ts");
+
 
 
 
@@ -132,12 +134,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ListPage = class ListPage {
-    constructor(request, dialogService, modalController, dialog, route) {
+    constructor(request, dialogService, modalController, dialog, route, utilArray) {
         this.request = request;
         this.dialogService = dialogService;
         this.modalController = modalController;
         this.dialog = dialog;
         this.route = route;
+        this.utilArray = utilArray;
         this.list = [];
         this.playerService = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Player', request);
         this.modelTeam = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Team', request);
@@ -182,7 +185,8 @@ let ListPage = class ListPage {
             });
             modal.onDidDismiss().then(data => {
                 const player = data.data['player'];
-                this.playerService.listAddLast(player);
+                //this.playerService.listAddLast(player);
+                this.utilArray.listAddFirst(this.list, player);
             });
             return yield modal.present();
         });
@@ -196,7 +200,8 @@ let ListPage = class ListPage {
             modal.onDidDismiss().then(data => {
                 if (data.data.hasOwnProperty('player')) {
                     const player = data.data['player'];
-                    this.playerService.listUpdate(player.id, player);
+                    //this.playerService.listUpdate(player.id,player);
+                    this.utilArray.listUpdate(this.list, player.id, player);
                 }
             });
             return yield modal.present();
@@ -212,6 +217,7 @@ let ListPage = class ListPage {
             console.log(data);
             if (data['status'] == 'success') {
                 this.dialog.showToast('Jugador Eliminado', null, 'success');
+                this.utilArray.listDelete(this.list, player.id);
                 this.playerService.listDelete(player.id);
             }
         });
@@ -222,7 +228,8 @@ ListPage.ctorParameters = () => [
     { type: _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
     { type: _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] },
+    { type: src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_8__["UtilArrayService"] }
 ];
 ListPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -231,6 +238,88 @@ ListPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./list.page.scss */ "./src/app/pages/player/list/list.page.scss")).default]
     })
 ], ListPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/util-array.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/services/util-array.service.ts ***!
+  \************************************************/
+/*! exports provided: UtilArrayService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UtilArrayService", function() { return UtilArrayService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+let UtilArrayService = class UtilArrayService {
+    constructor() { }
+    /**
+     * Inserta el elemento al final del array
+     * @param list array en el que se inserta el objeto
+     * @param item item a insertar
+     */
+    listAddLast(list, item) {
+        list.push(item);
+    }
+    /**
+     * Añade un elemente en el array al inicio
+     * @param list array en la que se inserta el objeto
+     * @param item  elemento que se almacenara en el array
+     */
+    listAddFirst(list, item) {
+        list.unshift(item);
+    }
+    /**
+     * Remplaza un objeto del array
+     * @param list array que se actualizara
+     * @param id iel id del objeto
+     * @param item elemento que se remplazara en el array
+     */
+    listUpdate(list, id, item) {
+        let index = this.findIndexList(list, id);
+        if (index >= 0) {
+            list[index] = item;
+        }
+    }
+    /**
+     * elimina objeto de un array pasando el id del objeto
+     * @param list array del que se eliminara el objeto
+     * @param id id del objeto
+     */
+    listDelete(list, id) {
+        let index = this.findIndexList(list, id);
+        if (index >= 0)
+            list.splice(index, 1);
+    }
+    /**
+     * Busca un obeto en el array
+     * @param list array en el qie se bucara el objeto
+     * @param id id del objeto
+     */
+    findList(list, id) {
+        return list.find(item => item['id'] === id);
+    }
+    /**
+     * Retorna el indice de la posicion en la que se encuentra el objeto
+     * @param list Array en el que se realizara a busqueda
+     * @param id id del objeto buscado
+     */
+    findIndexList(list, id) {
+        return list.findIndex(item => item['id'] === id);
+    }
+};
+UtilArrayService.ctorParameters = () => [];
+UtilArrayService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], UtilArrayService);
 
 
 

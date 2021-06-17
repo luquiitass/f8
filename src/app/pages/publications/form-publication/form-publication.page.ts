@@ -6,6 +6,7 @@ import { PhotoService } from 'src/app/services/photo.service';
 import { Model } from 'src/app/api/models/model';
 import { ModelImage } from 'src/app/api/models/modelImage';
 import { AuthUserService } from 'src/app/services/auth-user.service';
+import { PathsImagesService } from 'src/app/services/paths-images.service';
 
 @Component({
   selector: 'app-form-publication',
@@ -27,10 +28,12 @@ export class FormPublicationPage implements OnInit {
     public viewCtrl: ModalController,
     public photoService : PhotoService,
     navParams: NavParams,
-    public authUser : AuthUserService
+    public authUser : AuthUserService,
+    public pathImages : PathsImagesService
   ) {
 
     this.photoModel = new ModelImage(request,viewCtrl);
+    this.photoModel.init('images/publications/',false)
     this.photoModel.setAspectRatioCrop('none');
     this.servicePublication = new Model('Publication',request);
     //this.serviceTeam.setModel('Team');
@@ -54,6 +57,9 @@ export class FormPublicationPage implements OnInit {
       this.servicePublication.api_find(this.id).subscribe(data => {
         if(data['status'] == 'success'){
           this.publication = data['Publication'];
+          if(this.publication.image){
+            this.photoModel.setImage(this.publication.image);
+          }
         }
       })
     }

@@ -10,6 +10,8 @@ import { AuthUserService } from 'src/app/services/auth-user.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
 import { Router } from '@angular/router';
 import { PublicationPage } from '../../publications/publication/publication.page';
+import { DialogService } from 'src/app/api/util/dialog.service';
+import { PathsImagesService } from 'src/app/services/paths-images.service';
 
 @Component({
   selector: 'app-publications',
@@ -25,6 +27,7 @@ export class PublicationsPage implements OnInit {
 
   public firstLoad = true;
   public listSkeleton = new Array(8)
+  private processLike = false;
 
 
   constructor(
@@ -35,7 +38,9 @@ export class PublicationsPage implements OnInit {
     public authUser : AuthUserService,
     public navCtrl : NavController,
     public transferData : TransferDataService,
-    private router: Router
+    private router: Router,
+    public dialog : DialogService,
+    public pathImages : PathsImagesService
   ) {
     this.publcationModel = new Model('Publication',request);
 
@@ -106,9 +111,10 @@ export class PublicationsPage implements OnInit {
    }
 
 
-   like(publication){
+   async like(publication){
+     publication.processLike = true;
+     
      if(publication.liked){
-
       this.publcationModel.api_functionModel(publication.id,'removeLike',{user_id : this.user.id}).subscribe(
         response => {
           if(response['status'] == 'success'){
@@ -116,9 +122,11 @@ export class PublicationsPage implements OnInit {
             publication.likes_count -= 1; 
             //this.utilArray.listUpdate(this.publications , publication.id , publication)
           }
+          publication.processLike = false;
         },
         error => {
           console.error(error);
+          publication.processLike = false;
         }
       )
      }
@@ -130,9 +138,11 @@ export class PublicationsPage implements OnInit {
             publication.likes_count += 1;
             //this.utilArray.listUpdate(this.publications , publication.id , publication)
           }
+          publication.processLike = false;
         },
         error => {
           console.error(error);
+          publication.processLike = false;
         }
       )
      }
@@ -160,37 +170,46 @@ export class PublicationsPage implements OnInit {
     return await modal.present();
    }
 
-   ionViewDidEnter(){
-     console.log('lucas ionViewDidEnter')
+
+   openMenuPublication(publication){
+  
+    this.dialog.actionSheetEditDelete(
+      ()=>{
+        this.editPublication(publication);
+      },
+      ()=>{
+        this.dialog.presentAlertConfirm('Alerta','¿Seguro de eliminar esta aplicación?',()=>{
+          this.publcationModel.api_delete(publication.id).subscribe(
+            response => {
+              if(response['status'] = 'success'){
+                this.utilArray.listDelete(this.publications , publication.id);
+                this.dialog.showToast('Publicacion Eliminada',null,'success')
+              }
+            }
+          );
+        })
+      }
+    )
    }
 
-   ionViewDidLeave(){
-    console.log('lucas ionViewDidLeave')
-  }
+   async editPublication(publication){
+    const modal = await this.modalController.create({
+      component: FormPublicationPage ,
+      componentProps : {
+        id : publication.id
+      }
+    });
 
-  ionViewWillEnter(){
-    console.log('lucas ionViewWillEnter')
-  }
+    modal.onDidDismiss().then(data=>{
+      console.log('update publicacion')
+      if(data.data && data.data['publication']){
+        const publication = data.data['publication'];
+        this.utilArray.listUpdate( this.publications , publication.id, publication );
+      }
+    })
 
-  ionViewWillLeave(){
-    console.log('lucas ionViewWillLeave')
-  }
-
-  ionViewWillUnload(){
-    console.log('lucas ionViewWillUnload')
-  }
-
-  ionViewCanEnter(){
-    console.log('lucas ionViewCanEnter')
-  }
-
-  ionViewCanLeave(){
-    console.log('lucas ionViewCanLeave')
-  }
-
-  ngOnDestroy(){
-    console.log('lucas ngOnDestroy')
-  }
+    return await modal.present();
+   }
 
 
 

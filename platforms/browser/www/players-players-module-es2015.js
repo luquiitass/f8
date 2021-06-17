@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n  [firstLoading] = \"firstLoading\"\n></app-player-list>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n  [firstLoading] = \"firstLoading\"\n></app-player-list>\n</ion-content>\n");
 
 /***/ }),
 
@@ -142,7 +142,7 @@ let PlayersPage = class PlayersPage {
     ngOnInit() {
         this.load();
     }
-    load() {
+    load($event = null) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             //await this.util.delay(4000)
             this.playerModel.api_function('pageHomePlayers').subscribe(response => {
@@ -151,9 +151,13 @@ let PlayersPage = class PlayersPage {
                 }
                 console.log(response);
                 this.firstLoading = false;
+                if ($event)
+                    $event.target.complete();
             }, error => {
                 this.firstLoading = false;
                 console.error(error);
+                if ($event)
+                    $event.target.complete();
             });
         });
     }

@@ -1,3 +1,11 @@
+p {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+ion-chip{
+    padding: 10px;
+}
 
 ion-note {
     font-size: larger;
@@ -72,4 +80,12 @@ ion-note {
     border: solid 1px #c7c7c7;
     border-radius: 10px;
     padding: 5px;
+}
+
+.msj-is-admin{
+    padding: 10px;
+}
+
+.chip{
+    height: auto;
 }

@@ -41,9 +41,9 @@
   </ion-card>
 
 
-  <ion-card *ngIf="user && user.teams && user.teams.lenght">
+  <ion-card *ngIf="user && user.teams">
     <ion-card-header>
-      <ion-card-title>Administrar Equipos</ion-card-title>
+      <ion-card-title>Mis Equipos</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -57,7 +57,7 @@
 
   <ion-card *ngIf="user && user.player">
     <ion-card-header>
-      <ion-card-title>Jugador</ion-card-title>
+      <ion-card-title>Mi perfil de Jugador</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>

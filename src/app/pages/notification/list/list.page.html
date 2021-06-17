@@ -15,6 +15,11 @@
 
   <ion-list>
 
+    <ion-list-header *ngIf="notifications.length == 0"  color="light">
+      <ion-label>No posee notificaciones</ion-label>
+    </ion-list-header>
+ 
+
     <ion-item *ngFor="let not of notifications"  (click)="visibleNot(not)" [class]="{'no-active' : not.isShow}">
       <app-notification
         [notification] = "not"

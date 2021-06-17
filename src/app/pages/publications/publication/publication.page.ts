@@ -7,6 +7,7 @@ import { TransferDataService } from 'src/app/services/transfer-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { UtilArrayService } from 'src/app/services/util-array.service';
+import { PathsImagesService } from 'src/app/services/paths-images.service';
 
 @Component({
   selector: 'app-publication',
@@ -31,7 +32,8 @@ export class PublicationPage implements OnInit {
     public transferData : TransferDataService,    
     public route : ActivatedRoute,
     public navCtrl : NavController,
-    public authUser : AuthUserService
+    public authUser : AuthUserService,
+    public pathImages : PathsImagesService
 
 
   ) { 

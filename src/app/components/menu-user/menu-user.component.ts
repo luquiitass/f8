@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthUserService } from 'src/app/services/auth-user.service';
+import { PathsImagesService } from 'src/app/services/paths-images.service';
 
 @Component({
   selector: 'app-menu-user',
@@ -11,7 +12,8 @@ export class MenuUserComponent implements OnInit {
 
 
   constructor(
-    public authUser : AuthUserService
+    public authUser : AuthUserService,
+    public pathImages : PathsImagesService
   ) { 
 
     

@@ -1,6 +1,7 @@
-<ion-card>
+
   <ion-card-header *ngIf="withTitle">
-    <ion-card-title>Comentarios</ion-card-title>
+    <ion-card-title class="ion-text-center">Comentarios</ion-card-title>
+    <div class="separator"></div>
   </ion-card-header>
 
   <ion-card-content> 
@@ -10,7 +11,10 @@
         <ion-note style="font-size: large;">Se el primero en comentar!!!</ion-note>
       </ion-item>
       <ion-item  *ngFor="let item of listComments">
-        <div class="comment-item" >
+        <div class="comment-item" *ngIf="!item.edit">
+          <ion-button class="menu-right"fill="clear" (click)="openMenuComment(item)" *ngIf="authUser.user.id == item.user_id">
+            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+          </ion-button>
 
           <ion-thumbnail slot="start" class="comment-image">
             <ion-img
@@ -34,6 +38,22 @@
           </div>
 
         </div>
+
+        <div *ngIf="item.edit" class="comment-edit" >
+
+          <ion-text>Editar comentario</ion-text>
+
+          <ion-textarea  class="form-control editor-text first-uppercase" [(ngModel)]="commentEdit.body" name="body"  placeholder="Escreibe un comentario..." ></ion-textarea>
+          <div class="content-right comment-edit-bts">
+            <ion-button slot="end" (click)="editComment()" [disabled]="updatingComment">
+              <ion-spinner name="lines" *ngIf="updatingComment" ></ion-spinner>
+              Actualizar
+            </ion-button>
+            <ion-button slot="end" color="light" (click)="cancelEdit(item)"[disabled]="updatingComment" >Cancelar</ion-button>
+          </div>
+        </div>
+
+       
         
 
        
@@ -79,4 +99,3 @@
      
   </form>
   </ion-card-content>
-</ion-card>

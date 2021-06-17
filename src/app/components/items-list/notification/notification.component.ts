@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { UtilService } from 'src/app/services/util.service';
+import { PathsImagesService } from 'src/app/services/paths-images.service';
 
 @Component({
   selector: 'app-notification',
@@ -10,10 +11,11 @@ export class NotificationComponent implements OnInit {
 
   @Input('notification') notification;
 
-  public content : any ;
+  public content : any = {} ;
 
   constructor(
-    public util : UtilService
+    public util : UtilService,
+    public pathImages : PathsImagesService
   ) { }
 
   ngOnInit() {}
@@ -21,8 +23,8 @@ export class NotificationComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
         
-    let content : string = changes['notification']['currentValue']['content'];
-    this.content = JSON.parse( content );
+    //let content : string = changes['notification']['currentValue']['content'];
+    //this.content = JSON.parse( content );
     
   }
 

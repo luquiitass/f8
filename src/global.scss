@@ -69,3 +69,20 @@ ion-content {
 .hide {
   display: none;
 }
+
+.content-right{
+  display: flex; justify-content: flex-end
+}
+
+.menu-right{
+  position: absolute;
+  right: 2px;
+  top: 2px;
+}
+
+.separator{
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: solid 1px rgba(63, 62, 62, 0.671);
+}

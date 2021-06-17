@@ -266,7 +266,7 @@
             var _this = this;
 
             var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-            this.teamService.api_function('all').subscribe(function (response) {
+            this.teamService.api_function('pageHomeTeams').subscribe(function (response) {
               _this.teams = response['data'];
               if (event) event.target.complete();
               _this.firstLoad = false;

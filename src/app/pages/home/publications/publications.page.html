@@ -11,7 +11,7 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
   
-    <ion-button expand="full" fill="outline" (click)="openModal()">Nueva Publicacion</ion-button>
+    <ion-button expand="block" fill="outline" (click)="openModal()">Nueva Publicacion</ion-button>
   
     <ion-list>
         
@@ -22,12 +22,16 @@
       <ion-item *ngFor="let item of publications;let i = index">
         <ion-card style="width: 100%;" >
           <ion-card-content>
+            <ion-button class="menu-right"fill="clear" (click)="openMenuPublication(item)" *ngIf="authUser.user.id == item.user_id">
+              <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+            </ion-button>
+
             <div class="publication-user">
               <ion-thumbnail slot="start">
                 <ion-img
                   (click)="showPhotoUser(item.user.photo)"
                   class="user-image"
-                  [src]="item.user.photo ? item.user.photo.urlCompleteThumb : 'assets/images/user.png'"
+                  [src]="item.user.photo ? item.user.photo.urlCompleteThumb : pathImages.images.profile_user  "
                   style="border-radius:50%; background-position:center center; background-size:cover; width:40px; height:40px;">
               </ion-img>
               </ion-thumbnail>
@@ -73,8 +77,9 @@
     
             <div>
               <ion-buttons expand="full" >
-                <ion-button expand="full" style="width: 50%;" [color]="item.liked ? 'danger' : 'primary'" (click)="like(item)">
-                  <ion-icon  name="heart-outline"></ion-icon>
+                <ion-button expand="full" style="width: 50%;" [color]="item.liked ? 'danger' : 'primary'" (click)="like(item)" [disabled]="item.processLike ? true : false">
+                  <ion-icon  name="heart-outline" *ngIf="!item.processLike" ></ion-icon>
+                  <ion-spinner name="lines" *ngIf="item.processLike" ></ion-spinner>
                 </ion-button>
                 <ion-button expand="full"  style="width: 50%;" color="primary" (click)="showPublication(item , 'comments')">
                   <ion-icon name="chatbubble-ellipses-outline"></ion-icon>

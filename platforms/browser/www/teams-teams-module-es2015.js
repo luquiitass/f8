@@ -144,7 +144,7 @@ let TeamsPage = class TeamsPage {
         this.init();
     }
     init(event = null) {
-        this.teamService.api_function('all').subscribe(response => {
+        this.teamService.api_function('pageHomeTeams').subscribe(response => {
             this.teams = response['data'];
             if (event)
                 event.target.complete();

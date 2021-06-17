@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n  [firstLoading] = \"firstLoading\"\n></app-player-list>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n  [firstLoading] = \"firstLoading\"\n></app-player-list>\n</ion-content>\n";
       /***/
     },
 
@@ -261,6 +261,7 @@
         }, {
           key: "load",
           value: function load() {
+            var $event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
               var _this = this;
 
@@ -276,9 +277,11 @@
 
                         console.log(response);
                         _this.firstLoading = false;
+                        if ($event) $event.target.complete();
                       }, function (error) {
                         _this.firstLoading = false;
                         console.error(error);
+                        if ($event) $event.target.complete();
                       });
 
                     case 1:

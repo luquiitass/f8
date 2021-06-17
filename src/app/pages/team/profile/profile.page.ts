@@ -5,6 +5,7 @@ import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { ModalController, NavController } from '@ionic/angular';
 import { ListRedirectPage } from '../../util/list-redirect/list-redirect.page';
+import { AuthUserService } from 'src/app/services/auth-user.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,9 +14,10 @@ import { ListRedirectPage } from '../../util/list-redirect/list-redirect.page';
 })
 export class ProfilePage implements OnInit {
 
-  id : string = '0';
+  public id : string = '0';
   public teamModel : Model;
   public team :any = null;
+  public isAdmin = false;
 
   playersList : any = [];
   playersLoading = true;
@@ -25,7 +27,8 @@ export class ProfilePage implements OnInit {
     public route : ActivatedRoute,
     public requesService : RequestService,
     public modalController : ModalController,
-    public navCtrl : NavController
+    public navCtrl : NavController,
+    public authUser : AuthUserService
 
   ) {
 
@@ -38,7 +41,7 @@ export class ProfilePage implements OnInit {
     this.init()
   }
 
-  init(){
+  init($events = null){
     /*
     this.teamModel.api_find(this.id).subscribe(data => {
       if(data['status'] == 'success')
@@ -53,16 +56,24 @@ export class ProfilePage implements OnInit {
           this.playersList = this.team.players;
         }
         this.playersLoading = false;
-
+        this.loadPermissions();
+        if($events)
+          $events.target.complete();
       },
       error => {
         this.playersLoading = false;
         this.playersErrorLoad = false;
         console.error(error)
+        if($events)
+          $events.target.complete();
       }
     )
 
     //this.loadPlayers()
+  }
+
+  loadPermissions(){
+    this.isAdmin = this.authUser.isAdminTeam(this.id);
   }
 
   getCover(){

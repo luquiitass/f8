@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title> Fútbol Alem </ion-title>\n    <ion-buttons slot=\"secondary\">\n       <ion-button  routerLink=\"/notifications\" routerDirection=\"forward\">\n        <ion-icon name=\"notifications-outline\"></ion-icon>      \n        <ion-badge id=\"notifications-badge\" *ngIf=\"notificationsCount > 0\">{{notificationsCount}}</ion-badge>\n      </ion-button> \n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-menu side=\"start\" menuId=\"custom\" contentId=\"main\" class=\"my-custom-menu\">\n  <ion-header>\n    <ion-toolbar color=\"tertiary\">\n      <ion-title>Menú</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n\n    <ion-list>\n      <ion-item routerLink=\"/my-profile\" routerDirection=\"forward\" >\n        <app-menu-user style=\"width: 100%;\"></app-menu-user>\n      </ion-item>\n      <ion-item>Mis Equipos</ion-item>\n      <ion-item>Mis Jugadores</ion-item>\n      <ion-item>Mis Partidos</ion-item>\n      <ion-item routerLink=\"/admin_home\" routerDirection=\"forward\" >Administrar APP</ion-item>\n      <ion-item (click)=\"logout()\">\n        <ion-label>Cerrar Sesión</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n\n\n<ion-router-outlet id=\"main\"></ion-router-outlet>\n\n\n <ion-tabs slot=\"top\" color=\"primary\">\n\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"results\">\n        <ion-icon name=\"clipboard-outline\"></ion-icon>\n        <ion-label>Resultado</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"games\">\n        <ion-icon name=\"easel-outline\"></ion-icon>\n        <ion-label>Partidos</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"teams\">\n        <ion-icon name=\"people-outline\"></ion-icon>\n        <ion-label>Equipos</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"players\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        <ion-label>Jugadores</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"publications\">\n        <ion-icon name=\"happy-outline\"></ion-icon>        \n        <ion-label>3° Tiempo</ion-label>\n      </ion-tab-button>\n\n    </ion-tab-bar>\n  \n  </ion-tabs>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title> Fútbol Alem </ion-title>\n    <ion-buttons slot=\"secondary\">\n       <ion-button  routerLink=\"/notifications\" routerDirection=\"forward\">\n        <ion-icon name=\"notifications-outline\"></ion-icon>      \n        <ion-badge id=\"notifications-badge\" *ngIf=\"notificationsCount > 0\">{{notificationsCount}}</ion-badge>\n      </ion-button> \n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-menu side=\"start\" menuId=\"custom\" contentId=\"main\" class=\"my-custom-menu\">\n  <ion-header>\n    <ion-toolbar color=\"tertiary\">\n      <ion-title>Menú</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n\n    <ion-list>\n      <ion-item routerLink=\"/my-profile\" routerDirection=\"forward\" >\n        <app-menu-user style=\"width: 100%;\"></app-menu-user>\n      </ion-item>\n      <!-- <ion-item>Mis Equipos</ion-item>\n      <ion-item>Mis Jugadores</ion-item>\n      <ion-item>Mis Partidos</ion-item> -->\n      <ion-item routerLink=\"/admin_home\" routerDirection=\"forward\" *ngIf=\"auth.isAdmin()\" >Administrar APP</ion-item>\n      <ion-item (click)=\"logout()\">\n        <ion-label>Cerrar Sesión</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n\n\n<ion-router-outlet id=\"main\"></ion-router-outlet>\n\n\n <ion-tabs slot=\"top\" color=\"primary\">\n\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"results\">\n        <ion-icon name=\"clipboard-outline\"></ion-icon>\n        <ion-label>Resultado</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"games\">\n        <ion-icon name=\"easel-outline\"></ion-icon>\n        <ion-label>Partidos</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"teams\">\n        <ion-icon name=\"people-outline\"></ion-icon>\n        <ion-label>Equipos</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"players\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        <ion-label>Jugadores</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"publications\">\n        <ion-icon name=\"happy-outline\"></ion-icon>        \n        <ion-label>3° Tiempo</ion-label>\n      </ion-tab-button>\n\n    </ion-tab-bar>\n  \n  </ion-tabs>\n\n");
 
 /***/ }),
 
@@ -54,7 +54,7 @@ const routes = [
             },
             {
                 path: 'publications',
-                loadChildren: () => Promise.all(/*! import() | publications-publications-module */[__webpack_require__.e("default~pages-publications-publication-publication-module~publications-publications-module"), __webpack_require__.e("common"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
+                loadChildren: () => Promise.all(/*! import() | publications-publications-module */[__webpack_require__.e("default~pages-publications-form-publication-form-publication-module~publications-publications-module"), __webpack_require__.e("default~pages-publications-publication-publication-module~publications-publications-module"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
             },
             {
                 path: '',
@@ -65,7 +65,7 @@ const routes = [
     },
     {
         path: 'publications',
-        loadChildren: () => Promise.all(/*! import() | publications-publications-module */[__webpack_require__.e("default~pages-publications-publication-publication-module~publications-publications-module"), __webpack_require__.e("common"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
+        loadChildren: () => Promise.all(/*! import() | publications-publications-module */[__webpack_require__.e("default~pages-publications-form-publication-form-publication-module~publications-publications-module"), __webpack_require__.e("default~pages-publications-publication-publication-module~publications-publications-module"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
     },
 ];
 let HomePageRoutingModule = class HomePageRoutingModule {
@@ -198,13 +198,14 @@ let HomePage = class HomePage {
             this.splashScreen.hide();
         });
         setInterval(() => {
-            this.auth.userModel.api_loadAttribute(this.auth.user.id, 'counts_not').subscribe(response => {
-                console.log('update atribute counts_not', response);
-                let count = response['User']['counts_not'];
-                if (count > this.auth.user.counts_not) {
-                    this.auth.user.counts_not = count;
-                }
-            });
+            if (this.auth.user)
+                this.auth.userModel.api_loadAttribute(this.auth.user.id, 'counts_not').subscribe(response => {
+                    console.log('update atribute counts_not', response);
+                    let count = response['User']['counts_not'];
+                    if (count > this.auth.user.counts_not) {
+                        this.auth.user.counts_not = count;
+                    }
+                });
         }, 50000);
     }
     logout() {

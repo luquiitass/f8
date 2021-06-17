@@ -13,6 +13,15 @@
   <form (ngSubmit)="submit()"  (keyup)="servicePublication.errorsForm.clear()" >
 
     <ion-item>
+      <ion-avatar>
+        <ion-img [src]="authUser.user.photo ? authUser.user.photo.urlCompleteThumb : pathImages.images.profile_user " ></ion-img>
+      </ion-avatar>
+      <label class="name-user">{{authUser.user.completeName}}</label>
+    </ion-item>
+
+    <div class="separador"></div>
+
+    <ion-item>
       <ion-label position="floating" >Escribe aqui...</ion-label>
       <ion-textarea  class="editor-text" [(ngModel)]="publication.text" name="text"  ></ion-textarea>
     </ion-item>
@@ -26,14 +35,14 @@
       <div style="color: red; padding-top: 0.2rem" >{{ servicePublication.errorsForm.get('l_team') }}</div>
     </ion-item>
 
-    <ion-item *ngIf="this.photoModel.isLoadPthoto()">
+    <ion-item *ngIf="photoModel.isLoadPthoto() || photoModel.hasImage()">
       <ion-img  [src]="photoModel.photo.getPath()" ></ion-img>
     </ion-item>
-    <ion-item>
-      <ion-button expand="full" fill="outline"  (click)="photoModel.addOneNewToGallery()" >
-        <ion-icon  name="image"></ion-icon>
-      </ion-button>
-    </ion-item>
+    <br>
+    <ion-button expand="block"  fill="outline"  (click)="photoModel.addOneNewToGallery()" >
+      <ion-icon  name="image" slot="start"></ion-icon>
+      Foto
+    </ion-button> 
 
     <ion-button type="submit"  expand="block" [disabled]="posting">
       <ion-spinner name="lines" *ngIf="posting" ></ion-spinner>

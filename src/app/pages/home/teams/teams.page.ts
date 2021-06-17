@@ -33,7 +33,7 @@ export class TeamsPage implements OnInit {
   }
 
   init(event = null){
-    this.teamService.api_function('all').subscribe(
+    this.teamService.api_function('pageHomeTeams').subscribe(
       response => {
         this.teams = response['data'];
         if(event)

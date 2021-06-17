@@ -65,7 +65,7 @@
       <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('position_id') }}</div>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="!isUser">
       <ion-label position="floating" >Usuario</ion-label>
       <ion-input type="text" [(ngModel)]="player.email" name="email" (click)="selectUser()"></ion-input>
       <ion-input type="hidden" [(ngModel)]="player.user_id" name="user_id"></ion-input>

@@ -5,7 +5,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-buttons slot="secondary">
+    <ion-buttons slot="secondary" *ngIf="isAdmin">
       <ion-button (click)="showMenu()">
         <ion-icon name="create"></ion-icon>      
       </ion-button>
@@ -14,6 +14,11 @@
 </ion-header>
 
 <ion-content *ngIf="team">
+
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div>
     <div>
       <img class="cover" [src]="getCover()" alt="Portada">
@@ -53,7 +58,7 @@
   <app-red-list
     [nameModel] = "'Team'"
     [idModel] = "id"
-    [isAdmin] = "false"
+    [isAdmin] = "isAdmin"
     ></app-red-list>
 
 <app-comments

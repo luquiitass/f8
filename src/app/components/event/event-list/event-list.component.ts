@@ -4,6 +4,7 @@ import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { DialogService } from 'src/app/api/util/dialog.service';
 import { EventFormPage } from 'src/app/pages/event/event-form/event-form.page';
+import { AuthUserService } from 'src/app/services/auth-user.service';
 
 @Component({
   selector: 'app-event-list',
@@ -32,6 +33,7 @@ export class EventListComponent implements OnInit {
     public requestService : RequestService,
     public dialog : DialogService,
     public modalController: ModalController,
+    public authUser : AuthUserService
 
 
   ) { 
@@ -57,6 +59,12 @@ export class EventListComponent implements OnInit {
         }
       )
     
+  }
+
+  verificationAdmin(){
+    if(this.authUser.isAdminTeam(this.team_l.id) || this.authUser.isAdminTeam(this.team_v.id) ){
+      this.isAdmin = true;
+    }
   }
 
   confirmDelete(event,index){

@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title> {{ user ? user.last_name +' '+user.first_name : 'My Perfil'}}</ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngIf=\"user\">\n    <ion-card-content>\n\n      <ion-img-viewer \n        title=\"Foto de Perfil\" \n        [text]=\"user.last_name +' '+ user.first_name\"\n        scheme=\"dark\" \n        [src]=\"getPhoto()\">\n      </ion-img-viewer>\n\n    </ion-card-content>\n    <ion-card-header>\n      <ion-card-title>\n        {{user.last_name}} {{user.first_name}}\n      </ion-card-title>\n\n      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>\n    </ion-card-header>\n  </ion-card>\n\n\n  <ion-card *ngIf=\"user && user.teams && user.teams.lenght\">\n    <ion-card-header>\n      <ion-card-title>Administrar Equipos</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item *ngFor=\"let team of user.teams\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\">\n            {{team.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngIf=\"user && user.player\">\n    <ion-card-header>\n      <ion-card-title>Jugador</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item routerLink=\"/player/profile/{{user.player.id}}\" routerDirection=\"forward\">\n            {{user.player.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title> {{ user ? user.last_name +' '+user.first_name : 'My Perfil'}}</ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngIf=\"user\">\n    <ion-card-content>\n\n      <ion-img-viewer \n        title=\"Foto de Perfil\" \n        [text]=\"user.last_name +' '+ user.first_name\"\n        scheme=\"dark\" \n        [src]=\"getPhoto()\">\n      </ion-img-viewer>\n\n    </ion-card-content>\n    <ion-card-header>\n      <ion-card-title>\n        {{user.last_name}} {{user.first_name}}\n      </ion-card-title>\n\n      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>\n    </ion-card-header>\n  </ion-card>\n\n\n  <ion-card *ngIf=\"user && user.teams\">\n    <ion-card-header>\n      <ion-card-title>Mis Equipos</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item *ngFor=\"let team of user.teams\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\">\n            {{team.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngIf=\"user && user.player\">\n    <ion-card-header>\n      <ion-card-title>Mi perfil de Jugador</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item routerLink=\"/player/profile/{{user.player.id}}\" routerDirection=\"forward\">\n            {{user.player.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n";
       /***/
     },
 
@@ -347,15 +347,21 @@
                               switch (_context2.prev = _context2.next) {
                                 case 0:
                                   console.log(data);
+
+                                  if (!(data.data && data.data['user'])) {
+                                    _context2.next = 9;
+                                    break;
+                                  }
+
                                   item = data.data['user'];
                                   this.user.first_name = item.first_name;
                                   this.user.last_name = item.last_name;
                                   this.user.photo = item.photo;
                                   this.user.email = item.email;
-                                  _context2.next = 8;
+                                  _context2.next = 9;
                                   return this.authUser.setUser(this.user);
 
-                                case 8:
+                                case 9:
                                 case "end":
                                   return _context2.stop();
                               }

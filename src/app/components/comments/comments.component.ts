@@ -4,8 +4,10 @@ import { RequestService } from 'src/app/api/request.service';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { UtilService } from 'src/app/services/util.service';
 import * as moment from 'moment';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ActionSheetController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { DialogService } from 'src/app/api/util/dialog.service';
+import { UtilArrayService } from 'src/app/services/util-array.service';
 
 
 @Component({
@@ -30,12 +32,18 @@ export class CommentsComponent implements OnInit {
   public listComments = [];
   public commentText : ''
   public sending = false;
+  public updatingComment = false;
+  public commentEdit : {};
   
   constructor(
     public authService : AuthUserService,
     public request : RequestService,
     public util : UtilService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public dialog : DialogService,
+    public utilArray : UtilArrayService,
+    public authUser : AuthUserService
+
   ) {
     this.commentModel = new Model('Comment',request)
    }
@@ -56,7 +64,7 @@ export class CommentsComponent implements OnInit {
 
   }
 
-  loadCooments(){
+  loadCooments($event = null){
     this.listComments = this.comments;
     if(this.comments && this.comments.length > 0){
       //this.listComments = this.comments
@@ -70,9 +78,12 @@ export class CommentsComponent implements OnInit {
           if(response['status'] == 'success'){
             this.listComments = response[this.nameRelationModel]['comments'];
           }
+          if($event)
+            $event.target.complete();
         },
         error => {
-
+          if($event)
+            $event.target.complete();
         }
       )
   }
@@ -140,5 +151,58 @@ export class CommentsComponent implements OnInit {
     }
     
   }
+
+  async openMenuComment(comment){
+    this.dialog.actionSheetEditDelete(
+      ()=>{
+        comment.edit = true;
+        this.commentEdit = {...comment};
+      },
+      ()=> {
+        this.confirmDelete(comment);
+      })
+  }
+
+  confirmDelete(comment){
+    this.dialog.presentAlertConfirm('Confirmar','¿Estas seguro de eliminar este comentario?',e => {
+      this.delete(comment)
+    });
+   }
+
+   delete(comment){
+     this.commentModel.api_delete(comment.id).subscribe(data => {
+       console.log(data);
+       if(data['status'] == 'success'){
+         this.dialog.showToast('Commentario eliminado',null,'success');
+         this.utilArray.listDelete(this.listComments, comment.id );
+         //this.teamService.listDelete(team.id);
+       }
+     });
+   }
+
+   cancelEdit(comment){
+    comment.edit = false;
+    this.commentEdit = {};
+   }
+
+   async editComment(){
+     console.log('edit comment api');
+     this.updatingComment = true;
+     //await this.util.delay(5000);
+      this.commentModel.api_update(this.commentEdit).subscribe(
+        response => {
+          if(response['status'] == 'success'){
+            this.commentEdit['edit'] = false;
+            this.utilArray.listUpdate( this.listComments , this.commentEdit['id'] , this.commentEdit);
+
+          }
+          this.updatingComment = false;
+        },
+        error => {
+          console.log(error);
+          this.updatingComment = false;
+        }
+      )
+   }
 
 }

@@ -123,4 +123,16 @@ export class AuthUserService {
       )
     }
   }
+
+
+  isAdminTeam(team_id){
+    console.log('id admin')
+    if(this.user.teams){
+      let index = this.user.teams.map(team => team.id).indexOf( parseInt( team_id)  )
+
+      return index >= 0;
+    }
+    return false;
+  }
+
 }

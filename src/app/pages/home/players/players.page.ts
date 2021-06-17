@@ -29,7 +29,7 @@ export class PlayersPage implements OnInit {
     this.load()
   }
 
-  async load(){
+  async load($event = null){
 
     //await this.util.delay(4000)
     this.playerModel.api_function('pageHomePlayers').subscribe(
@@ -39,10 +39,14 @@ export class PlayersPage implements OnInit {
         }
         console.log(response)
         this.firstLoading = false;
+        if($event)
+          $event.target.complete();
       },
       error => {
         this.firstLoading= false;
         console.error(error)
+        if($event)
+          $event.target.complete();
       }
     )
   }

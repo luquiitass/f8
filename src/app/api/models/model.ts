@@ -47,6 +47,11 @@ export class Model {
         return this.request.api_update(this.model,item);
     }
 
+    /**
+     * Elimina el objeto de la base de datos 
+     * @param id Id del elemento a eliminar
+     * @return Devuelve el mismo objeto y el estado del proceso 
+     */
     api_delete(id: string) {
         this.errorsForm = this.request.errorsForm;
         return this.request.api_delete(this.model,id);

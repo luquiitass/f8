@@ -1,23 +1,36 @@
-<ion-item *ngIf="notification  && content && notification.type == 'like'">
+<ion-item *ngIf="notification  && notification.type == 'like'">
      <ion-avatar slot="start" >
       <ion-img 
-        [src]="content.autor_image">
+        [src]="notification.autor.photo ? notification.autor.photo.urlCompleteThumb : pathImages.images.profile_user ">
       </ion-img>
     </ion-avatar>
     <ion-label >
-      <h3><b>{{content.autor_name}}</b> ha indicado que le gusta tu publicacion.</h3>
+      <h3><b>{{notification.autor.completeName}}</b> ha indicado que le gusta tu publicacion.</h3>
       <ion-text class="date">{{ util.getFormarHumans(notification.created_at)}}</ion-text>
     </ion-label>
 </ion-item>
 
-<ion-item *ngIf="notification  && content && notification.type == 'comment_publication'">
+<ion-item *ngIf="notification  && notification.type == 'comment_publication'">
   <ion-avatar slot="start" >
    <ion-img 
-     [src]="content.autor_image">
+     [src]="notification.autor.photo ? notification.autor.photo.urlCompleteThumb : pathImages.images.profile_user">
    </ion-img>
  </ion-avatar>
  <ion-label >
-   <h3><b>{{content.autor_name}}</b> ha comentado tu publicacion.</h3>
+   <h3><b>{{notification.autor.completeName}}</b> ha comentado tu publicacion.</h3>
+   <ion-text class="date">{{ util.getFormarHumans(notification.created_at)}}</ion-text>
+ </ion-label>
+</ion-item>
+
+
+<ion-item *ngIf="notification && notification.type == 'create_player'">
+  <ion-avatar slot="start" >
+   <ion-img 
+     [src]="notification.autor.shield ? notification.autor.shield.urlCompleteThumb : pathImages.images.profile_user">
+   </ion-img>
+ </ion-avatar>
+ <ion-label >
+   <h3><b>{{notification.autor.name}}</b> Te ha registrado como jugador de su equipo. Puedes ingresar a tu perfil de jugador y modificar algunos datos.</h3>
    <ion-text class="date">{{ util.getFormarHumans(notification.created_at)}}</ion-text>
  </ion-label>
 </ion-item>

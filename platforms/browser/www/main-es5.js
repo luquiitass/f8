@@ -416,6 +416,12 @@
             this.errorsForm = this.request.errorsForm;
             return this.request.api_update(this.model, item);
           }
+          /**
+           * Elimina el objeto de la base de datos
+           * @param id Id del elemento a eliminar
+           * @return Devuelve el mismo objeto y el estado del proceso
+           */
+
         }, {
           key: "api_delete",
           value: function api_delete(id) {
@@ -708,6 +714,11 @@
           key: "isLoadPthoto",
           value: function isLoadPthoto() {
             return this.photo && this.photo.data ? true : false;
+          }
+        }, {
+          key: "hasImage",
+          value: function hasImage() {
+            return this.image && this.image.id ? true : false;
           }
         }, {
           key: "readAsBase64",
@@ -1079,11 +1090,12 @@
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 
       var DialogService = /*#__PURE__*/function () {
-        function DialogService(alertController, toastCtr) {
+        function DialogService(alertController, toastCtr, actionSheetController) {
           _classCallCheck(this, DialogService);
 
           this.alertController = alertController;
           this.toastCtr = toastCtr;
+          this.actionSheetController = actionSheetController;
         }
 
         _createClass(DialogService, [{
@@ -1098,7 +1110,7 @@
                       _context6.next = 2;
                       return this.alertController.create({
                         header: title,
-                        message: "<strong>".concat(message, "</strong>!!!"),
+                        message: "<strong>".concat(message, "</strong>"),
                         buttons: [{
                           text: 'Cancelar',
                           role: 'cancel',
@@ -1157,6 +1169,70 @@
               }, _callee7, this);
             }));
           }
+        }, {
+          key: "actionSheetEditDelete",
+          value: function actionSheetEditDelete(callbackEdit, callbackDelet) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+              var buttons, actionSheet;
+              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+                while (1) {
+                  switch (_context8.prev = _context8.next) {
+                    case 0:
+                      buttons = [];
+
+                      if (callbackEdit) {
+                        buttons.push({
+                          text: 'Modificar',
+                          icon: 'create-outline',
+                          handler: function handler() {
+                            console.log('Edit clicked');
+                            callbackEdit(); //comment.edit = true;
+                            //this.commentEdit = {...comment};
+                          }
+                        });
+                      }
+
+                      if (callbackDelet) {
+                        buttons.push({
+                          text: 'Eliminar',
+                          role: 'destructive',
+                          icon: 'trash',
+                          handler: function handler() {
+                            console.log('Delete clicked'); //this.confirmDelete(comment);
+
+                            callbackDelet();
+                          }
+                        });
+                      }
+
+                      buttons.push({
+                        text: 'Cancelar',
+                        icon: 'close',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('Cancel clicked');
+                        }
+                      });
+                      _context8.next = 6;
+                      return this.actionSheetController.create({
+                        header: 'Opciones',
+                        cssClass: 'my-custom-class',
+                        buttons: buttons
+                      });
+
+                    case 6:
+                      actionSheet = _context8.sent;
+                      _context8.next = 9;
+                      return actionSheet.present();
+
+                    case 9:
+                    case "end":
+                      return _context8.stop();
+                  }
+                }
+              }, _callee8, this);
+            }));
+          }
         }]);
 
         return DialogService;
@@ -1167,6 +1243,8 @@
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"]
         }];
       };
 
@@ -1518,7 +1596,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-profile-profile-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~43e0c2b9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~f356f4b3"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~43e0c2b9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~f356f4b3"), __webpack_require__.e("common"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/profile/profile.module */
           "./src/app/pages/player/profile/profile.module.ts")).then(function (m) {
             return m.ProfilePageModule;
@@ -1573,7 +1651,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-publications-form-publication-form-publication-module */
-          [__webpack_require__.e("common"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-publications-form-publication-form-publication-module~publications-publications-module"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/publications/form-publication/form-publication.module */
           "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(function (m) {
             return m.FormPublicationPageModule;
@@ -1720,13 +1798,13 @@
             var _this8 = this;
 
             this.platform.ready().then(function () {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this8, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-                return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this8, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+                return regeneratorRuntime.wrap(function _callee9$(_context9) {
                   while (1) {
-                    switch (_context8.prev = _context8.next) {
+                    switch (_context9.prev = _context9.next) {
                       case 0:
                         console.log('init APP');
-                        _context8.next = 3;
+                        _context9.next = 3;
                         return this.authUser.getUser();
 
                       case 3:
@@ -1735,10 +1813,10 @@
 
                       case 5:
                       case "end":
-                        return _context8.stop();
+                        return _context9.stop();
                     }
                   }
-                }, _callee8, this);
+                }, _callee9, this);
               }));
             });
           }
@@ -2783,17 +2861,17 @@
         }, {
           key: "addAdmins",
           value: function addAdmins(e) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
               var _this15 = this;
 
               var modal;
-              return regeneratorRuntime.wrap(function _callee9$(_context9) {
+              return regeneratorRuntime.wrap(function _callee10$(_context10) {
                 while (1) {
-                  switch (_context9.prev = _context9.next) {
+                  switch (_context10.prev = _context10.next) {
                     case 0:
                       e.preventDefault();
                       console.log('Add admins');
-                      _context9.next = 4;
+                      _context10.next = 4;
                       return this.modalController.create({
                         component: _search_search_page__WEBPACK_IMPORTED_MODULE_7__["SearchPage"],
                         componentProps: {
@@ -2805,24 +2883,24 @@
                       });
 
                     case 4:
-                      modal = _context9.sent;
+                      modal = _context10.sent;
                       modal.onDidDismiss().then(function (data) {
                         var list = data.data['items'];
                         console.log('users_select', list);
                         _this15.team.admins = list;
                       });
-                      _context9.next = 8;
+                      _context10.next = 8;
                       return modal.present();
 
                     case 8:
-                      return _context9.abrupt("return", _context9.sent);
+                      return _context10.abrupt("return", _context10.sent);
 
                     case 9:
                     case "end":
-                      return _context9.stop();
+                      return _context10.stop();
                   }
                 }
-              }, _callee9, this);
+              }, _callee10, this);
             }));
           }
         }]);
@@ -2940,37 +3018,37 @@
         _createClass(AuthUserService, [{
           key: "login",
           value: function login(data) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
               var _this16 = this;
 
-              return regeneratorRuntime.wrap(function _callee11$(_context11) {
+              return regeneratorRuntime.wrap(function _callee12$(_context12) {
                 while (1) {
-                  switch (_context11.prev = _context11.next) {
+                  switch (_context12.prev = _context12.next) {
                     case 0:
                       this.errorsLogin = '';
-                      return _context11.abrupt("return", this.http.post("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].server_url, "/login"), data).subscribe(function (data) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this16, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
-                          return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                      return _context12.abrupt("return", this.http.post("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].server_url, "/login"), data).subscribe(function (data) {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this16, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+                          return regeneratorRuntime.wrap(function _callee11$(_context11) {
                             while (1) {
-                              switch (_context10.prev = _context10.next) {
+                              switch (_context11.prev = _context11.next) {
                                 case 0:
                                   console.log(data);
 
                                   if (!(data['status'] && data['status'] == 'success')) {
-                                    _context10.next = 9;
+                                    _context11.next = 9;
                                     break;
                                   }
 
-                                  _context10.next = 4;
+                                  _context11.next = 4;
                                   return this.saveData(data);
 
                                 case 4:
-                                  _context10.next = 6;
+                                  _context11.next = 6;
                                   return this.getUser();
 
                                 case 6:
                                   this.redirect();
-                                  _context10.next = 10;
+                                  _context11.next = 10;
                                   break;
 
                                 case 9:
@@ -2978,36 +3056,16 @@
 
                                 case 10:
                                 case "end":
-                                  return _context10.stop();
+                                  return _context11.stop();
                               }
                             }
-                          }, _callee10, this);
+                          }, _callee11, this);
                         }));
                       }, function (error) {
                         _this16.errorsLogin = error.message; // 'Error de credenciales, intente nuevamente';
                       }));
 
                     case 2:
-                    case "end":
-                      return _context11.stop();
-                  }
-                }
-              }, _callee11, this);
-            }));
-          }
-        }, {
-          key: "setUser",
-          value: function setUser(user) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
-              return regeneratorRuntime.wrap(function _callee12$(_context12) {
-                while (1) {
-                  switch (_context12.prev = _context12.next) {
-                    case 0:
-                      this.user = user;
-                      _context12.next = 3;
-                      return this.saveUser();
-
-                    case 3:
                     case "end":
                       return _context12.stop();
                   }
@@ -3016,17 +3074,18 @@
             }));
           }
         }, {
-          key: "saveUser",
-          value: function saveUser() {
+          key: "setUser",
+          value: function setUser(user) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
               return regeneratorRuntime.wrap(function _callee13$(_context13) {
                 while (1) {
                   switch (_context13.prev = _context13.next) {
                     case 0:
-                      _context13.next = 2;
-                      return localStorage.setItem('User', JSON.stringify(this.user));
+                      this.user = user;
+                      _context13.next = 3;
+                      return this.saveUser();
 
-                    case 2:
+                    case 3:
                     case "end":
                       return _context13.stop();
                   }
@@ -3035,35 +3094,27 @@
             }));
           }
         }, {
-          key: "saveData",
-          value: function saveData(data) {
+          key: "saveUser",
+          value: function saveUser() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
               return regeneratorRuntime.wrap(function _callee14$(_context14) {
                 while (1) {
                   switch (_context14.prev = _context14.next) {
                     case 0:
                       _context14.next = 2;
-                      return localStorage.setItem('isAuthenticated', 'true');
+                      return localStorage.setItem('User', JSON.stringify(this.user));
 
                     case 2:
-                      _context14.next = 4;
-                      return localStorage.setItem('User', JSON.stringify(data['User']));
-
-                    case 4:
-                      _context14.next = 6;
-                      return localStorage.setItem('token', data['api_token']);
-
-                    case 6:
                     case "end":
                       return _context14.stop();
                   }
                 }
-              }, _callee14);
+              }, _callee14, this);
             }));
           }
         }, {
-          key: "removeData",
-          value: function removeData() {
+          key: "saveData",
+          value: function saveData(data) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
               return regeneratorRuntime.wrap(function _callee15$(_context15) {
                 while (1) {
@@ -3074,10 +3125,37 @@
 
                     case 2:
                       _context15.next = 4;
-                      return localStorage.removeItem('User');
+                      return localStorage.setItem('User', JSON.stringify(data['User']));
 
                     case 4:
                       _context15.next = 6;
+                      return localStorage.setItem('token', data['api_token']);
+
+                    case 6:
+                    case "end":
+                      return _context15.stop();
+                  }
+                }
+              }, _callee15);
+            }));
+          }
+        }, {
+          key: "removeData",
+          value: function removeData() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
+              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+                while (1) {
+                  switch (_context16.prev = _context16.next) {
+                    case 0:
+                      _context16.next = 2;
+                      return localStorage.setItem('isAuthenticated', 'true');
+
+                    case 2:
+                      _context16.next = 4;
+                      return localStorage.removeItem('User');
+
+                    case 4:
+                      _context16.next = 6;
                       return localStorage.removeItem('token');
 
                     case 6:
@@ -3085,10 +3163,10 @@
 
                     case 7:
                     case "end":
-                      return _context15.stop();
+                      return _context16.stop();
                   }
                 }
-              }, _callee15, this);
+              }, _callee16, this);
             }));
           }
         }, {
@@ -3107,67 +3185,67 @@
           value: function getUser() {
             var _a;
 
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
-              return regeneratorRuntime.wrap(function _callee16$(_context16) {
-                while (1) {
-                  switch (_context16.prev = _context16.next) {
-                    case 0:
-                      _context16.next = 2;
-                      return JSON.parse(localStorage.getItem('User'));
-
-                    case 2:
-                      _context16.t1 = _a = _context16.sent;
-                      _context16.t0 = _context16.t1 !== null;
-
-                      if (!_context16.t0) {
-                        _context16.next = 6;
-                        break;
-                      }
-
-                      _context16.t0 = _a !== void 0;
-
-                    case 6:
-                      if (!_context16.t0) {
-                        _context16.next = 10;
-                        break;
-                      }
-
-                      _context16.t2 = _a;
-                      _context16.next = 11;
-                      break;
-
-                    case 10:
-                      _context16.t2 = null;
-
-                    case 11:
-                      return _context16.abrupt("return", this.user = _context16.t2);
-
-                    case 12:
-                    case "end":
-                      return _context16.stop();
-                  }
-                }
-              }, _callee16, this);
-            }));
-          }
-        }, {
-          key: "redirect",
-          value: function redirect() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
               return regeneratorRuntime.wrap(function _callee17$(_context17) {
                 while (1) {
                   switch (_context17.prev = _context17.next) {
                     case 0:
                       _context17.next = 2;
+                      return JSON.parse(localStorage.getItem('User'));
+
+                    case 2:
+                      _context17.t1 = _a = _context17.sent;
+                      _context17.t0 = _context17.t1 !== null;
+
+                      if (!_context17.t0) {
+                        _context17.next = 6;
+                        break;
+                      }
+
+                      _context17.t0 = _a !== void 0;
+
+                    case 6:
+                      if (!_context17.t0) {
+                        _context17.next = 10;
+                        break;
+                      }
+
+                      _context17.t2 = _a;
+                      _context17.next = 11;
+                      break;
+
+                    case 10:
+                      _context17.t2 = null;
+
+                    case 11:
+                      return _context17.abrupt("return", this.user = _context17.t2);
+
+                    case 12:
+                    case "end":
+                      return _context17.stop();
+                  }
+                }
+              }, _callee17, this);
+            }));
+          }
+        }, {
+          key: "redirect",
+          value: function redirect() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
+              return regeneratorRuntime.wrap(function _callee18$(_context18) {
+                while (1) {
+                  switch (_context18.prev = _context18.next) {
+                    case 0:
+                      _context18.next = 2;
                       return this.getUser();
 
                     case 2:
                       if (this.user) {
-                        _context17.next = 4;
+                        _context18.next = 4;
                         break;
                       }
 
-                      return _context17.abrupt("return");
+                      return _context18.abrupt("return");
 
                     case 4:
                       if (this.user['role'] == 'admin') {
@@ -3178,21 +3256,21 @@
 
                     case 5:
                     case "end":
-                      return _context17.stop();
+                      return _context18.stop();
                   }
                 }
-              }, _callee17, this);
+              }, _callee18, this);
             }));
           }
         }, {
           key: "logout",
           value: function logout() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
-              return regeneratorRuntime.wrap(function _callee18$(_context18) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
+              return regeneratorRuntime.wrap(function _callee19$(_context19) {
                 while (1) {
-                  switch (_context18.prev = _context18.next) {
+                  switch (_context19.prev = _context19.next) {
                     case 0:
-                      _context18.next = 2;
+                      _context19.next = 2;
                       return this.removeData();
 
                     case 2:
@@ -3201,10 +3279,10 @@
 
                     case 3:
                     case "end":
-                      return _context18.stop();
+                      return _context19.stop();
                   }
                 }
-              }, _callee18, this);
+              }, _callee19, this);
             }));
           }
         }, {
@@ -3215,40 +3293,40 @@
         }, {
           key: "updateUserApi",
           value: function updateUserApi() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee21() {
               var _this17 = this;
 
-              return regeneratorRuntime.wrap(function _callee20$(_context20) {
+              return regeneratorRuntime.wrap(function _callee21$(_context21) {
                 while (1) {
-                  switch (_context20.prev = _context20.next) {
+                  switch (_context21.prev = _context21.next) {
                     case 0:
                       if (!this.user) {
-                        _context20.next = 3;
+                        _context21.next = 3;
                         break;
                       }
 
-                      _context20.next = 3;
+                      _context21.next = 3;
                       return this.userModel.api_function('dataGlobal').subscribe(function (response) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this17, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
-                          return regeneratorRuntime.wrap(function _callee19$(_context19) {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this17, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
+                          return regeneratorRuntime.wrap(function _callee20$(_context20) {
                             while (1) {
-                              switch (_context19.prev = _context19.next) {
+                              switch (_context20.prev = _context20.next) {
                                 case 0:
                                   if (!(response['status'] == 'success')) {
-                                    _context19.next = 4;
+                                    _context20.next = 4;
                                     break;
                                   }
 
                                   this.user = response['data'];
-                                  _context19.next = 4;
+                                  _context20.next = 4;
                                   return this.saveUser();
 
                                 case 4:
                                 case "end":
-                                  return _context19.stop();
+                                  return _context20.stop();
                               }
                             }
-                          }, _callee19, this);
+                          }, _callee20, this);
                         }));
                       }, function (error) {
                         console.log(error);
@@ -3256,11 +3334,25 @@
 
                     case 3:
                     case "end":
-                      return _context20.stop();
+                      return _context21.stop();
                   }
                 }
-              }, _callee20, this);
+              }, _callee21, this);
             }));
+          }
+        }, {
+          key: "isAdminTeam",
+          value: function isAdminTeam(team_id) {
+            console.log('id admin');
+
+            if (this.user.teams) {
+              var index = this.user.teams.map(function (team) {
+                return team.id;
+              }).indexOf(parseInt(team_id));
+              return index >= 0;
+            }
+
+            return false;
           }
         }]);
 

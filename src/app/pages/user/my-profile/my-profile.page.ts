@@ -70,14 +70,15 @@ export class MyProfilePage implements OnInit {
 
     modal.onDidDismiss().then(async data=>{
       console.log(data);
-      let item = data.data['user']
-      this.user.first_name = item.first_name;
-      this.user.last_name = item.last_name;
-      this.user.photo = item.photo;
-      this.user.email = item.email;
+      if(data.data && data.data['user']){
+        let item = data.data['user']
+        this.user.first_name = item.first_name;
+        this.user.last_name = item.last_name;
+        this.user.photo = item.photo;
+        this.user.email = item.email;
 
-      await this.authUser.setUser(this.user);
-
+        await this.authUser.setUser(this.user);
+      }
 
     })
 

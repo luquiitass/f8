@@ -246,9 +246,15 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/services/util-array.service */
+      "./src/app/services/util-array.service.ts");
 
       var ListPage = /*#__PURE__*/function () {
-        function ListPage(request, dialogService, modalController, dialog, route) {
+        function ListPage(request, dialogService, modalController, dialog, route, utilArray) {
           _classCallCheck(this, ListPage);
 
           this.request = request;
@@ -256,6 +262,7 @@
           this.modalController = modalController;
           this.dialog = dialog;
           this.route = route;
+          this.utilArray = utilArray;
           this.list = [];
           this.playerService = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Player', request);
           this.modelTeam = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Team', request);
@@ -319,9 +326,9 @@
                     case 2:
                       modal = _context.sent;
                       modal.onDidDismiss().then(function (data) {
-                        var player = data.data['player'];
+                        var player = data.data['player']; //this.playerService.listAddLast(player);
 
-                        _this2.playerService.listAddLast(player);
+                        _this2.utilArray.listAddFirst(_this2.list, player);
                       });
                       _context.next = 6;
                       return modal.present();
@@ -360,9 +367,9 @@
                       modal = _context2.sent;
                       modal.onDidDismiss().then(function (data) {
                         if (data.data.hasOwnProperty('player')) {
-                          var _player = data.data['player'];
+                          var _player = data.data['player']; //this.playerService.listUpdate(player.id,player);
 
-                          _this3.playerService.listUpdate(_player.id, _player);
+                          _this3.utilArray.listUpdate(_this3.list, _player.id, _player);
                         }
                       });
                       _context2.next = 6;
@@ -399,6 +406,8 @@
               if (data['status'] == 'success') {
                 _this5.dialog.showToast('Jugador Eliminado', null, 'success');
 
+                _this5.utilArray.listDelete(_this5.list, player.id);
+
                 _this5.playerService.listDelete(player.id);
               }
             });
@@ -419,6 +428,8 @@
           type: _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"]
+        }, {
+          type: src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_8__["UtilArrayService"]
         }];
       };
 
@@ -431,6 +442,134 @@
         /*! ./list.page.scss */
         "./src/app/pages/player/list/list.page.scss"))["default"]]
       })], ListPage);
+      /***/
+    },
+
+    /***/
+    "./src/app/services/util-array.service.ts":
+    /*!************************************************!*\
+      !*** ./src/app/services/util-array.service.ts ***!
+      \************************************************/
+
+    /*! exports provided: UtilArrayService */
+
+    /***/
+    function srcAppServicesUtilArrayServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "UtilArrayService", function () {
+        return UtilArrayService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+      var UtilArrayService = /*#__PURE__*/function () {
+        function UtilArrayService() {
+          _classCallCheck(this, UtilArrayService);
+        }
+        /**
+         * Inserta el elemento al final del array
+         * @param list array en el que se inserta el objeto
+         * @param item item a insertar
+         */
+
+
+        _createClass(UtilArrayService, [{
+          key: "listAddLast",
+          value: function listAddLast(list, item) {
+            list.push(item);
+          }
+          /**
+           * Añade un elemente en el array al inicio
+           * @param list array en la que se inserta el objeto
+           * @param item  elemento que se almacenara en el array
+           */
+
+        }, {
+          key: "listAddFirst",
+          value: function listAddFirst(list, item) {
+            list.unshift(item);
+          }
+          /**
+           * Remplaza un objeto del array
+           * @param list array que se actualizara
+           * @param id iel id del objeto
+           * @param item elemento que se remplazara en el array
+           */
+
+        }, {
+          key: "listUpdate",
+          value: function listUpdate(list, id, item) {
+            var index = this.findIndexList(list, id);
+
+            if (index >= 0) {
+              list[index] = item;
+            }
+          }
+          /**
+           * elimina objeto de un array pasando el id del objeto
+           * @param list array del que se eliminara el objeto
+           * @param id id del objeto
+           */
+
+        }, {
+          key: "listDelete",
+          value: function listDelete(list, id) {
+            var index = this.findIndexList(list, id);
+            if (index >= 0) list.splice(index, 1);
+          }
+          /**
+           * Busca un obeto en el array
+           * @param list array en el qie se bucara el objeto
+           * @param id id del objeto
+           */
+
+        }, {
+          key: "findList",
+          value: function findList(list, id) {
+            return list.find(function (item) {
+              return item['id'] === id;
+            });
+          }
+          /**
+           * Retorna el indice de la posicion en la que se encuentra el objeto
+           * @param list Array en el que se realizara a busqueda
+           * @param id id del objeto buscado
+           */
+
+        }, {
+          key: "findIndexList",
+          value: function findIndexList(list, id) {
+            return list.findIndex(function (item) {
+              return item['id'] === id;
+            });
+          }
+        }]);
+
+        return UtilArrayService;
+      }();
+
+      UtilArrayService.ctorParameters = function () {
+        return [];
+      };
+
+      UtilArrayService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], UtilArrayService);
       /***/
     }
   }]);

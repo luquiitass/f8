@@ -6,6 +6,7 @@ import { PlayerFormPage } from '../../../pages/player/player-form/player-form.pa
 import { DialogService } from '../../../api/util/dialog.service';
 import { Model } from 'src/app/api/models/model';
 import { ActivatedRoute } from '@angular/router';
+import { UtilArrayService } from 'src/app/services/util-array.service';
 
 @Component({
   selector: 'app-list',
@@ -27,6 +28,7 @@ export class ListPage implements OnInit {
     public modalController: ModalController,
     public dialog : DialogService,
     public route : ActivatedRoute,
+    public utilArray : UtilArrayService
 
   ) {
     this.playerService = new Model('Player',request);
@@ -86,7 +88,8 @@ export class ListPage implements OnInit {
 
     modal.onDidDismiss().then(data=>{
       const player = data.data['player'];
-      this.playerService.listAddLast(player);
+      //this.playerService.listAddLast(player);
+      this.utilArray.listAddFirst(this.list , player);
     })
 
     return await modal.present();
@@ -101,7 +104,8 @@ export class ListPage implements OnInit {
     modal.onDidDismiss().then(data=>{
       if(data.data.hasOwnProperty('player')){
         const player = data.data['player'];
-        this.playerService.listUpdate(player.id,player);
+        //this.playerService.listUpdate(player.id,player);
+        this.utilArray.listUpdate(this.list , player.id , player);
       }
     })
 
@@ -119,6 +123,7 @@ export class ListPage implements OnInit {
        console.log(data);
        if(data['status'] == 'success'){
          this.dialog.showToast('Jugador Eliminado',null,'success');
+         this.utilArray.listDelete(this.list,player.id);
          this.playerService.listDelete(player.id);
        }
      });

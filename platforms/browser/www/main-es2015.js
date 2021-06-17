@@ -476,6 +476,11 @@ class Model {
         this.errorsForm = this.request.errorsForm;
         return this.request.api_update(this.model, item);
     }
+    /**
+     * Elimina el objeto de la base de datos
+     * @param id Id del elemento a eliminar
+     * @return Devuelve el mismo objeto y el estado del proceso
+     */
     api_delete(id) {
         this.errorsForm = this.request.errorsForm;
         return this.request.api_delete(this.model, id);
@@ -615,6 +620,9 @@ class ModelImage {
     }
     isLoadPthoto() {
         return this.photo && this.photo.data ? true : false;
+    }
+    hasImage() {
+        return this.image && this.image.id ? true : false;
     }
     readAsBase64(cameraPhoto) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -808,15 +816,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DialogService = class DialogService {
-    constructor(alertController, toastCtr) {
+    constructor(alertController, toastCtr, actionSheetController) {
         this.alertController = alertController;
         this.toastCtr = toastCtr;
+        this.actionSheetController = actionSheetController;
     }
     presentAlertConfirm(title, message, handlerOk) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const alert = yield this.alertController.create({
                 header: title,
-                message: `<strong>${message}</strong>!!!`,
+                message: `<strong>${message}</strong>`,
                 buttons: [
                     {
                         text: 'Cancelar',
@@ -845,10 +854,55 @@ let DialogService = class DialogService {
             toast.present();
         });
     }
+    actionSheetEditDelete(callbackEdit, callbackDelet) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            let buttons = [];
+            if (callbackEdit) {
+                buttons.push({
+                    text: 'Modificar',
+                    icon: 'create-outline',
+                    handler: () => {
+                        console.log('Edit clicked');
+                        callbackEdit();
+                        //comment.edit = true;
+                        //this.commentEdit = {...comment};
+                    }
+                });
+            }
+            if (callbackDelet) {
+                buttons.push({
+                    text: 'Eliminar',
+                    role: 'destructive',
+                    icon: 'trash',
+                    handler: () => {
+                        console.log('Delete clicked');
+                        //this.confirmDelete(comment);
+                        callbackDelet();
+                    }
+                });
+            }
+            buttons.push({
+                text: 'Cancelar',
+                icon: 'close',
+                role: 'cancel',
+                handler: () => {
+                    console.log('Cancel clicked');
+                }
+            });
+            const actionSheet = yield this.actionSheetController.create({
+                header: 'Opciones',
+                cssClass: 'my-custom-class',
+                buttons: buttons
+            });
+            yield actionSheet.present();
+            //const { role } = await actionSheet.onDidDismiss();
+        });
+    }
 };
 DialogService.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"] }
 ];
 DialogService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -992,7 +1046,7 @@ const routes = [
     },
     {
         path: 'player/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-player-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~43e0c2b9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~f356f4b3"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/profile/profile.module */ "./src/app/pages/player/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~43e0c2b9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~f356f4b3"), __webpack_require__.e("common"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/profile/profile.module */ "./src/app/pages/player/profile/profile.module.ts")).then(m => m.ProfilePageModule)
     },
     {
         path: 'my-profile',
@@ -1012,7 +1066,7 @@ const routes = [
     },
     {
         path: 'form-publication',
-        loadChildren: () => Promise.all(/*! import() | pages-publications-form-publication-form-publication-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null, /*! ./pages/publications/form-publication/form-publication.module */ "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(m => m.FormPublicationPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-publications-form-publication-form-publication-module */[__webpack_require__.e("default~pages-publications-form-publication-form-publication-module~publications-publications-module"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null, /*! ./pages/publications/form-publication/form-publication.module */ "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(m => m.FormPublicationPageModule)
     },
     {
         path: 'publication/:id/:segment/:not',
@@ -1902,6 +1956,14 @@ let AuthUserService = class AuthUserService {
                 });
             }
         });
+    }
+    isAdminTeam(team_id) {
+        console.log('id admin');
+        if (this.user.teams) {
+            let index = this.user.teams.map(team => team.id).indexOf(parseInt(team_id));
+            return index >= 0;
+        }
+        return false;
     }
 };
 AuthUserService.ctorParameters = () => [

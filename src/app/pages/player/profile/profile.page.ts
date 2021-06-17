@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 import { Model } from 'src/app/api/models/model';
 import { RequestService } from 'src/app/api/request.service';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { AuthUserService } from 'src/app/services/auth-user.service';
+import { PlayerFormPage } from '../player-form/player-form.page';
 
 
 @Component({
@@ -16,11 +18,15 @@ export class ProfilePage implements OnInit {
   public id : any;
   public platerModel : Model;
   public player : any;
+  public isAdmin = false;
 
 
   constructor(
     public request : RequestService,
-    public route : ActivatedRoute
+    public route : ActivatedRoute,
+    public authUser : AuthUserService,
+    public modalController: ModalController,
+
   ) { 
     this.platerModel = new Model('Player',request)
     this.id = this.route.snapshot.paramMap.get('id');
@@ -30,16 +36,20 @@ export class ProfilePage implements OnInit {
     this.init()
   }
 
-  init(){
+  init($event = null){
     this.platerModel.api_functionModel(this.id,'profile').subscribe(
       response => {
         if(response['status'] == 'success'){
           this.player = response['data']
+          this.isAdmin = this.player.user_id == this.authUser.user.id;
           console.log('player',this.player)
         }
+        if($event)
+          $event.target.complete();
       },
       error => {
-
+        if($event)
+          $event.target.complete();
       }
     )
   }
@@ -52,5 +62,29 @@ export class ProfilePage implements OnInit {
   getYears(date){
     return moment().diff(date, 'years')
   }
+
+
+  async showEdit(player){
+    const modal = await this.modalController.create({
+      component: PlayerFormPage ,
+      componentProps: { 
+        id: player.id,
+        isUser : true
+      }
+    });
+
+    modal.onDidDismiss().then(data=>{
+      console.log('dismiss edit')
+      if(data.data && data.data.hasOwnProperty('player')){
+        if(data.data && data.data['player'] ){
+          const player = data.data['player'];
+          this.player = player;
+        }
+        //this.playerService.listUpdate(player.id,player);
+      }
+    })
+
+    return await modal.present();
+   }
 
 }

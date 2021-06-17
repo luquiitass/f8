@@ -112,6 +112,10 @@ export class ModelImage {
     public isLoadPthoto() {
       return  this.photo && this.photo.data  ? true : false;
     }
+
+    public hasImage(){
+      return this.image && this.image.id ? true : false;
+    }
   
     private async readAsBase64(cameraPhoto: CameraPhoto) {
       // Fetch the photo, read as a blob, then convert to base64 format

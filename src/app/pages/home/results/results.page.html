@@ -23,7 +23,7 @@
           <ion-col size="12">
             <ion-segment scrollable [(ngModel)]="tabSelected" (ionChange)="selectDate($event)" >
               <ion-segment-button *ngFor="let tab of tabs;let i=index" value="{{i}}" id="sgm_r_{{i}}" >
-                {{tab.date}}
+                {{formatDate(tab.date)}}
               </ion-segment-button>
             </ion-segment>
           </ion-col>

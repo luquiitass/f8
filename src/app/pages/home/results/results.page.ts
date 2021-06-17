@@ -112,4 +112,8 @@ export class ResultsPage implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
+  formatDate(val){
+    return this.util.setFormatMoment(val,'DD MMMM YYYY')
+  }
+
 }

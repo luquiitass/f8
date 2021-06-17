@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
   <app-player-list 
   [items] = "players"
   (eventSelect)="playerSelect($event)" 

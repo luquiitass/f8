@@ -21,6 +21,7 @@ export class PlayerFormPage implements OnInit {
   public id : any;
   public team_id : any;
   public photoModel : ModelImage;
+  public isUser : false;
 
   constructor(
     public request : RequestService,
@@ -35,6 +36,8 @@ export class PlayerFormPage implements OnInit {
     console.log('ver');
     this.id = navParams.get('id');
     this.team_id = navParams.get('team_id');
+    this.isUser = navParams.get('isUser');
+
 
     this.photoModel = new ModelImage(request,viewCtrl);
     this.photoModel.setAspectRatioCrop('1 / 1');
@@ -65,7 +68,8 @@ export class PlayerFormPage implements OnInit {
       this.servicePlayer.api_find(this.id).subscribe(data => {
         if(data['status'] == 'success'){
           this.player = data['Player'];
-          this.photoModel.setImage( this.player.photo)
+          if(this.player.photo)
+            this.photoModel.setImage( this.player.photo)
         }
       })
     }
