@@ -68,7 +68,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 @ionic-native/core
 MIT
 
-@ionic-native/google-plus
+@ionic-native/in-app-browser
+MIT
+
+@ionic-native/photo-viewer
 MIT
 
 @ionic-native/splash-screen
@@ -233,6 +236,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+
+ngx-ionic-image-viewer
+MIT
 
 regenerator-runtime
 MIT
