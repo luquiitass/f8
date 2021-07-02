@@ -1,0 +1,69 @@
+<ion-card style="width: 100%;"  *ngIf="publication">
+  <ion-card-content>
+    <ion-button class="menu-right"fill="clear" (click)="openMenuPublication(publication)" *ngIf="authUser.user.id == publication.user_id">
+      <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
+
+    <div class="publication-user">
+      <ion-thumbnail slot="start">
+        <ion-img
+          (click)="showPhotoUser(publication.user.photo)"
+          class="user-image"
+          [src]=" utilPhoto.getPhotoUser(publication.user) "
+          style="border-radius:50%; background-position:center center; background-size:cover; width:40px; height:40px;">
+      </ion-img>
+      </ion-thumbnail>
+
+      <div class="user">
+        <div class="name">
+          {{publication.user.last_name}} {{publication.user.first_name}}
+        </div>
+        <div class="date">
+          {{util.getFormarHumans(publication.created_at)}}
+        </div>
+      </div>
+    </div>
+
+    <div class="publication-text">
+      <ion-text color="dark">
+        {{publication.text}}
+      </ion-text>
+    </div>
+
+    <div class="publication-image ion-text-center" *ngIf="publication.image_id">
+      <img [src]="publication.image.urlComplete">
+    </div>
+
+    <ion-grid>
+      <ion-row >
+        <ion-col class="ion-text-left"  (click)="showPublication(publication , 'likes',i)">
+          <ion-text  color="dark" >
+            <ion-icon name="heart-outline" color="danger"></ion-icon>
+            {{publication.likes_count}}
+          </ion-text>
+        </ion-col>
+        <ion-col class="ion-text-right" (click)="showPublication(publication , 'comments')">
+          <ion-text >
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            {{publication.comments_count}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <div class="separator"></div>
+
+    <div>
+      <ion-buttons expand="full" >
+        <ion-button expand="full" style="width: 50%;" [color]="publication.liked ? 'danger' : 'primary'" (click)="like(publication)" [disabled]="publication.processLike ? true : false">
+          <ion-icon  name="heart-outline" *ngIf="!publication.processLike" ></ion-icon>
+          <ion-spinner name="lines" *ngIf="publication.processLike" ></ion-spinner>
+        </ion-button>
+        <ion-button expand="full"  style="width: 50%;" color="primary" (click)="showPublication(publication , 'comments')">
+          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+  </ion-card-content>
+</ion-card>

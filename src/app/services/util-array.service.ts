@@ -67,4 +67,22 @@ export class UtilArrayService {
   findIndexList(list,id){
     return list.findIndex(item => item['id'] === id);
   }
+
+  /**
+   * Modifica solo los atributos indicados en el array
+   * @param objectResult objeto a modificar
+   * @param object objeto del que se obtendran los datos
+   * @param attibutes atributos que seran modificados 
+   */
+
+  updateAttribustesObject(objectResult : {} , object : {} , attibutes : string[] = []){
+    console.log('update attributes')
+    for(let att of attibutes){
+      if(object.hasOwnProperty(att))
+        objectResult[att] = object[att];
+    }
+
+    return objectResult;
+  }
+
 }

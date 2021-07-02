@@ -686,22 +686,22 @@
     },
 
     /***/
-    "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/player/player-form/player-form.page.html":
-    /*!******************************************************************************************************!*\
-      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/player/player-form/player-form.page.html ***!
-      \******************************************************************************************************/
+    "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/game/game-form/game-form.page.html":
+    /*!************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/game/game-form/game-form.page.html ***!
+      \************************************************************************************************/
 
     /*! exports provided: default */
 
     /***/
-    function node_modulesRawLoaderDistCjsJsSrcAppPagesPlayerPlayerFormPlayerFormPageHtml(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesRawLoaderDistCjsJsSrcAppPagesGameGameFormGameFormPageHtml(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Jugador</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"servicePlayer.errorsForm.clear()\" >\n\n    <div>\n      <ion-img  [src]=\"photoModel.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoModel.addOneNewToGallery()\">{{photoModel.isLoadPthoto() ? 'Modificar' : 'Seleccionar Imagen' }}</ion-button>\n      </div>\n    </div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"player.name\" name=\"name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('name') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Fecha de nacimiento</ion-label>\n      <ion-datetime [(ngModel)]=\"player.birth_date\" name=\"birth_date\"    displayFormat=\"YYYY-MM-DD\" ></ion-datetime>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('birth_date') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Apodo</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"player.nick\" name=\"nick\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('nick') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Numero</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"player.number\" name=\"number\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('number') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Altura</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"player.height\" name=\"height\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('height') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Peso</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"player.weight\" name=\"weight\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('weight') }}</div>\n\n\n    <ion-item>\n      <ion-label position=\"floating\">Posicion</ion-label>\n      <ion-select [(ngModel)]=\"player.position_id\" name=\"position_id\">\n        <ion-select-option [value]=\"pos.id\" *ngFor=\"let pos of servicePosition.list\">{{ pos.name }}</ion-select-option>\n      </ion-select>\n      <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('position_id') }}</div>\n    </ion-item>\n\n    <ion-item *ngIf=\"!isUser\">\n      <ion-label position=\"floating\" >Usuario</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"player.email\" name=\"email\" (click)=\"selectUser()\"></ion-input>\n      <ion-input type=\"hidden\" [(ngModel)]=\"player.user_id\" name=\"user_id\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ servicePlayer.errorsForm.get('weight') }}</div>\n\n   \n    <ion-button type=\"submit\"  expand=\"block\">Guardar</ion-button>\n  </form>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Partido</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceGame.errorsForm.clear()\" >\n\n    <ion-item>\n      <ion-label position=\"floating\">Equipo local</ion-label>\n      <ion-select [(ngModel)]=\"game.l_team\" name=\"l_team\">\n        <ion-select-option [value]=\"l_team.id\" *ngFor=\"let l_team of teams\">{{ l_team.name }}</ion-select-option>\n      </ion-select>\n      <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceGame.errorsForm.get('l_team') }}</div>\n\n    </ion-item>\n\n\n    <ion-item>\n      <ion-label position=\"floating\">Equipo Vicitante</ion-label>\n      <ion-select [(ngModel)]=\"game.v_team\" name=\"v_team\">\n        <ion-select-option [value]=\"v_team.id\" *ngFor=\"let v_team of teams\">{{ v_team.name }}</ion-select-option>\n      </ion-select>\n      <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceGame.errorsForm.get('v_team') }}</div>\n    </ion-item>\n\n    <div class=\"goals\">\n\n      <ion-item>\n        <ion-label position=\"floating\">Goles L</ion-label>\n        <ion-select [(ngModel)]=\"game.l_goals\" name=\"l_goals\">\n          <ion-select-option [value]=\"i\" *ngFor=\"let i of numbGoals\">{{ i }}</ion-select-option>\n        </ion-select>\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceGame.errorsForm.get('l_goals') }}</div>\n      </ion-item>\n\n      <ion-item>\n        <ion-label position=\"floating\">Goles V</ion-label>\n        <ion-select [(ngModel)]=\"game.v_goals\" name=\"v_goals\" >\n          <ion-select-option [value]=\"e\" *ngFor=\"let e of numbGoals\">{{ e }}</ion-select-option>\n        </ion-select>\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceGame.errorsForm.get('v_goals') }}</div>\n      </ion-item>\n    </div>\n\n    <ion-item>\n      <ion-label>HH:mm</ion-label>\n      <ion-datetime \n        [(ngModel)]=\"game.time\" \n        displayFormat=\"HH:mm \"  \n        name=\"time\">\n      </ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Lugar</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"game.location\" name=\"location\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceGame.errorsForm.get('location') }}</div>\n\n\n    <ion-item>\n      <ion-label position=\"floating\" >Comentario</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"game.description\" name=\"description\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceGame.errorsForm.get('description') }}</div>\n\n    <ion-item>\n      <ion-label>Fecha</ion-label>\n      <ion-datetime \n        name=\"date\"\n        [(ngModel)]=\"game.date\"\n        displayFormat=\"YYYY-MM-DD\"\n        ></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">Estado</ion-label>\n      <ion-select [(ngModel)]=\"game.status\" name=\"status\">\n        <ion-select-option [value]=\"i\" *ngFor=\"let i of status\">{{ i }}</ion-select-option>\n      </ion-select>\n      <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceGame.errorsForm.get('status') }}</div>\n    </ion-item>\n   \n    <ion-button type=\"submit\"  expand=\"block\">Guardar</ion-button>\n  </form>\n</ion-content>\n";
       /***/
     },
 
@@ -761,7 +761,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{user.id ? 'Modificar' : 'Nuevo Usuario'}}</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceUser.errorsForm.clear()\" >\n\n \n    <div>\n      <ion-img  [src]=\"photoService.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('photo') }}</div>\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar Foto' :'Seleccionar Foto' }}</ion-button>\n      </div>\n    </div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"user.first_name\" name=\"first_name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('first_name') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Apellido</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"user.last_name\" name=\"last_name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('last_name') }}</div>\n\n    <ion-item>\n      <ion-label position=\"floating\" >Email</ion-label>\n      <ion-input type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('email') }}</div>\n\n    <ion-item *ngIf=\"!id\">\n      <ion-label position=\"floating\" >Contraseña</ion-label>\n      <ion-input type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('password') }}</div>\n\n    <ion-item *ngIf=\"!id\">\n      <ion-label position=\"floating\" >Confirmar Contraseña</ion-label>\n      <ion-input type=\"password\" [(ngModel)]=\"user.confirm_password\" name=\"confirm_password\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('confirm_password') }}</div>\n   \n    <ion-button type=\"submit\"  expand=\"block\" [disabled]=\"saving\">\n      <ion-spinner name=\"lines\" *ngIf=\"saving\" ></ion-spinner>\n      Guardar\n    </ion-button>\n  </form>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{user.id ? 'Modificar' : 'Nuevo Usuario'}}</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-card>\n    <ion-card-content>\n      <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceUser.errorsForm.clear()\" >\n\n \n        <div>\n          <ion-img  [src]=\"photoService.photo.getPath()\" ></ion-img>\n          <div class=\"ion-text-center\">\n            <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('photo') }}</div>\n            <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar Foto' :'Seleccionar Foto' }}</ion-button>\n          </div>\n        </div>\n    \n        <ion-item>\n          <ion-label position=\"floating\" >Nombre</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"user.first_name\" name=\"first_name\"></ion-input>\n        </ion-item>\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('first_name') }}</div>\n    \n        <ion-item>\n          <ion-label position=\"floating\" >Apellido</ion-label>\n          <ion-input type=\"text\" [(ngModel)]=\"user.last_name\" name=\"last_name\"></ion-input>\n        </ion-item>\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('last_name') }}</div>\n    \n        <ion-item>\n          <ion-label position=\"floating\" >Email</ion-label>\n          <ion-input type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\n        </ion-item>\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('email') }}</div>\n    \n        <ion-item *ngIf=\"!id\">\n          <ion-label position=\"floating\" >Contraseña</ion-label>\n          <ion-input type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\n        </ion-item>\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('password') }}</div>\n    \n        <ion-item *ngIf=\"!id\">\n          <ion-label position=\"floating\" >Confirmar Contraseña</ion-label>\n          <ion-input type=\"password\" [(ngModel)]=\"user.confirm_password\" name=\"confirm_password\"></ion-input>\n        </ion-item>\n        <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceUser.errorsForm.get('confirm_password') }}</div>\n       \n        <ion-button type=\"submit\"  expand=\"block\" [disabled]=\"saving\">\n          <ion-spinner name=\"lines\" *ngIf=\"saving\" ></ion-spinner>\n          Guardar\n        </ion-button>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n\n</ion-content>\n";
       /***/
     },
 
@@ -940,83 +940,43 @@
     },
 
     /***/
-    "./src/app/pages/home/games/games.page.scss":
-    /*!**************************************************!*\
-      !*** ./src/app/pages/home/games/games.page.scss ***!
-      \**************************************************/
+    "./src/app/pages/game/game-form/game-form.page.scss":
+    /*!**********************************************************!*\
+      !*** ./src/app/pages/game/game-form/game-form.page.scss ***!
+      \**********************************************************/
 
     /*! exports provided: default */
 
     /***/
-    function srcAppPagesHomeGamesGamesPageScss(module, __webpack_exports__, __webpack_require__) {
+    function srcAppPagesGameGameFormGameFormPageScss(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = ".team-list {\n  display: block;\n}\n\n.vs {\n  width: 6%;\n}\n\n.game {\n  width: 100%;\n  /*background-image: url(/assets/images/img_fondo_part.png);\n  color: white;*/\n  padding: 10px;\n  background-color: white;\n  background-repeat: no-repeat;\n  background-size: 100%;\n  font-size: small;\n}\n\n.team {\n  display: flex;\n  align-items: center;\n  width: 47%;\n  flex-flow: column-reverse;\n}\n\n.team-name {\n  margin-left: 15px;\n  margin-right: 15px;\n  width: 100%;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.img-team {\n  border-radius: 50%;\n  background-position: center center;\n  width: 30px;\n  height: 30px;\n}\n\n.contenedor {\n  margin: 10px auto;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n  text-align: -webkit-center;\n}\n\n.date {\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9nYW1lcy9nYW1lcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FBQ0o7O0FBQ0E7RUFDSSxTQUFBO0FBRUo7O0FBQ0E7RUFDSSxXQUFBO0VBQ0E7Z0JBQUE7RUFFQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSw0QkFBQTtFQUNBLHFCQUFBO0VBR0EsZ0JBQUE7QUFBSjs7QUFJQTtFQUNJLGFBQUE7RUFDQSxtQkFBQTtFQUNBLFVBQUE7RUFDQSx5QkFBQTtBQURKOztBQU1BO0VBQ0ksaUJBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7RUFFQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0JBQUE7QUFKSjs7QUFRQTtFQUNJLGtCQUFBO0VBQ0Esa0NBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQUxKOztBQVFBO0VBQ0ksaUJBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtFQUNBLFdBQUE7RUFDQSwwQkFBQTtBQUxKOztBQVFBO0VBQ0ksa0JBQUE7QUFMSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2hvbWUvZ2FtZXMvZ2FtZXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRlYW0tbGlzdHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn1cbi52c3tcbiAgICB3aWR0aDogNiU7XG59XG5cbi5nYW1le1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIC8qYmFja2dyb3VuZC1pbWFnZTogdXJsKC9hc3NldHMvaW1hZ2VzL2ltZ19mb25kb19wYXJ0LnBuZyk7XG4gICAgY29sb3I6IHdoaXRlOyovXG4gICAgcGFkZGluZzogMTBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICAgIGJhY2tncm91bmQtc2l6ZTogMTAwJTtcblxuXG4gICAgZm9udC1zaXplOiBzbWFsbDtcblxufVxuXG4udGVhbXtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgd2lkdGg6IDQ3JTtcbiAgICBmbGV4LWZsb3c6IGNvbHVtbi1yZXZlcnNlO1xuXG5cbn1cblxuLnRlYW0tbmFtZXtcbiAgICBtYXJnaW4tbGVmdDogMTVweDtcbiAgICBtYXJnaW4tcmlnaHQ6IDE1cHg7O1xuICAgIHdpZHRoOiAxMDAlO1xuXG4gICAgdGV4dC1vdmVyZmxvdzogZWxsaXBzaXM7XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuXG59XG5cbi5pbWctdGVhbXtcbiAgICBib3JkZXItcmFkaXVzOjUwJTsgXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjpjZW50ZXIgY2VudGVyOyBcbiAgICB3aWR0aDozMHB4OyBcbiAgICBoZWlnaHQ6MzBweDtcbn1cblxuLmNvbnRlbmVkb3Ige1xuICAgIG1hcmdpbjogMTBweCBhdXRvO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICB3aWR0aDogMTAwJTtcbiAgICB0ZXh0LWFsaWduOiAtd2Via2l0LWNlbnRlcjtcbn1cblxuLmRhdGV7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4iXX0= */";
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dhbWUvZ2FtZS1mb3JtL2dhbWUtZm9ybS5wYWdlLnNjc3MifQ== */";
       /***/
     },
 
     /***/
-    "./src/app/pages/home/results/results.page.scss":
-    /*!******************************************************!*\
-      !*** ./src/app/pages/home/results/results.page.scss ***!
-      \******************************************************/
+    "./src/app/pages/game/game-form/game-form.page.ts":
+    /*!********************************************************!*\
+      !*** ./src/app/pages/game/game-form/game-form.page.ts ***!
+      \********************************************************/
 
-    /*! exports provided: default */
-
-    /***/
-    function srcAppPagesHomeResultsResultsPageScss(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = ".game {\n  color: #FFF;\n  width: 100%;\n  padding: 3px;\n  padding: 10px;\n  border-radius: 5px;\n  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px white, 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);\n}\n\n.team {\n  position: relative;\n  background-image: url('img_fondo_res4.png');\n  background-repeat: no-repeat;\n  background-size: cover;\n  padding: 10px;\n  width: 100%;\n  padding-top: 15px;\n}\n\n.name-team {\n  display: inline-block;\n  width: 70%;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.goals-team {\n  display: inline-block;\n  width: 30%;\n  text-align: right;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  padding-right: 20px;\n}\n\n.comment {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0Esb0dBQUE7QUFDSjs7QUFFQTtFQUNJLGtCQUFBO0VBQ0EsMkNBQUE7RUFDQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7RUFDQSxpQkFBQTtBQUNKOztBQUVBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0FBQ0o7O0FBR0E7RUFDSSxxQkFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0FBQUo7O0FBR0E7RUFDSSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtBQUFKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmdhbWV7XG4gICAgY29sb3I6ICNGRkY7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcGFkZGluZzogM3B4O1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIGJveC1zaGFkb3c6IGluc2V0IDAgLTNlbSAzZW0gcmdiYSgwLCAwLCAwLCAwLjEpLCAwIDAgMCAycHggd2hpdGUsIDAuM2VtIDAuM2VtIDFlbSByZ2JhKDAsIDAsIDAsIDAuMyk7XG59XG5cbi50ZWFte1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoLi4vLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9pbWdfZm9uZG9fcmVzNC5wbmcpO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIHBhZGRpbmctdG9wOiAxNXB4O1xufVxuXG4ubmFtZS10ZWFte1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogNzAlO1xuICAgIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxufVxuXG4uZ29hbHMtdGVhbXtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDMwJTtcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgcGFkZGluZy1yaWdodDogMjBweDtcbn1cblxuLmNvbW1lbnR7XG4gICAgcG9zaXRpb24gOiBhYnNvbHV0ZTtcbiAgICB0b3AgOjEwcHg7XG4gICAgcmlnaHQgOiAxMHB4O1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG4iXX0= */";
-      /***/
-    },
+    /*! exports provided: GameFormPage */
 
     /***/
-    "./src/app/pages/player/player-form/player-form.page.scss":
-    /*!****************************************************************!*\
-      !*** ./src/app/pages/player/player-form/player-form.page.scss ***!
-      \****************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function srcAppPagesPlayerPlayerFormPlayerFormPageScss(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3BsYXllci9wbGF5ZXItZm9ybS9wbGF5ZXItZm9ybS5wYWdlLnNjc3MifQ== */";
-      /***/
-    },
-
-    /***/
-    "./src/app/pages/player/player-form/player-form.page.ts":
-    /*!**************************************************************!*\
-      !*** ./src/app/pages/player/player-form/player-form.page.ts ***!
-      \**************************************************************/
-
-    /*! exports provided: PlayerFormPage */
-
-    /***/
-    function srcAppPagesPlayerPlayerFormPlayerFormPageTs(module, __webpack_exports__, __webpack_require__) {
+    function srcAppPagesGameGameFormGameFormPageTs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
       /* harmony export (binding) */
 
 
-      __webpack_require__.d(__webpack_exports__, "PlayerFormPage", function () {
-        return PlayerFormPage;
+      __webpack_require__.d(__webpack_exports__, "GameFormPage", function () {
+        return GameFormPage;
       });
       /* harmony import */
 
@@ -1045,75 +1005,90 @@
       /* harmony import */
 
 
-      var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var src_app_services_photo_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/app/services/photo.service */
+      "./src/app/services/photo.service.ts");
+      /* harmony import */
+
+
+      var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! src/app/api/models/model */
       "./src/app/api/models/model.ts");
       /* harmony import */
 
 
-      var src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! src/app/api/util/dialog.service */
       "./src/app/api/util/dialog.service.ts");
-      /* harmony import */
 
+      var GameFormPage = /*#__PURE__*/function () {
+        function GameFormPage(request, dialogService, viewCtrl, photoService, navParams) {
+          _classCallCheck(this, GameFormPage);
 
-      var src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-      /*! src/app/api/models/modelImage */
-      "./src/app/api/models/modelImage.ts");
-      /* harmony import */
-
-
-      var _search_search_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-      /*! ../../search/search.page */
-      "./src/app/pages/search/search.page.ts");
-
-      var PlayerFormPage = /*#__PURE__*/function () {
-        function PlayerFormPage(request, dialogService, viewCtrl, navParams, modalController) {
-          _classCallCheck(this, PlayerFormPage);
+          var _a;
 
           this.request = request;
           this.dialogService = dialogService;
           this.viewCtrl = viewCtrl;
-          this.modalController = modalController;
-          this.servicePosition = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_4__["Model"]('Position', request);
-          this.servicePlayer = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_4__["Model"]('Player', request);
-          console.log('ver');
+          this.photoService = photoService;
+          this.teams = [];
+          this.numbGoals = [];
+          this.customDayShortNames = ["s\xF8n"];
+          this.status = ['Pendiente', 'Suspendido', 'Jugado'];
+
+          this.myDateFilter = function (d) {
+            var day = d.getDay(); // Prevent Saturday and Sunday from being selected.
+
+            return day == 6;
+          };
+
+          this.serviceGame = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_5__["Model"]('Game', request);
+          this.serviceTeam = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_5__["Model"]('Team', request); //this.serviceTeam.setModel('Team');
+
           this.id = navParams.get('id');
-          this.team_id = navParams.get('team_id');
-          this.isUser = navParams.get('isUser');
-          this.photoModel = new src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_6__["ModelImage"](request, viewCtrl);
-          this.photoModel.setAspectRatioCrop('1 / 1');
-          this.photoModel.init('images/players/profile/', true, 'assets/images/jugador.png');
+          this.toDate = (_a = navParams.get('date')) !== null && _a !== void 0 ? _a : new Date();
+          console.log('date', this.toDate);
         }
 
-        _createClass(PlayerFormPage, [{
+        _createClass(GameFormPage, [{
           key: "ngOnInit",
           value: function ngOnInit() {
+            var _this = this;
+
+            this.serviceTeam.api_function('getAllTeamsSelect').subscribe(function (data) {
+              if (data['data']) {
+                _this.teams = data['data'];
+                console.log('teams -> ', _this.teams); //this.serviceGame.setModel('Game');
+              }
+            });
+
+            for (var i = 0; i <= 30; i++) {
+              this.numbGoals.push(i);
+            }
+
             this.initObject();
-            this.servicePosition.api_all();
           }
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this = this;
+            var _this2 = this;
 
-            this.player = {
-              'name': '',
-              'nick': '',
-              'birth_date': '',
-              'number': 1,
-              'height': 0.0,
-              'weight': 0.0,
-              'position_id': '',
-              'team_id': this.team_id,
-              'photo_id': ''
+            this.game = {
+              l_team: '',
+              v_team: '',
+              l_goals: 0,
+              v_goals: 0,
+              time: '15:00',
+              date: this.toDate,
+              location: '',
+              description: '',
+              status: 'Pendiente'
             };
 
             if (this.id) {
-              this.servicePlayer.api_find(this.id).subscribe(function (data) {
+              this.serviceGame.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this.player = data['Player'];
-                  if (_this.player.photo) _this.photoModel.setImage(_this.player.photo);
+                  _this2.game = data['Game'];
                 }
               });
             }
@@ -1121,18 +1096,37 @@
         }, {
           key: "submit",
           value: function submit() {
-            if (this.photoModel.isLoadPthoto()) {
-              this.savePhoto();
-              return;
-            }
+            var _this3 = this;
 
-            this.savePlayer();
+            if (this.game.id) {
+              this.serviceGame.api_update(this.game).subscribe(function (data) {
+                var _a;
+
+                if (data['status'] == 'success') {
+                  _this3.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+
+                  console.log(data);
+
+                  _this3.dismiss(data['Game']);
+                }
+              });
+            } else {
+              this.serviceGame.api_create(this.game).subscribe(function (data) {
+                var _a;
+
+                if (data['status'] == 'success') {
+                  _this3.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+
+                  _this3.dismiss(data['Game']);
+                }
+              });
+            }
           }
         }, {
           key: "dismiss",
-          value: function dismiss(player) {
+          value: function dismiss(game) {
             this.viewCtrl.dismiss({
-              player: player
+              game: game
             });
           }
         }, {
@@ -1141,136 +1135,78 @@
             this.viewCtrl.dismiss();
           }
         }, {
-          key: "savePhoto",
-          value: function savePhoto() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var _this2 = this;
-
-              return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                while (1) {
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      _context3.next = 2;
-                      return this.photoModel.uploadImage().subscribe(function (data) {
-                        if (data['status'] == 'success') {
-                          var image = data['Image'];
-                          _this2.player.photo_id = image.id;
-
-                          _this2.savePlayer();
-                        }
-                      }, function (error) {
-                        _this2.dialogService.showToast('Error al subir Portada', 'Error', 'danger'); //this.submit();
-
-                      });
-
-                    case 2:
-                    case "end":
-                      return _context3.stop();
-                  }
-                }
-              }, _callee3, this);
-            }));
-          }
-        }, {
-          key: "savePlayer",
-          value: function savePlayer() {
-            var _this3 = this;
-
-            if (this.player.id) {
-              this.servicePlayer.api_update(this.player).subscribe(function (data) {
-                var _a;
-
-                if (data['status'] == 'success') {
-                  _this3.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
-
-                  _this3.dismiss(data['Player']);
-                }
-              });
-            } else {
-              this.servicePlayer.api_create(this.player).subscribe(function (data) {
-                var _a;
-
-                if (data['status'] == 'success') {
-                  _this3.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
-
-                  _this3.dismiss(data['Player']);
-                }
-              });
-            }
-          }
-        }, {
-          key: "selectUser",
-          value: function selectUser() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-              var _this4 = this;
-
-              var modal;
-              return regeneratorRuntime.wrap(function _callee4$(_context4) {
-                while (1) {
-                  switch (_context4.prev = _context4.next) {
-                    case 0:
-                      //e.preventDefault();
-                      console.log('Add admins');
-                      _context4.next = 3;
-                      return this.modalController.create({
-                        component: _search_search_page__WEBPACK_IMPORTED_MODULE_7__["SearchPage"],
-                        componentProps: {
-                          cancellable: false,
-                          model: 'User',
-                          "function": 'searchUser',
-                          multiple: false
-                        }
-                      });
-
-                    case 3:
-                      modal = _context4.sent;
-                      modal.onDidDismiss().then(function (data) {
-                        var user = data.data['item'];
-                        _this4.player.user_id = user.id;
-                        _this4.player.email = user.text;
-                      });
-                      _context4.next = 7;
-                      return modal.present();
-
-                    case 7:
-                      return _context4.abrupt("return", _context4.sent);
-
-                    case 8:
-                    case "end":
-                      return _context4.stop();
-                  }
-                }
-              }, _callee4, this);
-            }));
+          key: "print",
+          value: function print() {
+            console.log(this.game);
           }
         }]);
 
-        return PlayerFormPage;
+        return GameFormPage;
       }();
 
-      PlayerFormPage.ctorParameters = function () {
+      GameFormPage.ctorParameters = function () {
         return [{
           type: _api_request_service__WEBPACK_IMPORTED_MODULE_2__["RequestService"]
         }, {
-          type: src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"]
+          type: src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_6__["DialogService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+        }, {
+          type: src_app_services_photo_service__WEBPACK_IMPORTED_MODULE_4__["PhotoService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
-        }, {
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
         }];
       };
 
-      PlayerFormPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-player-form',
+      GameFormPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-game-form',
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-        /*! raw-loader!./player-form.page.html */
-        "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/player/player-form/player-form.page.html"))["default"],
+        /*! raw-loader!./game-form.page.html */
+        "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/game/game-form/game-form.page.html"))["default"],
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-        /*! ./player-form.page.scss */
-        "./src/app/pages/player/player-form/player-form.page.scss"))["default"]]
-      })], PlayerFormPage);
+        /*! ./game-form.page.scss */
+        "./src/app/pages/game/game-form/game-form.page.scss"))["default"]]
+      })], GameFormPage);
+      /***/
+    },
+
+    /***/
+    "./src/app/pages/home/games/games.page.scss":
+    /*!**************************************************!*\
+      !*** ./src/app/pages/home/games/games.page.scss ***!
+      \**************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function srcAppPagesHomeGamesGamesPageScss(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = ".team-list {\n  display: block;\n}\n\n.vs {\n  width: 6%;\n}\n\n.game {\n  width: 100%;\n  /*background-image: url(/assets/images/img_fondo_part.png);\n  color: white;*/\n  padding: 10px;\n  /*background-color: white;*/\n  background-repeat: no-repeat;\n  background-size: 100%;\n  font-size: small;\n}\n\n.team {\n  display: flex;\n  align-items: center;\n  width: 47%;\n  flex-flow: column-reverse;\n}\n\n.team-name {\n  margin-left: 15px;\n  margin-right: 15px;\n  width: 100%;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.img-team {\n  border-radius: 50%;\n  background-position: center center;\n  width: 30px;\n  height: 30px;\n}\n\n.contenedor {\n  margin: 10px auto;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n  text-align: -webkit-center;\n}\n\n.date {\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9nYW1lcy9nYW1lcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FBQ0o7O0FBQ0E7RUFDSSxTQUFBO0FBRUo7O0FBQ0E7RUFDSSxXQUFBO0VBQ0E7Z0JBQUE7RUFFQSxhQUFBO0VBQ0EsMkJBQUE7RUFDQSw0QkFBQTtFQUNBLHFCQUFBO0VBR0EsZ0JBQUE7QUFBSjs7QUFJQTtFQUNJLGFBQUE7RUFDQSxtQkFBQTtFQUNBLFVBQUE7RUFDQSx5QkFBQTtBQURKOztBQU1BO0VBQ0ksaUJBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7RUFFQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0JBQUE7QUFKSjs7QUFRQTtFQUNJLGtCQUFBO0VBQ0Esa0NBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQUxKOztBQVFBO0VBQ0ksaUJBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtFQUNBLFdBQUE7RUFDQSwwQkFBQTtBQUxKOztBQVFBO0VBQ0ksa0JBQUE7QUFMSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2hvbWUvZ2FtZXMvZ2FtZXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRlYW0tbGlzdHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn1cbi52c3tcbiAgICB3aWR0aDogNiU7XG59XG5cbi5nYW1le1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIC8qYmFja2dyb3VuZC1pbWFnZTogdXJsKC9hc3NldHMvaW1hZ2VzL2ltZ19mb25kb19wYXJ0LnBuZyk7XG4gICAgY29sb3I6IHdoaXRlOyovXG4gICAgcGFkZGluZzogMTBweDtcbiAgICAvKmJhY2tncm91bmQtY29sb3I6IHdoaXRlOyovXG4gICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IDEwMCU7XG5cblxuICAgIGZvbnQtc2l6ZTogc21hbGw7XG5cbn1cblxuLnRlYW17XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIHdpZHRoOiA0NyU7XG4gICAgZmxleC1mbG93OiBjb2x1bW4tcmV2ZXJzZTtcblxuXG59XG5cbi50ZWFtLW5hbWV7XG4gICAgbWFyZ2luLWxlZnQ6IDE1cHg7XG4gICAgbWFyZ2luLXJpZ2h0OiAxNXB4OztcbiAgICB3aWR0aDogMTAwJTtcblxuICAgIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxufVxuXG4uaW1nLXRlYW17XG4gICAgYm9yZGVyLXJhZGl1czo1MCU7IFxuICAgIGJhY2tncm91bmQtcG9zaXRpb246Y2VudGVyIGNlbnRlcjsgXG4gICAgd2lkdGg6MzBweDsgXG4gICAgaGVpZ2h0OjMwcHg7XG59XG5cbi5jb250ZW5lZG9yIHtcbiAgICBtYXJnaW46IDEwcHggYXV0bztcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgdGV4dC1hbGlnbjogLXdlYmtpdC1jZW50ZXI7XG59XG5cbi5kYXRle1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuIl19 */";
+      /***/
+    },
+
+    /***/
+    "./src/app/pages/home/results/results.page.scss":
+    /*!******************************************************!*\
+      !*** ./src/app/pages/home/results/results.page.scss ***!
+      \******************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function srcAppPagesHomeResultsResultsPageScss(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = ".game {\n  color: #FFF;\n  width: 100%;\n  padding: 3px;\n  padding: 10px;\n  border-radius: 5px;\n  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px white, 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);\n}\n\n.team {\n  position: relative;\n  background-image: url('img_fondo_res4.png');\n  background-repeat: no-repeat;\n  background-size: cover;\n  padding: 10px;\n  width: 100%;\n  padding-top: 15px;\n}\n\n.name-team {\n  display: inline-block;\n  width: 70%;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n}\n\n.goals-team {\n  display: inline-block;\n  width: 30%;\n  text-align: right;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  padding-right: 20px;\n}\n\n.comment {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0Esb0dBQUE7QUFDSjs7QUFFQTtFQUNJLGtCQUFBO0VBQ0EsMkNBQUE7RUFDQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7RUFDQSxpQkFBQTtBQUNKOztBQUVBO0VBQ0kscUJBQUE7RUFDQSxVQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLGdCQUFBO0FBQ0o7O0FBR0E7RUFDSSxxQkFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLG1CQUFBO0FBQUo7O0FBR0E7RUFDSSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtBQUFKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvaG9tZS9yZXN1bHRzL3Jlc3VsdHMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmdhbWV7XG4gICAgY29sb3I6ICNGRkY7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcGFkZGluZzogM3B4O1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIGJveC1zaGFkb3c6IGluc2V0IDAgLTNlbSAzZW0gcmdiYSgwLCAwLCAwLCAwLjEpLCAwIDAgMCAycHggd2hpdGUsIDAuM2VtIDAuM2VtIDFlbSByZ2JhKDAsIDAsIDAsIDAuMyk7XG59XG5cbi50ZWFte1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoLi4vLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9pbWdfZm9uZG9fcmVzNC5wbmcpO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIHBhZGRpbmctdG9wOiAxNXB4O1xufVxuXG4ubmFtZS10ZWFte1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogNzAlO1xuICAgIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxufVxuXG4uZ29hbHMtdGVhbXtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDMwJTtcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgcGFkZGluZy1yaWdodDogMjBweDtcbn1cblxuLmNvbW1lbnR7XG4gICAgcG9zaXRpb24gOiBhYnNvbHV0ZTtcbiAgICB0b3AgOjEwcHg7XG4gICAgcmlnaHQgOiAxMHB4O1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG4iXX0= */";
       /***/
     },
 
@@ -1376,7 +1312,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this5 = this;
+            var _this4 = this;
 
             this.posicion = {
               name: ''
@@ -1385,7 +1321,7 @@
             if (this.id) {
               this.servicePosition.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this5.posicion = data['Position'];
+                  _this4.posicion = data['Position'];
                 }
               });
             }
@@ -1393,16 +1329,16 @@
         }, {
           key: "submit",
           value: function submit() {
-            var _this6 = this;
+            var _this5 = this;
 
             if (this.posicion.id) {
               this.servicePosition.api_update(this.posicion).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this6.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this5.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this6.dismiss(data['Position']);
+                  _this5.dismiss(data['Position']);
                 }
               });
             } else {
@@ -1410,9 +1346,9 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this6.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this5.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this6.dismiss(data['Position']);
+                  _this5.dismiss(data['Position']);
                 }
               });
             }
@@ -1556,7 +1492,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this7 = this;
+            var _this6 = this;
 
             this.typeEvent = {
               'name': '',
@@ -1566,7 +1502,7 @@
             if (this.id) {
               this.serviceTypeEvent.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this7.typeEvent = data['TypeEvent'];
+                  _this6.typeEvent = data['TypeEvent'];
                 }
               });
             }
@@ -1574,16 +1510,16 @@
         }, {
           key: "submit",
           value: function submit() {
-            var _this8 = this;
+            var _this7 = this;
 
             if (this.typeEvent.id) {
               this.serviceTypeEvent.api_update(this.typeEvent).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this8.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this7.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this8.dismiss(data['TypeEvent']);
+                  _this7.dismiss(data['TypeEvent']);
                 }
               });
             } else {
@@ -1591,9 +1527,9 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this8.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this7.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this8.dismiss(data['TypeEvent']);
+                  _this7.dismiss(data['TypeEvent']);
                 }
               });
             }
@@ -1743,7 +1679,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this9 = this;
+            var _this8 = this;
 
             this.user = {
               first_name: '',
@@ -1757,11 +1693,11 @@
             if (this.id) {
               this.serviceUser.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this9.user = data['User'];
+                  _this8.user = data['User'];
 
-                  _this9.photoService.setImage(_this9.user.photo);
+                  _this8.photoService.setImage(_this8.user.photo);
 
-                  console.log(_this9.photoService.photo.getPath());
+                  console.log(_this8.photoService.photo.getPath());
                 }
               });
             }
@@ -1769,7 +1705,7 @@
         }, {
           key: "submit",
           value: function submit() {
-            var _this10 = this;
+            var _this9 = this;
 
             this.saving = true;
 
@@ -1782,28 +1718,28 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this10.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this9.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this10.dismiss(data['User']);
+                  _this9.dismiss(data['User']);
                 }
 
-                _this10.saving = false;
+                _this9.saving = false;
               }, function (error) {
-                _this10.saving = false;
+                _this9.saving = false;
               });
             } else {
               this.serviceUser.api_create(this.user).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this10.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this9.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this10.dismiss(data['User']);
+                  _this9.dismiss(data['User']);
                 }
 
-                _this10.saving = false;
+                _this9.saving = false;
               }, function (error) {
-                _this10.saving = false;
+                _this9.saving = false;
               });
             }
           }

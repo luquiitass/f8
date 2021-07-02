@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title> Fútbol Alem </ion-title>\n    <ion-buttons slot=\"secondary\">\n       <ion-button  routerLink=\"/notifications\" routerDirection=\"forward\">\n        <ion-icon name=\"notifications-outline\"></ion-icon>      \n        <ion-badge id=\"notifications-badge\" *ngIf=\"notificationsCount > 0\">{{notificationsCount}}</ion-badge>\n      </ion-button> \n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-menu side=\"start\" menuId=\"custom\" contentId=\"main\" class=\"my-custom-menu\">\n  <ion-header>\n    <ion-toolbar color=\"tertiary\">\n      <ion-title>Menú</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n\n    <ion-list>\n      <ion-item routerLink=\"/my-profile\" routerDirection=\"forward\" >\n        <app-menu-user style=\"width: 100%;\"></app-menu-user>\n      </ion-item>\n      <!-- <ion-item>Mis Equipos</ion-item>\n      <ion-item>Mis Jugadores</ion-item>\n      <ion-item>Mis Partidos</ion-item> -->\n      <ion-item routerLink=\"/admin_home\" routerDirection=\"forward\" *ngIf=\"auth.isAdmin()\" >Administrar APP</ion-item>\n      <ion-item (click)=\"logout()\">\n        <ion-label>Cerrar Sesión</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n\n\n<ion-router-outlet id=\"main\"></ion-router-outlet>\n\n\n <ion-tabs slot=\"top\" color=\"primary\">\n\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"results\">\n        <ion-icon name=\"clipboard-outline\"></ion-icon>\n        <ion-label>Resultado</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"games\">\n        <ion-icon name=\"easel-outline\"></ion-icon>\n        <ion-label>Partidos</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"teams\">\n        <ion-icon name=\"people-outline\"></ion-icon>\n        <ion-label>Equipos</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"players\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        <ion-label>Jugadores</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"publications\">\n        <ion-icon name=\"happy-outline\"></ion-icon>        \n        <ion-label>3° Tiempo</ion-label>\n      </ion-tab-button>\n\n    </ion-tab-bar>\n  \n  </ion-tabs>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title> Fútbol Alem </ion-title>\n    <ion-buttons slot=\"secondary\">\n       <ion-button  routerLink=\"/notifications\" routerDirection=\"forward\">\n        <ion-icon name=\"notifications-outline\"></ion-icon>      \n        <ion-badge id=\"notifications-badge\" *ngIf=\"notificationsCount > 0\">{{notificationsCount}}</ion-badge>\n      </ion-button> \n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-menu side=\"start\" menuId=\"custom\" contentId=\"main\" class=\"my-custom-menu\">\n  <ion-header>\n    <ion-toolbar >\n      <ion-title>Menú</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n\n    <ion-list>\n      <ion-item routerLink=\"/my-profile\" routerDirection=\"forward\" >\n        <app-menu-user style=\"width: 100%;\"></app-menu-user>\n      </ion-item>\n      <!-- <ion-item>Mis Equipos</ion-item>\n      <ion-item>Mis Jugadores</ion-item>\n      <ion-item>Mis Partidos</ion-item> -->\n\n      <ion-item lines=\"full\" *ngIf=\"false\">\n        <ion-icon slot=\"start\" name=\"moon\"></ion-icon>\n        <ion-label>\n          Toggle Dark Theme\n        </ion-label>\n        <ion-toggle id=\"themeToggle\" slot=\"end\"></ion-toggle>\n      </ion-item>\n\n\n      <ion-item routerLink=\"/admin_home\" routerDirection=\"forward\" *ngIf=\"auth.isAdmin()\" >Administrar APP</ion-item>\n      <ion-item (click)=\"logout()\">\n        <ion-label>Cerrar Sesión</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n\n\n<ion-router-outlet id=\"main\"></ion-router-outlet>\n\n\n <ion-tabs slot=\"top\" color=\"primary\">\n\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"results\">\n        <ion-icon name=\"clipboard-outline\"></ion-icon>\n        <ion-label>Resultado</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"games\">\n        <ion-icon name=\"easel-outline\"></ion-icon>\n        <ion-label>Partidos</ion-label>\n      </ion-tab-button>\n  \n      <ion-tab-button tab=\"teams\">\n        <ion-icon name=\"people-outline\"></ion-icon>\n        <ion-label>Equipos</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"players\">\n        <ion-icon name=\"person-outline\"></ion-icon>\n        <ion-label>Jugadores</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"publications\">\n        <ion-icon name=\"happy-outline\"></ion-icon>        \n        <ion-label>3° Tiempo</ion-label>\n      </ion-tab-button>\n\n    </ion-tab-bar>\n  \n  </ion-tabs>\n\n");
 
 /***/ }),
 
@@ -26,7 +26,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home.page */ "./src/app/pages/home/home.page.ts");
+/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../guards/auth.guard */ "./src/app/guards/auth.guard.ts");
+/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home.page */ "./src/app/pages/home/home.page.ts");
+
 
 
 
@@ -34,7 +36,8 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        component: _home_page__WEBPACK_IMPORTED_MODULE_3__["HomePage"],
+        component: _home_page__WEBPACK_IMPORTED_MODULE_4__["HomePage"],
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
         children: [
             {
                 path: 'teams',
@@ -54,7 +57,7 @@ const routes = [
             },
             {
                 path: 'publications',
-                loadChildren: () => Promise.all(/*! import() | publications-publications-module */[__webpack_require__.e("default~pages-publications-form-publication-form-publication-module~publications-publications-module"), __webpack_require__.e("default~pages-publications-publication-publication-module~publications-publications-module"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
+                loadChildren: () => __webpack_require__.e(/*! import() | publications-publications-module */ "publications-publications-module").then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
             },
             {
                 path: '',
@@ -65,7 +68,7 @@ const routes = [
     },
     {
         path: 'publications',
-        loadChildren: () => Promise.all(/*! import() | publications-publications-module */[__webpack_require__.e("default~pages-publications-form-publication-form-publication-module~publications-publications-module"), __webpack_require__.e("default~pages-publications-publication-publication-module~publications-publications-module"), __webpack_require__.e("publications-publications-module")]).then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() | publications-publications-module */ "publications-publications-module").then(__webpack_require__.bind(null, /*! ./publications/publications.module */ "./src/app/pages/home/publications/publications.module.ts")).then(m => m.PublicationsPageModule)
     },
 ];
 let HomePageRoutingModule = class HomePageRoutingModule {
@@ -196,6 +199,7 @@ let HomePage = class HomePage {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+            this.loadTheme();
         });
         setInterval(() => {
             if (this.auth.user)
@@ -207,6 +211,24 @@ let HomePage = class HomePage {
                     }
                 });
         }, 50000);
+    }
+    loadTheme() {
+        this.toggle = document.querySelector('#themeToggle');
+        // Listen for the toggle check/uncheck to toggle the dark class on the <body>
+        this.toggle.addEventListener('ionChange', (ev) => {
+            document.body.classList.toggle('dark', ev.detail.checked);
+        });
+        this.prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        // Listen for changes to the prefers-color-scheme media query
+        this.prefersDark.addListener((e) => this.checkToggle(e.matches));
+    }
+    // Called when the app loads
+    loadApp() {
+        this.checkToggle(this.prefersDark.matches);
+    }
+    // Called by the media query to check/uncheck the toggle
+    checkToggle(shouldCheck) {
+        this.toggle.checked = shouldCheck;
     }
     logout() {
         this.auth.logout();

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Equipo </ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"showMenu()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *ngIf=\"team\">\n  <div>\n    <div>\n      <img class=\"cover\" [src]=\"getCover()\" alt=\"Portada\">\n    </div>\n\n    <div class=\"shield-team\">\n      <img class=\"shield\" [src]=\"getShield()\" alt=\"Escudo\">\n      <span class=\"name-team\">{{team.name}}</span>\n    </div>\n  </div>\n\n  <app-notificatio-selected\n    [object]=\"team\"\n    [table_name]=\"'Team'\"\n    [table_id] = \"id\"\n  ></app-notificatio-selected>\n\n<ion-card>\n  <ion-card-header>\n    <ion-card-title>\n      Jugadores\n    </ion-card-title>\n  </ion-card-header>\n\n  <ion-card-content>\n    <app-player-list \n      [items] = \"playersList\"\n      (eventLoad)=\"loadPlayers($event)\"\n      (eventSelect)=\"playerSelect($event)\" \n      [loading] = \"playersLoading\"\n      [errorLoad]=\"playersErrorLoad\"\n    ></app-player-list>\n  </ion-card-content>\n\n</ion-card>\n\n  <app-red-list\n    [nameModel] = \"'Team'\"\n    [idModel] = \"id\"\n    [isAdmin] = \"false\"\n    ></app-red-list>\n\n<app-comments\n  [comments] = \"team.comments\"\n  [idRelation]=\"id\"\n  [nameRelationModel]=\"'Team'\"\n></app-comments>\n\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Equipo </ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <!-- <ion-buttons slot=\"secondary\" *ngIf=\"canEdit\">\n      <ion-button (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons> -->\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *ngIf=\"team\">\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n\n  <div>\n    <ion-chip class=\"chip-admin ion-text-center\" color=\"secondary\" *ngIf=\"isAdmin\">\n      <ion-text class=\"msj-is-admin\">\n        Eres el administrador de este perfil, puede activar la edicion aquí.\n      </ion-text>\n      <ion-toggle [(ngModel)]=\"canEdit\"></ion-toggle>\n\n    </ion-chip>\n  </div>\n\n  <div class=\"shield-content\">\n    <div>\n      <img class=\"cover\" [src]=\"getCover()\" alt=\"Portada\">\n    </div>\n\n    <div class=\"shield-team\">\n      <img class=\"shield\" [src]=\"getShield()\" alt=\"Escudo\">\n      <span class=\"name-team\">{{team.name}}</span>\n    </div>\n\n    <div *ngIf=\"canEdit\">\n      <ion-button expand=\"block\" fill=\"outline\" (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n        Editar</ion-button>\n    </div>\n  </div>\n\n \n  \n  <app-notificatio-selected\n    *ngIf=\"false\"\n    [object]=\"team\"\n    [table_name]=\"'Team'\"\n    [table_id] = \"id\"\n  ></app-notificatio-selected>\n\n<ion-card *ngIf=\"playersList.length || canEdit\">\n  <ion-card-header>\n    <ion-item>\n      <ion-card-title>\n        Jugadores\n      </ion-card-title>\n      <ion-button *ngIf=\"canEdit\" slot=\"end\" [routerLink]=\"'/team/' +id +'/players'\" routerDirection=\"forward\" >\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-item>\n  </ion-card-header>\n\n  <ion-card-content>\n    \n    <app-player-list \n      [items] = \"playersList\"\n      (eventLoad)=\"loadPlayers($event)\"\n      (eventSelect)=\"playerSelect($event)\" \n      [loading] = \"playersLoading\"\n      [errorLoad]=\"playersErrorLoad\"\n    ></app-player-list>\n  </ion-card-content>\n\n</ion-card>\n\n  <app-red-list\n    [nameModel] = \"'Team'\"\n    [idModel] = \"id\"\n    [isAdmin] = \"canEdit\"\n    ></app-red-list>\n\n<app-comments\n  [comments] = \"team.comments\"\n  [idRelation]=\"id\"\n  [nameRelationModel]=\"'Team'\"\n></app-comments>\n\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ ProfilePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".cover {\n  width: 100%;\n}\n\n.shield-team {\n  display: flex;\n  align-items: flex-end;\n  padding: 5px;\n}\n\n.shield {\n  width: 50px;\n  height: 50px;\n}\n\n.name-team {\n  display: inline;\n  margin-left: 10px;\n  /*vertical-align: middle;*/\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdGVhbS9wcm9maWxlL3Byb2ZpbGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLHFCQUFBO0VBQ0EsWUFBQTtBQUNKOztBQUVBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7QUFDSjs7QUFFQTtFQUNJLGVBQUE7RUFDQSxpQkFBQTtFQUNBLDBCQUFBO0FBQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy90ZWFtL3Byb2ZpbGUvcHJvZmlsZS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY292ZXJ7XG4gICAgd2lkdGg6IDEwMCU7XG59XG5cbi5zaGllbGQtdGVhbXtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBmbGV4LWVuZDtcbiAgICBwYWRkaW5nOiA1cHg7XG59XG5cbi5zaGllbGR7XG4gICAgd2lkdGg6IDUwcHg7XG4gICAgaGVpZ2h0OiA1MHB4O1xufVxuXG4ubmFtZS10ZWFte1xuICAgIGRpc3BsYXk6IGlubGluZTtcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcbiAgICAvKnZlcnRpY2FsLWFsaWduOiBtaWRkbGU7Ki9cbn1cblxuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".cover {\n  width: 100%;\n}\n\n.shield-team {\n  display: flex;\n  align-items: flex-end;\n  padding: 5px;\n  margin-left: 30px;\n}\n\n.shield {\n  width: 50px;\n  height: 50px;\n}\n\n.name-team {\n  display: inline;\n  margin-left: 10px;\n  font-size: x-large;\n  /*vertical-align: middle;*/\n}\n\n.shield-content {\n  margin-bottom: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdGVhbS9wcm9maWxlL3Byb2ZpbGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtBQUNKOztBQUVBO0VBQ0ksYUFBQTtFQUNBLHFCQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0FBQ0o7O0FBRUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtBQUNKOztBQUVBO0VBQ0ksZUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSwwQkFBQTtBQUNKOztBQUVBO0VBQ0ksbUJBQUE7QUFDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3RlYW0vcHJvZmlsZS9wcm9maWxlLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb3ZlcntcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuLnNoaWVsZC10ZWFte1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGZsZXgtZW5kO1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBtYXJnaW4tbGVmdDogMzBweDtcbn1cblxuLnNoaWVsZHtcbiAgICB3aWR0aDogNTBweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG59XG5cbi5uYW1lLXRlYW17XG4gICAgZGlzcGxheTogaW5saW5lO1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xuICAgIGZvbnQtc2l6ZTogeC1sYXJnZTtcbiAgICAvKnZlcnRpY2FsLWFsaWduOiBtaWRkbGU7Ki9cbn1cblxuLnNoaWVsZC1jb250ZW50e1xuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XG59Il19 */");
 
 /***/ }),
 
@@ -125,6 +125,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/api/request.service */ "./src/app/api/request.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _util_list_redirect_list_redirect_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../util/list-redirect/list-redirect.page */ "./src/app/pages/util/list-redirect/list-redirect.page.ts");
+/* harmony import */ var src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/auth-user.service */ "./src/app/services/auth-user.service.ts");
+/* harmony import */ var _form_form_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../form/form.page */ "./src/app/pages/team/form/form.page.ts");
+/* harmony import */ var src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/services/util-array.service */ "./src/app/services/util-array.service.ts");
+
+
+
 
 
 
@@ -133,13 +139,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProfilePage = class ProfilePage {
-    constructor(route, requesService, modalController, navCtrl) {
+    constructor(route, requesService, modalController, navCtrl, authUser, utilArray) {
         this.route = route;
         this.requesService = requesService;
         this.modalController = modalController;
         this.navCtrl = navCtrl;
+        this.authUser = authUser;
+        this.utilArray = utilArray;
         this.id = '0';
         this.team = null;
+        this.isAdmin = false;
+        this.canEdit = false;
         this.playersList = [];
         this.playersLoading = true;
         this.playersErrorLoad = false;
@@ -149,7 +159,7 @@ let ProfilePage = class ProfilePage {
     ngOnInit() {
         this.init();
     }
-    init() {
+    init($events = null) {
         /*
         this.teamModel.api_find(this.id).subscribe(data => {
           if(data['status'] == 'success')
@@ -163,12 +173,20 @@ let ProfilePage = class ProfilePage {
                 this.playersList = this.team.players;
             }
             this.playersLoading = false;
+            this.loadPermissions();
+            if ($events)
+                $events.target.complete();
         }, error => {
             this.playersLoading = false;
             this.playersErrorLoad = false;
             console.error(error);
+            if ($events)
+                $events.target.complete();
         });
         //this.loadPlayers()
+    }
+    loadPermissions() {
+        this.isAdmin = this.authUser.isAdminTeam(this.id);
     }
     getCover() {
         return this.team.cover_page ? this.team.cover_page.urlComplete : 'assets/images/cover.jpg';
@@ -224,12 +242,31 @@ let ProfilePage = class ProfilePage {
         console.log('goTo', player);
         this.navCtrl.navigateForward(`player/profile/${player.id}`);
     }
+    showEdit() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const modal = yield this.modalController.create({
+                component: _form_form_page__WEBPACK_IMPORTED_MODULE_8__["FormPage"],
+                componentProps: {
+                    id: this.id,
+                    adminTeam: true
+                }
+            });
+            modal.onDidDismiss().then(data => {
+                console.log('return edit');
+                const team = data.data['team'];
+                this.utilArray.updateAttribustesObject(this.team, team, ['name', 'shield_id', 'cover_page_id', 'shield', 'cover_page']);
+            });
+            return yield modal.present();
+        });
+    }
 };
 ProfilePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__["RequestService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] },
+    { type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_7__["AuthUserService"] },
+    { type: src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_9__["UtilArrayService"] }
 ];
 ProfilePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

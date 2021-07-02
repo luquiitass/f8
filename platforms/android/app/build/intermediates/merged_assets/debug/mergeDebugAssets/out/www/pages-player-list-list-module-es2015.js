@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>Jugadores</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n   \n      <ion-item *ngFor=\"let item of list\" >\n          \n        <ion-label >\n          <h3>{{item.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\">\n          <ion-button (click)=\"showEdit(item)\">\n            <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n          </ion-button>\n          <ion-button (click)=\"confirmDelete(item)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n      </ion-item>\n    </ion-list>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>{{team_id ? 'Plantilla de ' : ''}}Jugadores</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n   \n      <ion-item *ngFor=\"let item of list\" >\n          \n        <ion-label >\n          <h3>{{item.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\">\n          <ion-button (click)=\"showEdit(item)\">\n            <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n          </ion-button>\n          <ion-button (click)=\"confirmDelete(item)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n      </ion-item>\n    </ion-list>\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../api/util/dialog.service */ "./src/app/api/util/dialog.service.ts");
 /* harmony import */ var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/api/models/model */ "./src/app/api/models/model.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/util-array.service */ "./src/app/services/util-array.service.ts");
+
 
 
 
@@ -132,12 +134,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ListPage = class ListPage {
-    constructor(request, dialogService, modalController, dialog, route) {
+    constructor(request, dialogService, modalController, dialog, route, utilArray) {
         this.request = request;
         this.dialogService = dialogService;
         this.modalController = modalController;
         this.dialog = dialog;
         this.route = route;
+        this.utilArray = utilArray;
         this.list = [];
         this.playerService = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Player', request);
         this.modelTeam = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_6__["Model"]('Team', request);
@@ -181,8 +184,11 @@ let ListPage = class ListPage {
                 }
             });
             modal.onDidDismiss().then(data => {
-                const player = data.data['player'];
-                this.playerService.listAddLast(player);
+                if (data.data && data.data['player']) {
+                    const player = data.data['player'];
+                    //this.playerService.listAddLast(player);
+                    this.utilArray.listAddFirst(this.list, player);
+                }
             });
             return yield modal.present();
         });
@@ -194,9 +200,10 @@ let ListPage = class ListPage {
                 componentProps: { id: player.id }
             });
             modal.onDidDismiss().then(data => {
-                if (data.data.hasOwnProperty('player')) {
+                if (data.data && data.data.hasOwnProperty('player')) {
                     const player = data.data['player'];
-                    this.playerService.listUpdate(player.id, player);
+                    //this.playerService.listUpdate(player.id,player);
+                    this.utilArray.listUpdate(this.list, player.id, player);
                 }
             });
             return yield modal.present();
@@ -208,13 +215,25 @@ let ListPage = class ListPage {
         });
     }
     delete(player) {
-        this.playerService.api_delete(player.id).subscribe(data => {
-            console.log(data);
-            if (data['status'] == 'success') {
-                this.dialog.showToast('Jugador Eliminado', null, 'success');
-                this.playerService.listDelete(player.id);
+        if (!player.user_id) {
+            this.playerService.api_delete(player.id).subscribe(data => {
+                console.log(data);
+                if (data['status'] == 'success') {
+                    this.dialog.showToast('Jugador Eliminado', null, 'success');
+                    this.utilArray.listDelete(this.list, player.id);
+                    //this.playerService.listDelete(player.id);
+                }
+            });
+        }
+        else {
+            if (this.team_id) {
+                this.modelTeam.api_functionModel(this.team_id, 'removePlayer', { player_id: player.id }).subscribe(response => {
+                    this.dialog.showToast('El Jugador ha sido eliminado de esta plantilla', null, 'success');
+                    this.utilArray.listDelete(this.list, player.id);
+                }, error => {
+                });
             }
-        });
+        }
     }
 };
 ListPage.ctorParameters = () => [
@@ -222,7 +241,8 @@ ListPage.ctorParameters = () => [
     { type: _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
     { type: _api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] },
+    { type: src_app_services_util_array_service__WEBPACK_IMPORTED_MODULE_8__["UtilArrayService"] }
 ];
 ListPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -231,6 +251,102 @@ ListPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./list.page.scss */ "./src/app/pages/player/list/list.page.scss")).default]
     })
 ], ListPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/util-array.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/services/util-array.service.ts ***!
+  \************************************************/
+/*! exports provided: UtilArrayService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UtilArrayService", function() { return UtilArrayService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+let UtilArrayService = class UtilArrayService {
+    constructor() { }
+    /**
+     * Inserta el elemento al final del array
+     * @param list array en el que se inserta el objeto
+     * @param item item a insertar
+     */
+    listAddLast(list, item) {
+        list.push(item);
+    }
+    /**
+     * Añade un elemente en el array al inicio
+     * @param list array en la que se inserta el objeto
+     * @param item  elemento que se almacenara en el array
+     */
+    listAddFirst(list, item) {
+        list.unshift(item);
+    }
+    /**
+     * Remplaza un objeto del array
+     * @param list array que se actualizara
+     * @param id iel id del objeto
+     * @param item elemento que se remplazara en el array
+     */
+    listUpdate(list, id, item) {
+        let index = this.findIndexList(list, id);
+        if (index >= 0) {
+            list[index] = item;
+        }
+    }
+    /**
+     * elimina objeto de un array pasando el id del objeto
+     * @param list array del que se eliminara el objeto
+     * @param id id del objeto
+     */
+    listDelete(list, id) {
+        let index = this.findIndexList(list, id);
+        if (index >= 0)
+            list.splice(index, 1);
+    }
+    /**
+     * Busca un obeto en el array
+     * @param list array en el qie se bucara el objeto
+     * @param id id del objeto
+     */
+    findList(list, id) {
+        return list.find(item => item['id'] === id);
+    }
+    /**
+     * Retorna el indice de la posicion en la que se encuentra el objeto
+     * @param list Array en el que se realizara a busqueda
+     * @param id id del objeto buscado
+     */
+    findIndexList(list, id) {
+        return list.findIndex(item => item['id'] === id);
+    }
+    /**
+     * Modifica solo los atributos indicados en el array
+     * @param objectResult objeto a modificar
+     * @param object objeto del que se obtendran los datos
+     * @param attibutes atributos que seran modificados
+     */
+    updateAttribustesObject(objectResult, object, attibutes = []) {
+        console.log('update attributes');
+        for (let att of attibutes) {
+            if (object.hasOwnProperty(att))
+                objectResult[att] = object[att];
+        }
+        return objectResult;
+    }
+};
+UtilArrayService.ctorParameters = () => [];
+UtilArrayService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], UtilArrayService);
 
 
 

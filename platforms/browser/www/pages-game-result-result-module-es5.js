@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Partido</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n   </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"game\" *ngIf=\"game\">\n    <div class=\"team-list contenedor\">\n      <div class=\"team\">\n        <span class=\"name-team\">{{game.team_l.name}}</span>\n        <span  class=\"goals-team\" >{{game.l_goals}}</span>\n      </div>\n\n      <br class=\"separator\">\n\n      <div class=\"team\">\n        <span class=\"name-team\">{{game.team_v.name}}</span>\n        <span  class=\"goals-team\" >{{game.v_goals}}</span>\n      </div>\n    </div>\n  </div>\n\n\n  <app-event-list [game_id]=\"id\" ></app-event-list> \n\n  <app-comments\n    [idRelation]=\"id\"\n    [nameRelationModel]=\"'Game'\"\n  ></app-comments>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Partido</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n   </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <app-result-item\n    *ngIf=\"game\"\n    [game]=\"game\"\n  ></app-result-item>\n\n\n  <app-event-list [game_id]=\"id\" ></app-event-list> \n\n  <app-comments\n    [idRelation]=\"id\"\n    [nameRelationModel]=\"'Game'\"\n  ></app-comments>\n\n</ion-content>\n";
       /***/
     },
 

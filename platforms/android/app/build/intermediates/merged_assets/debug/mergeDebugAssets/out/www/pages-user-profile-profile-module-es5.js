@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>profile User</ion-title>\n  </ion-toolbar> \n</ion-header>\n\n<ion-content>\n    <h1>Id : {{id}}</h1>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Perfil de usuario</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar> \n</ion-header>\n\n<ion-content>\n\n  <ion-card *ngIf=\"user\">\n    <ion-card-content>\n\n      <ion-img\n        [src]=\"utilPhoto.getPhotoUser(user)\">\n      </ion-img>\n\n    </ion-card-content>\n    <ion-card-header>\n      <ion-card-title>\n        {{user.completeName}}\n      </ion-card-title>\n    </ion-card-header>\n  </ion-card>\n  \n  <ion-card *ngIf=\"user && user.publications.length > 0\">\n    <ion-card-header>\n      <ion-card-title>Publicaciones</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <app-publication \n        *ngFor=\"let publication of user.publications\"\n        [publication]=\"publication\"\n      ></app-publication>\n\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n";
       /***/
     },
 
@@ -147,13 +147,19 @@
       var _profile_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./profile.page */
       "./src/app/pages/user/profile/profile.page.ts");
+      /* harmony import */
+
+
+      var _components_components_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ../../../components/components.module */
+      "./src/app/components/components.module.ts");
 
       var ProfilePageModule = function ProfilePageModule() {
         _classCallCheck(this, ProfilePageModule);
       };
 
       ProfilePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _profile_routing_module__WEBPACK_IMPORTED_MODULE_5__["ProfilePageRoutingModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _profile_routing_module__WEBPACK_IMPORTED_MODULE_5__["ProfilePageRoutingModule"], _components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"]],
         declarations: [_profile_page__WEBPACK_IMPORTED_MODULE_6__["ProfilePage"]]
       })], ProfilePageModule);
       /***/
@@ -175,7 +181,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3VzZXIvcHJvZmlsZS9wcm9maWxlLnBhZ2Uuc2NzcyJ9 */";
+      __webpack_exports__["default"] = ".img_profile {\n  width: 300px;\n  height: 300px;\n}\n\n.name {\n  font-size: large;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdXNlci9wcm9maWxlL3Byb2ZpbGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksWUFBQTtFQUNBLGFBQUE7QUFDSjs7QUFFQTtFQUNJLGdCQUFBO0FBQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy91c2VyL3Byb2ZpbGUvcHJvZmlsZS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaW1nX3Byb2ZpbGV7XG4gICAgd2lkdGg6IDMwMHB4O1xuICAgIGhlaWdodDogMzAwcHg7XG59XG5cbi5uYW1le1xuICAgIGZvbnQtc2l6ZTogbGFyZ2U7XG59Il19 */";
       /***/
     },
 
@@ -216,18 +222,59 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var src_app_api_models_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/api/models/model */
+      "./src/app/api/models/model.ts");
+      /* harmony import */
+
+
+      var src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/app/api/request.service */
+      "./src/app/api/request.service.ts");
+      /* harmony import */
+
+
+      var src_app_services_util_photo_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/services/util-photo.service */
+      "./src/app/services/util-photo.service.ts");
 
       var ProfilePage = /*#__PURE__*/function () {
-        function ProfilePage(route) {
+        function ProfilePage(route, request, utilPhoto) {
           _classCallCheck(this, ProfilePage);
 
           this.route = route;
+          this.request = request;
+          this.utilPhoto = utilPhoto;
           this.id = this.route.snapshot.paramMap.get('id');
+          this.userModel = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_3__["Model"]('User', request);
         }
 
         _createClass(ProfilePage, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            this.init();
+          }
+        }, {
+          key: "init",
+          value: function init() {
+            var _this = this;
+
+            var $event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            this.userModel.api_functionModel(this.id, 'profilePage').subscribe(function (response) {
+              if (response['status'] == 'success') {
+                _this.user = response['data'];
+              }
+
+              if ($event) $event.target.complete();
+              console.log(response);
+            }, function (error) {
+              if ($event) $event.target.complete();
+              console.log(error);
+            });
+          }
         }]);
 
         return ProfilePage;
@@ -236,6 +283,10 @@
       ProfilePage.ctorParameters = function () {
         return [{
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+        }, {
+          type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_4__["RequestService"]
+        }, {
+          type: src_app_services_util_photo_service__WEBPACK_IMPORTED_MODULE_5__["UtilPhotoService"]
         }];
       };
 

@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Solicitud</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="passRequest">
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center" >
+      <ion-col size="5">
+        <ion-avatar class="ion-float-right" >
+          <ion-img  [src]="utilPhoto.getPhotoPlayer(passRequest.player)"></ion-img>
+        </ion-avatar>
+      </ion-col>
+
+      <ion-col size="1"  class="ion-align-self-center ion-text-center" >
+        <ion-icon name="arrow-forward-outline"  ></ion-icon>
+      </ion-col>
+
+      <ion-col size="5"> 
+        <ion-avatar >
+          <ion-img  [src]="passRequest.team.shield ? passRequest.team.shield.urlCompleteThumb : pathImages.images.escudo"></ion-img>
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+  <ion-card >
+    <ion-card-header>
+      <ion-card-title><b>{{passRequest.team.name}}</b> te ha enviado una solicitud para que formes parte de su plantilla de jugadores.</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text>
+        <h3>Te recordamos que si aceptas esta solicitud automaticamente formaras parte de el equipo <b>{{passRequest.team.name}}</b>, solamente sera posible registrar los sucesos<b> (Goles, Amarillas,Rojas,etc..)</b> en los partidos de <b>{{passRequest.team.name}}</b>.</h3>
+      </ion-text>
+
+      
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid *ngIf="passRequest.status == 'Pendiente'">
+    <ion-row>
+      <ion-col class="ion-text-right">
+        <ion-button color="success" (click)="accept()">Aceptar</ion-button>
+      </ion-col>
+      <ion-col class="ion-text-left">
+        <ion-button color="danger" (click)="reject()">Rechazar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div  class="ion-text-center">
+
+    <ion-chip color="success" *ngIf="passRequest.status == 'Aceptado'">
+      <ion-icon name="checkmark-done-outline"></ion-icon>
+      <ion-label>Has {{passRequest.status}} la solicitud</ion-label>
+    </ion-chip>
+
+    <ion-chip color="danger" *ngIf="passRequest.status == 'Rechazado'">
+      <ion-icon name="close-circle-outline"></ion-icon>
+      <ion-label>Has {{passRequest.status}} la solicitud</ion-label>
+    </ion-chip>
+  </div>
+
+
+
+
+
+
+</ion-content>

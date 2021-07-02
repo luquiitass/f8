@@ -347,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Buscar</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-searchbar\n  [showCancelButton]=\"showCancelButton\"\n  (keyup)=\"onInput($event)\"\n  (ionCancel)=\"onCancel($event)\">\n</ion-searchbar>\n\n<ion-content>\n\n  <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n    <ion-label>No se ha encontrado registros</ion-label>\n  </ion-list-header>\n\n  <ion-list  *ngFor=\"let item of list\" >\n    <ion-item   [color]=\"getColor(item.id)\"    (click)=\"select(item)\" >{{item.text}}</ion-item>\n  </ion-list>\n\n\n  <ion-button *ngIf=\"multiple\" class=\"bottom\" expand=\"block\" (click)=\"finalize()\" >Finalizar</ion-button>\n\n\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Buscar</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-searchbar\n  [showCancelButton]=\"showCancelButton\"\n  (keyup)=\"onInput($event)\"\n  (ionCancel)=\"onCancel($event)\">\n</ion-searchbar>\n\n<ion-content>\n\n\n\n  <ion-item-group>\n    \n    <ion-item *ngFor=\"let item of listSelect\"     (click)=\"removeItem(item)\" >\n      {{item.text}}\n      <ion-note slot=\"end\" color=\"success\">SELECCIONADO</ion-note>\n    </ion-item>\n   \n\n    <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n      <ion-label>No se ha encontrado registros</ion-label>\n    </ion-list-header>\n  \n    <ion-item *ngFor=\"let item of list\"    (click)=\"select(item)\" >{{item.text}}</ion-item>\n\n  </ion-item-group>\n\n\n  <ion-button *ngIf=\"multiple\" class=\"bottom\" expand=\"block\" (click)=\"finalize()\" >Finalizar</ion-button>\n\n\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -360,7 +360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n    <ion-title>Equipo</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceTeam.errorsForm.clear()\" >\n\n    <div>\n      <ion-img  [src]=\"photoService.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar escudo' :'Seleccionar escudo' }}</ion-button>\n      </div>\n    </div>\n\n    <div>\n      <ion-img  [src]=\"serviceImageCoverPage.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"serviceImageCoverPage.addOneNewToGallery()\">{{serviceImageCoverPage.isLoadPthoto() ? 'Modificar Portada' :'Seleccionar Portada' }}</ion-button>\n      </div>\n    </div>\n      \n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"team.name\" name=\"name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceTeam.errorsForm.get('name') }}</div>\n\n\n    <div class=\"admins\">\n      <ion-list-header  color=\"tertiary\">\n        <ion-label>Administradores</ion-label>\n        <button item-end ion-button color=\"danger\" (click)=\"addAdmins($event)\">\n          <ion-icon name=\"person-add-outline\"></ion-icon>\n        </button>\n      </ion-list-header>\n\n      <ion-list  *ngFor=\"let item of team.admins\" >\n        <ion-item>  {{item.text ? item.text : item.last_name +' '+ item.first_name}}</ion-item>\n      </ion-list>\n    </div>\n   \n    <div class=\"ion-text-center\">\n      <ion-button type=\"submit\" block> Guardar </ion-button>\n    </div>\n  </form>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n    <ion-title>Equipo</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceTeam.errorsForm.clear()\" >\n\n   \n\n    <div>\n      <ion-img  [src]=\"serviceImageCoverPage.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"serviceImageCoverPage.addOneNewToGallery()\">{{serviceImageCoverPage.isLoadPthoto() ? 'Modificar Portada' :'Seleccionar Portada' }}</ion-button>\n      </div>\n    </div>\n\n    <div class=\"ion-text-center\" style=\"margin-top: 20px;\">\n      <ion-img style=\"width: 200px;margin: auto;\" [src]=\"photoService.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar escudo' :'Seleccionar escudo' }}</ion-button>\n      </div>\n    </div>\n      \n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"team.name\" name=\"name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceTeam.errorsForm.get('name') }}</div>\n\n\n    <div class=\"admins\" *ngIf=\"authUser.isAdmin()\">\n      <ion-list-header  color=\"tertiary\">\n        <ion-label>Administradores</ion-label>\n        <button item-end ion-button color=\"danger\" (click)=\"addAdmins($event)\">\n          <ion-icon name=\"person-add-outline\"></ion-icon>\n        </button>\n      </ion-list-header>\n\n      <ion-list  *ngFor=\"let item of team.admins\"  >\n        <ion-item>  {{item.text ? item.text : item.last_name +' '+ item.first_name}}</ion-item>\n      </ion-list>\n    </div>\n   \n    <div class=\"ion-text-center\">\n      <ion-button type=\"submit\" block> Guardar </ion-button>\n    </div>\n  </form>\n</ion-content>\n");
 
 /***/ }),
 
@@ -476,6 +476,11 @@ class Model {
         this.errorsForm = this.request.errorsForm;
         return this.request.api_update(this.model, item);
     }
+    /**
+     * Elimina el objeto de la base de datos
+     * @param id Id del elemento a eliminar
+     * @return Devuelve el mismo objeto y el estado del proceso
+     */
     api_delete(id) {
         this.errorsForm = this.request.errorsForm;
         return this.request.api_delete(this.model, id);
@@ -616,6 +621,9 @@ class ModelImage {
     isLoadPthoto() {
         return this.photo && this.photo.data ? true : false;
     }
+    hasImage() {
+        return this.image && this.image.id ? true : false;
+    }
     readAsBase64(cameraPhoto) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             // Fetch the photo, read as a blob, then convert to base64 format
@@ -683,6 +691,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _models_model__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./models/model */ "./src/app/api/models/model.ts");
+
 
 
 
@@ -697,6 +707,7 @@ let RequestService = class RequestService {
         this.toastCtr = toastCtr;
         this.api = src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].server_url;
         this.errorsForm = new _api_models_errors__WEBPACK_IMPORTED_MODULE_4__["Errors"]();
+        this.errormodel = new _models_model__WEBPACK_IMPORTED_MODULE_8__["Model"]('Error', this);
     }
     api_find(model, id) {
         console.log(`api_find model ${model}`, id);
@@ -711,41 +722,41 @@ let RequestService = class RequestService {
     api_all(model, event = null) {
         console.log(`api_all model ${model}`);
         const path = `${this.api}/collection/${model}`;
-        return this.http.get(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err)));
+        return this.http.get(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err, model)));
     }
     api_create(model, item) {
         console.log(`api_create model ${model}`, item);
         const path = `${this.api}/methods/${model}/create`;
         return this.http.post(path, item)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => { return this.handleError(err); }));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => { return this.handleError(err, model); }));
     }
     api_update(model, item) {
         console.log(`api_update model ${model}`, item);
         const path = `${this.api}/methods/${model}/update`;
         return this.http.put(path, item)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err)));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err, model)));
     }
     api_delete(model, id) {
         console.log(`api_delete model ${model} id:`, id);
         const path = `${this.api}/methods/${model}/delete`;
         return this.http.post(path, { 'id': id })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err)));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err, model)));
     }
     api_function(model, functionName, parms = {}) {
         console.log(`api_function model ${model} function:`, functionName);
         const path = `${this.api}/runFunction/${model}/${functionName}`;
         return this.http.post(path, parms)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err)));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err, model)));
     }
     api_functionModel(model, id, functionName, parms = {}) {
         console.log(`api_functionModel model ${model} function:`, functionName);
         const path = `${this.api}/runFunctionModel/${model}/${id}/${functionName}`;
         return this.http.post(path, parms)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err)));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => this.handleError(err, model)));
     }
-    handleError(error) {
+    handleError(error, model = null) {
         if (error.error && error.error.message)
-            this.showToast(error.error.message);
+            this.showToast(error.error.message, 'danger');
         if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
             console.error('An error occurred:', error.error.message);
@@ -757,9 +768,14 @@ let RequestService = class RequestService {
                 this.errorsForm.record(JSON.parse(error.error.errorValidaciones));
             }
             else if (error.status == 403) {
+                this.saveErrorApi(error.status, error.error.mensaje, model);
                 this.showToast(error.error.mensaje, 'danger', 7000, 'Error Server');
             }
-            console.error(`Backend returned code `, error.status, `body was:`, error.message);
+            else {
+                this.saveErrorApi(error.status, error.message, model);
+                console.error(`Backend returned code `, error.status, `body was:`, error.message);
+                this.showToast('Error de conexión con el  servidor.', 'danger');
+            }
         }
         // return an observable with a user-facing error message
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["throwError"])('Something bad happened; please try again later.');
@@ -775,6 +791,17 @@ let RequestService = class RequestService {
             });
             toast.present();
         });
+    }
+    saveErrorApi(status, message, model) {
+        if (model != 'Error') {
+            this.errormodel.api_create({
+                status: status,
+                text: message,
+                model: model
+            }).subscribe(response => {
+                console.log('save Error in APi', response);
+            });
+        }
     }
 };
 RequestService.ctorParameters = () => [
@@ -808,15 +835,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DialogService = class DialogService {
-    constructor(alertController, toastCtr) {
+    constructor(alertController, toastCtr, actionSheetController) {
         this.alertController = alertController;
         this.toastCtr = toastCtr;
+        this.actionSheetController = actionSheetController;
     }
     presentAlertConfirm(title, message, handlerOk) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const alert = yield this.alertController.create({
                 header: title,
-                message: `<strong>${message}</strong>!!!`,
+                message: `<strong>${message}</strong>`,
                 buttons: [
                     {
                         text: 'Cancelar',
@@ -845,10 +873,55 @@ let DialogService = class DialogService {
             toast.present();
         });
     }
+    actionSheetEditDelete(callbackEdit, callbackDelet) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            let buttons = [];
+            if (callbackEdit) {
+                buttons.push({
+                    text: 'Modificar',
+                    icon: 'create-outline',
+                    handler: () => {
+                        console.log('Edit clicked');
+                        callbackEdit();
+                        //comment.edit = true;
+                        //this.commentEdit = {...comment};
+                    }
+                });
+            }
+            if (callbackDelet) {
+                buttons.push({
+                    text: 'Eliminar',
+                    role: 'destructive',
+                    icon: 'trash',
+                    handler: () => {
+                        console.log('Delete clicked');
+                        //this.confirmDelete(comment);
+                        callbackDelet();
+                    }
+                });
+            }
+            buttons.push({
+                text: 'Cancelar',
+                icon: 'close',
+                role: 'cancel',
+                handler: () => {
+                    console.log('Cancel clicked');
+                }
+            });
+            const actionSheet = yield this.actionSheetController.create({
+                header: 'Opciones',
+                cssClass: 'my-custom-class',
+                buttons: buttons
+            });
+            yield actionSheet.present();
+            //const { role } = await actionSheet.onDidDismiss();
+        });
+    }
 };
 DialogService.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"] }
 ];
 DialogService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -873,6 +946,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
+
 
 
 
@@ -892,7 +967,7 @@ const routes = [
     },
     {
         path: 'team/:team_id/players',
-        loadChildren: () => Promise.all(/*! import() | pages-player-list-list-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/list/list.module */ "./src/app/pages/player/list/list.module.ts")).then(m => m.ListPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-list-list-module */[__webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/list/list.module */ "./src/app/pages/player/list/list.module.ts")).then(m => m.ListPageModule)
     },
     {
         path: 'form',
@@ -920,19 +995,19 @@ const routes = [
     },
     {
         path: 'games',
-        loadChildren: () => Promise.all(/*! import() | pages-game-list-list-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/list/list.module */ "./src/app/pages/game/list/list.module.ts")).then(m => m.ListPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-list-list-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/list/list.module */ "./src/app/pages/game/list/list.module.ts")).then(m => m.ListPageModule)
     },
     {
         path: 'game-form',
-        loadChildren: () => Promise.all(/*! import() | pages-game-game-form-game-form-module */[__webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-game-form-game-form-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/game-form/game-form.module */ "./src/app/pages/game/game-form/game-form.module.ts")).then(m => m.GameFormPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-game-form-game-form-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-game-game-form-game-form-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/game-form/game-form.module */ "./src/app/pages/game/game-form/game-form.module.ts")).then(m => m.GameFormPageModule)
     },
     {
         path: 'players',
-        loadChildren: () => Promise.all(/*! import() | pages-player-list-list-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/list/list.module */ "./src/app/pages/player/list/list.module.ts")).then(m => m.ListPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-list-list-module */[__webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/list/list.module */ "./src/app/pages/player/list/list.module.ts")).then(m => m.ListPageModule)
     },
     {
         path: 'player-form',
-        loadChildren: () => Promise.all(/*! import() | pages-player-player-form-player-form-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-player-player-form-player-form-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/player-form/player-form.module */ "./src/app/pages/player/player-form/player-form.module.ts")).then(m => m.PlayerFormPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-player-form-player-form-module */[__webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-player-form-player-form-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/player-form/player-form.module */ "./src/app/pages/player/player-form/player-form.module.ts")).then(m => m.PlayerFormPageModule)
     },
     {
         path: 'login',
@@ -944,7 +1019,7 @@ const routes = [
     },
     {
         path: 'users/:id/profile',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-user-profile-profile-module */ "pages-user-profile-profile-module").then(__webpack_require__.bind(null, /*! ./pages/user/profile/profile.module */ "./src/app/pages/user/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-user-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-user-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/user/profile/profile.module */ "./src/app/pages/user/profile/profile.module.ts")).then(m => m.ProfilePageModule)
     },
     {
         path: 'user-form',
@@ -956,19 +1031,22 @@ const routes = [
     },
     {
         path: 'home',
-        loadChildren: () => Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(m => m.HomePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(m => m.HomePageModule)
     },
     {
         path: 'team/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-team-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/team/profile/profile.module */ "./src/app/pages/team/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-team-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/team/profile/profile.module */ "./src/app/pages/team/profile/profile.module.ts")).then(m => m.ProfilePageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
     },
     {
         path: 'results/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-game-result-result-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/result/result.module */ "./src/app/pages/game/result/result.module.ts")).then(m => m.ResultPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-result-result-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/result/result.module */ "./src/app/pages/game/result/result.module.ts")).then(m => m.ResultPageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
     },
     {
         path: 'games/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-game-game-game-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/game/game.module */ "./src/app/pages/game/game/game.module.ts")).then(m => m.GamePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-game-game-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/game/game.module */ "./src/app/pages/game/game/game.module.ts")).then(m => m.GamePageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
     },
     {
         path: 'crop',
@@ -984,7 +1062,7 @@ const routes = [
     },
     {
         path: 'admin/game/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-game-admin-game-admin-game-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/admin-game/admin-game.module */ "./src/app/pages/game/admin-game/admin-game.module.ts")).then(m => m.AdminGamePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-game-admin-game-admin-game-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null, /*! ./pages/game/admin-game/admin-game.module */ "./src/app/pages/game/admin-game/admin-game.module.ts")).then(m => m.AdminGamePageModule)
     },
     {
         path: 'list-redirect',
@@ -992,11 +1070,13 @@ const routes = [
     },
     {
         path: 'player/profile/:id',
-        loadChildren: () => Promise.all(/*! import() | pages-player-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/profile/profile.module */ "./src/app/pages/player/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-profile-profile-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/profile/profile.module */ "./src/app/pages/player/profile/profile.module.ts")).then(m => m.ProfilePageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
     },
     {
         path: 'my-profile',
-        loadChildren: () => Promise.all(/*! import() | pages-user-my-profile-my-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-user-my-profile-my-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/user/my-profile/my-profile.module */ "./src/app/pages/user/my-profile/my-profile.module.ts")).then(m => m.MyProfilePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-user-my-profile-my-profile-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-user-my-profile-my-profile-module")]).then(__webpack_require__.bind(null, /*! ./pages/user/my-profile/my-profile.module */ "./src/app/pages/user/my-profile/my-profile.module.ts")).then(m => m.MyProfilePageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
     },
     {
         path: 'redes-form',
@@ -1004,19 +1084,44 @@ const routes = [
     },
     {
         path: 'player-search',
-        loadChildren: () => Promise.all(/*! import() | pages-player-player-search-player-search-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/player-search/player-search.module */ "./src/app/pages/player/player-search/player-search.module.ts")).then(m => m.PlayerSearchPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-player-player-search-player-search-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null, /*! ./pages/player/player-search/player-search.module */ "./src/app/pages/player/player-search/player-search.module.ts")).then(m => m.PlayerSearchPageModule)
     },
     {
         path: 'notifications',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-notification-list-list-module */ "pages-notification-list-list-module").then(__webpack_require__.bind(null, /*! ./pages/notification/list/list.module */ "./src/app/pages/notification/list/list.module.ts")).then(m => m.ListPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-notification-list-list-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-notification-list-list-module")]).then(__webpack_require__.bind(null, /*! ./pages/notification/list/list.module */ "./src/app/pages/notification/list/list.module.ts")).then(m => m.ListPageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
     },
     {
         path: 'form-publication',
-        loadChildren: () => Promise.all(/*! import() | pages-publications-form-publication-form-publication-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null, /*! ./pages/publications/form-publication/form-publication.module */ "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(m => m.FormPublicationPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-publications-form-publication-form-publication-module */ "pages-publications-form-publication-form-publication-module").then(__webpack_require__.bind(null, /*! ./pages/publications/form-publication/form-publication.module */ "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(m => m.FormPublicationPageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
     },
     {
-        path: 'show',
-        loadChildren: () => Promise.all(/*! import() | pages-pages-publications-show-show-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-pages-publications-show-show-module")]).then(__webpack_require__.bind(null, /*! ./pages/pages/publications/show/show.module */ "./src/app/pages/pages/publications/show/show.module.ts")).then(m => m.ShowPageModule)
+        path: 'publication/:id/:segment/:not',
+        loadChildren: () => Promise.all(/*! import() | pages-publications-publication-publication-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-publications-publication-publication-module")]).then(__webpack_require__.bind(null, /*! ./pages/publications/publication/publication.module */ "./src/app/pages/publications/publication/publication.module.ts")).then(m => m.PublicationPageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+    },
+    {
+        path: 'publication/:id/:segment',
+        loadChildren: () => Promise.all(/*! import() | pages-publications-publication-publication-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-publications-publication-publication-module")]).then(__webpack_require__.bind(null, /*! ./pages/publications/publication/publication.module */ "./src/app/pages/publications/publication/publication.module.ts")).then(m => m.PublicationPageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+    },
+    {
+        path: 'publication/:id',
+        loadChildren: () => Promise.all(/*! import() | pages-publications-publication-publication-module */[__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-publications-publication-publication-module")]).then(__webpack_require__.bind(null, /*! ./pages/publications/publication/publication.module */ "./src/app/pages/publications/publication/publication.module.ts")).then(m => m.PublicationPageModule),
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+    },
+    {
+        path: 'errors',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-error-list-list-module */ "pages-error-list-list-module").then(__webpack_require__.bind(null, /*! ./pages/error/list/list.module */ "./src/app/pages/error/list/list.module.ts")).then(m => m.ListPageModule)
+    },
+    {
+        path: 'team-request/:team_id/:player_id',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-passRequest-team-request-team-request-module */ "pages-passRequest-team-request-team-request-module").then(__webpack_require__.bind(null, /*! ./pages/passRequest/team-request/team-request.module */ "./src/app/pages/passRequest/team-request/team-request.module.ts")).then(m => m.TeamRequestPageModule)
+    },
+    {
+        path: 'team-request-to-player/:id',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-passRequest-team-request-to-player-team-request-to-player-module */ "pages-passRequest-team-request-to-player-team-request-to-player-module").then(__webpack_require__.bind(null, /*! ./pages/passRequest/team-request-to-player/team-request-to-player.module */ "./src/app/pages/passRequest/team-request-to-player/team-request-to-player.module.ts")).then(m => m.TeamRequestToPlayerPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -1157,7 +1262,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
             _app_pages_team_form_form_module__WEBPACK_IMPORTED_MODULE_9__["FormPageModule"],
-            ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_13__["NgxIonicImageViewerModule"]
+            ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_13__["NgxIonicImageViewerModule"],
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
@@ -1174,6 +1279,59 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/guards/auth.guard.ts":
+/*!**************************************!*\
+  !*** ./src/app/guards/auth.guard.ts ***!
+  \**************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth-user.service */ "./src/app/services/auth-user.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+
+
+
+
+let AuthGuard = class AuthGuard {
+    constructor(authUser, router) {
+        this.authUser = authUser;
+        this.router = router;
+    }
+    canActivate(next, state) {
+        return this.authUser.userOb.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(user => {
+            console.log('guard usaer', user);
+            if (!user) {
+                this.router.navigateByUrl('/login');
+                return false;
+            }
+            else {
+                return true;
+            }
+        }));
+        //return true;
+    }
+};
+AuthGuard.ctorParameters = () => [
+    { type: _services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["AuthUserService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
+];
+AuthGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], AuthGuard);
 
 
 
@@ -1422,7 +1580,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let SearchPage = class SearchPage {
     constructor(requestService, navParams, viewCtrl) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         this.viewCtrl = viewCtrl;
         this.showCancelButton = false;
         this.list = [];
@@ -1432,6 +1590,7 @@ let SearchPage = class SearchPage {
         this.function = navParams.get('function');
         this.multiple = (_b = navParams.get('multiple')) !== null && _b !== void 0 ? _b : false;
         this.minLenght = (_c = navParams.get('multiple')) !== null && _c !== void 0 ? _c : 2;
+        this.listSelect = (_d = navParams.get('listSelect')) !== null && _d !== void 0 ? _d : [];
         this.modelService = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_3__["Model"](this.model, requestService);
     }
     ngOnInit() {
@@ -1454,7 +1613,8 @@ let SearchPage = class SearchPage {
     }
     select(item) {
         if (this.multiple) {
-            this.addOrRemove(item);
+            //this.addOrRemove(item);
+            this.addItem(item);
         }
         else {
             this.viewCtrl.dismiss({
@@ -1466,6 +1626,23 @@ let SearchPage = class SearchPage {
         this.viewCtrl.dismiss({
             items: this.listSelect,
         });
+    }
+    addItem(item) {
+        console.log(item);
+        let inList = this.findList(item.id);
+        if (!inList)
+            this.listSelect.push(item);
+        let index = this.list.findIndex(i => i['id'] === item.id);
+        if (index >= 0)
+            this.list.splice(index, 1);
+    }
+    removeItem(item) {
+        let index = this.findIndexList(item.id);
+        if (index >= 0)
+            this.listSelect.splice(index, 1);
+        let inList = this.list.find(i => i['id'] === item.d);
+        if (!inList)
+            this.list.push(item);
     }
     addOrRemove(item) {
         let inList = this.findList(item.id);
@@ -1618,6 +1795,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/api/util/dialog.service */ "./src/app/api/util/dialog.service.ts");
 /* harmony import */ var src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/api/models/modelImage */ "./src/app/api/models/modelImage.ts");
 /* harmony import */ var _search_search_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../search/search.page */ "./src/app/pages/search/search.page.ts");
+/* harmony import */ var src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/auth-user.service */ "./src/app/services/auth-user.service.ts");
+
 
 
 
@@ -1627,11 +1806,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let FormPage = class FormPage {
-    constructor(request, dialogService, viewCtrl, navParams, modalController) {
+    constructor(request, dialogService, viewCtrl, navParams, modalController, authUser) {
         this.request = request;
         this.dialogService = dialogService;
         this.viewCtrl = viewCtrl;
         this.modalController = modalController;
+        this.authUser = authUser;
         //this.serviceTeam.setModel('Team');
         this.serviceTeam = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_4__["Model"]('Team', request);
         this.photoService = new src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_6__["ModelImage"](request, viewCtrl);
@@ -1751,7 +1931,8 @@ FormPage.ctorParameters = () => [
     { type: src_app_api_util_dialog_service__WEBPACK_IMPORTED_MODULE_5__["DialogService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
+    { type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_8__["AuthUserService"] }
 ];
 FormPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1777,31 +1958,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthUserService", function() { return AuthUserService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _api_models_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api/models/model */ "./src/app/api/models/model.ts");
+/* harmony import */ var _api_request_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/request.service */ "./src/app/api/request.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 
 
 
 
 
 
+
+
+
+
+//import { Storage } from '@ionic/storage';
 let AuthUserService = class AuthUserService {
-    constructor(http, router, navCtrl) {
+    constructor(http, router, navCtrl, request, 
+    //AuthGuards
+    //private storage : Storage,
+    plt) {
         this.http = http;
         this.router = router;
         this.navCtrl = navCtrl;
+        this.request = request;
+        this.plt = plt;
         this.user = null;
+        this.userData = new rxjs__WEBPACK_IMPORTED_MODULE_8__["BehaviorSubject"](null);
         this.errorsLogin = '';
+        this.userModel = new _api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('User', request);
+        this.loadStoresUser();
+        this.user = this.userData.getValue();
+    }
+    loadStoresUser() {
+        let platformObs = Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["from"])(this.plt.ready());
+        this.userOb = platformObs.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["switchMap"])(() => {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["from"])(this.getUser());
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(user => {
+            console.log('user form storage', user);
+            if (user) {
+                this.userData.next(user);
+                return true;
+            }
+            else {
+                return null;
+            }
+        }));
     }
     login(data) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.errorsLogin = '';
-            return this.http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].server_url}/login`, data).subscribe((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            return this.http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].server_url}/login`, data).subscribe((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
                 console.log(data);
                 if (data['status'] && data['status'] == 'success') {
                     yield this.saveData(data);
+                    this.userData.next(data);
                     yield this.getUser();
                     this.redirect();
                 }
@@ -1869,17 +2084,42 @@ let AuthUserService = class AuthUserService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             yield this.removeData();
             //this.router.navigate(['login']);
-            this.navCtrl.navigateRoot('login');
+            this.router.navigateByUrl('/login');
+            this.userData.next(null);
         });
     }
     isAdmin() {
-        this.user.role == 'admin';
+        return this.user && this.user.role == 'admin';
+    }
+    updateUserApi() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            if (this.user) {
+                yield this.userModel.api_function('dataGlobal').subscribe((response) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                    if (response['status'] == 'success') {
+                        this.user = response['data'];
+                        yield this.saveUser();
+                    }
+                }), error => {
+                    console.log(error);
+                });
+            }
+        });
+    }
+    isAdminTeam(team_id) {
+        console.log('id admin');
+        if (this.user.teams) {
+            let index = this.user.teams.map(team => team.id).indexOf(parseInt(team_id));
+            return index >= 0;
+        }
+        return false;
     }
 };
 AuthUserService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["NavController"] },
+    { type: _api_request_service__WEBPACK_IMPORTED_MODULE_3__["RequestService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["Platform"] }
 ];
 AuthUserService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1906,9 +2146,9 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    //server_url : 'http://192.168.1.15/f8a/public/api'
+    server_url: 'http://192.168.1.15/f8a/public/api'
     //server_url : 'http://34.68.147.207/f8a/public/api'
-    server_url: 'http://200.117.101.131/f8a/public/api'
+    //server_url : 'http://201.252.165.231/f8a/public/api'
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -22,7 +22,7 @@
         <ion-label>Sin registros</ion-label>
       </ion-list-header>
      
-      <ion-item *ngFor="let team of teams" routerLink="/team/profile/{{team.id}}" routerDirection="forward" >
+      <ion-item *ngFor="let team of teams" routerLink="/team/profile/{{team.id}}" routerDirection="forward" class="team-list" >
         <ion-avatar slot="start" >
           <ion-img 
             [src]="team.shield ? team.shield.urlComplete : 'assets/images/shield_team.png'">

@@ -8,7 +8,7 @@ export class DialogService {
 
   constructor(
     public alertController: AlertController,
-    public toastCtr : ToastController,
+    private toastCtr : ToastController,
     public actionSheetController: ActionSheetController,
 
   ) { }

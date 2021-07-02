@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Solicitud de pase</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="player && team">
+    <ion-card-content>
+      <ion-text>
+        <h3>
+          ¿Deseas incluir a <b>{{player.name}}</b> a la plantilla de jugadores de <b>{{team.name}}</b>?
+        </h3>
+        <br>
+        <h3>
+          Una vez que <b>{{player.name}}</b> acepte la solicitud , podras registrar los sucesos del mismo en los partido 
+        </h3>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" fill="outline" (click)="send()">Enviar</ion-button>
+
+</ion-content>

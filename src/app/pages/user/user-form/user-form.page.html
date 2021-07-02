@@ -10,51 +10,56 @@
 </ion-header>
 
 <ion-content>
-
-  <form (ngSubmit)="submit()"  (keyup)="serviceUser.errorsForm.clear()" >
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="submit()"  (keyup)="serviceUser.errorsForm.clear()" >
 
  
-    <div>
-      <ion-img  [src]="photoService.photo.getPath()" ></ion-img>
-      <div class="ion-text-center">
-        <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('photo') }}</div>
-        <ion-button   size="small" color="tertiary" (click)="photoService.addOneNewToGallery()">{{photoService.isLoadPthoto() ? 'Modificar Foto' :'Seleccionar Foto' }}</ion-button>
-      </div>
-    </div>
+        <div>
+          <ion-img  [src]="photoService.photo.getPath()" ></ion-img>
+          <div class="ion-text-center">
+            <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('photo') }}</div>
+            <ion-button   size="small" color="tertiary" (click)="photoService.addOneNewToGallery()">{{photoService.isLoadPthoto() ? 'Modificar Foto' :'Seleccionar Foto' }}</ion-button>
+          </div>
+        </div>
+    
+        <ion-item>
+          <ion-label position="floating" >Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="user.first_name" name="first_name"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('first_name') }}</div>
+    
+        <ion-item>
+          <ion-label position="floating" >Apellido</ion-label>
+          <ion-input type="text" [(ngModel)]="user.last_name" name="last_name"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('last_name') }}</div>
+    
+        <ion-item>
+          <ion-label position="floating" >Email</ion-label>
+          <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('email') }}</div>
+    
+        <ion-item *ngIf="!id">
+          <ion-label position="floating" >Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('password') }}</div>
+    
+        <ion-item *ngIf="!id">
+          <ion-label position="floating" >Confirmar Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="user.confirm_password" name="confirm_password"></ion-input>
+        </ion-item>
+        <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('confirm_password') }}</div>
+       
+        <ion-button type="submit"  expand="block" [disabled]="saving">
+          <ion-spinner name="lines" *ngIf="saving" ></ion-spinner>
+          Guardar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-item>
-      <ion-label position="floating" >Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="user.first_name" name="first_name"></ion-input>
-    </ion-item>
-    <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('first_name') }}</div>
 
-    <ion-item>
-      <ion-label position="floating" >Apellido</ion-label>
-      <ion-input type="text" [(ngModel)]="user.last_name" name="last_name"></ion-input>
-    </ion-item>
-    <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('last_name') }}</div>
-
-    <ion-item>
-      <ion-label position="floating" >Email</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
-    </ion-item>
-    <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('email') }}</div>
-
-    <ion-item *ngIf="!id">
-      <ion-label position="floating" >Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
-    </ion-item>
-    <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('password') }}</div>
-
-    <ion-item *ngIf="!id">
-      <ion-label position="floating" >Confirmar Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="user.confirm_password" name="confirm_password"></ion-input>
-    </ion-item>
-    <div style="color: red; padding-top: 0.2rem" >{{ serviceUser.errorsForm.get('confirm_password') }}</div>
-   
-    <ion-button type="submit"  expand="block" [disabled]="saving">
-      <ion-spinner name="lines" *ngIf="saving" ></ion-spinner>
-      Guardar
-    </ion-button>
-  </form>
 </ion-content>

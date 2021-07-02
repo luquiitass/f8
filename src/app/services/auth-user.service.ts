@@ -4,7 +4,10 @@ import { RequestService } from '../api/request.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
+import { Observable, BehaviorSubject, from } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
+//import { Storage } from '@ionic/storage';
 
 
 @Injectable({
@@ -13,6 +16,9 @@ import { NavController } from '@ionic/angular';
 export class AuthUserService {
 
   public user = null;
+  public userOb :Observable<any>;
+  public userData = new BehaviorSubject(null);
+
   public errorsLogin : string =  '';
   public userModel : Model;
 
@@ -21,13 +27,39 @@ export class AuthUserService {
     private http: HttpClient,
     private router: Router,
     public navCtrl : NavController,
-    public request : RequestService
+    public request : RequestService,
+
+    //AuthGuards
+    //private storage : Storage,
+    private plt : Platform
 
   ) { 
     this.userModel = new Model('User',request)
+    this.loadStoresUser();
+    this.user = this.userData.getValue();
 
   }
 
+  loadStoresUser(){
+    let platformObs = from(this.plt.ready());
+
+    this.userOb =  platformObs.pipe(
+      switchMap(() => {
+        return from(this.getUser())
+      }),
+      map(user => {
+        console.log('user form storage',user);
+        if(user){
+          this.userData.next(user);
+          return true;
+        }
+        else{
+          return null
+        }
+      })
+    )
+
+  }
 
 
   async login(data){
@@ -36,6 +68,7 @@ export class AuthUserService {
       console.log(data);
       if(data['status'] &&  data['status'] == 'success'){
         await this.saveData(data)
+        this.userData.next(data);
         await this.getUser();
         this.redirect();
       }else{
@@ -100,11 +133,12 @@ export class AuthUserService {
     await this.removeData();
     //this.router.navigate(['login']);
     
-    this.navCtrl.navigateRoot('login');
+    this.router.navigateByUrl('/login');
+    this.userData.next(null);
   }
 
   isAdmin(){
-    this.user.role == 'admin';
+    return this.user &&  this.user.role == 'admin';
   }
 
 

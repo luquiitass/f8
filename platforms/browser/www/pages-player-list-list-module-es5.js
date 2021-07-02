@@ -1,4 +1,10 @@
 (function () {
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+  function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+  function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
   function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -22,7 +28,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>Jugadores</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n   \n      <ion-item *ngFor=\"let item of list\" >\n          \n        <ion-label >\n          <h3>{{item.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\">\n          <ion-button (click)=\"showEdit(item)\">\n            <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n          </ion-button>\n          <ion-button (click)=\"confirmDelete(item)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n      </ion-item>\n    </ion-list>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>{{team_id ? 'Plantilla de ' : ''}}Jugadores</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n   \n      <ion-item *ngFor=\"let item of list\" >\n          \n        <ion-label >\n          <h3>{{item.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\">\n          <ion-button (click)=\"showEdit(item)\">\n            <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n          </ion-button>\n          <ion-button (click)=\"confirmDelete(item)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n      </ion-item>\n    </ion-list>\n\n</ion-content>\n";
       /***/
     },
 
@@ -326,9 +332,11 @@
                     case 2:
                       modal = _context.sent;
                       modal.onDidDismiss().then(function (data) {
-                        var player = data.data['player']; //this.playerService.listAddLast(player);
+                        if (data.data && data.data['player']) {
+                          var player = data.data['player']; //this.playerService.listAddLast(player);
 
-                        _this2.utilArray.listAddFirst(_this2.list, player);
+                          _this2.utilArray.listAddFirst(_this2.list, player);
+                        }
                       });
                       _context.next = 6;
                       return modal.present();
@@ -366,7 +374,7 @@
                     case 2:
                       modal = _context2.sent;
                       modal.onDidDismiss().then(function (data) {
-                        if (data.data.hasOwnProperty('player')) {
+                        if (data.data && data.data.hasOwnProperty('player')) {
                           var _player = data.data['player']; //this.playerService.listUpdate(player.id,player);
 
                           _this3.utilArray.listUpdate(_this3.list, _player.id, _player);
@@ -400,17 +408,28 @@
           value: function _delete(player) {
             var _this5 = this;
 
-            this.playerService.api_delete(player.id).subscribe(function (data) {
-              console.log(data);
+            if (!player.user_id) {
+              this.playerService.api_delete(player.id).subscribe(function (data) {
+                console.log(data);
 
-              if (data['status'] == 'success') {
-                _this5.dialog.showToast('Jugador Eliminado', null, 'success');
+                if (data['status'] == 'success') {
+                  _this5.dialog.showToast('Jugador Eliminado', null, 'success');
 
-                _this5.utilArray.listDelete(_this5.list, player.id);
+                  _this5.utilArray.listDelete(_this5.list, player.id); //this.playerService.listDelete(player.id);
 
-                _this5.playerService.listDelete(player.id);
+                }
+              });
+            } else {
+              if (this.team_id) {
+                this.modelTeam.api_functionModel(this.team_id, 'removePlayer', {
+                  player_id: player.id
+                }).subscribe(function (response) {
+                  _this5.dialog.showToast('El Jugador ha sido eliminado de esta plantilla', null, 'success');
+
+                  _this5.utilArray.listDelete(_this5.list, player.id);
+                }, function (error) {});
               }
-            });
+            }
           }
         }]);
 
@@ -557,6 +576,35 @@
             return list.findIndex(function (item) {
               return item['id'] === id;
             });
+          }
+          /**
+           * Modifica solo los atributos indicados en el array
+           * @param objectResult objeto a modificar
+           * @param object objeto del que se obtendran los datos
+           * @param attibutes atributos que seran modificados
+           */
+
+        }, {
+          key: "updateAttribustesObject",
+          value: function updateAttribustesObject(objectResult, object) {
+            var attibutes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+            console.log('update attributes');
+
+            var _iterator = _createForOfIteratorHelper(attibutes),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var att = _step.value;
+                if (object.hasOwnProperty(att)) objectResult[att] = object[att];
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            return objectResult;
           }
         }]);
 

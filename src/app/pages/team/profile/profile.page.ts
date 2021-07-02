@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { Model } from 'src/app/api/models/model';
@@ -6,6 +6,8 @@ import { RequestService } from 'src/app/api/request.service';
 import { ModalController, NavController } from '@ionic/angular';
 import { ListRedirectPage } from '../../util/list-redirect/list-redirect.page';
 import { AuthUserService } from 'src/app/services/auth-user.service';
+import { FormPage } from '../form/form.page';
+import { UtilArrayService } from 'src/app/services/util-array.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +20,7 @@ export class ProfilePage implements OnInit {
   public teamModel : Model;
   public team :any = null;
   public isAdmin = false;
+  public canEdit = false;
 
   playersList : any = [];
   playersLoading = true;
@@ -28,7 +31,8 @@ export class ProfilePage implements OnInit {
     public requesService : RequestService,
     public modalController : ModalController,
     public navCtrl : NavController,
-    public authUser : AuthUserService
+    public authUser : AuthUserService,
+    public utilArray : UtilArrayService
 
   ) {
 
@@ -139,6 +143,25 @@ export class ProfilePage implements OnInit {
       console.log('goTo',player)
       this.navCtrl.navigateForward(`player/profile/${player.id}`);
     
+   }
+
+
+   async showEdit(){
+    const modal = await this.modalController.create({
+      component: FormPage ,
+      componentProps: { 
+        id: this.id,
+        adminTeam : true
+      }
+    });
+
+    modal.onDidDismiss().then(data=>{
+      console.log('return edit')
+      const team = data.data['team'];
+      this.utilArray.updateAttribustesObject(this.team , team , ['name','shield_id','cover_page_id','shield','cover_page']);
+    })
+
+    return await modal.present();
    }
 
    

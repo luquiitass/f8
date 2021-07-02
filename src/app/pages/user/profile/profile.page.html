@@ -1,10 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile User</ion-title>
+    <ion-title>Perfil de usuario</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar> 
 </ion-header>
 
 <ion-content>
-    <h1>Id : {{id}}</h1>
+
+  <ion-card *ngIf="user">
+    <ion-card-content>
+
+      <ion-img
+        [src]="utilPhoto.getPhotoUser(user)">
+      </ion-img>
+
+    </ion-card-content>
+    <ion-card-header>
+      <ion-card-title>
+        {{user.completeName}}
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  
+  <ion-card *ngIf="user && user.publications.length > 0">
+    <ion-card-header>
+      <ion-card-title>Publicaciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <app-publication 
+        *ngFor="let publication of user.publications"
+        [publication]="publication"
+      ></app-publication>
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

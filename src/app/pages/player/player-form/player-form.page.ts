@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import {RequestService} from '../../../api/request.service';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, AlertController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Model } from 'src/app/api/models/model';
 import { DialogService } from 'src/app/api/util/dialog.service';
 import { ModelImage } from 'src/app/api/models/modelImage';
 import { SearchPage } from '../../search/search.page';
+import { AuthUserService } from 'src/app/services/auth-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-form',
@@ -21,7 +23,8 @@ export class PlayerFormPage implements OnInit {
   public id : any;
   public team_id : any;
   public photoModel : ModelImage;
-  public isUser : false;
+  public isUser = false;
+  public canEditUser = true;
 
   constructor(
     public request : RequestService,
@@ -29,6 +32,9 @@ export class PlayerFormPage implements OnInit {
     public viewCtrl: ModalController,
     navParams: NavParams,
     public modalController: ModalController,
+    public authUser : AuthUserService,
+    public alertController: AlertController,
+    public router : Router
 
   ) {
     this.servicePosition = new Model('Position',request);
@@ -70,6 +76,8 @@ export class PlayerFormPage implements OnInit {
           this.player = data['Player'];
           if(this.player.photo)
             this.photoModel.setImage( this.player.photo)
+
+          this.canEditUser = (this.player && !this.player.user_id);
         }
       })
     }
@@ -148,12 +156,59 @@ export class PlayerFormPage implements OnInit {
     });
 
     modal.onDidDismiss().then(data=>{
-      const user = data.data['item'];
-      this.player.user_id =  user.id;
-      this.player.email = user.text
+      const user = data.data ?  data.data['item'] : null;
+      if(user){
+        if(!user.player){
+          this.player.user_id =  user.id;
+          this.player.email = user.text
+        }else{
+          this.userWithPlayer(user);
+        }
+      }
+     
     })
 
     return await modal.present();
+  }
+
+  async userWithPlayer(user){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Atención',
+      message: `<b>${user.text}</b> ya tiene asociado un jugador. Puedes enviarle una solicitud para que se incorpore a este equipo.`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Solicitar',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.router.navigateByUrl(`team-request/${this.team_id}/${user.player.id}`);
+            this.close();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
+  get isAutor(){
+    return this.player && this.authUser.user.id == this.player.user_id;
+  }
+
+  get isAdminGeneral(){
+    return this.authUser.isAdmin;
+  }
+
+  get userSelect(){
+    return this.player.user_id ? (this.player.user ? this.player.user.email : this.player.email) : '';
   }
 
 }

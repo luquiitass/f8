@@ -18,6 +18,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+//import {Storage} from '@ionic/storage'
+import { from } from 'rxjs';
 
 
 
@@ -30,7 +32,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     AppRoutingModule,
     HttpClientModule, 
     FormPageModule,
-    NgxIonicImageViewerModule
+    NgxIonicImageViewerModule,
+    //Storage,
+    //Storage
   ],
   providers: [
     StatusBar,

@@ -22,6 +22,7 @@
 
     <ion-item *ngFor="let not of notifications"  (click)="visibleNot(not)" [class]="{'no-active' : not.isShow}">
       <app-notification
+        style="width: 100%;"
         [notification] = "not"
       ></app-notification>
     </ion-item>

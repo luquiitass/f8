@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 import {Errors} from '../api/models/errors';
-import { throwError } from 'rxjs';
+import { throwError, from } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import {environment} from 'src/environments/environment';
+import {Model} from './models/model';
 
 
 
@@ -16,11 +17,15 @@ export class RequestService {
 
   private api = environment.server_url
   public errorsForm : Errors = new Errors(); 
+  public errormodel : Model;
+  
 
   constructor(
     private http: HttpClient,
     public toastCtr : ToastController,
-  ) { }
+  ) {
+    this.errormodel = new Model('Error',this);
+   }
 
 
 
@@ -42,7 +47,7 @@ export class RequestService {
     const path =  `${this.api}/collection/${model}`;
     return this.http.get(path).pipe(
       retry(2),
-      catchError((err)=> this.handleError(err))
+      catchError((err)=> this.handleError(err,model))
     )
   }
 
@@ -52,7 +57,7 @@ export class RequestService {
     return this.http.post(path, item)
     .pipe(
       retry(0),
-      catchError((err)=>{ return this.handleError(err) } )
+      catchError((err)=>{ return this.handleError(err,model) } )
     )
   }
 
@@ -62,7 +67,7 @@ export class RequestService {
     return this.http.put(path, item)
     .pipe(
       retry(2),
-      catchError((err)=>this.handleError(err))
+      catchError((err)=>this.handleError(err,model))
     );
   }
 
@@ -72,7 +77,7 @@ export class RequestService {
     return this.http.post(path,{'id': id })
     .pipe(
       retry(2),
-      catchError((err)=>this.handleError(err))
+      catchError((err)=>this.handleError(err,model))
     );
   }
 
@@ -82,7 +87,7 @@ export class RequestService {
     return this.http.post(path,parms)
     .pipe(
       retry(2),
-      catchError((err)=>this.handleError(err))
+      catchError((err)=>this.handleError(err,model))
     );
   }
 
@@ -92,15 +97,16 @@ export class RequestService {
     return this.http.post(path,parms)
     .pipe(
       retry(2),
-      catchError((err)=>this.handleError(err))
+      catchError((err)=>this.handleError(err,model))
     );
   }
 
   
 
-  handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse,model = null) {
     if(error.error && error.error.message)
-      this.showToast(error.error.message);
+      this.showToast(error.error.message,'danger');
+      
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -112,9 +118,13 @@ export class RequestService {
        this.errorsForm.record(JSON.parse( error.error.errorValidaciones ));
      }
      else if(error.status == 403  ) {
-         this.showToast(error.error.mensaje,'danger',7000,'Error Server');
-     }
+        this.saveErrorApi(error.status,error.error.mensaje,model);
+        this.showToast(error.error.mensaje,'danger',7000,'Error Server');
+     }else{
+      this.saveErrorApi(error.status,error.message,model);
       console.error(`Backend returned code `,error.status , `body was:`, error.message);
+      this.showToast('Error de conexión con el  servidor.','danger')
+     }
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
@@ -129,5 +139,19 @@ export class RequestService {
       duration: duration
     });
     toast.present();
+  }
+
+  saveErrorApi(status,message,model){
+    if(model != 'Error'){
+      this.errormodel.api_create({
+        status : status,
+        text : message,
+        model : model
+        }).subscribe(
+          response => {
+            console.log('save Error in APi',response);
+          }
+        );
+  }
   }
 }

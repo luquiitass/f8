@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>Jugadores</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n   \n      <ion-item *ngFor=\"let item of list\" >\n          \n        <ion-label >\n          <h3>{{item.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\">\n          <ion-button (click)=\"showEdit(item)\">\n            <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n          </ion-button>\n          <ion-button (click)=\"confirmDelete(item)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n      </ion-item>\n    </ion-list>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"admin_home\"></ion-back-button>    \n    </ion-buttons>\n    <ion-title>{{team_id ? 'Plantilla de ' : ''}}Jugadores</ion-title>\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"openModal()\">\n        <ion-icon name=\"add-outline\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list>\n      \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n   \n      <ion-item *ngFor=\"let item of list\" >\n          \n        <ion-label >\n          <h3>{{item.name}}</h3>\n        </ion-label>\n\n        <ion-buttons slot=\"end\">\n          <ion-button (click)=\"showEdit(item)\">\n            <ion-icon slot=\"icon-only\" name=\"create-outline\"></ion-icon>\n          </ion-button>\n          <ion-button (click)=\"confirmDelete(item)\">\n            <ion-icon name=\"trash-outline\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n\n      </ion-item>\n    </ion-list>\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -184,9 +184,11 @@ let ListPage = class ListPage {
                 }
             });
             modal.onDidDismiss().then(data => {
-                const player = data.data['player'];
-                //this.playerService.listAddLast(player);
-                this.utilArray.listAddFirst(this.list, player);
+                if (data.data && data.data['player']) {
+                    const player = data.data['player'];
+                    //this.playerService.listAddLast(player);
+                    this.utilArray.listAddFirst(this.list, player);
+                }
             });
             return yield modal.present();
         });
@@ -198,7 +200,7 @@ let ListPage = class ListPage {
                 componentProps: { id: player.id }
             });
             modal.onDidDismiss().then(data => {
-                if (data.data.hasOwnProperty('player')) {
+                if (data.data && data.data.hasOwnProperty('player')) {
                     const player = data.data['player'];
                     //this.playerService.listUpdate(player.id,player);
                     this.utilArray.listUpdate(this.list, player.id, player);
@@ -213,14 +215,25 @@ let ListPage = class ListPage {
         });
     }
     delete(player) {
-        this.playerService.api_delete(player.id).subscribe(data => {
-            console.log(data);
-            if (data['status'] == 'success') {
-                this.dialog.showToast('Jugador Eliminado', null, 'success');
-                this.utilArray.listDelete(this.list, player.id);
-                this.playerService.listDelete(player.id);
+        if (!player.user_id) {
+            this.playerService.api_delete(player.id).subscribe(data => {
+                console.log(data);
+                if (data['status'] == 'success') {
+                    this.dialog.showToast('Jugador Eliminado', null, 'success');
+                    this.utilArray.listDelete(this.list, player.id);
+                    //this.playerService.listDelete(player.id);
+                }
+            });
+        }
+        else {
+            if (this.team_id) {
+                this.modelTeam.api_functionModel(this.team_id, 'removePlayer', { player_id: player.id }).subscribe(response => {
+                    this.dialog.showToast('El Jugador ha sido eliminado de esta plantilla', null, 'success');
+                    this.utilArray.listDelete(this.list, player.id);
+                }, error => {
+                });
             }
-        });
+        }
     }
 };
 ListPage.ctorParameters = () => [
@@ -312,6 +325,20 @@ let UtilArrayService = class UtilArrayService {
      */
     findIndexList(list, id) {
         return list.findIndex(item => item['id'] === id);
+    }
+    /**
+     * Modifica solo los atributos indicados en el array
+     * @param objectResult objeto a modificar
+     * @param object objeto del que se obtendran los datos
+     * @param attibutes atributos que seran modificados
+     */
+    updateAttribustesObject(objectResult, object, attibutes = []) {
+        console.log('update attributes');
+        for (let att of attibutes) {
+            if (object.hasOwnProperty(att))
+                objectResult[att] = object[att];
+        }
+        return objectResult;
     }
 };
 UtilArrayService.ctorParameters = () => [];

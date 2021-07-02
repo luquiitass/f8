@@ -216,7 +216,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Buscar</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-searchbar\n  [showCancelButton]=\"showCancelButton\"\n  (keyup)=\"onInput($event)\"\n  (ionCancel)=\"onCancel($event)\">\n</ion-searchbar>\n\n<ion-content>\n\n  <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n    <ion-label>No se ha encontrado registros</ion-label>\n  </ion-list-header>\n\n  <ion-list  *ngFor=\"let item of list\" >\n    <ion-item   [color]=\"getColor(item.id)\"    (click)=\"select(item)\" >{{item.text}}</ion-item>\n  </ion-list>\n\n\n  <ion-button *ngIf=\"multiple\" class=\"bottom\" expand=\"block\" (click)=\"finalize()\" >Finalizar</ion-button>\n\n\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Buscar</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-searchbar\n  [showCancelButton]=\"showCancelButton\"\n  (keyup)=\"onInput($event)\"\n  (ionCancel)=\"onCancel($event)\">\n</ion-searchbar>\n\n<ion-content>\n\n\n\n  <ion-item-group>\n    \n    <ion-item *ngFor=\"let item of listSelect\"     (click)=\"removeItem(item)\" >\n      {{item.text}}\n      <ion-note slot=\"end\" color=\"success\">SELECCIONADO</ion-note>\n    </ion-item>\n   \n\n    <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n      <ion-label>No se ha encontrado registros</ion-label>\n    </ion-list-header>\n  \n    <ion-item *ngFor=\"let item of list\"    (click)=\"select(item)\" >{{item.text}}</ion-item>\n\n  </ion-item-group>\n\n\n  <ion-button *ngIf=\"multiple\" class=\"bottom\" expand=\"block\" (click)=\"finalize()\" >Finalizar</ion-button>\n\n\n\n</ion-content>\n";
       /***/
     },
 
@@ -236,7 +236,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n    <ion-title>Equipo</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceTeam.errorsForm.clear()\" >\n\n    <div>\n      <ion-img  [src]=\"photoService.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar escudo' :'Seleccionar escudo' }}</ion-button>\n      </div>\n    </div>\n\n    <div>\n      <ion-img  [src]=\"serviceImageCoverPage.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"serviceImageCoverPage.addOneNewToGallery()\">{{serviceImageCoverPage.isLoadPthoto() ? 'Modificar Portada' :'Seleccionar Portada' }}</ion-button>\n      </div>\n    </div>\n      \n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"team.name\" name=\"name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceTeam.errorsForm.get('name') }}</div>\n\n\n    <div class=\"admins\">\n      <ion-list-header  color=\"tertiary\">\n        <ion-label>Administradores</ion-label>\n        <button item-end ion-button color=\"danger\" (click)=\"addAdmins($event)\">\n          <ion-icon name=\"person-add-outline\"></ion-icon>\n        </button>\n      </ion-list-header>\n\n      <ion-list  *ngFor=\"let item of team.admins\" >\n        <ion-item>  {{item.text ? item.text : item.last_name +' '+ item.first_name}}</ion-item>\n      </ion-list>\n    </div>\n   \n    <div class=\"ion-text-center\">\n      <ion-button type=\"submit\" block> Guardar </ion-button>\n    </div>\n  </form>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button color=\"dark\" (click)=\"close()\">\n          <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button>\n  </ion-buttons>\n    <ion-title>Equipo</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form (ngSubmit)=\"submit()\"  (keyup)=\"serviceTeam.errorsForm.clear()\" >\n\n   \n\n    <div>\n      <ion-img  [src]=\"serviceImageCoverPage.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"serviceImageCoverPage.addOneNewToGallery()\">{{serviceImageCoverPage.isLoadPthoto() ? 'Modificar Portada' :'Seleccionar Portada' }}</ion-button>\n      </div>\n    </div>\n\n    <div class=\"ion-text-center\" style=\"margin-top: 20px;\">\n      <ion-img style=\"width: 200px;margin: auto;\" [src]=\"photoService.photo.getPath()\" ></ion-img>\n      <div class=\"ion-text-center\">\n        <ion-button   size=\"small\" color=\"tertiary\" (click)=\"photoService.addOneNewToGallery()\">{{photoService.isLoadPthoto() ? 'Modificar escudo' :'Seleccionar escudo' }}</ion-button>\n      </div>\n    </div>\n      \n\n    <ion-item>\n      <ion-label position=\"floating\" >Nombre</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"team.name\" name=\"name\"></ion-input>\n    </ion-item>\n    <div style=\"color: red; padding-top: 0.2rem\" >{{ serviceTeam.errorsForm.get('name') }}</div>\n\n\n    <div class=\"admins\" *ngIf=\"authUser.isAdmin()\">\n      <ion-list-header  color=\"tertiary\">\n        <ion-label>Administradores</ion-label>\n        <button item-end ion-button color=\"danger\" (click)=\"addAdmins($event)\">\n          <ion-icon name=\"person-add-outline\"></ion-icon>\n        </button>\n      </ion-list-header>\n\n      <ion-list  *ngFor=\"let item of team.admins\"  >\n        <ion-item>  {{item.text ? item.text : item.last_name +' '+ item.first_name}}</ion-item>\n      </ion-list>\n    </div>\n   \n    <div class=\"ion-text-center\">\n      <ion-button type=\"submit\" block> Guardar </ion-button>\n    </div>\n  </form>\n</ion-content>\n";
       /***/
     },
 
@@ -416,6 +416,12 @@
             this.errorsForm = this.request.errorsForm;
             return this.request.api_update(this.model, item);
           }
+          /**
+           * Elimina el objeto de la base de datos
+           * @param id Id del elemento a eliminar
+           * @return Devuelve el mismo objeto y el estado del proceso
+           */
+
         }, {
           key: "api_delete",
           value: function api_delete(id) {
@@ -710,6 +716,11 @@
             return this.photo && this.photo.data ? true : false;
           }
         }, {
+          key: "hasImage",
+          value: function hasImage() {
+            return this.image && this.image.id ? true : false;
+          }
+        }, {
           key: "readAsBase64",
           value: function readAsBase64(cameraPhoto) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
@@ -870,6 +881,12 @@
       var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! src/environments/environment */
       "./src/environments/environment.ts");
+      /* harmony import */
+
+
+      var _models_model__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ./models/model */
+      "./src/app/api/models/model.ts");
 
       var RequestService = /*#__PURE__*/function () {
         function RequestService(http, toastCtr) {
@@ -879,6 +896,7 @@
           this.toastCtr = toastCtr;
           this.api = src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].server_url;
           this.errorsForm = new _api_models_errors__WEBPACK_IMPORTED_MODULE_4__["Errors"]();
+          this.errormodel = new _models_model__WEBPACK_IMPORTED_MODULE_8__["Model"]('Error', this);
         }
 
         _createClass(RequestService, [{
@@ -904,7 +922,7 @@
             console.log("api_all model ".concat(model));
             var path = "".concat(this.api, "/collection/").concat(model);
             return this.http.get(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-              return _this2.handleError(err);
+              return _this2.handleError(err, model);
             }));
           }
         }, {
@@ -915,7 +933,7 @@
             console.log("api_create model ".concat(model), item);
             var path = "".concat(this.api, "/methods/").concat(model, "/create");
             return this.http.post(path, item).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-              return _this3.handleError(err);
+              return _this3.handleError(err, model);
             }));
           }
         }, {
@@ -926,7 +944,7 @@
             console.log("api_update model ".concat(model), item);
             var path = "".concat(this.api, "/methods/").concat(model, "/update");
             return this.http.put(path, item).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-              return _this4.handleError(err);
+              return _this4.handleError(err, model);
             }));
           }
         }, {
@@ -939,7 +957,7 @@
             return this.http.post(path, {
               'id': id
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-              return _this5.handleError(err);
+              return _this5.handleError(err, model);
             }));
           }
         }, {
@@ -951,7 +969,7 @@
             console.log("api_function model ".concat(model, " function:"), functionName);
             var path = "".concat(this.api, "/runFunction/").concat(model, "/").concat(functionName);
             return this.http.post(path, parms).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-              return _this6.handleError(err);
+              return _this6.handleError(err, model);
             }));
           }
         }, {
@@ -963,13 +981,14 @@
             console.log("api_functionModel model ".concat(model, " function:"), functionName);
             var path = "".concat(this.api, "/runFunctionModel/").concat(model, "/").concat(id, "/").concat(functionName);
             return this.http.post(path, parms).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["retry"])(2), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-              return _this7.handleError(err);
+              return _this7.handleError(err, model);
             }));
           }
         }, {
           key: "handleError",
           value: function handleError(error) {
-            if (error.error && error.error.message) this.showToast(error.error.message);
+            var model = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            if (error.error && error.error.message) this.showToast(error.error.message, 'danger');
 
             if (error.error instanceof ErrorEvent) {
               // A client-side or network error occurred. Handle it accordingly.
@@ -980,10 +999,13 @@
               if (error.status == 402) {
                 this.errorsForm.record(JSON.parse(error.error.errorValidaciones));
               } else if (error.status == 403) {
+                this.saveErrorApi(error.status, error.error.mensaje, model);
                 this.showToast(error.error.mensaje, 'danger', 7000, 'Error Server');
+              } else {
+                this.saveErrorApi(error.status, error.message, model);
+                console.error("Backend returned code ", error.status, "body was:", error.message);
+                this.showToast('Error de conexión con el  servidor.', 'danger');
               }
-
-              console.error("Backend returned code ", error.status, "body was:", error.message);
             } // return an observable with a user-facing error message
 
 
@@ -1020,6 +1042,19 @@
                 }
               }, _callee5, this);
             }));
+          }
+        }, {
+          key: "saveErrorApi",
+          value: function saveErrorApi(status, message, model) {
+            if (model != 'Error') {
+              this.errormodel.api_create({
+                status: status,
+                text: message,
+                model: model
+              }).subscribe(function (response) {
+                console.log('save Error in APi', response);
+              });
+            }
           }
         }]);
 
@@ -1079,11 +1114,12 @@
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 
       var DialogService = /*#__PURE__*/function () {
-        function DialogService(alertController, toastCtr) {
+        function DialogService(alertController, toastCtr, actionSheetController) {
           _classCallCheck(this, DialogService);
 
           this.alertController = alertController;
           this.toastCtr = toastCtr;
+          this.actionSheetController = actionSheetController;
         }
 
         _createClass(DialogService, [{
@@ -1098,7 +1134,7 @@
                       _context6.next = 2;
                       return this.alertController.create({
                         header: title,
-                        message: "<strong>".concat(message, "</strong>!!!"),
+                        message: "<strong>".concat(message, "</strong>"),
                         buttons: [{
                           text: 'Cancelar',
                           role: 'cancel',
@@ -1157,6 +1193,70 @@
               }, _callee7, this);
             }));
           }
+        }, {
+          key: "actionSheetEditDelete",
+          value: function actionSheetEditDelete(callbackEdit, callbackDelet) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+              var buttons, actionSheet;
+              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+                while (1) {
+                  switch (_context8.prev = _context8.next) {
+                    case 0:
+                      buttons = [];
+
+                      if (callbackEdit) {
+                        buttons.push({
+                          text: 'Modificar',
+                          icon: 'create-outline',
+                          handler: function handler() {
+                            console.log('Edit clicked');
+                            callbackEdit(); //comment.edit = true;
+                            //this.commentEdit = {...comment};
+                          }
+                        });
+                      }
+
+                      if (callbackDelet) {
+                        buttons.push({
+                          text: 'Eliminar',
+                          role: 'destructive',
+                          icon: 'trash',
+                          handler: function handler() {
+                            console.log('Delete clicked'); //this.confirmDelete(comment);
+
+                            callbackDelet();
+                          }
+                        });
+                      }
+
+                      buttons.push({
+                        text: 'Cancelar',
+                        icon: 'close',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('Cancel clicked');
+                        }
+                      });
+                      _context8.next = 6;
+                      return this.actionSheetController.create({
+                        header: 'Opciones',
+                        cssClass: 'my-custom-class',
+                        buttons: buttons
+                      });
+
+                    case 6:
+                      actionSheet = _context8.sent;
+                      _context8.next = 9;
+                      return actionSheet.present();
+
+                    case 9:
+                    case "end":
+                      return _context8.stop();
+                  }
+                }
+              }, _callee8, this);
+            }));
+          }
         }]);
 
         return DialogService;
@@ -1167,6 +1267,8 @@
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"]
         }];
       };
 
@@ -1213,6 +1315,12 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./guards/auth.guard */
+      "./src/app/guards/auth.guard.ts");
 
       var routes = [{
         path: '',
@@ -1245,7 +1353,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-list-list-module */
-          [__webpack_require__.e("common"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/list/list.module */
           "./src/app/pages/player/list/list.module.ts")).then(function (m) {
             return m.ListPageModule;
@@ -1320,7 +1428,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-list-list-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-list-list-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/list/list.module */
           "./src/app/pages/game/list/list.module.ts")).then(function (m) {
             return m.ListPageModule;
@@ -1331,7 +1439,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-game-form-game-form-module */
-          [__webpack_require__.e("default~pages-game-game-form-game-form-module~pages-game-list-list-module"), __webpack_require__.e("pages-game-game-form-game-form-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("pages-game-game-form-game-form-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/game-form/game-form.module */
           "./src/app/pages/game/game-form/game-form.module.ts")).then(function (m) {
             return m.GameFormPageModule;
@@ -1342,7 +1450,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-list-list-module */
-          [__webpack_require__.e("common"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-list-list-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/list/list.module */
           "./src/app/pages/player/list/list.module.ts")).then(function (m) {
             return m.ListPageModule;
@@ -1353,7 +1461,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-player-form-player-form-module */
-          [__webpack_require__.e("common"), __webpack_require__.e("pages-player-player-form-player-form-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-player-form-player-form-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/player-form/player-form.module */
           "./src/app/pages/player/player-form/player-form.module.ts")).then(function (m) {
             return m.PlayerFormPageModule;
@@ -1384,9 +1492,9 @@
       }, {
         path: 'users/:id/profile',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | pages-user-profile-profile-module */
-          "pages-user-profile-profile-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-user-profile-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/user/profile/profile.module */
           "./src/app/pages/user/profile/profile.module.ts")).then(function (m) {
             return m.ProfilePageModule;
@@ -1419,7 +1527,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-home-home-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/home/home.module */
           "./src/app/pages/home/home.module.ts")).then(function (m) {
             return m.HomePageModule;
@@ -1430,34 +1538,37 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-team-profile-profile-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("common"), __webpack_require__.e("pages-team-profile-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/team/profile/profile.module */
           "./src/app/pages/team/profile/profile.module.ts")).then(function (m) {
             return m.ProfilePageModule;
           });
-        }
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
       }, {
         path: 'results/profile/:id',
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-result-result-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-result-result-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/result/result.module */
           "./src/app/pages/game/result/result.module.ts")).then(function (m) {
             return m.ResultPageModule;
           });
-        }
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
       }, {
         path: 'games/profile/:id',
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-game-game-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("common"), __webpack_require__.e("pages-game-game-game-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/game/game.module */
           "./src/app/pages/game/game/game.module.ts")).then(function (m) {
             return m.GamePageModule;
           });
-        }
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
       }, {
         path: 'crop',
         loadChildren: function loadChildren() {
@@ -1496,7 +1607,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-game-admin-game-admin-game-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-game-admin-game-admin-game-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/game/admin-game/admin-game.module */
           "./src/app/pages/game/admin-game/admin-game.module.ts")).then(function (m) {
             return m.AdminGamePageModule;
@@ -1518,12 +1629,13 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-profile-profile-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("default~pages-player-list-list-module~pages-player-player-form-player-form-module~pages-player-profi~8fa66a7a"), __webpack_require__.e("pages-player-profile-profile-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/profile/profile.module */
           "./src/app/pages/player/profile/profile.module.ts")).then(function (m) {
             return m.ProfilePageModule;
           });
-        }
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
       }, {
         path: 'my-profile',
         loadChildren: function loadChildren() {
@@ -1534,7 +1646,8 @@
           "./src/app/pages/user/my-profile/my-profile.module.ts")).then(function (m) {
             return m.MyProfilePageModule;
           });
-        }
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
       }, {
         path: 'redes-form',
         loadChildren: function loadChildren() {
@@ -1551,7 +1664,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-player-player-search-player-search-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-player-player-search-player-search-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/player/player-search/player-search.module */
           "./src/app/pages/player/player-search/player-search.module.ts")).then(function (m) {
             return m.PlayerSearchPageModule;
@@ -1560,34 +1673,94 @@
       }, {
         path: 'notifications',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | pages-notification-list-list-module */
-          "pages-notification-list-list-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-notification-list-list-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/notification/list/list.module */
           "./src/app/pages/notification/list/list.module.ts")).then(function (m) {
             return m.ListPageModule;
           });
-        }
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
       }, {
         path: 'form-publication',
         loadChildren: function loadChildren() {
-          return Promise.all(
+          return __webpack_require__.e(
           /*! import() | pages-publications-form-publication-form-publication-module */
-          [__webpack_require__.e("common"), __webpack_require__.e("pages-publications-form-publication-form-publication-module")]).then(__webpack_require__.bind(null,
+          "pages-publications-form-publication-form-publication-module").then(__webpack_require__.bind(null,
           /*! ./pages/publications/form-publication/form-publication.module */
           "./src/app/pages/publications/form-publication/form-publication.module.ts")).then(function (m) {
             return m.FormPublicationPageModule;
           });
-        }
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
       }, {
-        path: 'show',
+        path: 'publication/:id/:segment/:not',
         loadChildren: function loadChildren() {
           return Promise.all(
-          /*! import() | pages-pages-publications-show-show-module */
-          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~ed193dc9"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~b7fdd670"), __webpack_require__.e("common"), __webpack_require__.e("pages-pages-publications-show-show-module")]).then(__webpack_require__.bind(null,
-          /*! ./pages/pages/publications/show/show.module */
-          "./src/app/pages/pages/publications/show/show.module.ts")).then(function (m) {
-            return m.ShowPageModule;
+          /*! import() | pages-publications-publication-publication-module */
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-publications-publication-publication-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/publications/publication/publication.module */
+          "./src/app/pages/publications/publication/publication.module.ts")).then(function (m) {
+            return m.PublicationPageModule;
+          });
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+      }, {
+        path: 'publication/:id/:segment',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-publications-publication-publication-module */
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-publications-publication-publication-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/publications/publication/publication.module */
+          "./src/app/pages/publications/publication/publication.module.ts")).then(function (m) {
+            return m.PublicationPageModule;
+          });
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+      }, {
+        path: 'publication/:id',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | pages-publications-publication-publication-module */
+          [__webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-list-list-mod~70d4fda8"), __webpack_require__.e("default~pages-game-admin-game-admin-game-module~pages-game-game-game-module~pages-game-result-result~2beb2a8f"), __webpack_require__.e("pages-publications-publication-publication-module")]).then(__webpack_require__.bind(null,
+          /*! ./pages/publications/publication/publication.module */
+          "./src/app/pages/publications/publication/publication.module.ts")).then(function (m) {
+            return m.PublicationPageModule;
+          });
+        },
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]]
+      }, {
+        path: 'errors',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | pages-error-list-list-module */
+          "pages-error-list-list-module").then(__webpack_require__.bind(null,
+          /*! ./pages/error/list/list.module */
+          "./src/app/pages/error/list/list.module.ts")).then(function (m) {
+            return m.ListPageModule;
+          });
+        }
+      }, {
+        path: 'team-request/:team_id/:player_id',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | pages-passRequest-team-request-team-request-module */
+          "pages-passRequest-team-request-team-request-module").then(__webpack_require__.bind(null,
+          /*! ./pages/passRequest/team-request/team-request.module */
+          "./src/app/pages/passRequest/team-request/team-request.module.ts")).then(function (m) {
+            return m.TeamRequestPageModule;
+          });
+        }
+      }, {
+        path: 'team-request-to-player/:id',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | pages-passRequest-team-request-to-player-team-request-to-player-module */
+          "pages-passRequest-team-request-to-player-team-request-to-player-module").then(__webpack_require__.bind(null,
+          /*! ./pages/passRequest/team-request-to-player/team-request-to-player.module */
+          "./src/app/pages/passRequest/team-request-to-player/team-request-to-player.module.ts")).then(function (m) {
+            return m.TeamRequestToPlayerPageModule;
           });
         }
       }];
@@ -1698,13 +1871,13 @@
             var _this8 = this;
 
             this.platform.ready().then(function () {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this8, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-                return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this8, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+                return regeneratorRuntime.wrap(function _callee9$(_context9) {
                   while (1) {
-                    switch (_context8.prev = _context8.next) {
+                    switch (_context9.prev = _context9.next) {
                       case 0:
                         console.log('init APP');
-                        _context8.next = 3;
+                        _context9.next = 3;
                         return this.authUser.getUser();
 
                       case 3:
@@ -1713,10 +1886,10 @@
 
                       case 5:
                       case "end":
-                        return _context8.stop();
+                        return _context9.stop();
                     }
                   }
-                }, _callee8, this);
+                }, _callee9, this);
               }));
             });
           }
@@ -1882,6 +2055,100 @@
     },
 
     /***/
+    "./src/app/guards/auth.guard.ts":
+    /*!**************************************!*\
+      !*** ./src/app/guards/auth.guard.ts ***!
+      \**************************************/
+
+    /*! exports provided: AuthGuard */
+
+    /***/
+    function srcAppGuardsAuthGuardTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "AuthGuard", function () {
+        return AuthGuard;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../services/auth-user.service */
+      "./src/app/services/auth-user.service.ts");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+      var AuthGuard = /*#__PURE__*/function () {
+        function AuthGuard(authUser, router) {
+          _classCallCheck(this, AuthGuard);
+
+          this.authUser = authUser;
+          this.router = router;
+        }
+
+        _createClass(AuthGuard, [{
+          key: "canActivate",
+          value: function canActivate(next, state) {
+            var _this9 = this;
+
+            return this.authUser.userOb.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (user) {
+              console.log('guard usaer', user);
+
+              if (!user) {
+                _this9.router.navigateByUrl('/login');
+
+                return false;
+              } else {
+                return true;
+              }
+            })); //return true;
+          }
+        }]);
+
+        return AuthGuard;
+      }();
+
+      AuthGuard.ctorParameters = function () {
+        return [{
+          type: _services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["AuthUserService"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+        }];
+      };
+
+      AuthGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], AuthGuard);
+      /***/
+    },
+
+    /***/
     "./src/app/interceptors/token.interceptor.ts":
     /*!***************************************************!*\
       !*** ./src/app/interceptors/token.interceptor.ts ***!
@@ -1956,7 +2223,7 @@
         _createClass(TokenInterceptor, [{
           key: "intercept",
           value: function intercept(request, next) {
-            var _this9 = this;
+            var _this10 = this;
 
             var token = localStorage.getItem('token');
             console.log(token);
@@ -1992,7 +2259,7 @@
               if (error.status === 401) {
                 if (error.error.success === false) {//this.presentToast('Login failed');
                 } else {
-                  _this9.router.navigate(['login']);
+                  _this10.router.navigate(['login']);
                 }
               }
 
@@ -2275,7 +2542,7 @@
         function SearchPage(requestService, navParams, viewCtrl) {
           _classCallCheck(this, SearchPage);
 
-          var _a, _b, _c;
+          var _a, _b, _c, _d;
 
           this.viewCtrl = viewCtrl;
           this.showCancelButton = false;
@@ -2286,6 +2553,7 @@
           this["function"] = navParams.get('function');
           this.multiple = (_b = navParams.get('multiple')) !== null && _b !== void 0 ? _b : false;
           this.minLenght = (_c = navParams.get('multiple')) !== null && _c !== void 0 ? _c : 2;
+          this.listSelect = (_d = navParams.get('listSelect')) !== null && _d !== void 0 ? _d : [];
           this.modelService = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_3__["Model"](this.model, requestService);
         }
 
@@ -2295,7 +2563,7 @@
         }, {
           key: "onInput",
           value: function onInput(event) {
-            var _this10 = this;
+            var _this11 = this;
 
             var text = event.target.value;
 
@@ -2309,7 +2577,7 @@
               console.log('response function', response);
 
               if (response['status'] == 'success') {
-                _this10.list = response['data'];
+                _this11.list = response['data'];
               }
             });
             console.log('onInput', event.target.value);
@@ -2323,7 +2591,8 @@
           key: "select",
           value: function select(item) {
             if (this.multiple) {
-              this.addOrRemove(item);
+              //this.addOrRemove(item);
+              this.addItem(item);
             } else {
               this.viewCtrl.dismiss({
                 item: item
@@ -2336,6 +2605,27 @@
             this.viewCtrl.dismiss({
               items: this.listSelect
             });
+          }
+        }, {
+          key: "addItem",
+          value: function addItem(item) {
+            console.log(item);
+            var inList = this.findList(item.id);
+            if (!inList) this.listSelect.push(item);
+            var index = this.list.findIndex(function (i) {
+              return i['id'] === item.id;
+            });
+            if (index >= 0) this.list.splice(index, 1);
+          }
+        }, {
+          key: "removeItem",
+          value: function removeItem(item) {
+            var index = this.findIndexList(item.id);
+            if (index >= 0) this.listSelect.splice(index, 1);
+            var inList = this.list.find(function (i) {
+              return i['id'] === item.d;
+            });
+            if (!inList) this.list.push(item);
           }
         }, {
           key: "addOrRemove",
@@ -2620,15 +2910,22 @@
       var _search_search_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! ../../search/search.page */
       "./src/app/pages/search/search.page.ts");
+      /* harmony import */
+
+
+      var src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/services/auth-user.service */
+      "./src/app/services/auth-user.service.ts");
 
       var FormPage = /*#__PURE__*/function () {
-        function FormPage(request, dialogService, viewCtrl, navParams, modalController) {
+        function FormPage(request, dialogService, viewCtrl, navParams, modalController, authUser) {
           _classCallCheck(this, FormPage);
 
           this.request = request;
           this.dialogService = dialogService;
           this.viewCtrl = viewCtrl;
-          this.modalController = modalController; //this.serviceTeam.setModel('Team');
+          this.modalController = modalController;
+          this.authUser = authUser; //this.serviceTeam.setModel('Team');
 
           this.serviceTeam = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_4__["Model"]('Team', request);
           this.photoService = new src_app_api_models_modelImage__WEBPACK_IMPORTED_MODULE_6__["ModelImage"](request, viewCtrl);
@@ -2648,7 +2945,7 @@
         }, {
           key: "initObject",
           value: function initObject() {
-            var _this11 = this;
+            var _this12 = this;
 
             this.team = {
               name: '',
@@ -2660,11 +2957,11 @@
             if (this.id) {
               this.serviceTeam.api_find(this.id).subscribe(function (data) {
                 if (data['status'] == 'success') {
-                  _this11.team = data['Team'];
+                  _this12.team = data['Team'];
 
-                  _this11.photoService.setImage(_this11.team.shield);
+                  _this12.photoService.setImage(_this12.team.shield);
 
-                  _this11.serviceImageCoverPage.setImage(_this11.team.cover_page);
+                  _this12.serviceImageCoverPage.setImage(_this12.team.cover_page);
                 }
               });
             }
@@ -2672,7 +2969,7 @@
         }, {
           key: "submit",
           value: function submit() {
-            var _this12 = this;
+            var _this13 = this;
 
             if (!this.photoService.isLoadPthoto()) {
               this.saveCoverPage();
@@ -2682,22 +2979,22 @@
             this.photoService.uploadImage().subscribe(function (data) {
               if (data['status'] == 'success') {
                 var image = data['Image'];
-                _this12.team.shield_id = image.id;
+                _this13.team.shield_id = image.id;
               }
 
-              _this12.saveCoverPage();
+              _this13.saveCoverPage();
 
               console.log('save image');
             }, function (error) {
-              _this12.dialogService.showToast('Error al subir escudo', 'Error', 'danger');
+              _this13.dialogService.showToast('Error al subir escudo', 'Error', 'danger');
 
-              _this12.saveCoverPage();
+              _this13.saveCoverPage();
             });
           }
         }, {
           key: "saveCoverPage",
           value: function saveCoverPage() {
-            var _this13 = this;
+            var _this14 = this;
 
             if (!this.serviceImageCoverPage.isLoadPthoto()) {
               this.saveTeam();
@@ -2707,31 +3004,31 @@
             this.serviceImageCoverPage.uploadImage().subscribe(function (data) {
               if (data['status'] == 'success') {
                 var image = data['Image'];
-                _this13.team.cover_page_id = image.id;
+                _this14.team.cover_page_id = image.id;
               }
 
-              _this13.saveTeam();
+              _this14.saveTeam();
             }, function (error) {
-              _this13.dialogService.showToast('Error al subir Portada', 'Error', 'danger');
+              _this14.dialogService.showToast('Error al subir Portada', 'Error', 'danger');
 
-              _this13.saveTeam();
+              _this14.saveTeam();
             });
           }
         }, {
           key: "saveTeam",
           value: function saveTeam() {
-            var _this14 = this;
+            var _this15 = this;
 
             if (this.team.id) {
               this.serviceTeam.api_update(this.team).subscribe(function (data) {
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this14.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this15.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
                   var team = data['Team'];
 
-                  _this14.dismiss(team);
+                  _this15.dismiss(team);
                 }
               });
             } else {
@@ -2739,9 +3036,9 @@
                 var _a;
 
                 if (data['status'] == 'success') {
-                  _this14.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
+                  _this15.dialogService.showToast((_a = data['msjSuccess']) !== null && _a !== void 0 ? _a : 'Registrado');
 
-                  _this14.dismiss(data['Team']);
+                  _this15.dismiss(data['Team']);
                 }
               });
             }
@@ -2761,17 +3058,17 @@
         }, {
           key: "addAdmins",
           value: function addAdmins(e) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-              var _this15 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+              var _this16 = this;
 
               var modal;
-              return regeneratorRuntime.wrap(function _callee9$(_context9) {
+              return regeneratorRuntime.wrap(function _callee10$(_context10) {
                 while (1) {
-                  switch (_context9.prev = _context9.next) {
+                  switch (_context10.prev = _context10.next) {
                     case 0:
                       e.preventDefault();
                       console.log('Add admins');
-                      _context9.next = 4;
+                      _context10.next = 4;
                       return this.modalController.create({
                         component: _search_search_page__WEBPACK_IMPORTED_MODULE_7__["SearchPage"],
                         componentProps: {
@@ -2783,24 +3080,24 @@
                       });
 
                     case 4:
-                      modal = _context9.sent;
+                      modal = _context10.sent;
                       modal.onDidDismiss().then(function (data) {
                         var list = data.data['items'];
                         console.log('users_select', list);
-                        _this15.team.admins = list;
+                        _this16.team.admins = list;
                       });
-                      _context9.next = 8;
+                      _context10.next = 8;
                       return modal.present();
 
                     case 8:
-                      return _context9.abrupt("return", _context9.sent);
+                      return _context10.abrupt("return", _context10.sent);
 
                     case 9:
                     case "end":
-                      return _context9.stop();
+                      return _context10.stop();
                   }
                 }
-              }, _callee9, this);
+              }, _callee10, this);
             }));
           }
         }]);
@@ -2819,6 +3116,8 @@
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+        }, {
+          type: src_app_services_auth_user_service__WEBPACK_IMPORTED_MODULE_8__["AuthUserService"]
         }];
       };
 
@@ -2868,110 +3167,144 @@
       /* harmony import */
 
 
-      var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _api_models_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../api/models/model */
+      "./src/app/api/models/model.ts");
+      /* harmony import */
+
+
+      var _api_request_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ../api/request.service */
+      "./src/app/api/request.service.ts");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/common/http */
       "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
       /* harmony import */
 
 
-      var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
       /* harmony import */
 
 
-      var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! src/environments/environment */
       "./src/environments/environment.ts");
       /* harmony import */
 
 
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! @ionic/angular */
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js"); //import { Storage } from '@ionic/storage';
+
 
       var AuthUserService = /*#__PURE__*/function () {
-        function AuthUserService(http, router, navCtrl) {
+        function AuthUserService(http, router, navCtrl, request, //AuthGuards
+        //private storage : Storage,
+        plt) {
           _classCallCheck(this, AuthUserService);
 
           this.http = http;
           this.router = router;
           this.navCtrl = navCtrl;
+          this.request = request;
+          this.plt = plt;
           this.user = null;
+          this.userData = new rxjs__WEBPACK_IMPORTED_MODULE_8__["BehaviorSubject"](null);
           this.errorsLogin = '';
+          this.userModel = new _api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('User', request);
+          this.loadStoresUser();
+          this.user = this.userData.getValue();
         }
 
         _createClass(AuthUserService, [{
-          key: "login",
-          value: function login(data) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
-              var _this16 = this;
+          key: "loadStoresUser",
+          value: function loadStoresUser() {
+            var _this17 = this;
 
-              return regeneratorRuntime.wrap(function _callee11$(_context11) {
-                while (1) {
-                  switch (_context11.prev = _context11.next) {
-                    case 0:
-                      this.errorsLogin = '';
-                      return _context11.abrupt("return", this.http.post("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].server_url, "/login"), data).subscribe(function (data) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this16, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
-                          return regeneratorRuntime.wrap(function _callee10$(_context10) {
-                            while (1) {
-                              switch (_context10.prev = _context10.next) {
-                                case 0:
-                                  console.log(data);
+            var platformObs = Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["from"])(this.plt.ready());
+            this.userOb = platformObs.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["switchMap"])(function () {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["from"])(_this17.getUser());
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(function (user) {
+              console.log('user form storage', user);
 
-                                  if (!(data['status'] && data['status'] == 'success')) {
-                                    _context10.next = 9;
-                                    break;
-                                  }
+              if (user) {
+                _this17.userData.next(user);
 
-                                  _context10.next = 4;
-                                  return this.saveData(data);
-
-                                case 4:
-                                  _context10.next = 6;
-                                  return this.getUser();
-
-                                case 6:
-                                  this.redirect();
-                                  _context10.next = 10;
-                                  break;
-
-                                case 9:
-                                  this.errorsLogin = 'Error de credenciales, intente nuevamente';
-
-                                case 10:
-                                case "end":
-                                  return _context10.stop();
-                              }
-                            }
-                          }, _callee10, this);
-                        }));
-                      }, function (error) {
-                        _this16.errorsLogin = error.message; // 'Error de credenciales, intente nuevamente';
-                      }));
-
-                    case 2:
-                    case "end":
-                      return _context11.stop();
-                  }
-                }
-              }, _callee11, this);
+                return true;
+              } else {
+                return null;
+              }
             }));
           }
         }, {
-          key: "setUser",
-          value: function setUser(user) {
+          key: "login",
+          value: function login(data) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+              var _this18 = this;
+
               return regeneratorRuntime.wrap(function _callee12$(_context12) {
                 while (1) {
                   switch (_context12.prev = _context12.next) {
                     case 0:
-                      this.user = user;
-                      _context12.next = 3;
-                      return this.saveUser();
+                      this.errorsLogin = '';
+                      return _context12.abrupt("return", this.http.post("".concat(src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].server_url, "/login"), data).subscribe(function (data) {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this18, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+                          return regeneratorRuntime.wrap(function _callee11$(_context11) {
+                            while (1) {
+                              switch (_context11.prev = _context11.next) {
+                                case 0:
+                                  console.log(data);
 
-                    case 3:
+                                  if (!(data['status'] && data['status'] == 'success')) {
+                                    _context11.next = 10;
+                                    break;
+                                  }
+
+                                  _context11.next = 4;
+                                  return this.saveData(data);
+
+                                case 4:
+                                  this.userData.next(data);
+                                  _context11.next = 7;
+                                  return this.getUser();
+
+                                case 7:
+                                  this.redirect();
+                                  _context11.next = 11;
+                                  break;
+
+                                case 10:
+                                  this.errorsLogin = 'Error de credenciales, intente nuevamente';
+
+                                case 11:
+                                case "end":
+                                  return _context11.stop();
+                              }
+                            }
+                          }, _callee11, this);
+                        }));
+                      }, function (error) {
+                        _this18.errorsLogin = error.message; // 'Error de credenciales, intente nuevamente';
+                      }));
+
+                    case 2:
                     case "end":
                       return _context12.stop();
                   }
@@ -2980,17 +3313,18 @@
             }));
           }
         }, {
-          key: "saveUser",
-          value: function saveUser() {
+          key: "setUser",
+          value: function setUser(user) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
               return regeneratorRuntime.wrap(function _callee13$(_context13) {
                 while (1) {
                   switch (_context13.prev = _context13.next) {
                     case 0:
-                      _context13.next = 2;
-                      return localStorage.setItem('User', JSON.stringify(this.user));
+                      this.user = user;
+                      _context13.next = 3;
+                      return this.saveUser();
 
-                    case 2:
+                    case 3:
                     case "end":
                       return _context13.stop();
                   }
@@ -2999,35 +3333,27 @@
             }));
           }
         }, {
-          key: "saveData",
-          value: function saveData(data) {
+          key: "saveUser",
+          value: function saveUser() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
               return regeneratorRuntime.wrap(function _callee14$(_context14) {
                 while (1) {
                   switch (_context14.prev = _context14.next) {
                     case 0:
                       _context14.next = 2;
-                      return localStorage.setItem('isAuthenticated', 'true');
+                      return localStorage.setItem('User', JSON.stringify(this.user));
 
                     case 2:
-                      _context14.next = 4;
-                      return localStorage.setItem('User', JSON.stringify(data['User']));
-
-                    case 4:
-                      _context14.next = 6;
-                      return localStorage.setItem('token', data['api_token']);
-
-                    case 6:
                     case "end":
                       return _context14.stop();
                   }
                 }
-              }, _callee14);
+              }, _callee14, this);
             }));
           }
         }, {
-          key: "removeData",
-          value: function removeData() {
+          key: "saveData",
+          value: function saveData(data) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
               return regeneratorRuntime.wrap(function _callee15$(_context15) {
                 while (1) {
@@ -3038,10 +3364,37 @@
 
                     case 2:
                       _context15.next = 4;
-                      return localStorage.removeItem('User');
+                      return localStorage.setItem('User', JSON.stringify(data['User']));
 
                     case 4:
                       _context15.next = 6;
+                      return localStorage.setItem('token', data['api_token']);
+
+                    case 6:
+                    case "end":
+                      return _context15.stop();
+                  }
+                }
+              }, _callee15);
+            }));
+          }
+        }, {
+          key: "removeData",
+          value: function removeData() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
+              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+                while (1) {
+                  switch (_context16.prev = _context16.next) {
+                    case 0:
+                      _context16.next = 2;
+                      return localStorage.setItem('isAuthenticated', 'true');
+
+                    case 2:
+                      _context16.next = 4;
+                      return localStorage.removeItem('User');
+
+                    case 4:
+                      _context16.next = 6;
                       return localStorage.removeItem('token');
 
                     case 6:
@@ -3049,10 +3402,10 @@
 
                     case 7:
                     case "end":
-                      return _context15.stop();
+                      return _context16.stop();
                   }
                 }
-              }, _callee15, this);
+              }, _callee16, this);
             }));
           }
         }, {
@@ -3071,67 +3424,67 @@
           value: function getUser() {
             var _a;
 
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
-              return regeneratorRuntime.wrap(function _callee16$(_context16) {
-                while (1) {
-                  switch (_context16.prev = _context16.next) {
-                    case 0:
-                      _context16.next = 2;
-                      return JSON.parse(localStorage.getItem('User'));
-
-                    case 2:
-                      _context16.t1 = _a = _context16.sent;
-                      _context16.t0 = _context16.t1 !== null;
-
-                      if (!_context16.t0) {
-                        _context16.next = 6;
-                        break;
-                      }
-
-                      _context16.t0 = _a !== void 0;
-
-                    case 6:
-                      if (!_context16.t0) {
-                        _context16.next = 10;
-                        break;
-                      }
-
-                      _context16.t2 = _a;
-                      _context16.next = 11;
-                      break;
-
-                    case 10:
-                      _context16.t2 = null;
-
-                    case 11:
-                      return _context16.abrupt("return", this.user = _context16.t2);
-
-                    case 12:
-                    case "end":
-                      return _context16.stop();
-                  }
-                }
-              }, _callee16, this);
-            }));
-          }
-        }, {
-          key: "redirect",
-          value: function redirect() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
               return regeneratorRuntime.wrap(function _callee17$(_context17) {
                 while (1) {
                   switch (_context17.prev = _context17.next) {
                     case 0:
                       _context17.next = 2;
+                      return JSON.parse(localStorage.getItem('User'));
+
+                    case 2:
+                      _context17.t1 = _a = _context17.sent;
+                      _context17.t0 = _context17.t1 !== null;
+
+                      if (!_context17.t0) {
+                        _context17.next = 6;
+                        break;
+                      }
+
+                      _context17.t0 = _a !== void 0;
+
+                    case 6:
+                      if (!_context17.t0) {
+                        _context17.next = 10;
+                        break;
+                      }
+
+                      _context17.t2 = _a;
+                      _context17.next = 11;
+                      break;
+
+                    case 10:
+                      _context17.t2 = null;
+
+                    case 11:
+                      return _context17.abrupt("return", this.user = _context17.t2);
+
+                    case 12:
+                    case "end":
+                      return _context17.stop();
+                  }
+                }
+              }, _callee17, this);
+            }));
+          }
+        }, {
+          key: "redirect",
+          value: function redirect() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
+              return regeneratorRuntime.wrap(function _callee18$(_context18) {
+                while (1) {
+                  switch (_context18.prev = _context18.next) {
+                    case 0:
+                      _context18.next = 2;
                       return this.getUser();
 
                     case 2:
                       if (this.user) {
-                        _context17.next = 4;
+                        _context18.next = 4;
                         break;
                       }
 
-                      return _context17.abrupt("return");
+                      return _context18.abrupt("return");
 
                     case 4:
                       if (this.user['role'] == 'admin') {
@@ -3142,29 +3495,6 @@
 
                     case 5:
                     case "end":
-                      return _context17.stop();
-                  }
-                }
-              }, _callee17, this);
-            }));
-          }
-        }, {
-          key: "logout",
-          value: function logout() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
-              return regeneratorRuntime.wrap(function _callee18$(_context18) {
-                while (1) {
-                  switch (_context18.prev = _context18.next) {
-                    case 0:
-                      _context18.next = 2;
-                      return this.removeData();
-
-                    case 2:
-                      //this.router.navigate(['login']);
-                      this.navCtrl.navigateRoot('login');
-
-                    case 3:
-                    case "end":
                       return _context18.stop();
                   }
                 }
@@ -3172,9 +3502,97 @@
             }));
           }
         }, {
+          key: "logout",
+          value: function logout() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
+              return regeneratorRuntime.wrap(function _callee19$(_context19) {
+                while (1) {
+                  switch (_context19.prev = _context19.next) {
+                    case 0:
+                      _context19.next = 2;
+                      return this.removeData();
+
+                    case 2:
+                      //this.router.navigate(['login']);
+                      this.router.navigateByUrl('/login');
+                      this.userData.next(null);
+
+                    case 4:
+                    case "end":
+                      return _context19.stop();
+                  }
+                }
+              }, _callee19, this);
+            }));
+          }
+        }, {
           key: "isAdmin",
           value: function isAdmin() {
-            this.user.role == 'admin';
+            return this.user && this.user.role == 'admin';
+          }
+        }, {
+          key: "updateUserApi",
+          value: function updateUserApi() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee21() {
+              var _this19 = this;
+
+              return regeneratorRuntime.wrap(function _callee21$(_context21) {
+                while (1) {
+                  switch (_context21.prev = _context21.next) {
+                    case 0:
+                      if (!this.user) {
+                        _context21.next = 3;
+                        break;
+                      }
+
+                      _context21.next = 3;
+                      return this.userModel.api_function('dataGlobal').subscribe(function (response) {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this19, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
+                          return regeneratorRuntime.wrap(function _callee20$(_context20) {
+                            while (1) {
+                              switch (_context20.prev = _context20.next) {
+                                case 0:
+                                  if (!(response['status'] == 'success')) {
+                                    _context20.next = 4;
+                                    break;
+                                  }
+
+                                  this.user = response['data'];
+                                  _context20.next = 4;
+                                  return this.saveUser();
+
+                                case 4:
+                                case "end":
+                                  return _context20.stop();
+                              }
+                            }
+                          }, _callee20, this);
+                        }));
+                      }, function (error) {
+                        console.log(error);
+                      });
+
+                    case 3:
+                    case "end":
+                      return _context21.stop();
+                  }
+                }
+              }, _callee21, this);
+            }));
+          }
+        }, {
+          key: "isAdminTeam",
+          value: function isAdminTeam(team_id) {
+            console.log('id admin');
+
+            if (this.user.teams) {
+              var index = this.user.teams.map(function (team) {
+                return team.id;
+              }).indexOf(parseInt(team_id));
+              return index >= 0;
+            }
+
+            return false;
           }
         }]);
 
@@ -3183,11 +3601,15 @@
 
       AuthUserService.ctorParameters = function () {
         return [{
-          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
         }, {
-          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
         }, {
-          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"]
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["NavController"]
+        }, {
+          type: _api_request_service__WEBPACK_IMPORTED_MODULE_3__["RequestService"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["Platform"]
         }];
       };
 
@@ -3222,9 +3644,9 @@
 
       var environment = {
         production: false,
-        //server_url : 'http://192.168.1.15/f8a/public/api'
-        //server_url : 'http://34.68.147.207/f8a/public/api'
-        server_url: 'http://200.117.101.131/f8a/public/api'
+        server_url: 'http://192.168.1.15/f8a/public/api' //server_url : 'http://34.68.147.207/f8a/public/api'
+        //server_url : 'http://201.252.165.231/f8a/public/api'
+
       };
       /*
        * For easier debugging in development mode, you can import the following file

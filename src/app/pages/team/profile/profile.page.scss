@@ -6,6 +6,7 @@
     display: flex;
     align-items: flex-end;
     padding: 5px;
+    padding-left: 30px;
 }
 
 .shield{
@@ -20,3 +21,6 @@
     /*vertical-align: middle;*/
 }
 
+.shield-content{
+    margin-bottom: 20px;
+}

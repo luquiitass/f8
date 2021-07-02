@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { 
@@ -85,15 +86,18 @@ const routes: Routes = [
   },
   {
     path: 'team/profile/:id',
-    loadChildren: () => import('./pages/team/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/team/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'results/profile/:id',
-    loadChildren: () => import('./pages/game/result/result.module').then( m => m.ResultPageModule)
+    loadChildren: () => import('./pages/game/result/result.module').then( m => m.ResultPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'games/profile/:id',
-    loadChildren: () => import('./pages/game/game/game.module').then( m => m.GamePageModule)
+    loadChildren: () => import('./pages/game/game/game.module').then( m => m.GamePageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'crop',
@@ -117,11 +121,13 @@ const routes: Routes = [
   },
   {
     path: 'player/profile/:id',
-    loadChildren: () => import('./pages/player/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/player/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'my-profile',
-    loadChildren: () => import('./pages/user/my-profile/my-profile.module').then( m => m.MyProfilePageModule)
+    loadChildren: () => import('./pages/user/my-profile/my-profile.module').then( m => m.MyProfilePageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'redes-form',
@@ -133,25 +139,43 @@ const routes: Routes = [
   },
   {
     path: 'notifications',
-    loadChildren: () => import('./pages/notification/list/list.module').then( m => m.ListPageModule)
+    loadChildren: () => import('./pages/notification/list/list.module').then( m => m.ListPageModule),    
+    canActivate : [AuthGuard],
+
   },
   {
     path: 'form-publication',
-    loadChildren: () => import('./pages/publications/form-publication/form-publication.module').then( m => m.FormPublicationPageModule)
+    loadChildren: () => import('./pages/publications/form-publication/form-publication.module').then( m => m.FormPublicationPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'publication/:id/:segment/:not',
-    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule)
+    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'publication/:id/:segment',
-    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule)
+    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule),
+    canActivate : [AuthGuard]
   },
   {
     path: 'publication/:id',
-    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule)
+    loadChildren: () => import('./pages/publications/publication/publication.module').then( m => m.PublicationPageModule),
+    canActivate : [AuthGuard]
   },
- 
+  {
+    path: 'errors',
+    loadChildren: () => import('./pages/error/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'team-request/:team_id/:player_id',
+    loadChildren: () => import('./pages/passRequest/team-request/team-request.module').then( m => m.TeamRequestPageModule)
+  },
+  {
+    path: 'team-request-to-player/:id',
+    loadChildren: () => import('./pages/passRequest/team-request-to-player/team-request-to-player.module').then( m => m.TeamRequestToPlayerPageModule)
+  },
+  
   
 ];
 @NgModule({

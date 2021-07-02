@@ -1,0 +1,27 @@
+
+ion-col{
+    font-size: large;
+    color: #000000b3;
+    padding: 7px;
+}
+
+.col-v{
+    border-top-right-radius: 5px;
+    border-right: 4px solid var(--color-v);
+}
+
+.col-l{
+    border-top-left-radius: 5px;
+    border-left: 4px solid var(--color-l);
+}
+
+.item-l{
+    border-left: 4px solid var(--color-l);
+    padding-left: 5px;
+
+}
+
+.item-v{
+    border-right: 4px solid var(--color-v);
+    padding-right: 5px;
+}

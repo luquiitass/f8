@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n></app-player-list>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title>players</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"load($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n\n  <app-player-list \n  [items] = \"players\"\n  (eventSelect)=\"playerSelect($event)\" \n  [firstLoading] = \"firstLoading\"\n></app-player-list>\n</ion-content>\n";
       /***/
     },
 
@@ -234,14 +234,22 @@
       var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @ionic/angular */
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var src_app_services_util_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/services/util.service */
+      "./src/app/services/util.service.ts");
 
       var PlayersPage = /*#__PURE__*/function () {
-        function PlayersPage(request, navCtrl) {
+        function PlayersPage(request, navCtrl, util) {
           _classCallCheck(this, PlayersPage);
 
           this.request = request;
           this.navCtrl = navCtrl;
+          this.util = util;
           this.players = [];
+          this.firstLoading = true;
           this.playerModel = new src_app_api_models_model__WEBPACK_IMPORTED_MODULE_2__["Model"]('Player', this.request);
         }
 
@@ -253,17 +261,36 @@
         }, {
           key: "load",
           value: function load() {
-            var _this = this;
+            var $event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              var _this = this;
 
-            this.playerModel.api_function('pageHomePlayers').subscribe(function (response) {
-              if (response['status'] == 'success') {
-                _this.players = response['data'];
-              }
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      //await this.util.delay(4000)
+                      this.playerModel.api_function('pageHomePlayers').subscribe(function (response) {
+                        if (response['status'] == 'success') {
+                          _this.players = response['data'];
+                        }
 
-              console.log(response);
-            }, function (error) {
-              console.error(error);
-            });
+                        console.log(response);
+                        _this.firstLoading = false;
+                        if ($event) $event.target.complete();
+                      }, function (error) {
+                        _this.firstLoading = false;
+                        console.error(error);
+                        if ($event) $event.target.complete();
+                      });
+
+                    case 1:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
           }
         }, {
           key: "playerSelect",
@@ -281,6 +308,8 @@
           type: src_app_api_request_service__WEBPACK_IMPORTED_MODULE_3__["RequestService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"]
+        }, {
+          type: src_app_services_util_service__WEBPACK_IMPORTED_MODULE_5__["UtilService"]
         }];
       };
 

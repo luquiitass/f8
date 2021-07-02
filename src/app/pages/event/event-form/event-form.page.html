@@ -20,9 +20,8 @@
       </ion-select>
       <div style="color: red; padding-top: 0.2rem" >{{ eventModel.errorsForm.get('type_event_id') }}</div>
     </ion-item>
-
     
-    <ion-item>
+    <ion-item *ngIf="!team_admin">
       <ion-label position="floating">Equipo</ion-label>
       <ion-select [(ngModel)]="event.team_id" name="team_id">
         <ion-select-option [value]="team.id" *ngFor="let team of dataEvent.teams">{{ team.name }}</ion-select-option>

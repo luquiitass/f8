@@ -1,31 +1,36 @@
 <ion-card *ngIf="(events.length && team_l && team_v) || isAdmin" >
-  <ion-card-header>
+  <ion-card-header class="bg-l1">
     <ion-card-title>Sucesos</ion-card-title>
   </ion-card-header>
     <ion-list >
-      
+
       <ion-grid>
         <ion-row>
-          <ion-col *ngIf="team_l"  class="ion-text-start">
-            {{team_l.name}}
+          <ion-col *ngIf="team_l"  class="ion-text-start col-l">
+            <ion-text color="light">
+              {{team_l.name}}
+            </ion-text>
           </ion-col>
-          <ion-col *ngIf="team_v"  class="ion-text-end">
-            {{team_v.name}}
+          <ion-col *ngIf="team_v"  class="ion-text-end col-v">
+            <ion-text color="light">
+              {{team_v.name}}
+            </ion-text>          
           </ion-col>
         </ion-row>
       </ion-grid>
+      <div class="separator"></div>
 
-      <ion-list-header *ngIf="events.length == 0"  color="tertiary">
-        <ion-label>Sin registros</ion-label>
-      </ion-list-header>
+      <ion-list-header *ngIf="events.length == 0"  color="light">
+        <ion-label>Sin Sucesos</ion-label>
+      </ion-list-header> 
 
    
-      <ion-item *ngFor="let item of events ; let i = index" >
+      <ion-item *ngFor="let item of events ; let i = index"  class="bg-l0">
           
-        <ion-label >
+        <ion-label class="{{item.team.id == team_v.id ? 'item-v' : ''}} {{item.team.id == team_l.id ? 'item-l' : ''}}" >
           <h3 [ngClass]="{'ion-text-end' : item.team.id == team_v.id}">
             <img *ngIf="item.type_event.icon" src="assets/images/{{item.type_event.icon}}"  width="40px">
-            {{item.time}}° 
+            {{item.time}}´ 
             <b>{{item.type_event.name}}  </b>
             <a [routerLink]="'/player/profile/' + item.player.id" routerDirection="forward" >
               {{item.player.name}}
@@ -33,18 +38,27 @@
           </h3>
         </ion-label>
 
-        <ion-buttons slot="end" *ngIf="isAdmin">
+        <ion-buttons slot="start" *ngIf="canEdit && team_admin.id == item.team.id">
           <ion-button (click)="confirmDelete(item,i)">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
-
-
       </ion-item>
+      
     </ion-list>
 
-    <ion-button *ngIf="isAdmin"  fill="clear" expand="block" (click)="addEvent()">
+    <ion-button *ngIf="canEdit"  fill="outline" expand="block" (click)="addEvent()">
       Nuevo Suceso
     </ion-button>
+
+    <div class="ion-text-center" *ngIf="team_admin">
+      <ion-chip class="chip-admin" color="secondary" *ngIf="isAdmin">
+        <ion-label class="msj-is-admin">
+          Eres el administrador de <b>{{team_admin.name}} </b>, puedes administrar lo sucesos de tu equipo al activar la edición.
+        </ion-label>
+        <ion-toggle [(ngModel)]="canEdit"></ion-toggle>
+  
+      </ion-chip>
+    </div>
 
 </ion-card>

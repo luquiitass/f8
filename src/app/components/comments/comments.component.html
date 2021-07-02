@@ -1,16 +1,17 @@
+<div style="margin-top: 20px;;">
 
-  <ion-card-header *ngIf="withTitle">
-    <ion-card-title class="ion-text-center">Comentarios</ion-card-title>
+  <div *ngIf="withTitle">
+    <ion-card-title class="ion-text-center title">Comentarios</ion-card-title>
     <div class="separator"></div>
-  </ion-card-header>
+  </div>
 
-  <ion-card-content> 
+  <div> 
 
-    <ion-list>
+    <ion-list lines="none" style="margin: 0px;padding: 0px;">
       <ion-item *ngIf="listComments.length < 1">
-        <ion-note style="font-size: large;">Se el primero en comentar!!!</ion-note>
+        <ion-note style="font-size: large; margin: 15px;">Se el primero en comentar!!!</ion-note>
       </ion-item>
-      <ion-item  *ngFor="let item of listComments">
+      <ion-item  *ngFor="let item of listComments" class="team-list">
         <div class="comment-item" *ngIf="!item.edit">
           <ion-button class="menu-right"fill="clear" (click)="openMenuComment(item)" *ngIf="authUser.user.id == item.user_id">
             <ion-icon name="ellipsis-vertical-outline"></ion-icon>
@@ -27,14 +28,22 @@
 
           <div class="comment-data">
             <div class="comment-user">
-              <a [routerLink]="'/users/' + item.user.id +'/profile'">
-                {{item.user.last_name }} {{item.user.first_name }}
-              </a>
+              <ion-text color="dark">
+                <a [routerLink]="'/users/' + item.user.id +'/profile'" style="text-decoration: blink;" >
+                  {{item.user.last_name }} {{item.user.first_name }}
+                </a>
+              </ion-text>
             </div>
             <div class="comment-body first-uppercase">
+              <ion-text color="light">
                 {{item.body}}
+              </ion-text>
             </div>
-            <div class="comment-date">{{ formatDate(item.created_at)}}</div>
+            <div class="comment-date" >
+              <ion-text color="light">
+                {{ formatDate(item.created_at)}}
+              </ion-text>
+            </div>
           </div>
 
         </div>
@@ -43,7 +52,7 @@
 
           <ion-text>Editar comentario</ion-text>
 
-          <ion-textarea  class="form-control editor-text first-uppercase" [(ngModel)]="commentEdit.body" name="body"  placeholder="Escreibe un comentario..." ></ion-textarea>
+          <ion-textarea  class="form-control editor-text first-uppercase" [(ngModel)]="commentEdit.body" name="body"  placeholder="Añade un comentario..." ></ion-textarea>
           <div class="content-right comment-edit-bts">
             <ion-button slot="end" (click)="editComment()" [disabled]="updatingComment">
               <ion-spinner name="lines" *ngIf="updatingComment" ></ion-spinner>
@@ -60,42 +69,24 @@
       </ion-item>
     </ion-list>
 
-    <form (ngSubmit)="send()" >
+    <div class="content-new">
+        <form (ngSubmit)="send()" >
 
-      <div class="content-comment">
-        <div class="content-comment-text">
-          <ion-textarea  class="editor-text first-uppercase" [(ngModel)]="comment.body" name="body"  placeholder="Escreibe un comentario..." ></ion-textarea>
-        </div>
-        <div>
-          <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button  class="edditor-send" size="small" color="primary" type="submit" (click)="send()"  [disabled]="sending">
-              <ion-icon name="send-sharp" *ngIf="!sending"></ion-icon>
-              <ion-spinner name="lines" *ngIf="sending" ></ion-spinner>
-
-            </ion-fab-button>
-          </ion-fab>
-        </div>
-      </div>
-
-      <!-- <ion-grid>
-        <ion-row class="editor">
-          <ion-col size="10">
-            <div>
-              <ion-textarea  class="editor-text" [(ngModel)]="comment.body" name="body"  placeholder="Escreibe un comentario..." ></ion-textarea>
+          <div class="content-comment">
+            <div class="content-comment-text">
+              <ion-textarea  class="editor-text first-uppercase" [(ngModel)]="comment.body" name="body"  placeholder="Escreibe un comentario..." ></ion-textarea>
             </div>
-          </ion-col>
-          <ion-col size="2">
-            <div>
-              <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-                <ion-fab-button  class="edditor-send" size="small" color="primary" type="submit" (click)="send()">
-                  <ion-icon name="send-sharp"></ion-icon>
+            <div class="content-comment-btn ion-align-self-end">
+                <ion-fab-button  class="edditor-send" size="small" color="primary" type="submit" (click)="send()"  [disabled]="sending">
+                  <ion-icon name="send-sharp" *ngIf="!sending"></ion-icon>
+                  <ion-spinner name="lines" *ngIf="sending" ></ion-spinner>
+
                 </ion-fab-button>
-              </ion-fab>
-
             </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid> -->
-     
-  </form>
-  </ion-card-content>
+          </div>
+
+        
+      </form>
+    </div>
+  </div>
+</div>

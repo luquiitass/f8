@@ -30,8 +30,16 @@
       <ion-list-header *ngIf="list.length == 0"  color="tertiary">
         <ion-label>Sin registros</ion-label>
       </ion-list-header>
+
+      <app-game-list 
+        *ngFor="let game of list"
+        [game]="game"  
+        routerLink="/games/profile/{{game.id}}" 
+        routerDirection="forward"
+      >
+      </app-game-list>
   
-      <ion-item *ngFor="let game of list" routerLink="/games/profile/{{game.id}}" routerDirection="forward" >
+      <!-- <ion-item *ngFor="let game of list" routerLink="/games/profile/{{game.id}}" routerDirection="forward" >
         <div class="game">
           <div class="team-list contenedor">
             <div class="team">
@@ -61,8 +69,7 @@
             <span>{{ util.formatHours(game.time) }}</span>
           </div>
         </div>
-        
-      </ion-item>
+      </ion-item> -->
     </ion-list>
   </div>
   

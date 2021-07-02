@@ -14,8 +14,9 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import { LikesComponent} from './likes/likes.component'
 import {MenuUserComponent} from './menu-user/menu-user.component'
 import {NotificationComponent} from './items-list/notification/notification.component';
-
-
+import {GameComponent} from './items-list/game/game.component'
+import {ResultItemComponent} from './items-list/result-item/result-item.component'
+import {PublicationComponent} from './items-list/publication/publication.component'
 
 
 import { FormsModule } from '@angular/forms';
@@ -41,7 +42,10 @@ import { from } from 'rxjs';
     SearchComponent,
     LikesComponent,
     MenuUserComponent,
-    NotificationComponent
+    NotificationComponent,
+    GameComponent,
+    ResultItemComponent,
+    PublicationComponent
   ],
   exports: [
     ListComponent,
@@ -53,7 +57,10 @@ import { from } from 'rxjs';
     SearchComponent,
     LikesComponent,
     MenuUserComponent,
-    NotificationComponent
+    NotificationComponent,
+    GameComponent,
+    ResultItemComponent,
+    PublicationComponent
   ],
   entryComponents: [],
 })

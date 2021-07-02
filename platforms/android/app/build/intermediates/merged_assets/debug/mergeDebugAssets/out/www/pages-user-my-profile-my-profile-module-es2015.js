@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title> {{ user ? user.last_name +' '+user.first_name : 'My Perfil'}}</ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngIf=\"user\">\n    <ion-card-content>\n\n      <ion-img-viewer \n        title=\"Foto de Perfil\" \n        [text]=\"user.last_name +' '+ user.first_name\"\n        scheme=\"dark\" \n        [src]=\"getPhoto()\">\n      </ion-img-viewer>\n\n    </ion-card-content>\n    <ion-card-header>\n      <ion-card-title>\n        {{user.last_name}} {{user.first_name}}\n      </ion-card-title>\n\n      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>\n    </ion-card-header>\n  </ion-card>\n\n\n  <ion-card *ngIf=\"user && user.teams && user.teams.lenght\">\n    <ion-card-header>\n      <ion-card-title>Administrar Equipos</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item *ngFor=\"let team of user.teams\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\">\n            {{team.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngIf=\"user && user.player\">\n    <ion-card-header>\n      <ion-card-title>Jugador</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item routerLink=\"/player/profile/{{user.player.id}}\" routerDirection=\"forward\">\n            {{user.player.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title> {{ user ? user.last_name +' '+user.first_name : 'My Perfil'}}</ion-title>\n\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n\n    <ion-buttons slot=\"secondary\">\n      <ion-button (click)=\"showEdit()\">\n        <ion-icon name=\"create\"></ion-icon>      \n      </ion-button>\n    </ion-buttons>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngIf=\"user\">\n    <ion-card-content>\n\n      <ion-img-viewer \n        title=\"Foto de Perfil\" \n        [text]=\"user.last_name +' '+ user.first_name\"\n        scheme=\"dark\" \n        [src]=\"getPhoto()\">\n      </ion-img-viewer>\n\n    </ion-card-content>\n    <ion-card-header>\n      <ion-card-title>\n        {{user.last_name}} {{user.first_name}}\n      </ion-card-title>\n\n      <ion-card-subtitle>{{user.email}}</ion-card-subtitle>\n    </ion-card-header>\n  </ion-card>\n\n\n  <ion-card *ngIf=\"user && user.teams\">\n    <ion-card-header>\n      <ion-card-title>Mis Equipos</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item *ngFor=\"let team of user.teams\" routerLink=\"/team/profile/{{team.id}}\" routerDirection=\"forward\">\n            {{team.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngIf=\"user && user.player\">\n    <ion-card-header>\n      <ion-card-title>Mi perfil de Jugador</ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-list>\n        <ion-item routerLink=\"/player/profile/{{user.player.id}}\" routerDirection=\"forward\">\n            {{user.player.name}}\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -179,12 +179,14 @@ let MyProfilePage = class MyProfilePage {
             });
             modal.onDidDismiss().then((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
                 console.log(data);
-                let item = data.data['user'];
-                this.user.first_name = item.first_name;
-                this.user.last_name = item.last_name;
-                this.user.photo = item.photo;
-                this.user.email = item.email;
-                yield this.authUser.setUser(this.user);
+                if (data.data && data.data['user']) {
+                    let item = data.data['user'];
+                    this.user.first_name = item.first_name;
+                    this.user.last_name = item.last_name;
+                    this.user.photo = item.photo;
+                    this.user.email = item.email;
+                    yield this.authUser.setUser(this.user);
+                }
             }));
             return yield modal.present();
         });
@@ -203,6 +205,69 @@ MyProfilePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./my-profile.page.scss */ "./src/app/pages/user/my-profile/my-profile.page.scss")).default]
     })
 ], MyProfilePage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/transfer-data.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/services/transfer-data.service.ts ***!
+  \***************************************************/
+/*! exports provided: TransferDataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TransferDataService", function() { return TransferDataService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+let TransferDataService = class TransferDataService {
+    constructor() {
+        this.data = {};
+        this.callbaks = {};
+    }
+    setData(key, value) {
+        this.data[key] = value;
+    }
+    getData(key) {
+        if (this.data.hasOwnProperty(key))
+            return this.data[key];
+        return null;
+    }
+    clear(key = null) {
+        if (this.data.hasOwnProperty(key)) {
+            delete this.data[key];
+            return;
+        }
+        this.data = {};
+    }
+    /**
+     * Añade la funcion que se ejecutara al ejecutar setDataPage
+     * @param page Key de la pagina que deebra obtener los dato
+     * @param callbak funcion que recibe un parametro
+     */
+    onSettDataPage(page, callbak) {
+        this.callbaks[page] = callbak;
+    }
+    /**
+     * Ejecuta la funcion que recibe el parametro ingresado en esta funcion
+     * @param page pagina actual
+     * @param parms parametros
+     */
+    setDataPage(page, parms) {
+        if (this.callbaks.hasOwnProperty(page))
+            this.callbaks[page](parms);
+    }
+};
+TransferDataService.ctorParameters = () => [];
+TransferDataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], TransferDataService);
 
 
 

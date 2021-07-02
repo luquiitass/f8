@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ResultsPageRoutingModule } from './results-routing.module';
+import {ComponentsModule} from '../../../components/components.module';
+
 
 import { ResultsPage } from './results.page';
 
@@ -13,7 +15,8 @@ import { ResultsPage } from './results.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ResultsPageRoutingModule
+    ResultsPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ResultsPage]
 })

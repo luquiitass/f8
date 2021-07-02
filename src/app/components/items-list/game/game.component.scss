@@ -1,0 +1,68 @@
+.team-list{
+    display: block;
+}
+.vs{
+    width: 6%;
+    min-height: 100px;
+    min-width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.game{
+    width: 100%;
+    /*background-image: url('/assets/images/img_fondo_part.png');*/
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 10px;
+}
+
+.team{
+    display: flex;
+    align-items: center;
+    width: 47%;
+    flex-flow: column-reverse;
+
+
+}
+
+.team-name{
+    margin-left: 5px;
+    margin-right: 5px;;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.img-team{
+    border-radius:50%; 
+    background-position:center center; 
+    width:30px; 
+    height:30px;
+}
+
+.contenedor {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    text-align: -webkit-center;
+    padding: 10px;
+    background: #0e0e0e6e;
+    border-radius: 20px;
+    color: white;
+}
+
+.date{
+    text-align: center;
+}
+
+.text-name{
+    margin-top: 15px;
+    font-size: large !important;
+
+}

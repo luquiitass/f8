@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="admin_home"></ion-back-button>    
     </ion-buttons>
-    <ion-title>Jugadores</ion-title>
+    <ion-title>{{team_id ? 'Plantilla de ' : ''}}Jugadores</ion-title>
     <ion-buttons slot="secondary">
       <ion-button (click)="openModal()">
         <ion-icon name="add-outline"></ion-icon>      

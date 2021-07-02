@@ -8,21 +8,15 @@
 </ion-header>
 
 <ion-content>
-  <div class="game" *ngIf="game">
-    <div class="team-list contenedor">
-      <div class="team">
-        <span class="name-team">{{game.team_l.name}}</span>
-        <span  class="goals-team" >{{game.l_goals}}</span>
-      </div>
 
-      <br class="separator">
+  <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-      <div class="team">
-        <span class="name-team">{{game.team_v.name}}</span>
-        <span  class="goals-team" >{{game.v_goals}}</span>
-      </div>
-    </div>
-  </div>
+  <app-result-item
+    *ngIf="game"
+    [game]="game"
+  ></app-result-item>
 
 
   <app-event-list [game_id]="id" ></app-event-list> 

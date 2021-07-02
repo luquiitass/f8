@@ -1,0 +1,46 @@
+<ion-card>
+    <div class="ion-padding custom-skeleton">
+      <div class="game" >
+        <div class="team-list contenedor">
+          <div class="team">
+            <ion-text >
+              <h3 class="text-name">{{game.team_l.name}}</h3>
+            </ion-text>
+            <ion-avatar slot="start">
+              <ion-img 
+              [src]="game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'"
+              ></ion-img>
+            </ion-avatar>
+          </div>
+
+          <div class="vs ion-align-items-center">
+            <div>
+              <ion-text color="ligth">Vs</ion-text>
+            </div>
+          </div>
+
+          <div class="team">
+            <ion-text >
+              <h3 class="text-name">{{game.team_v.name}}</h3>
+            </ion-text>
+            <ion-avatar slot="start">
+              <ion-img 
+              [src]="game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'"
+              ></ion-img>
+            </ion-avatar>
+          </div>
+        </div>
+      </div>
+      <div class="date ion-text-center"  style="width: 100%">
+        <ion-text color="dark"  class="io-float-left">
+          <ion-icon name="timer-outline" color="primary"></ion-icon>      
+          {{withDate ? util.setFormatMoment(game.date,'ddd DD MMM') : ''}}   {{ util.formatHours( game.time )  }}
+        </ion-text>
+
+        <ion-text class="ion-float-right" *ngIf="game.comments_count >= 0 ">
+          <ion-icon name="chatbubble-ellipses-outline" color="primary"></ion-icon>      
+          {{game.comments_count}}
+        </ion-text>
+      </div>
+    </div>
+</ion-card>

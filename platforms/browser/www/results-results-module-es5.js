@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Resultados</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\"!firstLoad\">\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n      <ion-refresher-content\n      refreshingText=\"Cargando...\"\n      ></ion-refresher-content>\n    </ion-refresher>\n  \n    \n  \n    <ion-list>\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n              <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_r_{{i}}\" >\n                {{formatDate(tab.date)}}\n              </ion-segment-button>\n            </ion-segment>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n  \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n      \n        <ion-item *ngFor=\"let game of list\" routerLink=\"/results/profile/{{game.id}}\" routerDirection=\"forward\" >\n          <div class=\"game\">\n            <div class=\"team-list contenedor\">\n              <div class=\"team\">\n                <span class=\"name-team\">{{game.team_l.name}}</span>\n                <span  class=\"goals-team\" >{{game.l_goals}}</span>\n              </div>\n  \n              <br class=\"separator\">\n    \n              <div class=\"team\">\n                <span class=\"name-team\">{{game.team_v.name}}</span>\n                <span  class=\"goals-team\" >{{game.v_goals}}</span>\n              </div>\n            </div>\n          </div>\n          <div class=\"comment\">\n            <ion-icon name=\"chatbox-outline\"></ion-icon>\n          </div>\n         \n        </ion-item>\n      </ion-list>\n  \n\n  </div>\n\n\n\n  <div *ngIf=\"firstLoad\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-card *ngFor=\"let i of listSkeleton\">\n      <div class=\"ion-padding custom-skeleton\">\n        <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text>\n        <ion-skeleton-text animated style=\"width: 100% ; height: 30px;margin-top: 15px;\"></ion-skeleton-text>\n      </div>\n    </ion-card>\n  </div>\n\n  \n\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Resultados</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\"!firstLoad\">\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"init($event)\">\n      <ion-refresher-content\n      refreshingText=\"Cargando...\"\n      ></ion-refresher-content>\n    </ion-refresher>\n  \n    \n  \n    <ion-list>\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-segment scrollable [(ngModel)]=\"tabSelected\" (ionChange)=\"selectDate($event)\" >\n              <ion-segment-button *ngFor=\"let tab of tabs;let i=index\" value=\"{{i}}\" id=\"sgm_r_{{i}}\" >\n                {{formatDate(tab.date)}}\n              </ion-segment-button>\n            </ion-segment>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n  \n      <ion-list-header *ngIf=\"list.length == 0\"  color=\"tertiary\">\n        <ion-label>Sin registros</ion-label>\n      </ion-list-header>\n\n      <app-result-item\n        *ngFor=\"let game of list\"\n        [game] = \"game\"\n        routerLink=\"/results/profile/{{game.id}}\" \n        routerDirection=\"forward\"\n      ></app-result-item>\n      \n        \n\n      </ion-list>\n  \n\n  </div>\n\n\n\n  <div *ngIf=\"firstLoad\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n        <ion-col>  <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text> </ion-col>\n      </ion-row>\n    </ion-grid>\n\n    <ion-card *ngFor=\"let i of listSkeleton\">\n      <div class=\"ion-padding custom-skeleton\">\n        <ion-skeleton-text animated style=\"width: 100% ; height: 30px;\"></ion-skeleton-text>\n        <ion-skeleton-text animated style=\"width: 100% ; height: 30px;margin-top: 15px;\"></ion-skeleton-text>\n      </div>\n    </ion-card>\n  </div>\n\n  \n\n\n</ion-content>\n";
       /***/
     },
 
@@ -144,7 +144,13 @@
       /* harmony import */
 
 
-      var _results_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var _components_components_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../../../components/components.module */
+      "./src/app/components/components.module.ts");
+      /* harmony import */
+
+
+      var _results_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! ./results.page */
       "./src/app/pages/home/results/results.page.ts");
 
@@ -153,8 +159,8 @@
       };
 
       ResultsPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _results_routing_module__WEBPACK_IMPORTED_MODULE_5__["ResultsPageRoutingModule"]],
-        declarations: [_results_page__WEBPACK_IMPORTED_MODULE_6__["ResultsPage"]]
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _results_routing_module__WEBPACK_IMPORTED_MODULE_5__["ResultsPageRoutingModule"], _components_components_module__WEBPACK_IMPORTED_MODULE_6__["ComponentsModule"]],
+        declarations: [_results_page__WEBPACK_IMPORTED_MODULE_7__["ResultsPage"]]
       })], ResultsPageModule);
       /***/
     },

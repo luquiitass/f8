@@ -1,28 +1,31 @@
-<ion-content color="primary" padding>
-  <form #form="ngForm" (ngSubmit)="login(form)">
-    <ion-grid>
-      <ion-row color="primary" justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h3>Login</h3>
-          </div>
-          <div padding>
-            <ion-item>
-              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
-            </ion-item>
-          </div>
-          <div style="color: red; padding-top: 0.2rem" >{{ authUserService.errorsLogin }}</div>
+<ion-content class="ion-padding ion-align-items-center">
+    <ion-grid >
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+          <form #form="ngForm" (ngSubmit)="login(form)">
 
-          <div padding>
-            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+            <div class="ion-text-center">
+              <h3>Fútbol Alem</h3>
+            </div>
+            <div class="ion-padding">
+              <ion-item>
+                <ion-input name="email" type="email" placeholder="ejemplo@gmail.com" ngModel required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="password" type="password" placeholder="Contraseña" ngModel required></ion-input>
+              </ion-item>
+            </div>
+            <div style="color: red; padding-top: 0.2rem" >{{ authUserService.errorsLogin }}</div>
 
-            <ion-button size="large"  expand="block" (click)="openModal()">Registrarme</ion-button>
-          </div>
+            <div padding>
+              <ion-button  type="submit" [disabled]="form.invalid" expand="block">Iniciar Sesión</ion-button>
+              <ion-button  expand="block" (click)="openModal()">Registrarme</ion-button>
+            </div>
+
+
+           
+          </form>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </form>
 </ion-content>

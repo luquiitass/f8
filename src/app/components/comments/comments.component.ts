@@ -96,6 +96,7 @@ export class CommentsComponent implements OnInit {
     console.log('send');
     if(this.comment.body){
       //this.comment.body = this.commentText;
+      this.comment.body = this.comment.body.trim();
       this.sending = true;
       this.commentModel.api_function('add',this.comment).subscribe(
         response => {
@@ -189,6 +190,7 @@ export class CommentsComponent implements OnInit {
      console.log('edit comment api');
      this.updatingComment = true;
      //await this.util.delay(5000);
+     this.commentEdit['body'] = this.commentEdit['body'].trim();
       this.commentModel.api_update(this.commentEdit).subscribe(
         response => {
           if(response['status'] == 'success'){

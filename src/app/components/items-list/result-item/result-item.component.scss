@@ -1,0 +1,138 @@
+.item1{
+
+    .game{
+        /*color: #FFF;*/
+        width: 100%;
+        padding: 3px;
+        padding: 10px;
+        border-radius: 5px;
+        /*box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px white, 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);*/
+        font-size: large;
+    }
+
+    .team{
+        position: relative;
+        /*background-image: url(../../../../assets/images/img_fondo_res4.png);*/
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 10px;
+        width: 100%;
+        padding-top: 15px;
+    }
+
+    .avatar{
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+    }
+
+    .name-team{
+        padding-left: 15px;
+        display: inline-block;
+        width: 50%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+
+    .goals-team{
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding-right: 20px;
+    }
+
+    .comment{
+        position : absolute;
+        top :10px;
+        right : 10px;
+        display: none;
+    }
+}
+
+
+.item2{
+
+    .team-list{
+        display: block;
+    }
+    .goals{
+        width: 30%;
+        min-height: 60px;
+        min-width: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background-size: cover;
+        background-repeat: round;
+    }
+
+    ion-row{
+        background: #c7402f;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 3px;
+        font-size: xx-large;
+    }
+    
+    .game{
+        width: 100%;
+        /*background-image: url('/assets/images/img_fondo_part.png');*/
+        background-repeat: no-repeat;
+        background-size: 100%;
+        padding: 10px;
+    }
+    
+    .team{
+        display: flex;
+        align-items: center;
+        width: 35%;
+        flex-flow: column-reverse;
+    
+    
+    }
+    
+    .team-name{
+        margin-left: 5px;
+        margin-right: 5px;;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    
+    }
+    
+    .img-team{
+        border-radius:50%; 
+        background-position:center center; 
+        width:30px; 
+        height:30px;
+    }
+    
+    .contenedor {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+        text-align: -webkit-center;
+        padding: 10px;
+        background: #0e0e0e6e;
+        border-radius: 20px;
+        color: white;
+    }
+    
+    .date{
+        text-align: center;
+    }
+    
+    .text-name{
+        margin-top: 15px;
+        font-size: large !important;
+    
+    }
+}

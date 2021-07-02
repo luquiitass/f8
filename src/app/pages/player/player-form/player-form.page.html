@@ -13,6 +13,14 @@
 
   <form (ngSubmit)="submit()"  (keyup)="servicePlayer.errorsForm.clear()" >
 
+
+    <ion-item *ngIf="canEditUser">
+      <ion-label position="floating" >Usuario</ion-label>
+      <ion-input type="text" [(ngModel)]="userSelect" name="email" (click)="selectUser()"></ion-input>
+      <ion-input type="hidden" [(ngModel)]="player.user_id" name="user_id"></ion-input>
+    </ion-item>
+    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('user_id') }}</div>
+
     <div>
       <ion-img  [src]="photoModel.photo.getPath()" ></ion-img>
       <div class="ion-text-center">
@@ -65,14 +73,15 @@
       <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('position_id') }}</div>
     </ion-item>
 
-    <ion-item *ngIf="!isUser">
-      <ion-label position="floating" >Usuario</ion-label>
-      <ion-input type="text" [(ngModel)]="player.email" name="email" (click)="selectUser()"></ion-input>
-      <ion-input type="hidden" [(ngModel)]="player.user_id" name="user_id"></ion-input>
-    </ion-item>
-    <div style="color: red; padding-top: 0.2rem" >{{ servicePlayer.errorsForm.get('weight') }}</div>
-
+    <div class="ion-text-center ion-margin-top" >
+      <ion-text color="danger" *ngIf="!(isAutor || canEditUser )" >
+        Este Jugador ya tiene asignado un administrador, solo él puede modificar los datos.
+      </ion-text>   
+    </div>
    
-    <ion-button type="submit"  expand="block">Guardar</ion-button>
+    <ion-button type="submit"  expand="block" [disabled]=" !(isAutor || canEditUser ) " class="ion-margin">
+      Guardar
+    </ion-button>
+   
   </form>
 </ion-content>

@@ -31,6 +31,7 @@ export class SearchPage implements OnInit {
     this.function = navParams.get('function')
     this.multiple = navParams.get('multiple') ?? false;
     this.minLenght = navParams.get('multiple') ?? 2 ;
+    this.listSelect = navParams.get('listSelect') ?? []
 
     this.modelService = new Model(this.model,requestService);
   }
@@ -60,7 +61,8 @@ export class SearchPage implements OnInit {
 
   select(item ){
     if(this.multiple){
-      this.addOrRemove(item);      
+      //this.addOrRemove(item);
+      this.addItem(item)
     }else{
       
         this.viewCtrl.dismiss(
@@ -79,6 +81,30 @@ export class SearchPage implements OnInit {
         items : this.listSelect,
       }
     );
+  }
+
+  addItem(item){
+    console.log(item);
+    let inList = this.findList(item.id);
+
+    if(! inList)
+      this.listSelect.push(item)
+
+    let index = this.list.findIndex(i => i['id'] === item.id);
+    if(index >= 0)
+      this.list.splice(index, 1);
+    
+  }
+
+  removeItem(item){
+    let index = this.findIndexList(item.id);
+    if(index >= 0)
+      this.listSelect.splice(index, 1);
+
+    let inList = this.list.find(i => i['id'] === item.d);
+
+    if(! inList)
+      this.list.push(item)
   }
 
   addOrRemove(item){

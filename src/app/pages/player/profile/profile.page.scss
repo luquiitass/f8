@@ -58,7 +58,7 @@ ion-note {
 }
 .data{
     height: 90px;
-    border: solid 1px #00000042;
+    border: solid 1px var(--ion-color-light);
     border-radius: 10px;
     padding: 10px;
     margin: 1px;
@@ -66,13 +66,13 @@ ion-note {
 }
 .data-value{
     font-size: large;
-    color: #000000ba;
+    color: var(--ion-color-light);
     margin-top: 10px;
 }
 
 .player-team-title{
     margin-left: 10px;
-    color: #383a3e;
+    color: var(--ion-color-light)   ;
 }
 
 .player-team{

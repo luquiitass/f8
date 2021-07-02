@@ -19,6 +19,7 @@ export class ProfilePage implements OnInit {
   public platerModel : Model;
   public player : any;
   public isAdmin = false;
+  private canEdit = false;
 
 
   constructor(

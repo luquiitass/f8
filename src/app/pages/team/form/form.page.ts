@@ -6,6 +6,7 @@ import { Model } from 'src/app/api/models/model';
 import { DialogService } from 'src/app/api/util/dialog.service';
 import { ModelImage } from 'src/app/api/models/modelImage';
 import { SearchPage } from '../../search/search.page';
+import { AuthUserService } from 'src/app/services/auth-user.service';
 
 @Component({
   selector: 'app-form',
@@ -26,6 +27,7 @@ export class FormPage implements OnInit {
     public viewCtrl: ModalController,
     navParams: NavParams,
     public modalController: ModalController,
+    public authUser : AuthUserService
 
   ) {
     //this.serviceTeam.setModel('Team');

@@ -24,6 +24,8 @@ export class EventListComponent implements OnInit {
   events : any = [];
   team_l : any;
   team_v : any;
+  team_admin : null;
+  canEdit = false;
   //isAdmin = false;
   
 
@@ -54,6 +56,7 @@ export class EventListComponent implements OnInit {
             this.events = response['data']['events'];
             this.team_l = response['data']['team_l'];
             this.team_v = response['data']['team_v'];
+            this.verificationAdmin();
           }
           console.log(this.events);
         }
@@ -62,9 +65,21 @@ export class EventListComponent implements OnInit {
   }
 
   verificationAdmin(){
+    console.log('verificationAdmin');
     if(this.authUser.isAdminTeam(this.team_l.id) || this.authUser.isAdminTeam(this.team_v.id) ){
       this.isAdmin = true;
+
+      if(this.authUser.isAdminTeam(this.team_l.id))
+        this.team_admin = this.team_l
+
+      if(this.authUser.isAdminTeam(this.team_v.id))
+        this.team_admin = this.team_v;
+    }else{
+      this.team_admin = null;
     }
+
+    //if(this.authUser.isAdminTeam(this.team_l.id) && this.authUser.isAdminTeam(this.team_v.id) )
+      
   }
 
   confirmDelete(event,index){
@@ -87,13 +102,18 @@ export class EventListComponent implements OnInit {
   async addEvent() {
     const modal = await this.modalController.create({
       component: EventFormPage ,
-      componentProps: { game_id: this.game_id }
+      componentProps: { 
+        game_id: this.game_id,
+        team_admin : this.team_admin
+      }
 
     });
 
     modal.onDidDismiss().then(data=>{
-      let e : any  = data.data['event'];
-      this.events.push(e);
+      if(data.data &&  data.data['event']){
+        let e : any  = data.data['event'];
+        this.events.push(e);
+      }
     })
 
     return await modal.present();

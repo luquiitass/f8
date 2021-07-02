@@ -87,9 +87,11 @@ export class ListPage implements OnInit {
     });
 
     modal.onDidDismiss().then(data=>{
-      const player = data.data['player'];
-      //this.playerService.listAddLast(player);
-      this.utilArray.listAddFirst(this.list , player);
+      if(data.data && data.data['player']){
+        const player = data.data['player'];
+        //this.playerService.listAddLast(player);
+        this.utilArray.listAddFirst(this.list , player);
+      }
     })
 
     return await modal.present();
@@ -102,7 +104,7 @@ export class ListPage implements OnInit {
     });
 
     modal.onDidDismiss().then(data=>{
-      if(data.data.hasOwnProperty('player')){
+      if(data.data && data.data.hasOwnProperty('player')){
         const player = data.data['player'];
         //this.playerService.listUpdate(player.id,player);
         this.utilArray.listUpdate(this.list , player.id , player);
@@ -119,14 +121,29 @@ export class ListPage implements OnInit {
    }
 
    delete(player){
+
+    if(!player.user_id){
      this.playerService.api_delete(player.id).subscribe(data => {
        console.log(data);
        if(data['status'] == 'success'){
          this.dialog.showToast('Jugador Eliminado',null,'success');
          this.utilArray.listDelete(this.list,player.id);
-         this.playerService.listDelete(player.id);
+         //this.playerService.listDelete(player.id);
        }
      });
+    }else{
+      if(this.team_id){
+        this.modelTeam.api_functionModel(this.team_id,'removePlayer',{player_id : player.id}).subscribe(
+          response => {
+            this.dialog.showToast('El Jugador ha sido eliminado de esta plantilla',null,'success');
+            this.utilArray.listDelete(this.list,player.id);
+          },
+          error => {
+
+          }
+        )
+      }
+    }
    }
 
 

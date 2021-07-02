@@ -5,7 +5,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-buttons slot="secondary" *ngIf="isAdmin">
+    <ion-buttons slot="secondary" *ngIf="canEdit">
       <ion-button (click)="showEdit(player)">
         <ion-icon name="create"></ion-icon>      
       </ion-button>
@@ -22,9 +22,10 @@
   <div class="ion-text-center">
     <ion-chip class="chip" color="secondary" *ngIf="isAdmin">
       <ion-label class="msj-is-admin">
-        Eres el administrador de este perfil, puede mosdificar los datos hacindo click en <ion-icon name="create"></ion-icon>.
+        Eres el administrador de este perfil, puede activar la edicion aquí.
       </ion-label>
-      <ion-icon name="close" color="primary"></ion-icon>
+      <ion-toggle [(ngModel)]="canEdit"></ion-toggle>
+
     </ion-chip>
   </div>
   
@@ -100,7 +101,7 @@
       </div>
     </div>
 
-    <div class="player-team" *ngIf="player && player.team">
+    <div class="player-team bg-l2" *ngIf="player && player.team">
       <ion-text class="player-team-title" >Equipo Actual</ion-text>
   
       <div>
@@ -159,7 +160,7 @@
   <app-red-list
     [nameModel] = "'Player'"
     [idModel] = "id"
-    [isAdmin] = "isAdmin"
+    [isAdmin] = "canEdit"
   ></app-red-list>
  
 

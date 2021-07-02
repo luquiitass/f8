@@ -5,11 +5,11 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-buttons slot="secondary" *ngIf="isAdmin">
-      <ion-button (click)="showMenu()">
+    <!-- <ion-buttons slot="secondary" *ngIf="canEdit">
+      <ion-button (click)="showEdit()">
         <ion-icon name="create"></ion-icon>      
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -19,31 +19,57 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+
   <div>
+    <ion-chip class="chip-admin ion-text-center" color="secondary" *ngIf="isAdmin">
+      <ion-text class="msj-is-admin">
+        Eres el administrador de este perfil, puede activar la edicion aquí.
+      </ion-text>
+      <ion-toggle [(ngModel)]="canEdit"></ion-toggle>
+
+    </ion-chip>
+  </div>
+
+  <div class="shield-content">
     <div>
       <img class="cover" [src]="getCover()" alt="Portada">
     </div>
 
-    <div class="shield-team">
+    <div class="shield-team bg-l2">
       <img class="shield" [src]="getShield()" alt="Escudo">
       <span class="name-team">{{team.name}}</span>
     </div>
+
+    <div *ngIf="canEdit">
+      <ion-button expand="block" fill="outline" (click)="showEdit()">
+        <ion-icon name="create"></ion-icon>      
+        Editar</ion-button>
+    </div>
   </div>
 
+ 
+  
   <app-notificatio-selected
+    *ngIf="false"
     [object]="team"
     [table_name]="'Team'"
     [table_id] = "id"
   ></app-notificatio-selected>
 
-<ion-card>
+<ion-card *ngIf="playersList.length || canEdit">
   <ion-card-header>
-    <ion-card-title>
-      Jugadores
-    </ion-card-title>
+    <ion-item>
+      <ion-card-title>
+        Jugadores
+      </ion-card-title>
+      <ion-button *ngIf="canEdit" slot="end" [routerLink]="'/team/' +id +'/players'" routerDirection="forward" >
+        <ion-icon name="create"></ion-icon>      
+      </ion-button>
+    </ion-item>
   </ion-card-header>
 
   <ion-card-content>
+    
     <app-player-list 
       [items] = "playersList"
       (eventLoad)="loadPlayers($event)"
@@ -58,13 +84,14 @@
   <app-red-list
     [nameModel] = "'Team'"
     [idModel] = "id"
-    [isAdmin] = "isAdmin"
+    [isAdmin] = "canEdit"
     ></app-red-list>
 
 <app-comments
   [comments] = "team.comments"
   [idRelation]="id"
   [nameRelationModel]="'Team'"
+
 ></app-comments>
 
 

@@ -18,6 +18,7 @@ export class EventFormPage implements OnInit {
   event : any;
   id : any;
   types_events : [];
+  team_admin : any;
 
   constructor(
     public navParams : NavParams,
@@ -31,12 +32,13 @@ export class EventFormPage implements OnInit {
       this.eventModel = new Model('Event',requestService)
       this.game_id = navParams.get('game_id') ;
       this.id = navParams.get('id');
+      this.team_admin = navParams.get('team_admin');
 
    }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.init();
     this.loadEvent();
-    this.init();
   }
 
 
@@ -48,15 +50,15 @@ export class EventFormPage implements OnInit {
         game_id : this.game_id,
         type_event_id : '',
         player_id : '',
-        team_id : '',
+        team_id : this.team_admin ? this.team_admin.id : '',
         time : ''
       }
     }
   }
 
 
-  init(){
-    this.eventModel.api_function('dataEventCreate',{game_id : this.game_id }).subscribe(
+  async init(){
+    await this.eventModel.api_function('dataEventCreate',{game_id : this.game_id }).subscribe(
       data => {
         if(data['status'] == 'success'){
           this.dataEvent = data['data'];
@@ -70,7 +72,11 @@ export class EventFormPage implements OnInit {
   }
 
   getPlayers(){
-    let id = this.event.team_id;
+    let id = this.event.team_id; 
+    
+    if(this.team_admin)
+      id = this.event.team_id;
+    
     if(id){
       let team = this.dataEvent.teams.find(t => t.id === id );
       if(team)

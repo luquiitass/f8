@@ -11,44 +11,10 @@
   
   <div class="game" *ngIf="game">
     
-    <ion-card>
-      <ion-card-content>
-        <div class="team-list contenedor ">
-          <div class="team">
-              <h2>
-                {{game.team_l.name}}
-              </h2>
-            <ion-thumbnail slot="end">
-              <ion-img 
-                class="img-team"
-                [src]="game.team_l.shield ? game.team_l.shield.urlComplete : 'assets/images/shield_team.png'">
-              </ion-img>
-            </ion-thumbnail>
-          </div>
     
-          <div class="vs">vs</div>
-    
-          <div class="team">
-            <h2>
-              {{game.team_v.name}}
-            </h2>
-            <ion-thumbnail slot="start">
-              <ion-img 
-                class="img-team"
-                [src]="game.team_v.shield ? game.team_v.shield.urlComplete : 'assets/images/shield_team.png'"
-                >
-              </ion-img>
-            </ion-thumbnail>
-          </div>
-        </div>
-        <div class="date ">
-          <ion-label color="primary" class="ion-text-center">
-            <ion-icon name="calendar-outline"></ion-icon>
-            {{util.setFormatMoment(game.date,'ddd DD MMM')}}   {{ util.formatHours( game.time )  }}
-          </ion-label>
-        </div>
-      </ion-card-content>
-    </ion-card>  
+    <app-game-list
+      [game] = "game">
+    </app-game-list>
 
     <div class="ion-text-center">
       <ion-badge color="tertiary">{{game.status}}</ion-badge>
@@ -62,7 +28,7 @@
       </ion-card-header>
     </ion-card>
 
-    <app-event-list [game_id]="id" ></app-event-list>
+   
    
     <app-comments
       [idRelation]="id"

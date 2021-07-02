@@ -33,28 +33,16 @@
       <ion-list-header *ngIf="list.length == 0"  color="tertiary">
         <ion-label>Sin registros</ion-label>
       </ion-list-header>
+
+      <app-result-item
+        *ngFor="let game of list"
+        [game] = "game"
+        routerLink="/results/profile/{{game.id}}" 
+        routerDirection="forward"
+      ></app-result-item>
       
-        <ion-item *ngFor="let game of list" routerLink="/results/profile/{{game.id}}" routerDirection="forward" >
-          <div class="game">
-            <div class="team-list contenedor">
-              <div class="team">
-                <span class="name-team">{{game.team_l.name}}</span>
-                <span  class="goals-team" >{{game.l_goals}}</span>
-              </div>
-  
-              <br class="separator">
-    
-              <div class="team">
-                <span class="name-team">{{game.team_v.name}}</span>
-                <span  class="goals-team" >{{game.v_goals}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="comment">
-            <ion-icon name="chatbox-outline"></ion-icon>
-          </div>
-         
-        </ion-item>
+        
+
       </ion-list>
   
 
